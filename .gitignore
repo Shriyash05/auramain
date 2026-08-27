@@ -1,0 +1,21 @@
+# Node / Expo / React Native
+node_modules/
+.expo/
+dist/
+web-build/
+*.fig
+*.log
+.DS_Store
+
+# Native build folders
+/android
+/ios
+
+# Environment
+.env
+.env.local
+.env*.local
+
+# Scratch / IDE
+.system_generated/
+scratch/
