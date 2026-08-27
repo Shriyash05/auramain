@@ -1,60 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { View, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity, Image, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../../src/hooks/useAuth';
 import { DatabaseService } from '../../src/services/database/databaseService';
+import { OutfitMemoryService } from '../../src/services/memory/outfitMemoryService';
 import { Outfit } from '../../src/types/outfit';
 import { Typography } from '../../src/components/ui/Typography';
 import { Button } from '../../src/components/ui/Button';
 import { GlassSurface } from '../../src/components/ui/GlassSurface';
 import { colors, spacing, radii, shadows } from '../../src/constants/theme';
-import { User, Shield, LogOut, Bookmark, Trash2 } from 'lucide-react-native';
+import { LogOut, User as UserIcon, Sparkles, ChevronRight, Bookmark, Calendar, Clock, BarChart3 } from 'lucide-react-native';
 
 export default function ProfileScreen() {
   const router = useRouter();
   const { user, logout } = useAuth();
   const [savedOutfits, setSavedOutfits] = useState<Outfit[]>([]);
-  const [loadingOutfits, setLoadingOutfits] = useState(true);
-
-  const fetchOutfits = async () => {
-    if (!user) return;
-    try {
-      setLoadingOutfits(true);
-      const list = await DatabaseService.getOutfits(user.id);
-      setSavedOutfits(list);
-    } catch (e) {
-      console.error('[Profile] Load outfits error:', e);
-    } finally {
-      setLoadingOutfits(false);
-    }
-  };
+  const [utilizationStats, setUtilizationStats] = useState<{ totalWears: number; utilizationRate: number }>({
+    totalWears: 0,
+    utilizationRate: 0,
+  });
 
   useEffect(() => {
-    fetchOutfits();
+    async function loadData() {
+      if (!user) return;
+      const outfits = await DatabaseService.getOutfits(user.id);
+      setSavedOutfits(outfits);
+      const stats = await OutfitMemoryService.getGarmentWearStats(user.id);
+      setUtilizationStats({
+        totalWears: stats.totalWears,
+        utilizationRate: stats.utilizationRate,
+      });
+    }
+    loadData();
   }, [user]);
 
-  const handleDeleteOutfit = (outfitId: string, name: string) => {
-    if (!user) return;
-    Alert.alert('Delete Outfit', `Delete "${name}" from your collection?`, [
-      { text: 'Cancel', style: 'cancel' },
-      {
-        text: 'Delete',
-        style: 'destructive',
-        onPress: async () => {
-          await DatabaseService.deleteOutfit(user.id, outfitId);
-          fetchOutfits();
-        },
-      },
-    ]);
-  };
-
-  const handleLogout = () => {
+  const handleSignOut = () => {
     Alert.alert('Sign Out', 'Are you sure you want to sign out of AURA?', [
       { text: 'Cancel', style: 'cancel' },
       {
         text: 'Sign Out',
         style: 'destructive',
-        onPress: () => logout(),
+        onPress: async () => {
+          await logout();
+          router.replace('/(auth)/login');
+        },
       },
     ]);
   };
@@ -62,114 +51,175 @@ export default function ProfileScreen() {
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
-        {/* Header Profile Info */}
+        {/* Header */}
         <View style={styles.header}>
-          <View style={styles.avatarCircle}>
-            <User size={30} color={colors.text} />
-          </View>
-          <View style={styles.headerInfo}>
-            <Typography variant="title" style={styles.name}>
-              {user?.display_name || 'AURA Member'}
-            </Typography>
-            <Typography variant="caption" color={colors.textMuted}>
-              {user?.email || 'Guest Explorer Session'}
-            </Typography>
-          </View>
+          <Typography variant="title" style={styles.title}>
+            Profile & Style
+          </Typography>
         </View>
 
-        {/* Style Preferences Summary */}
+        {/* User Card */}
+        <GlassSurface style={styles.userCard}>
+          <View style={styles.avatarContainer}>
+            <UserIcon size={32} color={colors.text} />
+          </View>
+          <View style={styles.userInfo}>
+            <Typography variant="title" style={styles.userName}>
+              {user?.display_name || 'AURA Stylist'}
+            </Typography>
+            <Typography variant="caption" color={colors.textSecondary}>
+              {user?.email || 'Guest Explorer Mode'}
+            </Typography>
+          </View>
+        </GlassSurface>
+
+        {/* 1. Style Evolution & Wear Memory Metrics */}
         <View style={styles.section}>
-          <Typography variant="label" style={styles.sectionTitle}>
-            STYLE PROFILE
+          <Typography variant="label" style={styles.sectionHeading}>
+            STYLE EVOLUTION & WEAR INTELLIGENCE
           </Typography>
-          <GlassSurface style={styles.card}>
-            <View style={styles.row}>
-              <Typography variant="caption" color={colors.textSecondary}>
-                Fit Preference
+          <GlassSurface style={styles.metricsCard}>
+            <View style={styles.metricItem}>
+              <Typography variant="display" style={styles.metricVal}>
+                {utilizationStats.utilizationRate}%
               </Typography>
-              <Typography variant="caption" color={colors.text} style={styles.valueText}>
-                {user?.appearance?.fit_preference || 'Relaxed'}
+              <Typography variant="caption" color={colors.textMuted}>
+                CLOSET UTILIZATION
               </Typography>
             </View>
-            <View style={styles.divider} />
-            <View style={styles.row}>
-              <Typography variant="caption" color={colors.textSecondary}>
-                Style Aesthetics
+            <View style={styles.metricDivider} />
+            <View style={styles.metricItem}>
+              <Typography variant="display" style={styles.metricVal}>
+                {utilizationStats.totalWears}
               </Typography>
-              <Typography variant="caption" color={colors.text} style={styles.valueText}>
-                {user?.appearance?.style_vibes?.join(', ') || 'Minimalist, Casual'}
+              <Typography variant="caption" color={colors.textMuted}>
+                TOTAL OUTFITS WORN
               </Typography>
             </View>
           </GlassSurface>
         </View>
 
-        {/* Saved Outfits Collection */}
+        {/* 2. Wardrobe Memory & Planner Hub */}
         <View style={styles.section}>
-          <View style={styles.sectionHeaderRow}>
-            <Typography variant="label" style={styles.sectionTitle}>
-              SAVED OUTFITS ({savedOutfits.length})
-            </Typography>
-          </View>
+          <Typography variant="label" style={styles.sectionHeading}>
+            WARDROBE MEMORY & PLANNING
+          </Typography>
 
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => router.push('/history')}
+            style={styles.navRowCard}
+          >
+            <View style={styles.navRowLeft}>
+              <View style={styles.navIconBox}>
+                <Clock size={18} color={colors.text} />
+              </View>
+              <View>
+                <Typography variant="body" style={styles.navRowTitle}>
+                  Wardrobe Wear History
+                </Typography>
+                <Typography variant="caption" color={colors.textSecondary}>
+                  View worn looks & underused items
+                </Typography>
+              </View>
+            </View>
+            <ChevronRight size={18} color={colors.textMuted} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => router.push('/planner')}
+            style={styles.navRowCard}
+          >
+            <View style={styles.navRowLeft}>
+              <View style={styles.navIconBox}>
+                <Calendar size={18} color={colors.text} />
+              </View>
+              <View>
+                <Typography variant="body" style={styles.navRowTitle}>
+                  Look Planner
+                </Typography>
+                <Typography variant="caption" color={colors.textSecondary}>
+                  Schedule outfits for upcoming occasions
+                </Typography>
+              </View>
+            </View>
+            <ChevronRight size={18} color={colors.textMuted} />
+          </TouchableOpacity>
+        </View>
+
+        {/* 3. Style Preferences Summary */}
+        <View style={styles.section}>
+          <Typography variant="label" style={styles.sectionHeading}>
+            CAPTURED STYLE PREFERENCES
+          </Typography>
+          <GlassSurface style={styles.prefsCard}>
+            <View style={styles.prefRow}>
+              <Typography variant="caption" color={colors.textMuted}>
+                VIBES & AESTHETICS
+              </Typography>
+              <Typography variant="body" style={styles.prefVal}>
+                {user?.appearance?.style_vibes?.join(', ') || 'Minimalist, Contemporary'}
+              </Typography>
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.prefRow}>
+              <Typography variant="caption" color={colors.textMuted}>
+                FIT / SILHOUETTE PREFERENCE
+              </Typography>
+              <Typography variant="body" style={styles.prefVal}>
+                {user?.appearance?.fit_preference || 'Relaxed / Contemporary'}
+              </Typography>
+            </View>
+          </GlassSurface>
+        </View>
+
+        {/* 4. Saved Outfits Breakdown */}
+        <View style={styles.section}>
+          <Typography variant="label" style={styles.sectionHeading}>
+            SAVED LOOKS ({savedOutfits.length})
+          </Typography>
           {savedOutfits.length > 0 ? (
-            <View style={styles.outfitList}>
-              {savedOutfits.map((outfit) => (
-                <View key={outfit.id} style={styles.outfitCard}>
-                  <View style={styles.outfitCardHeader}>
-                    <View style={styles.outfitIconCircle}>
-                      <Bookmark size={15} color={colors.text} />
-                    </View>
-                    <View style={styles.outfitTitleGroup}>
-                      <Typography variant="body" color={colors.text} style={styles.outfitName}>
-                        {outfit.name}
+            <View style={styles.outfitsList}>
+              {savedOutfits.map((o) => (
+                <TouchableOpacity
+                  key={o.id}
+                  activeOpacity={0.7}
+                  onPress={() => router.push(`/outfit/${o.id}` as any)}
+                  style={styles.outfitRow}
+                >
+                  <View style={styles.outfitRowLeft}>
+                    <Bookmark size={16} color={colors.text} />
+                    <View>
+                      <Typography variant="body" style={styles.outfitName}>
+                        {o.name}
                       </Typography>
                       <Typography variant="caption" color={colors.textMuted}>
-                        {outfit.garment_ids?.length || 0} Pieces • {new Date(outfit.created_at).toLocaleDateString()}
+                        {o.garment_ids.length} Pieces • Worn {o.worn_count || 0} times
                       </Typography>
                     </View>
-                    <TouchableOpacity
-                      activeOpacity={0.7}
-                      onPress={() => handleDeleteOutfit(outfit.id, outfit.name)}
-                      style={styles.deleteBtn}
-                    >
-                      <Trash2 size={16} color={colors.textMuted} />
-                    </TouchableOpacity>
                   </View>
-                </View>
+                  <ChevronRight size={18} color={colors.textMuted} />
+                </TouchableOpacity>
               ))}
             </View>
           ) : (
-            <GlassSurface style={styles.emptyOutfitsCard}>
-              <Typography variant="body" style={styles.emptyOutfitsText}>
-                No saved outfits yet. Create one in the Mix & Match studio!
+            <GlassSurface style={styles.emptyOutfits}>
+              <Typography variant="body" color={colors.textSecondary}>
+                No saved looks yet. Use AI Stylist or Mix & Match to save outfits.
               </Typography>
             </GlassSurface>
           )}
         </View>
 
-        {/* Privacy & Account Management */}
-        <View style={styles.section}>
-          <Typography variant="label" style={styles.sectionTitle}>
-            PRIVACY & DATA
-          </Typography>
-          <GlassSurface style={styles.card}>
-            <View style={styles.privacyRow}>
-              <Shield size={18} color={colors.text} />
-              <Typography variant="caption" color={colors.textSecondary} style={styles.privacyText}>
-                Your photos and style data are encrypted and privately scoped to your account.
-              </Typography>
-            </View>
-          </GlassSurface>
-        </View>
-
-        {/* Sign Out Button */}
-        <View style={styles.logoutSection}>
+        {/* Sign Out */}
+        <View style={styles.footer}>
           <Button
             label="Sign Out"
             variant="outline"
-            onPress={handleLogout}
-            icon={<LogOut size={16} color={colors.text} />}
-            size="md"
+            onPress={handleSignOut}
+            icon={<LogOut size={16} color={colors.error} />}
+            textStyle={{ color: colors.error }}
           />
         </View>
       </ScrollView>
@@ -188,115 +238,139 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xxxl,
   },
   header: {
+    marginBottom: spacing.lg,
+  },
+  title: {
+    fontSize: 28,
+    color: colors.text,
+  },
+  userCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: spacing.xl,
-    gap: spacing.md,
-  },
-  avatarCircle: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    padding: spacing.md,
     backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.border,
+    gap: spacing.md,
+    marginBottom: spacing.xl,
+  },
+  avatarContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: radii.pill,
+    backgroundColor: colors.surfaceMuted,
     alignItems: 'center',
     justifyContent: 'center',
-    ...shadows.subtle,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
-  headerInfo: {
+  userInfo: {
     flex: 1,
   },
-  name: {
-    fontSize: 20,
+  userName: {
+    fontSize: 18,
     color: colors.text,
-    marginBottom: 2,
   },
   section: {
     marginBottom: spacing.xl,
   },
-  sectionTitle: {
+  sectionHeading: {
     color: colors.textMuted,
-    marginBottom: spacing.xs,
-    letterSpacing: 1,
+    marginBottom: spacing.sm,
+    letterSpacing: 0.8,
   },
-  sectionHeaderRow: {
+  metricsCard: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
-  },
-  card: {
     padding: spacing.md,
+    backgroundColor: colors.surface,
   },
-  row: {
+  metricItem: {
+    alignItems: 'center',
+  },
+  metricVal: {
+    fontSize: 26,
+    color: colors.text,
+  },
+  metricDivider: {
+    width: 1,
+    height: 36,
+    backgroundColor: colors.border,
+  },
+  navRowCard: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: spacing.xs,
-  },
-  valueText: {
-    fontWeight: '600',
-    textTransform: 'capitalize',
-  },
-  divider: {
-    height: 1,
-    backgroundColor: colors.divider,
-    marginVertical: spacing.xs,
-  },
-  outfitList: {
-    gap: spacing.sm,
-  },
-  outfitCard: {
+    padding: spacing.md,
     backgroundColor: colors.surface,
     borderRadius: radii.md,
-    padding: spacing.md,
     borderWidth: 1,
     borderColor: colors.border,
+    marginBottom: spacing.xs,
     ...shadows.subtle,
   },
-  outfitCardHeader: {
+  navRowLeft: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: spacing.md,
   },
-  outfitIconCircle: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+  navIconBox: {
+    width: 36,
+    height: 36,
+    borderRadius: radii.sm,
     backgroundColor: colors.surfaceMuted,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: spacing.sm,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
-  outfitTitleGroup: {
-    flex: 1,
+  navRowTitle: {
+    fontWeight: '600',
+  },
+  prefsCard: {
+    padding: spacing.md,
+    backgroundColor: colors.surface,
+  },
+  prefRow: {
+    marginVertical: 4,
+  },
+  prefVal: {
+    color: colors.text,
+    marginTop: 2,
+    fontWeight: '500',
+  },
+  divider: {
+    height: 1,
+    backgroundColor: colors.border,
+    marginVertical: spacing.xs,
+  },
+  outfitsList: {
+    gap: spacing.xs,
+  },
+  outfitRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: spacing.md,
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  outfitRowLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.md,
   },
   outfitName: {
     fontWeight: '600',
-    fontSize: 15,
+    color: colors.text,
   },
-  deleteBtn: {
-    padding: spacing.xs,
-  },
-  emptyOutfitsCard: {
+  emptyOutfits: {
     padding: spacing.lg,
     alignItems: 'center',
+    backgroundColor: colors.surface,
   },
-  emptyOutfitsText: {
-    textAlign: 'center',
-    color: colors.textSecondary,
-    fontSize: 14,
-  },
-  privacyRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.sm,
-  },
-  privacyText: {
-    flex: 1,
-    lineHeight: 18,
-  },
-  logoutSection: {
-    marginTop: spacing.md,
-    marginBottom: spacing.xxl,
+  footer: {
+    marginTop: spacing.sm,
   },
 });

@@ -27,6 +27,7 @@ export interface Outfit {
   vibe?: string;
   notes?: string;
   favorite: boolean;
+  status?: 'created' | 'saved' | 'planned' | 'worn' | 'archived';
   worn_count: number;
   last_worn?: string;
 

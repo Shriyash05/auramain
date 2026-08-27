@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity, Image, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../../src/hooks/useAuth';
 import { useGarments } from '../../src/hooks/useGarments';
 import { useStylist } from '../../src/hooks/useStylist';
+import { PlannerService } from '../../src/services/memory/plannerService';
+import { OutfitMemoryService } from '../../src/services/memory/outfitMemoryService';
+import { PlannedEvent } from '../../src/types/memory';
 import { Typography } from '../../src/components/ui/Typography';
 import { Button } from '../../src/components/ui/Button';
 import { GlassSurface } from '../../src/components/ui/GlassSurface';
 import { colors, radii, spacing, shadows } from '../../src/constants/theme';
-import { Sparkles, Plus, Wand2, Sun, Moon, Heart, ThumbsDown, Bookmark, ArrowRight } from 'lucide-react-native';
+import { Sparkles, Plus, Wand2, Sun, Moon, Heart, ThumbsDown, Bookmark, Calendar, Clock, CheckCircle2, History } from 'lucide-react-native';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -24,6 +27,17 @@ export default function HomeScreen() {
     saveCandidateOutfit,
     recordFeedback,
   } = useStylist();
+
+  const [todaysEvent, setTodaysEvent] = useState<PlannedEvent | null>(null);
+
+  useEffect(() => {
+    async function loadTodayEvent() {
+      if (!user) return;
+      const evt = await PlannerService.getTodaysPlannedEvent(user.id);
+      setTodaysEvent(evt);
+    }
+    loadTodayEvent();
+  }, [user]);
 
   const greeting = () => {
     const hour = new Date().getHours();
@@ -51,8 +65,18 @@ export default function HomeScreen() {
     Alert.alert('Preference Updated', 'AURA will avoid similar combinations.');
   };
 
+  const handleMarkWornToday = async () => {
+    const saved = await saveCandidateOutfit();
+    if (saved && user) {
+      await OutfitMemoryService.markOutfitAsWorn(user.id, saved.id, {
+        occasion: context.occasion,
+      });
+      Alert.alert('Logged as Worn', 'Look recorded in your wardrobe memory.');
+    }
+  };
+
   // Find unworn garments
-  const unwornGarments = garments.filter((g) => !g.favorite);
+  const unwornGarments = garments.filter((g) => !g.wear_count || g.wear_count === 0);
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -73,7 +97,32 @@ export default function HomeScreen() {
           </Typography>
         </View>
 
-        {/* 2. Candidate Switcher Pills (Look 01, Look 02, Look 03) */}
+        {/* 2. Planned Event Alert (if scheduled for today) */}
+        {todaysEvent && (
+          <GlassSurface style={styles.plannedEventBanner}>
+            <View style={styles.plannedEventContent}>
+              <View style={styles.calendarIcon}>
+                <Calendar size={18} color={colors.text} />
+              </View>
+              <View style={styles.plannedEventText}>
+                <Typography variant="caption" color={colors.textMuted} style={styles.plannedTag}>
+                  TODAY'S SCHEDULED EVENT
+                </Typography>
+                <Typography variant="title" style={styles.plannedTitle}>
+                  {todaysEvent.title} {todaysEvent.event_time ? `• ${todaysEvent.event_time}` : ''}
+                </Typography>
+              </View>
+            </View>
+            <Button
+              label="View Plan"
+              variant="secondary"
+              size="sm"
+              onPress={() => router.push('/planner')}
+            />
+          </GlassSurface>
+        )}
+
+        {/* 3. Candidate Switcher Pills (Look 01, Look 02, Look 03) */}
         {candidates.length > 1 && (
           <View style={styles.candidateSelectorRow}>
             {candidates.map((cand, idx) => (
@@ -98,7 +147,7 @@ export default function HomeScreen() {
           </View>
         )}
 
-        {/* 3. Hero Recommendation Card */}
+        {/* 4. Hero Recommendation Card */}
         <View style={styles.heroSection}>
           {activeCandidate ? (
             <GlassSurface style={styles.heroCard}>
@@ -161,10 +210,10 @@ export default function HomeScreen() {
                   style={styles.heroActionBtn}
                 />
                 <Button
-                  label="Save Look"
+                  label="Wore This Today"
                   variant="primary"
-                  onPress={handleSave}
-                  icon={<Bookmark size={15} color={colors.textInverse} />}
+                  onPress={handleMarkWornToday}
+                  icon={<CheckCircle2 size={15} color={colors.textInverse} />}
                   style={styles.heroActionBtn}
                 />
               </View>
@@ -188,36 +237,36 @@ export default function HomeScreen() {
           )}
         </View>
 
-        {/* 4. Unworn Wardrobe Intelligence */}
+        {/* 5. Unworn Wardrobe Intelligence */}
         {unwornGarments.length > 0 && (
           <View style={styles.section}>
             <GlassSurface style={styles.intelligenceCard}>
               <View style={styles.intelHeader}>
                 <Sparkles size={16} color={colors.text} />
                 <Typography variant="label" style={styles.intelTitle}>
-                  WARDROBE UTILIZATION
+                  WARDROBE MEMORY
                 </Typography>
               </View>
               <Typography variant="body" style={styles.intelText}>
-                You have {unwornGarments.length} pieces in your closet ready for fresh styling combinations.
+                You have {unwornGarments.length} unworn pieces in your closet ready for fresh styling combinations.
               </Typography>
               <TouchableOpacity
                 activeOpacity={0.75}
-                onPress={() => router.push('/stylist')}
+                onPress={() => router.push('/history')}
                 style={styles.intelLink}
               >
                 <Typography variant="caption" color={colors.text} style={styles.intelLinkText}>
-                  Explore curated looks with unworn items →
+                  View wardrobe wear history & underused pieces →
                 </Typography>
               </TouchableOpacity>
             </GlassSurface>
           </View>
         )}
 
-        {/* 5. Quick Actions */}
+        {/* 6. Quick Actions Grid */}
         <View style={styles.section}>
           <Typography variant="label" style={styles.sectionHeading}>
-            STUDIO WORKSPACE
+            STUDIO & MEMORY WORKSPACE
           </Typography>
           <View style={styles.actionGrid}>
             <TouchableOpacity
@@ -232,23 +281,23 @@ export default function HomeScreen() {
                 AI Stylist
               </Typography>
               <Typography variant="caption" color={colors.textMuted}>
-                Occasion & mood studio
+                Occasion studio
               </Typography>
             </TouchableOpacity>
 
             <TouchableOpacity
               activeOpacity={0.85}
-              onPress={() => router.push('/(tabs)/create')}
+              onPress={() => router.push('/planner')}
               style={styles.actionCard}
             >
               <View style={styles.actionIconContainer}>
-                <Sparkles size={20} color={colors.text} />
+                <Calendar size={20} color={colors.text} />
               </View>
               <Typography variant="title" style={styles.actionTitle}>
-                Mix & Match
+                Look Planner
               </Typography>
               <Typography variant="caption" color={colors.textMuted}>
-                Active piece canvas
+                Scheduled looks
               </Typography>
             </TouchableOpacity>
           </View>
@@ -286,6 +335,40 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     fontSize: 15,
     lineHeight: 22,
+  },
+  plannedEventBanner: {
+    padding: spacing.md,
+    backgroundColor: colors.surface,
+    marginBottom: spacing.md,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  plannedEventContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    flex: 1,
+  },
+  calendarIcon: {
+    width: 36,
+    height: 36,
+    borderRadius: radii.sm,
+    backgroundColor: colors.surfaceMuted,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  plannedEventText: {
+    flex: 1,
+  },
+  plannedTag: {
+    fontWeight: '700',
+    fontSize: 9,
+    letterSpacing: 0.5,
+  },
+  plannedTitle: {
+    fontSize: 15,
+    marginTop: 2,
   },
   candidateSelectorRow: {
     flexDirection: 'row',

@@ -86,6 +86,24 @@ export const StylingEngine = {
             highlights.push(`Tailored for ${targetOccasion}`);
           }
 
+          // Recency Penalty (Garments worn in the last 2 days get damped to encourage wardrobe rotation)
+          const nowMs = Date.now();
+          const oneDayMs = 24 * 60 * 60 * 1000;
+
+          if (top.last_worn) {
+            const topWornMs = new Date(top.last_worn).getTime();
+            if (nowMs - topWornMs < 2 * oneDayMs) {
+              score *= 0.65; // Recency penalty
+            }
+          }
+
+          if (bottom.last_worn) {
+            const botWornMs = new Date(bottom.last_worn).getTime();
+            if (nowMs - botWornMs < 2 * oneDayMs) {
+              score *= 0.65; // Recency penalty
+            }
+          }
+
           // Silhouette / Proportion balance
           if (top.fit === 'Oversized' && (bottom.fit === 'Relaxed' || bottom.fit === 'Regular')) {
             score *= 1.2;
@@ -102,8 +120,9 @@ export const StylingEngine = {
             highlights.push('Editorial neutral harmony');
           }
 
-          // Unworn item boost
-          if (!top.favorite || !bottom.favorite) {
+          // Unworn / Underused garment boost
+          const isUnwornPair = (!top.wear_count || top.wear_count === 0) || (!bottom.wear_count || bottom.wear_count === 0);
+          if (isUnwornPair) {
             score *= preferences.unwornPieceBoost;
             highlights.push('Rediscovered wardrobe piece');
           }

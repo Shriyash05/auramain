@@ -35,9 +35,9 @@ export const PreferenceLearningService = {
     const signals = await this.getSignals(userId);
     const updated = { ...signals };
 
-    // 1. Process explicit Likes & Saves
-    if (event.action === 'like' || event.action === 'save') {
-      const multiplier = event.action === 'save' ? 1.2 : 1.1;
+    // 1. Process explicit Likes, Saves, and Wears
+    if (event.action === 'like' || event.action === 'save' || event.action === 'wear') {
+      const multiplier = event.action === 'wear' ? 1.25 : event.action === 'save' ? 1.2 : 1.1;
       garments?.forEach((g) => {
         if (g.fit) {
           updated.fitWeights[g.fit] = (updated.fitWeights[g.fit] || 1.0) * multiplier;

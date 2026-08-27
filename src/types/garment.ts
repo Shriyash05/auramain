@@ -30,6 +30,8 @@ export interface Garment {
   favorite: boolean;
   user_verified: boolean;
   is_seed?: boolean;
+  wear_count?: number;
+  last_worn?: string;
 
   created_at: string;
   updated_at: string;

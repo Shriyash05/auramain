@@ -1,4 +1,12 @@
-export type FeedbackAction = 'like' | 'dislike' | 'save' | 'wear' | 'modify_garment' | 'reject';
+export type FeedbackAction =
+  | 'like'
+  | 'dislike'
+  | 'save'
+  | 'share'
+  | 'wear'
+  | 'plan'
+  | 'modify_garment'
+  | 'try_on';
 
 export interface OutfitFeedbackEvent {
   id: string;
