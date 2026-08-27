@@ -1,5 +1,6 @@
 import { LocalStorage } from '../storage/localStorage';
 import { supabase, isSupabaseConfigured } from '../auth/authService';
+import { CloudStorageService } from '../storage/cloudStorageService';
 import { Garment } from '../../types/garment';
 import { Outfit } from '../../types/outfit';
 import { GarmentCategory } from '../../constants/categories';
@@ -145,11 +146,29 @@ export const DatabaseService = {
     await LocalStorage.removeItem(`aura_inspirations_${userId}`);
     await LocalStorage.removeItem(`aura_user_model_photo_${userId}`);
     await LocalStorage.removeItem(`aura_tryon_results_${userId}`);
+    await LocalStorage.removeItem(`aura_shoots_${userId}`);
+    await LocalStorage.removeItem(`aura_shoot_looks_${userId}`);
+    await LocalStorage.removeItem(`aura_lookbooks_${userId}`);
+    await LocalStorage.removeItem(`aura_creator_profile_${userId}`);
+
+    // Purge cloud storage objects
+    try {
+      await CloudStorageService.deleteUserStorageObjects(userId);
+    } catch (e) {
+      console.warn('[DatabaseService] Could not purge cloud storage objects:', e);
+    }
 
     if (isSupabaseConfigured && supabase) {
       await supabase.from('garments').delete().eq('user_id', userId);
       await supabase.from('outfits').delete().eq('user_id', userId);
       await supabase.from('feedback_events').delete().eq('user_id', userId);
+      await supabase.from('wear_logs').delete().eq('user_id', userId);
+      await supabase.from('planned_events').delete().eq('user_id', userId);
+      await supabase.from('inspirations').delete().eq('user_id', userId);
+      await supabase.from('shoots').delete().eq('user_id', userId);
+      await supabase.from('shoot_looks').delete().eq('user_id', userId);
+      await supabase.from('lookbooks').delete().eq('user_id', userId);
+      await supabase.from('shareable_looks').delete().eq('user_id', userId);
       await supabase.from('profiles').delete().eq('id', userId);
     }
   },
