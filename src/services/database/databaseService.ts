@@ -133,4 +133,24 @@ export const DatabaseService = {
 
     await LocalStorage.setItem(`${OUTFITS_KEY_PREFIX}${userId}`, filtered);
   },
+
+  async deleteUserAccountData(userId: string): Promise<void> {
+    // Purge all persistent user collections
+    await LocalStorage.removeItem(`${GARMENTS_KEY_PREFIX}${userId}`);
+    await LocalStorage.removeItem(`${OUTFITS_KEY_PREFIX}${userId}`);
+    await LocalStorage.removeItem(`aura_pref_signals_${userId}`);
+    await LocalStorage.removeItem(`aura_feedback_events_${userId}`);
+    await LocalStorage.removeItem(`aura_wear_logs_${userId}`);
+    await LocalStorage.removeItem(`aura_planned_events_${userId}`);
+    await LocalStorage.removeItem(`aura_inspirations_${userId}`);
+    await LocalStorage.removeItem(`aura_user_model_photo_${userId}`);
+    await LocalStorage.removeItem(`aura_tryon_results_${userId}`);
+
+    if (isSupabaseConfigured && supabase) {
+      await supabase.from('garments').delete().eq('user_id', userId);
+      await supabase.from('outfits').delete().eq('user_id', userId);
+      await supabase.from('feedback_events').delete().eq('user_id', userId);
+      await supabase.from('profiles').delete().eq('id', userId);
+    }
+  },
 };

@@ -30,7 +30,7 @@ export class StandardImageProcessingProvider implements IImageProcessingProvider
       bottoms: { name: 'Tailored Silhouette', color: '#2B2E34', fit: 'Regular' },
       shoes: { name: 'Minimalist Footwear', color: '#111215', fit: 'Regular' },
       outerwear: { name: 'Structured Layer', color: '#353942', fit: 'Oversized' },
-      accessories: { name: 'Accent Piece', color: '#B4A0E5', fit: 'Regular' },
+      accessories: { name: 'Accent Piece', color: '#1A1A1A', fit: 'Regular' },
     };
 
     const target = defaultAttributes[category];
