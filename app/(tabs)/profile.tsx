@@ -148,7 +148,34 @@ export default function ProfileScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* 3. Style Preferences Summary */}
+        {/* 3. Creator Mode Studio Access */}
+        <View style={styles.section}>
+          <Typography variant="label" style={styles.sectionHeading}>
+            CREATOR WORKSPACE
+          </Typography>
+          <TouchableOpacity
+            activeOpacity={0.85}
+            onPress={() => router.push('/creator' as any)}
+            style={styles.creatorCard}
+          >
+            <View style={styles.creatorCardLeft}>
+              <View style={styles.creatorIconBox}>
+                <Sparkles size={20} color={colors.text} />
+              </View>
+              <View style={styles.creatorTextCol}>
+                <Typography variant="title" style={styles.creatorTitle}>
+                  Creator Studio
+                </Typography>
+                <Typography variant="caption" color={colors.textSecondary}>
+                  Shoots, Multi-Look Styling, Lookbooks & Shareable Outfits
+                </Typography>
+              </View>
+            </View>
+            <ChevronRight size={18} color={colors.textMuted} />
+          </TouchableOpacity>
+        </View>
+
+        {/* 4. Style Preferences Summary */}
         <View style={styles.section}>
           <Typography variant="label" style={styles.sectionHeading}>
             CAPTURED STYLE PREFERENCES
@@ -325,6 +352,40 @@ const styles = StyleSheet.create({
   },
   navRowTitle: {
     fontWeight: '600',
+  },
+  creatorCard: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: spacing.md,
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    ...shadows.subtle,
+  },
+  creatorCardLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.md,
+    flex: 1,
+  },
+  creatorIconBox: {
+    width: 44,
+    height: 44,
+    borderRadius: radii.sm,
+    backgroundColor: colors.surfaceMuted,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  creatorTextCol: {
+    flex: 1,
+  },
+  creatorTitle: {
+    fontSize: 16,
+    marginBottom: 2,
   },
   prefsCard: {
     padding: spacing.md,
