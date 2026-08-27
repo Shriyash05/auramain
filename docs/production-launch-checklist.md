@@ -18,11 +18,11 @@
   - [ ] `garments_processed` (Private, user-authenticated access only).
   - [ ] `user_model_photos` (Private, user-authenticated access only).
   - [ ] `public_look_photos` (Public read, authenticated write).
-- [ ] **Server-Side AI & VTO Proxy Functions**
-  - [ ] Deploy Edge Function `/vto-generate` pointing to FASHN.ai / IDM-VTON GPU backend.
-  - [ ] Deploy Edge Function `/segment-garment` pointing to background-removal model.
-  - [ ] Deploy Edge Function `/analyze-inspiration` pointing to multimodal vision model.
-  - [ ] Configure server-side API keys in Supabase Vault (zero secrets in client).
+- [ ] **AURA Self-Hosted Model Server & Edge Gateway**
+  - [ ] Deploy Edge Function `/vto-generate` pointing to AURA Self-Hosted VTO GPU container (`aura-vto-v1` / IDM-VTON).
+  - [ ] Deploy Edge Function `/segment-garment` pointing to AURA Segmentation container (`aura-segment-v1` / BiRefNet Apache 2.0).
+  - [ ] Deploy Edge Function `/analyze-inspiration` pointing to AURA Inspiration VLM container (`aura-inspire-v1` / Florence-2-Large MIT).
+  - [ ] Configure internal container authorization tokens in Supabase Vault (zero third-party AI APIs).
 
 ---
 
