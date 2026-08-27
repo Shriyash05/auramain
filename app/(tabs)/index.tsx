@@ -11,7 +11,7 @@ import { Typography } from '../../src/components/ui/Typography';
 import { Button } from '../../src/components/ui/Button';
 import { GlassSurface } from '../../src/components/ui/GlassSurface';
 import { colors, radii, spacing, shadows } from '../../src/constants/theme';
-import { Sparkles, Plus, Wand2, Sun, Moon, Heart, ThumbsDown, Bookmark, Calendar, Clock, CheckCircle2, History } from 'lucide-react-native';
+import { Sparkles, Plus, Wand2, Sun, Moon, Heart, ThumbsDown, Bookmark, Calendar, Clock, CheckCircle2, History, Search, Compass } from 'lucide-react-native';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -83,11 +83,20 @@ export default function HomeScreen() {
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
         {/* 1. Contextual Header */}
         <View style={styles.header}>
-          <View style={styles.contextBadge}>
-            {isNight ? <Moon size={13} color={colors.text} /> : <Sun size={13} color={colors.warning} />}
-            <Typography variant="caption" color={colors.textSecondary}>
-              68°F • {context.occasion} Context
-            </Typography>
+          <View style={styles.headerTopRow}>
+            <View style={styles.contextBadge}>
+              {isNight ? <Moon size={13} color={colors.text} /> : <Sun size={13} color={colors.warning} />}
+              <Typography variant="caption" color={colors.textSecondary}>
+                68°F • {context.occasion} Context
+              </Typography>
+            </View>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => router.push('/search' as any)}
+              style={styles.searchHeaderBtn}
+            >
+              <Search size={18} color={colors.text} />
+            </TouchableOpacity>
           </View>
           <Typography variant="hero" style={styles.greetingTitle}>
             {greeting()}, {user?.display_name?.split(' ')[0] || 'there'}.
@@ -96,6 +105,28 @@ export default function HomeScreen() {
             {isNight ? "Here's what I'd wear for tonight." : "Here's what I'd wear for today's schedule."}
           </Typography>
         </View>
+
+        {/* Proactive Intelligence Banner */}
+        <TouchableOpacity
+          activeOpacity={0.85}
+          onPress={() => router.push('/insights' as any)}
+          style={styles.intelligenceBanner}
+        >
+          <View style={styles.intelLeft}>
+            <Sparkles size={16} color={colors.text} />
+            <View>
+              <Typography variant="title" style={styles.intelBannerTitle}>
+                Fashion Intelligence & Gaps
+              </Typography>
+              <Typography variant="caption" color={colors.textSecondary}>
+                View your behavioral style evolution and high-utility pieces
+              </Typography>
+            </View>
+          </View>
+          <Typography variant="caption" color={colors.text} style={styles.viewIntelText}>
+            View →
+          </Typography>
+        </TouchableOpacity>
 
         {/* 2. Planned Event Alert (if scheduled for today) */}
         {todaysEvent && (
@@ -320,11 +351,51 @@ const styles = StyleSheet.create({
   header: {
     marginBottom: spacing.md,
   },
+  headerTopRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: spacing.xs,
+  },
+  searchHeaderBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: radii.pill,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  intelligenceBanner: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: spacing.md,
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    marginBottom: spacing.md,
+    ...shadows.subtle,
+  },
+  intelLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    flex: 1,
+  },
+  intelBannerTitle: {
+    fontSize: 14,
+    marginBottom: 1,
+  },
+  viewIntelText: {
+    fontWeight: '700',
+  },
   contextBadge: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.xs,
-    marginBottom: spacing.xs,
   },
   greetingTitle: {
     color: colors.text,
