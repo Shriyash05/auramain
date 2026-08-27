@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { View, StyleSheet, ActivityIndicator } from 'react-native';
 import { AuthProvider, useAuth } from '../src/hooks/useAuth';
+import { AnimatedSplash } from '../src/components/ui/AnimatedSplash';
 import { colors } from '../src/constants/theme';
 
 function RootNavigationLayout() {
   const { user, isLoading } = useAuth();
   const segments = useSegments();
   const router = useRouter();
+  const [splashFinished, setSplashFinished] = useState(false);
 
   useEffect(() => {
     if (isLoading) return;
@@ -31,7 +33,7 @@ function RootNavigationLayout() {
   if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.accent} />
+        <ActivityIndicator size="large" color={colors.text} />
       </View>
     );
   }
@@ -39,6 +41,9 @@ function RootNavigationLayout() {
   return (
     <>
       <StatusBar style="dark" backgroundColor={colors.background} />
+      {!splashFinished && (
+        <AnimatedSplash onFinish={() => setSplashFinished(true)} />
+      )}
       <Stack
         screenOptions={{
           headerShown: false,

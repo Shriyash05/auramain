@@ -14,6 +14,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     occasions: ['Streetwear', 'Work / Office', 'Evening / Event'],
     favorite: true,
     user_verified: true,
+    is_seed: true,
   },
   {
     name: 'Classic Tailored Blazer',
@@ -25,6 +26,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     occasions: ['Work / Office', 'Evening / Event'],
     favorite: false,
     user_verified: true,
+    is_seed: true,
   },
   {
     name: 'Oversized Cotton Oxford',
@@ -36,6 +38,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     occasions: ['Casual', 'Minimalist'],
     favorite: true,
     user_verified: true,
+    is_seed: true,
   },
   {
     name: 'Heavyweight Boxy Tee',
@@ -47,6 +50,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     occasions: ['Casual', 'Streetwear'],
     favorite: false,
     user_verified: true,
+    is_seed: true,
   },
   {
     name: 'Pleated Wide-Leg Trousers',
@@ -58,6 +62,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     occasions: ['Casual', 'Date Night', 'Work / Office'],
     favorite: true,
     user_verified: true,
+    is_seed: true,
   },
   {
     name: 'Straight-Fit Vintage Denim',
@@ -69,6 +74,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     occasions: ['Casual', 'Streetwear'],
     favorite: false,
     user_verified: true,
+    is_seed: true,
   },
   {
     name: 'Chunky Leather Loafers',
@@ -80,6 +86,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     occasions: ['Work / Office', 'Casual', 'Evening / Event'],
     favorite: true,
     user_verified: true,
+    is_seed: true,
   },
   {
     name: 'Minimalist Low Sneakers',
@@ -91,6 +98,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     occasions: ['Casual', 'Streetwear'],
     favorite: false,
     user_verified: true,
+    is_seed: true,
   },
   {
     name: 'Structured Leather Crossbody',
@@ -102,5 +110,6 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     occasions: ['Casual', 'Date Night', 'Evening / Event'],
     favorite: true,
     user_verified: true,
+    is_seed: true,
   },
 ];

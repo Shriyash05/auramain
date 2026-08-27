@@ -29,6 +29,7 @@ export interface Garment {
   occasions?: Occasion[];
   favorite: boolean;
   user_verified: boolean;
+  is_seed?: boolean;
 
   created_at: string;
   updated_at: string;
