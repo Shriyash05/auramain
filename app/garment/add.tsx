@@ -6,8 +6,8 @@ import { GARMENT_CATEGORIES, GarmentCategory } from '../../src/constants/categor
 import { Typography } from '../../src/components/ui/Typography';
 import { Button } from '../../src/components/ui/Button';
 import { Chip } from '../../src/components/ui/Chip';
-import { colors, spacing, radii } from '../../src/constants/theme';
-import { Camera, Image as ImageIcon, X, ArrowLeft } from 'lucide-react-native';
+import { colors, spacing, radii, shadows } from '../../src/constants/theme';
+import { Camera, Image as ImageIcon, X } from 'lucide-react-native';
 
 export default function AddGarmentScreen() {
   const router = useRouter();
@@ -141,12 +141,12 @@ export default function AddGarmentScreen() {
           ) : (
             <View style={styles.uploadOptions}>
               <TouchableOpacity
-                activeOpacity={0.8}
+                activeOpacity={0.85}
                 onPress={handleTakePhoto}
                 style={styles.uploadOptionCard}
               >
                 <View style={styles.iconCircle}>
-                  <Camera size={26} color={colors.accent} />
+                  <Camera size={24} color={colors.text} />
                 </View>
                 <Typography variant="body" color={colors.text} style={styles.optionTitle}>
                   Take Photo
@@ -157,12 +157,12 @@ export default function AddGarmentScreen() {
               </TouchableOpacity>
 
               <TouchableOpacity
-                activeOpacity={0.8}
+                activeOpacity={0.85}
                 onPress={handlePickGallery}
                 style={styles.uploadOptionCard}
               >
                 <View style={styles.iconCircle}>
-                  <ImageIcon size={26} color={colors.accent} />
+                  <ImageIcon size={24} color={colors.text} />
                 </View>
                 <Typography variant="body" color={colors.text} style={styles.optionTitle}>
                   Choose from Gallery
@@ -242,15 +242,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     alignItems: 'center',
+    ...shadows.card,
   },
   iconCircle: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    backgroundColor: colors.surfaceElevated,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: colors.surfaceMuted,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.sm,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   optionTitle: {
     fontWeight: '600',
@@ -262,7 +265,9 @@ const styles = StyleSheet.create({
     borderRadius: radii.lg,
     overflow: 'hidden',
     position: 'relative',
-    backgroundColor: colors.surfaceElevated,
+    backgroundColor: colors.surfaceMuted,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   previewImage: {
     width: '100%',

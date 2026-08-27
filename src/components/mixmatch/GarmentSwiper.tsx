@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ScrollView, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Garment } from '../../types/garment';
-import { colors, radii, spacing, typography } from '../../constants/theme';
+import { colors, radii, spacing, typography, shadows } from '../../constants/theme';
 import { Plus } from 'lucide-react-native';
 
 interface GarmentSwiperProps {
@@ -36,7 +36,7 @@ export const GarmentSwiper: React.FC<GarmentSwiperProps> = ({
           return (
             <TouchableOpacity
               key={garment.id}
-              activeOpacity={0.8}
+              activeOpacity={0.85}
               onPress={() => onSelect(garment)}
               style={[
                 styles.itemCard,
@@ -70,12 +70,12 @@ export const GarmentSwiper: React.FC<GarmentSwiperProps> = ({
         })}
 
         <TouchableOpacity
-          activeOpacity={0.7}
+          activeOpacity={0.75}
           onPress={onAddPress}
           style={styles.addCard}
         >
           <View style={styles.addIconCircle}>
-            <Plus size={20} color={colors.textSecondary} />
+            <Plus size={18} color={colors.text} />
           </View>
           <Text style={styles.addText}>Add {categoryName}</Text>
         </TouchableOpacity>
@@ -97,10 +97,10 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     color: colors.text,
-    fontSize: typography.sizes.sm,
-    fontWeight: '600',
+    fontSize: typography.sizes.xs,
+    fontWeight: '700',
     textTransform: 'uppercase',
-    letterSpacing: 0.8,
+    letterSpacing: 1,
   },
   countText: {
     color: colors.textMuted,
@@ -111,27 +111,28 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
   },
   itemCard: {
-    width: 100,
+    width: 104,
     borderRadius: radii.md,
     overflow: 'hidden',
-    borderWidth: 2,
+    borderWidth: 1.5,
     backgroundColor: colors.surface,
+    ...shadows.subtle,
   },
   itemCardUnselected: {
     borderColor: colors.border,
   },
   itemCardSelected: {
-    borderColor: colors.accent,
-    backgroundColor: colors.surfaceElevated,
+    borderColor: colors.borderDark,
+    backgroundColor: colors.surface,
   },
   itemImage: {
     width: '100%',
-    height: 110,
+    height: 115,
   },
   placeholder: {
     width: '100%',
-    height: 110,
-    backgroundColor: colors.surfaceHighlight,
+    height: 115,
+    backgroundColor: colors.surfaceMuted,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -151,33 +152,34 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   itemLabelSelected: {
-    color: colors.accent,
+    color: colors.text,
     fontWeight: '700',
   },
   addCard: {
-    width: 100,
-    height: 142,
+    width: 104,
+    height: 147,
     borderRadius: radii.md,
     borderWidth: 1,
-    borderColor: colors.borderLight,
+    borderColor: colors.border,
     borderStyle: 'dashed',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.02)',
+    backgroundColor: colors.surfaceMuted,
   },
   addIconCircle: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: colors.surfaceHighlight,
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    backgroundColor: colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.xs,
+    ...shadows.subtle,
   },
   addText: {
     fontSize: 11,
-    color: colors.textMuted,
-    fontWeight: '500',
+    color: colors.textSecondary,
+    fontWeight: '600',
     textAlign: 'center',
   },
 });

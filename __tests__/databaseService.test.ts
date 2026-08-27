@@ -5,8 +5,8 @@ describe('DatabaseService', () => {
   const testUserId = 'test_usr_123';
 
   beforeEach(async () => {
-    await LocalStorage.removeItem(`aura_garments_${testUserId}`);
-    await LocalStorage.removeItem(`aura_outfits_${testUserId}`);
+    await LocalStorage.setItem(`aura_garments_${testUserId}`, []);
+    await LocalStorage.setItem(`aura_outfits_${testUserId}`, []);
   });
 
   it('should persist and retrieve garments by user and category', async () => {

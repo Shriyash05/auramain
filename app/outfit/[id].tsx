@@ -8,8 +8,8 @@ import { Garment } from '../../src/types/garment';
 import { Typography } from '../../src/components/ui/Typography';
 import { Button } from '../../src/components/ui/Button';
 import { GlassSurface } from '../../src/components/ui/GlassSurface';
-import { colors, spacing, radii } from '../../src/constants/theme';
-import { ArrowLeft, Bookmark, Trash2, Heart } from 'lucide-react-native';
+import { colors, spacing, radii, shadows } from '../../src/constants/theme';
+import { ArrowLeft, Trash2 } from 'lucide-react-native';
 
 export default function OutfitDetailScreen() {
   const router = useRouter();
@@ -80,7 +80,7 @@ export default function OutfitDetailScreen() {
 
         {/* Look Title */}
         <View style={styles.lookHeader}>
-          <Typography variant="label" color={colors.accent}>
+          <Typography variant="label" color={colors.textMuted}>
             MIX & MATCH OUTFIT
           </Typography>
           <Typography variant="display" style={styles.lookName}>
@@ -105,7 +105,7 @@ export default function OutfitDetailScreen() {
                   resizeMode="cover"
                 />
                 <View style={styles.pieceDetails}>
-                  <Typography variant="caption" color={colors.accent} style={styles.pieceCategory}>
+                  <Typography variant="caption" color={colors.text} style={styles.pieceCategory}>
                     {g.category}
                   </Typography>
                   <Typography variant="body" color={colors.text} style={styles.pieceName}>
@@ -191,12 +191,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: spacing.sm,
     gap: spacing.md,
+    backgroundColor: colors.surface,
   },
   pieceImage: {
     width: 60,
     height: 60,
     borderRadius: radii.sm,
-    backgroundColor: colors.surfaceHighlight,
+    backgroundColor: colors.surfaceMuted,
   },
   pieceDetails: {
     flex: 1,

@@ -7,12 +7,12 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
-import { colors, radii, spacing, typography } from '../../constants/theme';
+import { colors, radii, spacing, typography, shadows } from '../../constants/theme';
 
 interface ButtonProps {
   label: string;
   onPress: () => void;
-  variant?: 'primary' | 'secondary' | 'glass' | 'outline' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   loading?: boolean;
   disabled?: boolean;
@@ -55,28 +55,23 @@ export const Button: React.FC<ButtonProps> = ({
     switch (variant) {
       case 'primary':
         Object.assign(base, {
-          backgroundColor: colors.text, // High-contrast warm off-white
+          backgroundColor: colors.text, // Solid editorial black
+          ...shadows.subtle,
         });
         break;
       case 'secondary':
         Object.assign(base, {
-          backgroundColor: colors.surfaceElevated,
+          backgroundColor: colors.surface,
           borderWidth: 1,
           borderColor: colors.border,
-        });
-        break;
-      case 'glass':
-        Object.assign(base, {
-          backgroundColor: colors.glass,
-          borderWidth: 1,
-          borderColor: colors.glassBorder,
+          ...shadows.subtle,
         });
         break;
       case 'outline':
         Object.assign(base, {
           backgroundColor: 'transparent',
           borderWidth: 1,
-          borderColor: colors.borderLight,
+          borderColor: colors.borderDark,
         });
         break;
       case 'ghost':
@@ -114,15 +109,12 @@ export const Button: React.FC<ButtonProps> = ({
 
     switch (variant) {
       case 'primary':
-        base.color = colors.textInverse;
+        base.color = colors.textInverse; // Crisp White
         break;
       case 'secondary':
-      case 'glass':
       case 'outline':
-        base.color = colors.text;
-        break;
       case 'ghost':
-        base.color = colors.accent;
+        base.color = colors.text; // Charcoal Black
         break;
     }
 
@@ -131,7 +123,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <TouchableOpacity
-      activeOpacity={0.8}
+      activeOpacity={0.85}
       onPress={onPress}
       disabled={disabled || loading}
       style={[getContainerStyle(), style]}
@@ -139,7 +131,7 @@ export const Button: React.FC<ButtonProps> = ({
       {loading ? (
         <ActivityIndicator
           size="small"
-          color={variant === 'primary' ? colors.textInverse : colors.accent}
+          color={variant === 'primary' ? colors.textInverse : colors.text}
         />
       ) : (
         <>

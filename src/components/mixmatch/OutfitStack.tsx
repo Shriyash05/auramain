@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { SelectedOutfitSlots } from '../../hooks/useMixMatch';
 import { GarmentCategory } from '../../constants/categories';
-import { colors, radii, spacing, typography } from '../../constants/theme';
-import { Sparkles, Shirt } from 'lucide-react-native';
+import { colors, radii, spacing, typography, shadows } from '../../constants/theme';
+import { Shirt } from 'lucide-react-native';
 
 interface OutfitStackProps {
   selectedSlots: SelectedOutfitSlots;
@@ -22,7 +22,7 @@ export const OutfitStack: React.FC<OutfitStackProps> = ({
 
     return (
       <TouchableOpacity
-        activeOpacity={0.85}
+        activeOpacity={0.88}
         onPress={() => onSelectCategory(category)}
         style={[
           styles.slotContainer,
@@ -46,7 +46,7 @@ export const OutfitStack: React.FC<OutfitStackProps> = ({
               />
             ) : (
               <View style={styles.placeholder}>
-                <Shirt size={24} color={colors.textMuted} />
+                <Shirt size={22} color={colors.textMuted} />
               </View>
             )}
             <View style={styles.garmentDetails}>
@@ -60,7 +60,7 @@ export const OutfitStack: React.FC<OutfitStackProps> = ({
           </View>
         ) : (
           <View style={styles.emptySlot}>
-            <Text style={styles.emptySlotText}>Tap to add {label.toLowerCase()}</Text>
+            <Text style={styles.emptySlotText}>Tap to select {label.toLowerCase()}</Text>
           </View>
         )}
       </TouchableOpacity>
@@ -85,16 +85,17 @@ const styles = StyleSheet.create({
   },
   slotContainer: {
     backgroundColor: colors.surface,
-    borderRadius: radii.lg,
+    borderRadius: radii.md,
     padding: spacing.sm,
     borderWidth: 1.5,
+    ...shadows.subtle,
   },
   slotInactive: {
     borderColor: colors.border,
   },
   slotActive: {
-    borderColor: colors.accent,
-    backgroundColor: colors.surfaceElevated,
+    borderColor: colors.borderDark,
+    backgroundColor: colors.surface,
   },
   slotLabelHeader: {
     flexDirection: 'row',
@@ -110,13 +111,13 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   slotLabelActive: {
-    color: colors.accent,
+    color: colors.text,
   },
   activeIndicator: {
     width: 6,
     height: 6,
     borderRadius: 3,
-    backgroundColor: colors.accent,
+    backgroundColor: colors.text,
   },
   garmentContent: {
     flexDirection: 'row',
@@ -124,16 +125,16 @@ const styles = StyleSheet.create({
     gap: spacing.md,
   },
   garmentImage: {
-    width: 64,
-    height: 64,
+    width: 60,
+    height: 60,
     borderRadius: radii.sm,
-    backgroundColor: colors.surfaceHighlight,
+    backgroundColor: colors.surfaceMuted,
   },
   placeholder: {
-    width: 64,
-    height: 64,
+    width: 60,
+    height: 60,
     borderRadius: radii.sm,
-    backgroundColor: colors.surfaceHighlight,
+    backgroundColor: colors.surfaceMuted,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -156,13 +157,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 1,
     borderStyle: 'dashed',
-    borderColor: colors.borderLight,
-    borderRadius: radii.md,
+    borderColor: colors.border,
+    borderRadius: radii.sm,
+    backgroundColor: colors.surfaceMuted,
   },
   emptySlotText: {
     color: colors.textMuted,
     fontSize: typography.sizes.xs,
     textTransform: 'uppercase',
     letterSpacing: 0.8,
+    fontWeight: '600',
   },
 });

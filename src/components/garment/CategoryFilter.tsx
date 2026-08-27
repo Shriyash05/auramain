@@ -46,13 +46,13 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginVertical: spacing.sm,
+    marginVertical: spacing.xs,
   },
   container: {
-    paddingHorizontal: spacing.md,
+    paddingHorizontal: spacing.lg,
     gap: spacing.xs,
   },
   chip: {
-    marginRight: spacing.xs,
+    marginRight: spacing.xxs,
   },
 });

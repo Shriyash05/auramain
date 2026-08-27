@@ -6,8 +6,8 @@ import { useGarments } from '../../src/hooks/useGarments';
 import { Typography } from '../../src/components/ui/Typography';
 import { Button } from '../../src/components/ui/Button';
 import { GlassSurface } from '../../src/components/ui/GlassSurface';
-import { colors, radii, spacing } from '../../src/constants/theme';
-import { Sparkles, Plus, ArrowRight, Layers, Sun } from 'lucide-react-native';
+import { colors, radii, spacing, shadows } from '../../src/constants/theme';
+import { Sparkles, Plus, Layers, Sun } from 'lucide-react-native';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -46,8 +46,8 @@ export default function HomeScreen() {
         <View style={styles.heroSection}>
           <GlassSurface style={styles.heroCard}>
             <View style={styles.heroBadge}>
-              <Sparkles size={13} color={colors.accent} />
-              <Typography variant="caption" color={colors.accent} style={styles.heroBadgeText}>
+              <Sparkles size={13} color={colors.text} />
+              <Typography variant="caption" color={colors.text} style={styles.heroBadgeText}>
                 TODAY'S SELECTION
               </Typography>
             </View>
@@ -85,7 +85,7 @@ export default function HomeScreen() {
             ) : (
               <View style={styles.emptyHero}>
                 <View style={styles.emptyIconCircle}>
-                  <Layers size={24} color={colors.accent} />
+                  <Layers size={22} color={colors.text} />
                 </View>
                 <Typography variant="body" style={styles.emptyText}>
                   Add at least a top and a bottom to unlock daily outfit compositions.
@@ -108,7 +108,7 @@ export default function HomeScreen() {
           </Typography>
           <View style={styles.actionGrid}>
             <TouchableOpacity
-              activeOpacity={0.8}
+              activeOpacity={0.85}
               onPress={() => router.push('/garment/add')}
               style={styles.actionCard}
             >
@@ -124,12 +124,12 @@ export default function HomeScreen() {
             </TouchableOpacity>
 
             <TouchableOpacity
-              activeOpacity={0.8}
+              activeOpacity={0.85}
               onPress={() => router.push('/(tabs)/create')}
               style={styles.actionCard}
             >
               <View style={styles.actionIconContainer}>
-                <Sparkles size={20} color={colors.accent} />
+                <Sparkles size={20} color={colors.text} />
               </View>
               <Typography variant="title" style={styles.actionTitle}>
                 Mix & Match
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   container: {
-    paddingHorizontal: spacing.xl,
+    paddingHorizontal: spacing.lg,
     paddingTop: spacing.lg,
     paddingBottom: spacing.xxxl,
   },
@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
   greetingTitle: {
     color: colors.text,
     marginBottom: spacing.xs,
+    fontSize: 34,
   },
   greetingSubtitle: {
     color: colors.textSecondary,
@@ -174,22 +175,29 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   heroSection: {
-    marginBottom: spacing.xxl,
+    marginBottom: spacing.xl,
   },
   heroCard: {
     padding: spacing.xl,
-    backgroundColor: colors.surfaceElevated,
-    borderColor: colors.borderLight,
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
   },
   heroBadge: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.xxs,
     marginBottom: spacing.xs,
+    backgroundColor: colors.surfaceMuted,
+    alignSelf: 'flex-start',
+    paddingVertical: 3,
+    paddingHorizontal: spacing.xs + 2,
+    borderRadius: radii.pill,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   heroBadgeText: {
     fontWeight: '700',
-    letterSpacing: 1.2,
+    letterSpacing: 0.8,
   },
   heroTitle: {
     color: colors.text,
@@ -215,11 +223,13 @@ const styles = StyleSheet.create({
     width: '100%',
     aspectRatio: 1,
     borderRadius: radii.md,
-    backgroundColor: colors.surfaceHighlight,
+    backgroundColor: colors.surfaceMuted,
   },
   thumbLabel: {
     marginTop: 4,
     textTransform: 'capitalize',
+    color: colors.textSecondary,
+    fontWeight: '600',
   },
   heroButton: {
     marginTop: spacing.xs,
@@ -229,13 +239,15 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.lg,
   },
   emptyIconCircle: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    backgroundColor: colors.surfaceHighlight,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: colors.surfaceMuted,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   emptyText: {
     textAlign: 'center',
@@ -262,15 +274,18 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     borderWidth: 1,
     borderColor: colors.border,
+    ...shadows.card,
   },
   actionIconContainer: {
-    width: 40,
-    height: 40,
+    width: 38,
+    height: 38,
     borderRadius: radii.sm,
-    backgroundColor: colors.surfaceElevated,
+    backgroundColor: colors.surfaceMuted,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   actionTitle: {
     fontSize: 16,

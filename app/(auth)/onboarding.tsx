@@ -62,7 +62,7 @@ export default function OnboardingScreen() {
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
-          <Typography variant="label" color={colors.accent}>
+          <Typography variant="label" color={colors.textMuted}>
             STEP 1 OF 1 • STYLE PROFILE
           </Typography>
           <Typography variant="display" style={styles.title}>
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.xxl,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 17,
     color: colors.text,
     marginBottom: spacing.sm,
   },

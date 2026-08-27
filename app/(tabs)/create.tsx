@@ -7,9 +7,8 @@ import { Typography } from '../../src/components/ui/Typography';
 import { OutfitStack } from '../../src/components/mixmatch/OutfitStack';
 import { GarmentSwiper } from '../../src/components/mixmatch/GarmentSwiper';
 import { Button } from '../../src/components/ui/Button';
-import { GlassSurface } from '../../src/components/ui/GlassSurface';
-import { colors, spacing, radii } from '../../src/constants/theme';
-import { Heart, ThumbsDown, Bookmark, Plus } from 'lucide-react-native';
+import { colors, spacing, radii, shadows } from '../../src/constants/theme';
+import { Heart, ThumbsDown, Bookmark } from 'lucide-react-native';
 
 export default function CreateScreen() {
   const router = useRouter();
@@ -59,7 +58,7 @@ export default function CreateScreen() {
         {/* Header */}
         <View style={styles.header}>
           <View>
-            <Typography variant="label" color={colors.accent}>
+            <Typography variant="label" color={colors.textMuted}>
               STUDIO
             </Typography>
             <Typography variant="title" style={styles.title}>
@@ -70,19 +69,19 @@ export default function CreateScreen() {
           {/* Quick Like / Dislike / Save Feedback row */}
           <View style={styles.feedbackRow}>
             <TouchableOpacity
-              activeOpacity={0.7}
+              activeOpacity={0.75}
               onPress={handleDislike}
               style={styles.feedbackIconBtn}
             >
-              <ThumbsDown size={18} color={colors.textSecondary} />
+              <ThumbsDown size={16} color={colors.textSecondary} />
             </TouchableOpacity>
 
             <TouchableOpacity
-              activeOpacity={0.7}
+              activeOpacity={0.75}
               onPress={handleLike}
               style={styles.feedbackIconBtn}
             >
-              <Heart size={18} color={colors.like} />
+              <Heart size={16} color={colors.like} />
             </TouchableOpacity>
           </View>
         </View>
@@ -122,7 +121,7 @@ export default function CreateScreen() {
             label={savedSuccess ? 'Saved to Collection' : 'Save Outfit'}
             onPress={handleSave}
             loading={isSaving}
-            icon={<Bookmark size={18} color={colors.textInverse} />}
+            icon={<Bookmark size={17} color={colors.textInverse} />}
             size="lg"
             style={styles.saveButton}
           />
@@ -157,11 +156,12 @@ const styles = StyleSheet.create({
     gap: spacing.xs,
   },
   feedbackIconBtn: {
-    backgroundColor: colors.surfaceElevated,
+    backgroundColor: colors.surface,
     padding: spacing.xs + 2,
     borderRadius: radii.pill,
     borderWidth: 1,
     borderColor: colors.border,
+    ...shadows.subtle,
   },
   nameRow: {
     paddingHorizontal: spacing.lg,
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.text,
     borderBottomWidth: 1,
-    borderBottomColor: colors.borderLight,
+    borderBottomColor: colors.border,
     paddingVertical: spacing.xs,
     fontFamily: 'System',
     fontWeight: '500',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
-import { colors, radii } from '../../constants/theme';
+import { colors, radii, shadows } from '../../constants/theme';
 
 interface GlassSurfaceProps {
   children: React.ReactNode;
@@ -24,13 +24,14 @@ export const GlassSurface: React.FC<GlassSurfaceProps> = ({ children, style, act
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.glass,
+    backgroundColor: colors.surface,
     borderRadius: radii.lg,
     borderWidth: 1,
-    borderColor: colors.glassBorder,
+    borderColor: colors.border,
     overflow: 'hidden',
+    ...shadows.card,
   },
   activeBorder: {
-    borderColor: colors.glassBorderActive,
+    borderColor: colors.surfaceBorderActive,
   },
 });

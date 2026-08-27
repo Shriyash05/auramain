@@ -7,8 +7,8 @@ import { Outfit } from '../../src/types/outfit';
 import { Typography } from '../../src/components/ui/Typography';
 import { Button } from '../../src/components/ui/Button';
 import { GlassSurface } from '../../src/components/ui/GlassSurface';
-import { colors, spacing, radii } from '../../src/constants/theme';
-import { User, Shield, LogOut, Bookmark, Trash2, Heart } from 'lucide-react-native';
+import { colors, spacing, radii, shadows } from '../../src/constants/theme';
+import { User, Shield, LogOut, Bookmark, Trash2 } from 'lucide-react-native';
 
 export default function ProfileScreen() {
   const router = useRouter();
@@ -65,7 +65,7 @@ export default function ProfileScreen() {
         {/* Header Profile Info */}
         <View style={styles.header}>
           <View style={styles.avatarCircle}>
-            <User size={32} color={colors.accent} />
+            <User size={30} color={colors.text} />
           </View>
           <View style={styles.headerInfo}>
             <Typography variant="title" style={styles.name}>
@@ -117,7 +117,7 @@ export default function ProfileScreen() {
                 <View key={outfit.id} style={styles.outfitCard}>
                   <View style={styles.outfitCardHeader}>
                     <View style={styles.outfitIconCircle}>
-                      <Bookmark size={16} color={colors.accent} />
+                      <Bookmark size={15} color={colors.text} />
                     </View>
                     <View style={styles.outfitTitleGroup}>
                       <Typography variant="body" color={colors.text} style={styles.outfitName}>
@@ -154,7 +154,7 @@ export default function ProfileScreen() {
           </Typography>
           <GlassSurface style={styles.card}>
             <View style={styles.privacyRow}>
-              <Shield size={18} color={colors.accent} />
+              <Shield size={18} color={colors.text} />
               <Typography variant="caption" color={colors.textSecondary} style={styles.privacyText}>
                 Your photos and style data are encrypted and privately scoped to your account.
               </Typography>
@@ -194,14 +194,15 @@ const styles = StyleSheet.create({
     gap: spacing.md,
   },
   avatarCircle: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: colors.surfaceElevated,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: colors.borderLight,
+    borderColor: colors.border,
     alignItems: 'center',
     justifyContent: 'center',
+    ...shadows.subtle,
   },
   headerInfo: {
     flex: 1,
@@ -251,6 +252,7 @@ const styles = StyleSheet.create({
     padding: spacing.md,
     borderWidth: 1,
     borderColor: colors.border,
+    ...shadows.subtle,
   },
   outfitCardHeader: {
     flexDirection: 'row',
@@ -260,7 +262,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: colors.surfaceElevated,
+    backgroundColor: colors.surfaceMuted,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: spacing.sm,

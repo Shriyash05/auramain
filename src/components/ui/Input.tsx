@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: typography.sizes.sm,
-    fontWeight: '500',
-    color: colors.textSecondary,
+    fontWeight: '600',
+    color: colors.text,
     marginBottom: spacing.xs,
     textTransform: 'uppercase',
     letterSpacing: 0.5,

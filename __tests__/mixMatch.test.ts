@@ -6,8 +6,8 @@ describe('Mix & Match Flow', () => {
   const userId = 'user_stylist_01';
 
   beforeEach(async () => {
-    await LocalStorage.removeItem(`aura_garments_${userId}`);
-    await LocalStorage.removeItem(`aura_outfits_${userId}`);
+    await LocalStorage.setItem(`aura_garments_${userId}`, []);
+    await LocalStorage.setItem(`aura_outfits_${userId}`, []);
   });
 
   it('composes an outfit from distinct garment categories and persists the look', async () => {

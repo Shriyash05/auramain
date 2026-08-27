@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
-import { View, StyleSheet, Platform } from 'react-native';
-import { colors, radii, spacing } from '../../src/constants/theme';
+import { StyleSheet, Platform } from 'react-native';
+import { colors, shadows } from '../../src/constants/theme';
 import { Sparkles, Layers, Wand2, Compass, User } from 'lucide-react-native';
 
 export default function TabLayout() {
@@ -19,6 +19,7 @@ export default function TabLayout() {
           height: Platform.OS === 'ios' ? 88 : 68,
           paddingBottom: Platform.OS === 'ios' ? 28 : 10,
           paddingTop: 8,
+          ...shadows.subtle,
         },
         tabBarLabelStyle: {
           fontSize: 11,

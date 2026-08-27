@@ -3,6 +3,7 @@ import { supabase, isSupabaseConfigured } from '../auth/authService';
 import { Garment } from '../../types/garment';
 import { Outfit } from '../../types/outfit';
 import { GarmentCategory } from '../../constants/categories';
+import { INITIAL_SEED_GARMENTS } from './seedData';
 
 const GARMENTS_KEY_PREFIX = 'aura_garments_';
 const OUTFITS_KEY_PREFIX = 'aura_outfits_';
@@ -16,10 +17,22 @@ export const DatabaseService = {
         .select('*')
         .eq('user_id', userId)
         .order('created_at', { ascending: false });
-      if (!error && data) return data as Garment[];
+      if (!error && data && data.length > 0) return data as Garment[];
     }
     const local = await LocalStorage.getItem<Garment[]>(`${GARMENTS_KEY_PREFIX}${userId}`);
-    return local || [];
+    if (local !== null) return local;
+
+    // Seed with initial curated fashion items on first session
+    const seeded: Garment[] = INITIAL_SEED_GARMENTS.map((g, idx) => ({
+      ...g,
+      id: `seed_garm_${idx + 1}`,
+      user_id: userId,
+      created_at: new Date(Date.now() - idx * 3600000).toISOString(),
+      updated_at: new Date().toISOString(),
+    }));
+
+    await LocalStorage.setItem(`${GARMENTS_KEY_PREFIX}${userId}`, seeded);
+    return seeded;
   },
 
   async addGarment(garment: Omit<Garment, 'id' | 'created_at' | 'updated_at'>): Promise<Garment> {

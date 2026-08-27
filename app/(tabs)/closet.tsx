@@ -7,7 +7,7 @@ import { Typography } from '../../src/components/ui/Typography';
 import { CategoryFilter } from '../../src/components/garment/CategoryFilter';
 import { GarmentCard } from '../../src/components/garment/GarmentCard';
 import { Button } from '../../src/components/ui/Button';
-import { colors, spacing, radii } from '../../src/constants/theme';
+import { colors, spacing, radii, shadows } from '../../src/constants/theme';
 import { Plus, Shirt } from 'lucide-react-native';
 
 export default function ClosetScreen() {
@@ -44,11 +44,11 @@ export default function ClosetScreen() {
         </View>
 
         <TouchableOpacity
-          activeOpacity={0.8}
+          activeOpacity={0.85}
           onPress={() => router.push('/garment/add')}
           style={styles.addButton}
         >
-          <Plus size={18} color={colors.textInverse} />
+          <Plus size={16} color={colors.textInverse} />
           <Typography variant="caption" color={colors.textInverse} style={styles.addButtonText}>
             Add Piece
           </Typography>
@@ -64,7 +64,7 @@ export default function ClosetScreen() {
       {/* Garments Grid */}
       {isLoading ? (
         <View style={styles.centerContainer}>
-          <ActivityIndicator size="large" color={colors.accent} />
+          <ActivityIndicator size="large" color={colors.text} />
         </View>
       ) : garments.length > 0 ? (
         <FlatList
@@ -90,7 +90,7 @@ export default function ClosetScreen() {
       ) : (
         <View style={styles.emptyContainer}>
           <View style={styles.emptyIconCircle}>
-            <Shirt size={32} color={colors.accent} />
+            <Shirt size={28} color={colors.text} />
           </View>
           <Typography variant="title" style={styles.emptyTitle}>
             No garments in this category
@@ -132,10 +132,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colors.text,
-    paddingVertical: spacing.xs + 1,
+    paddingVertical: spacing.xs,
     paddingHorizontal: spacing.md,
     borderRadius: radii.pill,
     gap: 4,
+    ...shadows.subtle,
   },
   addButtonText: {
     fontWeight: '700',
@@ -164,13 +165,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.xxl,
   },
   emptyIconCircle: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    backgroundColor: colors.surfaceElevated,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.md,
+    ...shadows.subtle,
   },
   emptyTitle: {
     color: colors.text,

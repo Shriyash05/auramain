@@ -4,7 +4,7 @@ import { useAuth } from '../../src/hooks/useAuth';
 import { Typography } from '../../src/components/ui/Typography';
 import { Input } from '../../src/components/ui/Input';
 import { Button } from '../../src/components/ui/Button';
-import { colors, spacing } from '../../src/constants/theme';
+import { colors, spacing, radii, shadows } from '../../src/constants/theme';
 import { Sparkles } from 'lucide-react-native';
 
 export default function LoginScreen() {
@@ -49,8 +49,8 @@ export default function LoginScreen() {
         <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
             <View style={styles.badge}>
-              <Sparkles size={14} color={colors.accent} />
-              <Typography variant="caption" color={colors.accent} style={styles.badgeText}>
+              <Sparkles size={13} color={colors.text} />
+              <Typography variant="caption" color={colors.text} style={styles.badgeText}>
                 PERSONAL FASHION INTELLIGENCE
               </Typography>
             </View>
@@ -133,14 +133,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: spacing.xxs,
     marginBottom: spacing.sm,
+    backgroundColor: colors.surfaceMuted,
+    alignSelf: 'flex-start',
+    paddingVertical: 4,
+    paddingHorizontal: spacing.sm,
+    borderRadius: radii.pill,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   badgeText: {
     fontWeight: '700',
-    letterSpacing: 1.2,
+    letterSpacing: 1,
   },
   title: {
     color: colors.text,
     marginBottom: spacing.xs,
+    fontSize: 44,
   },
   subtitle: {
     color: colors.textSecondary,
@@ -166,6 +174,7 @@ const styles = StyleSheet.create({
   orText: {
     marginHorizontal: spacing.md,
     color: colors.textMuted,
+    fontWeight: '600',
   },
   guestButton: {
     marginTop: 0,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
 import { Garment } from '../../types/garment';
-import { colors, radii, spacing, typography } from '../../constants/theme';
+import { colors, radii, spacing, typography, shadows } from '../../constants/theme';
 import { Heart, Trash2 } from 'lucide-react-native';
 
 interface GarmentCardProps {
@@ -21,7 +21,7 @@ export const GarmentCard: React.FC<GarmentCardProps> = ({
 }) => {
   return (
     <TouchableOpacity
-      activeOpacity={0.85}
+      activeOpacity={0.88}
       onPress={onPress}
       style={[styles.card, style]}
     >
@@ -49,7 +49,7 @@ export const GarmentCard: React.FC<GarmentCardProps> = ({
               style={styles.iconButton}
             >
               <Heart
-                size={16}
+                size={15}
                 color={garment.favorite ? colors.like : colors.text}
                 fill={garment.favorite ? colors.like : 'none'}
               />
@@ -64,7 +64,7 @@ export const GarmentCard: React.FC<GarmentCardProps> = ({
               }}
               style={styles.iconButton}
             >
-              <Trash2 size={15} color={colors.textMuted} />
+              <Trash2 size={14} color={colors.textSecondary} />
             </TouchableOpacity>
           )}
         </View>
@@ -91,16 +91,17 @@ export const GarmentCard: React.FC<GarmentCardProps> = ({
 const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.surface,
-    borderRadius: radii.lg,
+    borderRadius: radii.md,
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: colors.border,
     marginBottom: spacing.md,
+    ...shadows.card,
   },
   imageContainer: {
     width: '100%',
     aspectRatio: 3 / 4,
-    backgroundColor: colors.surfaceElevated,
+    backgroundColor: colors.surfaceMuted,
     position: 'relative',
   },
   image: {
@@ -112,12 +113,12 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.surfaceHighlight,
+    backgroundColor: colors.surfaceMuted,
   },
   placeholderText: {
     color: colors.textMuted,
     fontSize: typography.sizes.xs,
-    letterSpacing: 1.5,
+    letterSpacing: 1,
     fontWeight: '700',
   },
   topActions: {
@@ -128,28 +129,31 @@ const styles = StyleSheet.create({
     gap: spacing.xxs,
   },
   iconButton: {
-    backgroundColor: 'rgba(11, 12, 14, 0.75)',
+    backgroundColor: 'rgba(255, 255, 255, 0.92)',
     padding: spacing.xs,
     borderRadius: radii.pill,
+    ...shadows.subtle,
   },
   categoryBadge: {
     position: 'absolute',
     bottom: spacing.xs,
     left: spacing.xs,
-    backgroundColor: 'rgba(11, 12, 14, 0.8)',
+    backgroundColor: 'rgba(255, 255, 255, 0.92)',
     paddingVertical: 3,
-    paddingHorizontal: spacing.xs,
-    borderRadius: radii.sm,
+    paddingHorizontal: spacing.xs + 2,
+    borderRadius: radii.pill,
+    ...shadows.subtle,
   },
   categoryBadgeText: {
-    color: colors.textSecondary,
+    color: colors.text,
     fontSize: 10,
     textTransform: 'uppercase',
-    fontWeight: '600',
+    fontWeight: '700',
     letterSpacing: 0.5,
   },
   info: {
     padding: spacing.sm,
+    backgroundColor: colors.surface,
   },
   title: {
     color: colors.text,

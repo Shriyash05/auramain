@@ -8,7 +8,7 @@ import { Typography } from '../../src/components/ui/Typography';
 import { Input } from '../../src/components/ui/Input';
 import { Chip } from '../../src/components/ui/Chip';
 import { Button } from '../../src/components/ui/Button';
-import { colors, spacing, radii } from '../../src/constants/theme';
+import { colors, spacing, radii, shadows } from '../../src/constants/theme';
 import { ArrowLeft, Check, Sparkles } from 'lucide-react-native';
 
 export default function GarmentConfirmScreen() {
@@ -94,7 +94,7 @@ export default function GarmentConfirmScreen() {
   if (isProcessing) {
     return (
       <SafeAreaView style={[styles.safe, styles.centerContainer]}>
-        <ActivityIndicator size="large" color={colors.accent} />
+        <ActivityIndicator size="large" color={colors.text} />
         <Typography variant="body" color={colors.text} style={styles.processingText}>
           Analyzing garment attributes...
         </Typography>
@@ -128,8 +128,8 @@ export default function GarmentConfirmScreen() {
             resizeMode="cover"
           />
           <View style={styles.statusBadge}>
-            <Sparkles size={12} color={colors.accent} />
-            <Typography variant="caption" color={colors.accent} style={styles.statusBadgeText}>
+            <Sparkles size={12} color={colors.text} />
+            <Typography variant="caption" color={colors.text} style={styles.statusBadgeText}>
               READY TO INGEST
             </Typography>
           </View>
@@ -216,6 +216,7 @@ const styles = StyleSheet.create({
   },
   processingText: {
     marginTop: spacing.md,
+    fontWeight: '500',
   },
   container: {
     paddingHorizontal: spacing.lg,
@@ -243,9 +244,12 @@ const styles = StyleSheet.create({
     aspectRatio: 3 / 4,
     borderRadius: radii.lg,
     overflow: 'hidden',
-    backgroundColor: colors.surfaceElevated,
+    backgroundColor: colors.surfaceMuted,
     marginBottom: spacing.lg,
     position: 'relative',
+    borderWidth: 1,
+    borderColor: colors.border,
+    ...shadows.card,
   },
   garmentImage: {
     width: '100%',
@@ -258,10 +262,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
-    backgroundColor: 'rgba(11, 12, 14, 0.85)',
+    backgroundColor: 'rgba(255, 255, 255, 0.92)',
     paddingVertical: 4,
     paddingHorizontal: spacing.sm,
-    borderRadius: radii.sm,
+    borderRadius: radii.pill,
+    ...shadows.subtle,
   },
   statusBadgeText: {
     fontWeight: '700',

@@ -38,7 +38,7 @@ function RootNavigationLayout() {
 
   return (
     <>
-      <StatusBar style="light" backgroundColor={colors.background} />
+      <StatusBar style="dark" backgroundColor={colors.background} />
       <Stack
         screenOptions={{
           headerShown: false,

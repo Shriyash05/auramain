@@ -1,51 +1,53 @@
 /**
- * AURA Design System - Design Tokens & Theme
- * Sources of truth: Figma Design & docs/04-design-system.md
+ * AURA Design System - Approved Light Fashion Editorial Theme
+ * Source of truth: Figma Design ("AURA — Premium Fashion App")
  * 
  * Aesthetic:
- * - Deep neutral / near-black foundation (#0B0C0E, #121316)
- * - Warm off-white typography and accents (#F5F5F7, #E8E8ED)
- * - Restrained Lavender interactive accent (#B4A0E5, #9B82D8)
- * - Elevated dark surfaces (#181A1F, #22252C)
- * - Glassmorphism, subtle borders, high contrast
+ * - Warm cream / off-white foundation (#F9F9F8, #F4F3EE)
+ * - Pure white surfaces and elevated cards (#FFFFFF)
+ * - Deep charcoal / pure black editorial typography (#111111, #44464D)
+ * - Restrained, minimalist fashion accent (Editorial Black / Subtle Warm Taupe)
+ * - Ultra-clean borders (#E8E6E1, #DFDCD5)
+ * - Crisp, image-first hierarchy, zero tacky glassmorphism or dark neon AI glows
  */
 
 export const colors = {
   // Foundations
-  background: '#0B0C0E',
-  backgroundSecondary: '#121316',
-  surface: '#181A1F',
-  surfaceElevated: '#20232A',
-  surfaceHighlight: '#2A2E38',
+  background: '#F9F9F8',
+  backgroundSecondary: '#F3F2ED',
+  surface: '#FFFFFF',
+  surfaceElevated: '#FFFFFF',
+  surfaceMuted: '#F4F3EE',
+  surfaceHighlight: '#EBE9E3',
   
-  // Glassmorphic Overlays
-  glass: 'rgba(24, 26, 31, 0.75)',
-  glassLight: 'rgba(255, 255, 255, 0.05)',
-  glassBorder: 'rgba(255, 255, 255, 0.1)',
-  glassBorderActive: 'rgba(180, 160, 229, 0.4)',
+  // Editorial Clean Overlays & Surfaces
+  overlay: 'rgba(17, 17, 17, 0.4)',
+  surfaceBorder: '#E8E6E1',
+  surfaceBorderActive: '#111111',
 
-  // Brand / Restrained Accent (Lavender)
-  accent: '#B4A0E5',
-  accentDark: '#8F72D6',
-  accentLight: '#D7CBF5',
-  accentGlow: 'rgba(180, 160, 229, 0.25)',
+  // Restrained Fashion Accents (Editorial Black / Minimalist Tint)
+  accent: '#111111',
+  accentSecondary: '#44464D',
+  accentSubtle: '#F0EFEA',
+  accentHighlight: '#8B6D55',
 
-  // Text Hierarchy
-  text: '#F5F5F7',
-  textSecondary: '#A0A3AB',
-  textMuted: '#666A73',
-  textInverse: '#0B0C0E',
+  // Text Hierarchy (High-contrast editorial charcoal & black)
+  text: '#111111',
+  textSecondary: '#55575E',
+  textMuted: '#8E9098',
+  textInverse: '#FFFFFF',
 
   // Status & Feedback
-  success: '#4ADE80',
-  warning: '#FBBF24',
-  error: '#F87171',
-  like: '#F43F5E',
+  success: '#15803D',
+  warning: '#B45309',
+  error: '#DC2626',
+  like: '#E11D48',
 
   // Borders & Dividers
-  border: 'rgba(255, 255, 255, 0.08)',
-  borderLight: 'rgba(255, 255, 255, 0.15)',
-  divider: 'rgba(255, 255, 255, 0.06)',
+  border: '#E8E6E1',
+  borderLight: '#F0EFEA',
+  borderDark: '#111111',
+  divider: '#EBE9E3',
 };
 
 export const typography = {
@@ -53,12 +55,12 @@ export const typography = {
   editorial: {
     fontFamily: 'System',
     fontWeight: '700' as const,
-    letterSpacing: -0.8,
+    letterSpacing: -0.6,
   },
   // Interface (Labels, Metadata, Actions)
   interface: {
     fontFamily: 'System',
-    letterSpacing: -0.2,
+    letterSpacing: -0.1,
   },
   sizes: {
     xs: 11,
@@ -68,8 +70,8 @@ export const typography = {
     lg: 20,
     xl: 24,
     xxl: 30,
-    display: 36,
-    hero: 44,
+    display: 34,
+    hero: 42,
   },
 };
 
@@ -88,31 +90,31 @@ export const radii = {
   xs: 6,
   sm: 10,
   md: 14,
-  lg: 20,
-  xl: 28,
+  lg: 18,
+  xl: 24,
   pill: 9999,
 };
 
 export const shadows = {
   subtle: {
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 6,
-    elevation: 2,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 1,
   },
   elevated: {
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.45,
-    shadowRadius: 16,
-    elevation: 6,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 3,
   },
-  glow: {
-    shadowColor: '#B4A0E5',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.35,
-    shadowRadius: 14,
-    elevation: 8,
+  card: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 8,
+    elevation: 2,
   },
 };

@@ -7,7 +7,7 @@ import { Garment } from '../../src/types/garment';
 import { Typography } from '../../src/components/ui/Typography';
 import { Chip } from '../../src/components/ui/Chip';
 import { Button } from '../../src/components/ui/Button';
-import { colors, spacing, radii } from '../../src/constants/theme';
+import { colors, spacing, radii, shadows } from '../../src/constants/theme';
 import { ArrowLeft, Heart, Trash2 } from 'lucide-react-native';
 
 export default function GarmentDetailScreen() {
@@ -100,7 +100,7 @@ export default function GarmentDetailScreen() {
 
         {/* Garment Title & Category */}
         <View style={styles.infoSection}>
-          <Typography variant="label" color={colors.accent}>
+          <Typography variant="label" color={colors.textMuted}>
             {garment.category}
           </Typography>
           <Typography variant="display" style={styles.garmentTitle}>
@@ -177,8 +177,11 @@ const styles = StyleSheet.create({
     aspectRatio: 3 / 4,
     borderRadius: radii.lg,
     overflow: 'hidden',
-    backgroundColor: colors.surfaceElevated,
+    backgroundColor: colors.surfaceMuted,
     marginBottom: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    ...shadows.card,
   },
   image: {
     width: '100%',
@@ -204,6 +207,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: spacing.xs,
+  },
+  chip: {
+    marginBottom: spacing.xxs,
   },
   footer: {
     marginTop: spacing.lg,

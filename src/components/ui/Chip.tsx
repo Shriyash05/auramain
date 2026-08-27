@@ -19,7 +19,7 @@ export const Chip: React.FC<ChipProps> = ({
 }) => {
   return (
     <TouchableOpacity
-      activeOpacity={0.7}
+      activeOpacity={0.75}
       onPress={onPress}
       disabled={!onPress}
       style={[
@@ -50,14 +50,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   unselectedChip: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surfaceMuted,
     borderWidth: 1,
     borderColor: colors.border,
   },
   selectedChip: {
     backgroundColor: colors.accent,
     borderWidth: 1,
-    borderColor: colors.accentLight,
+    borderColor: colors.accent,
   },
   label: {
     fontSize: typography.sizes.sm,
