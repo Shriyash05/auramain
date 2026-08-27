@@ -203,22 +203,31 @@ export default function StylistScreen() {
               </View>
 
               {/* Actions */}
-              <View style={styles.cardActions}>
+              <View style={styles.cardActionsCol}>
                 <Button
-                  label="Style in Studio"
-                  variant="secondary"
-                  onPress={handleStyleInStudio}
-                  icon={<SlidersHorizontal size={16} color={colors.text} />}
-                  style={styles.actionBtn}
-                />
-                <Button
-                  label="Save Look"
+                  label="Virtual Try-On Look"
                   variant="primary"
-                  onPress={handleSave}
-                  loading={isSaving}
-                  icon={<Bookmark size={16} color={colors.textInverse} />}
-                  style={styles.actionBtn}
+                  onPress={() => router.push('/mirror')}
+                  icon={<Sparkles size={16} color={colors.textInverse} />}
+                  style={styles.fullActionBtn}
                 />
+                <View style={styles.cardActions}>
+                  <Button
+                    label="Style in Studio"
+                    variant="secondary"
+                    onPress={handleStyleInStudio}
+                    icon={<SlidersHorizontal size={16} color={colors.text} />}
+                    style={styles.actionBtn}
+                  />
+                  <Button
+                    label="Save Look"
+                    variant="outline"
+                    onPress={handleSave}
+                    loading={isSaving}
+                    icon={<Bookmark size={16} color={colors.text} />}
+                    style={styles.actionBtn}
+                  />
+                </View>
               </View>
             </GlassSurface>
           </View>
@@ -411,10 +420,16 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     lineHeight: 18,
   },
+  cardActionsCol: {
+    gap: spacing.sm,
+    marginTop: spacing.xs,
+  },
+  fullActionBtn: {
+    width: '100%',
+  },
   cardActions: {
     flexDirection: 'row',
     gap: spacing.sm,
-    marginTop: spacing.xs,
   },
   actionBtn: {
     flex: 1,

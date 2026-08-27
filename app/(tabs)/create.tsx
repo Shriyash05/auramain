@@ -8,7 +8,7 @@ import { OutfitStack } from '../../src/components/mixmatch/OutfitStack';
 import { GarmentSwiper } from '../../src/components/mixmatch/GarmentSwiper';
 import { Button } from '../../src/components/ui/Button';
 import { colors, spacing, radii, shadows } from '../../src/constants/theme';
-import { Heart, ThumbsDown, Bookmark } from 'lucide-react-native';
+import { Heart, ThumbsDown, Bookmark, Sparkles } from 'lucide-react-native';
 
 export default function CreateScreen() {
   const router = useRouter();
@@ -115,8 +115,16 @@ export default function CreateScreen() {
           />
         </View>
 
-        {/* Save & Finish Actions */}
+        {/* Save & Try On Actions */}
         <View style={styles.actionSection}>
+          <Button
+            label="Virtual Try-On"
+            variant="secondary"
+            onPress={() => router.push('/mirror')}
+            icon={<Sparkles size={17} color={colors.text} />}
+            size="lg"
+            style={styles.tryOnButton}
+          />
           <Button
             label={savedSuccess ? 'Saved to Collection' : 'Save Outfit'}
             onPress={handleSave}
@@ -182,6 +190,10 @@ const styles = StyleSheet.create({
   actionSection: {
     paddingHorizontal: spacing.lg,
     marginTop: spacing.lg,
+    gap: spacing.sm,
+  },
+  tryOnButton: {
+    width: '100%',
   },
   saveButton: {
     width: '100%',
