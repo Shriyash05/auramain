@@ -149,7 +149,8 @@ export const DatabaseService = {
     await LocalStorage.removeItem(`aura_shoots_${userId}`);
     await LocalStorage.removeItem(`aura_shoot_looks_${userId}`);
     await LocalStorage.removeItem(`aura_lookbooks_${userId}`);
-    await LocalStorage.removeItem(`aura_creator_profile_${userId}`);
+    await LocalStorage.removeItem(`aura_contributor_profile_${userId}`);
+    await LocalStorage.removeItem(`aura_contributions_${userId}`);
 
     // Purge cloud storage objects
     try {
@@ -159,6 +160,8 @@ export const DatabaseService = {
     }
 
     if (isSupabaseConfigured && supabase) {
+      await supabase.from('research_contributions').delete().eq('user_id', userId);
+      await supabase.from('contributor_profiles').delete().eq('user_id', userId);
       await supabase.from('garments').delete().eq('user_id', userId);
       await supabase.from('outfits').delete().eq('user_id', userId);
       await supabase.from('feedback_events').delete().eq('user_id', userId);

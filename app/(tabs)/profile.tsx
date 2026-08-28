@@ -9,7 +9,7 @@ import { Typography } from '../../src/components/ui/Typography';
 import { Button } from '../../src/components/ui/Button';
 import { GlassSurface } from '../../src/components/ui/GlassSurface';
 import { colors, spacing, radii, shadows } from '../../src/constants/theme';
-import { LogOut, User as UserIcon, Sparkles, ChevronRight, Bookmark, Calendar, Clock, BarChart3 } from 'lucide-react-native';
+import { LogOut, User as UserIcon, Sparkles, ChevronRight, Bookmark, Calendar, Clock, BarChart3, Shield } from 'lucide-react-native';
 
 export default function ProfileScreen() {
   const router = useRouter();
@@ -237,6 +237,34 @@ export default function ProfileScreen() {
               </Typography>
             </GlassSurface>
           )}
+        </View>
+
+        {/* 5. AURA Research Contributor Program */}
+        <View style={styles.section}>
+          <Typography variant="label" style={styles.sectionHeading}>
+            AURA FASHION RESEARCH
+          </Typography>
+
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => router.push('/research' as any)}
+            style={styles.navRowCard}
+          >
+            <View style={styles.navRowLeft}>
+              <View style={styles.navIconBox}>
+                <Shield size={18} color={colors.text} />
+              </View>
+              <View>
+                <Typography variant="body" style={styles.navRowTitle}>
+                  Research Contributor Program
+                </Typography>
+                <Typography variant="caption" color={colors.textSecondary}>
+                  Help improve AURA with voluntary garment contributions
+                </Typography>
+              </View>
+            </View>
+            <ChevronRight size={18} color={colors.textMuted} />
+          </TouchableOpacity>
         </View>
 
         {/* Sign Out */}

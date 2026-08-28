@@ -116,7 +116,7 @@ describe('AURA Garment-v1 & v0.3 Dataset Benchmark Suite', () => {
     const pending = GarmentReviewTool.getPendingReviews();
     expect(pending.length).toBeGreaterThan(0);
 
-    const success = GarmentReviewTool.submitReviewDecision(item.review_id, 'CORRECT', 'Confirmed dual-category match');
+    const success = GarmentReviewTool.submitReviewDecision(item.review_id, 'CORRECT', undefined, 'Confirmed dual-category match');
     expect(success).toBe(true);
   });
 
