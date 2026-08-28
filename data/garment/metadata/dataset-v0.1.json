@@ -1,0 +1,377 @@
+{
+  "dataset_name": "AURA-Garment-Golden-v0.1",
+  "version": "0.1.0",
+  "created_at": "2026-08-28T00:00:00Z",
+  "license": "AURA Proprietary / In-House Curated Editorial",
+  "commercial_use": true,
+  "description": "Standardized golden benchmark and seed training set for aura-garment-v1 attribute prediction",
+  "taxonomy_version": "1.0",
+  "splits": {
+    "train_count": 10,
+    "val_count": 4,
+    "test_count": 4,
+    "total_count": 18
+  },
+  "items": [
+    {
+      "image_id": "garm_seed_top_01",
+      "image_path": "assets/curated/asset_0.png",
+      "split": "train",
+      "labels": {
+        "category": "tops",
+        "subcategory": "overshirt",
+        "primary_color_hex": "#F0EFEA",
+        "color_family": "cream",
+        "fit": "Oversized",
+        "silhouette": "relaxed",
+        "pattern": "solid",
+        "material": "linen",
+        "formality_score": 0.45,
+        "occasions": ["Casual", "Vacation", "Minimalist"],
+        "seasons": ["Spring", "Summer", "All Season"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_top_02",
+      "image_path": "assets/curated/asset_1.png",
+      "split": "train",
+      "labels": {
+        "category": "tops",
+        "subcategory": "t_shirt",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "pattern": "solid",
+        "material": "cotton",
+        "formality_score": 0.3,
+        "occasions": ["Casual", "Streetwear"],
+        "seasons": ["All Season"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_top_03",
+      "image_path": "assets/curated/asset_2.png",
+      "split": "train",
+      "labels": {
+        "category": "tops",
+        "subcategory": "knit_sweater",
+        "primary_color_hex": "#2B2C2E",
+        "color_family": "grey",
+        "fit": "Relaxed",
+        "silhouette": "boxy",
+        "pattern": "textured",
+        "material": "wool",
+        "formality_score": 0.55,
+        "occasions": ["Casual", "Work / Office"],
+        "seasons": ["Fall", "Winter"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_bot_01",
+      "image_path": "assets/curated/asset_3.png",
+      "split": "train",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#F0EFEA",
+        "color_family": "cream",
+        "fit": "Relaxed",
+        "silhouette": "wide",
+        "pattern": "solid",
+        "material": "cotton",
+        "formality_score": 0.65,
+        "occasions": ["Casual", "Work / Office", "Date Night"],
+        "seasons": ["All Season"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_bot_02",
+      "image_path": "assets/curated/asset_4.png",
+      "split": "train",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "trousers",
+        "primary_color_hex": "#1A1A1A",
+        "color_family": "black",
+        "fit": "Relaxed",
+        "silhouette": "wide",
+        "pattern": "solid",
+        "material": "wool",
+        "formality_score": 0.75,
+        "occasions": ["Work / Office", "Evening / Event", "Date Night"],
+        "seasons": ["Fall", "Winter", "All Season"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_bot_03",
+      "image_path": "assets/curated/asset_5.png",
+      "split": "train",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "shorts",
+        "primary_color_hex": "#8C7A6B",
+        "color_family": "brown",
+        "fit": "Relaxed",
+        "silhouette": "straight",
+        "pattern": "solid",
+        "material": "linen",
+        "formality_score": 0.35,
+        "occasions": ["Casual", "Vacation"],
+        "seasons": ["Summer"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_out_01",
+      "image_path": "assets/curated/asset_6.png",
+      "split": "train",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "blazer",
+        "primary_color_hex": "#2B2C2E",
+        "color_family": "grey",
+        "fit": "Relaxed",
+        "silhouette": "structured",
+        "pattern": "solid",
+        "material": "wool",
+        "formality_score": 0.8,
+        "occasions": ["Work / Office", "Evening / Event", "Date Night"],
+        "seasons": ["Fall", "Winter", "Spring"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_out_02",
+      "image_path": "assets/curated/asset_7.png",
+      "split": "train",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "leather_jacket",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Regular",
+        "silhouette": "structured",
+        "pattern": "solid",
+        "material": "leather",
+        "formality_score": 0.6,
+        "occasions": ["Streetwear", "Date Night", "Casual"],
+        "seasons": ["Fall", "Spring"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_shoe_01",
+      "image_path": "assets/curated/asset_8.png",
+      "split": "train",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "sneakers",
+        "primary_color_hex": "#FFFFFF",
+        "color_family": "white",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "pattern": "solid",
+        "material": "leather",
+        "formality_score": 0.35,
+        "occasions": ["Casual", "Streetwear", "Minimalist"],
+        "seasons": ["All Season"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_shoe_02",
+      "image_path": "assets/curated/asset_9.png",
+      "split": "train",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "loafers",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Regular",
+        "silhouette": "structured",
+        "pattern": "solid",
+        "material": "leather",
+        "formality_score": 0.8,
+        "occasions": ["Work / Office", "Evening / Event", "Date Night"],
+        "seasons": ["All Season"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_val_top_01",
+      "image_path": "assets/curated/asset_10.png",
+      "split": "validation",
+      "labels": {
+        "category": "tops",
+        "subcategory": "button_down",
+        "primary_color_hex": "#4B6B94",
+        "color_family": "blue",
+        "fit": "Relaxed",
+        "silhouette": "straight",
+        "pattern": "striped",
+        "material": "cotton",
+        "formality_score": 0.5,
+        "occasions": ["Casual", "Work / Office"],
+        "seasons": ["Spring", "Summer", "All Season"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_val_bot_01",
+      "image_path": "assets/curated/asset_11.png",
+      "split": "validation",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "jeans",
+        "primary_color_hex": "#4B6B94",
+        "color_family": "blue",
+        "fit": "Relaxed",
+        "silhouette": "straight",
+        "pattern": "solid",
+        "material": "denim",
+        "formality_score": 0.35,
+        "occasions": ["Casual", "Streetwear"],
+        "seasons": ["All Season"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_val_out_01",
+      "image_path": "assets/curated/asset_12.png",
+      "split": "validation",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "trench_coat",
+        "primary_color_hex": "#D4C5B9",
+        "color_family": "beige",
+        "fit": "Oversized",
+        "silhouette": "flowing",
+        "pattern": "solid",
+        "material": "cotton",
+        "formality_score": 0.75,
+        "occasions": ["Work / Office", "Date Night", "Evening / Event"],
+        "seasons": ["Spring", "Fall"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_val_acc_01",
+      "image_path": "assets/curated/asset_13.png",
+      "split": "validation",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "tote_bag",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Regular",
+        "silhouette": "structured",
+        "pattern": "solid",
+        "material": "leather",
+        "formality_score": 0.6,
+        "occasions": ["Work / Office", "Casual"],
+        "seasons": ["All Season"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_test_top_01",
+      "image_path": "assets/curated/asset_14.png",
+      "split": "test",
+      "labels": {
+        "category": "tops",
+        "subcategory": "tank",
+        "primary_color_hex": "#F0EFEA",
+        "color_family": "cream",
+        "fit": "Fitted",
+        "silhouette": "fitted",
+        "pattern": "solid",
+        "material": "cotton",
+        "formality_score": 0.25,
+        "occasions": ["Casual", "Vacation"],
+        "seasons": ["Summer"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_test_bot_01",
+      "image_path": "assets/curated/asset_15.png",
+      "split": "test",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#2B2C2E",
+        "color_family": "grey",
+        "fit": "Oversized",
+        "silhouette": "wide",
+        "pattern": "solid",
+        "material": "wool",
+        "formality_score": 0.7,
+        "occasions": ["Work / Office", "Date Night"],
+        "seasons": ["Fall", "Winter"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_test_out_01",
+      "image_path": "assets/curated/asset_16.png",
+      "split": "test",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "bomber_jacket",
+        "primary_color_hex": "#4A4C50",
+        "color_family": "grey",
+        "fit": "Relaxed",
+        "silhouette": "boxy",
+        "pattern": "solid",
+        "material": "nylon",
+        "formality_score": 0.45,
+        "occasions": ["Streetwear", "Casual"],
+        "seasons": ["Fall", "Spring"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    },
+    {
+      "image_id": "garm_seed_test_shoe_01",
+      "image_path": "assets/curated/asset_17.png",
+      "split": "test",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "boots",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Regular",
+        "silhouette": "structured",
+        "pattern": "solid",
+        "material": "leather",
+        "formality_score": 0.7,
+        "occasions": ["Casual", "Evening / Event"],
+        "seasons": ["Fall", "Winter"]
+      },
+      "source": "aura_editorial_archive",
+      "verified_by_stylist": true
+    }
+  ]
+}

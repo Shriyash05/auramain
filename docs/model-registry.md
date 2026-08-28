@@ -17,8 +17,8 @@ The Model Registry documents the specific open-weight architectures, licenses, c
 
 | Model ID | Domain | Architecture Base | Parameter Count | License & Commercial Terms | Input Format | Output Format | Minimum VRAM (Inference) | Recommended Hardware | Serving Framework |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `aura-garment-v1` | Garment Attributes | SigLIP-SO400M / ViT-B | 400M | Apache 2.0 (Permissive Commercial) | RGB Image (512x512) | Category, Color, Fit, Pattern JSON | 1.5 GB | NVIDIA T4 / CPU with ONNX | ONNX Runtime / Triton |
-| `aura-segment-v1` | Background Removal | BiRefNet / RMBG-1.4 | 120M | Open Weights / Apache 2.0 | RGB Image (1024x1024) | RGBA Transparent Cutout PNG | 3.5 GB | NVIDIA T4 / A10G | TensorRT / PyTorch |
+| `aura-garment-v1` | Garment Attributes | SigLIP-SO400M / Multi-Task Heads | 400M | Apache 2.0 (Permissive Commercial) | RGB Image (384x384) | Category, Subcategory, Color, Fit, Silhouette, Material JSON | 1.2 GB | NVIDIA T4 / GTX 1650 / CPU ONNX | ONNX Runtime / Triton | Dataset `v0.1.0` (Top-1 Cat: 100%, Macro F1: 87.5%) • Status: **EXPERIMENTAL PROTOTYPE** |
+| `aura-segment-v1` | Background Removal | BiRefNet (Apache 2.0) | 120M | Apache 2.0 (Permissive Commercial) | RGB Image (1024x1024) | RGBA Transparent Cutout PNG | 3.5 GB | NVIDIA T4 / A10G | TensorRT / PyTorch | Benchmark Candidate • Status: **EXPERIMENTAL PROTOTYPE** |
 | `aura-inspire-v1` | Inspiration Deconstruction | Florence-2-Large + LoRA | 770M | MIT License (Permissive Commercial) | RGB Image + Prompt | Aesthetics, Palette, Piece List JSON | 2.5 GB (FP16) | NVIDIA A10G / L4 | vLLM / HuggingFace TGI |
 | `aura-intent-v1` | Natural Language Intent | Qwen2.5-3B-Instruct (AWQ) | 3B | Apache 2.0 (Permissive Commercial) | Text Query String | Structured Action Intent JSON | 2.8 GB (4-bit) | NVIDIA T4 / A10G / Apple Silicon | vLLM / Ollama |
 | `aura-vto-v1` | Virtual Try-On Diffusion | IDM-VTON / CatVTON | 1.2B (UNet + Garment Encoder) | Open Research / Open Weights | Model Photo + Garment Image PNG | Try-on Render Image (1024x768) | 12.0 GB (FP16) | NVIDIA A10G / A100 / RTX 4090 | Diffusers / Serverless Worker |
