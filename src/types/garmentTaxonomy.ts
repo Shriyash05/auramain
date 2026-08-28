@@ -133,6 +133,7 @@ export type AmbiguityStatus = 'KNOWN' | 'UNKNOWN' | 'AMBIGUOUS';
  */
 export interface GarmentTaxonomyLabels {
   category: AuraCategory;
+  secondary_category?: AuraCategory;
   subcategory: AuraSubcategory;
   primary_color_hex: string;
   color_family: AuraColorFamily;
@@ -148,6 +149,18 @@ export interface GarmentTaxonomyLabels {
     material?: AmbiguityStatus;
     color?: AmbiguityStatus;
   };
+}
+
+export const CONFIDENCE_REFUSAL_THRESHOLD = 0.65;
+
+export function isDualCategoryMatch(
+  predicted: AuraCategory,
+  expectedPrimary: AuraCategory,
+  expectedSecondary?: AuraCategory
+): boolean {
+  if (predicted === expectedPrimary) return true;
+  if (expectedSecondary && predicted === expectedSecondary) return true;
+  return false;
 }
 
 export interface GarmentModelPrediction {

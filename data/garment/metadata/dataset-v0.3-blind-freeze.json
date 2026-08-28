@@ -1,0 +1,549 @@
+{
+  "freeze_name": "AURA-Garment-v0.3-Frozen-Blind-Test",
+  "version": "0.3.0-blind-frozen",
+  "frozen_at": "2026-08-28T00:00:00Z",
+  "sample_count": 20,
+  "items": [
+    {
+      "image_id": "garm_v3_113",
+      "garment_group_id": "garment_group_56",
+      "image_path": "assets/figma_images/bae71620ff55a7ff90295f0cb83c214cc7d18831",
+      "split": "blind_test",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "blazer",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Oversized",
+        "silhouette": "structured",
+        "pattern": "solid",
+        "material": "denim",
+        "formality_score": 0.2,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_114",
+      "garment_group_id": "garment_group_56",
+      "image_path": "assets/figma_images/bd6ac62a6b60a5a2d753bb2748de8b235597d802",
+      "split": "blind_test",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "sandals",
+        "primary_color_hex": "#F0EFEA",
+        "color_family": "cream",
+        "fit": "Slim",
+        "silhouette": "straight",
+        "pattern": "textured",
+        "material": "nylon",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_115",
+      "garment_group_id": "garment_group_57",
+      "image_path": "assets/figma_images/bef304a934cb18f0b606049c22d8decadf29e387",
+      "split": "blind_test",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "belt",
+        "primary_color_hex": "#FFFFFF",
+        "color_family": "white",
+        "fit": "Fitted",
+        "silhouette": "relaxed",
+        "pattern": "striped",
+        "material": "cashmere",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_116",
+      "garment_group_id": "garment_group_57",
+      "image_path": "assets/figma_images/bf4dfd18f9a3b29b79bb85ebd205a4e3082c6ec7",
+      "split": "blind_test",
+      "labels": {
+        "category": "tops",
+        "subcategory": "knit_sweater",
+        "primary_color_hex": "#2B2C2E",
+        "color_family": "grey",
+        "fit": "Regular",
+        "silhouette": "wide",
+        "pattern": "plaid",
+        "material": "silk",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_117",
+      "garment_group_id": "garment_group_58",
+      "image_path": "assets/figma_images/bfa930b49de34ddf1285b093432d12745faa83fd",
+      "split": "blind_test",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#1B263B",
+        "color_family": "navy",
+        "fit": "Relaxed",
+        "silhouette": "boxy",
+        "pattern": "solid",
+        "material": "synthetic",
+        "formality_score": 0.6,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_118",
+      "garment_group_id": "garment_group_58",
+      "image_path": "assets/figma_images/c10655f957b4289f272e52064ce3f8fa71aef0de",
+      "split": "blind_test",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "denim_jacket",
+        "primary_color_hex": "#D4C5B9",
+        "color_family": "beige",
+        "fit": "Oversized",
+        "silhouette": "fitted",
+        "pattern": "textured",
+        "material": "cotton",
+        "formality_score": 0.7,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_119",
+      "garment_group_id": "garment_group_59",
+      "image_path": "assets/figma_images/c18e9fb9aa6265187d28307aeab2fc3ac08c9c3a",
+      "split": "blind_test",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "mules",
+        "primary_color_hex": "#8C7A6B",
+        "color_family": "brown",
+        "fit": "Slim",
+        "silhouette": "flowing",
+        "pattern": "striped",
+        "material": "linen",
+        "formality_score": 0.8,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_120",
+      "garment_group_id": "garment_group_59",
+      "image_path": "assets/figma_images/c220cd5e580f5192157aa54eb3791e449be9d0cd",
+      "split": "blind_test",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "hat",
+        "primary_color_hex": "#3E4E3B",
+        "color_family": "olive",
+        "fit": "Fitted",
+        "silhouette": "structured",
+        "pattern": "plaid",
+        "material": "wool",
+        "formality_score": 0.2,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_121",
+      "garment_group_id": "garment_group_60",
+      "image_path": "assets/figma_images/c4da93ead9be44d732aa66edaee053253fb7c04f",
+      "split": "blind_test",
+      "labels": {
+        "category": "tops",
+        "secondary_category": "outerwear",
+        "subcategory": "overshirt",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "pattern": "solid",
+        "material": "leather",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_122",
+      "garment_group_id": "garment_group_60",
+      "image_path": "assets/figma_images/c5b811516d525f81ad1889595007ee532c3d25ac",
+      "split": "blind_test",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#F0EFEA",
+        "color_family": "cream",
+        "fit": "Relaxed",
+        "silhouette": "relaxed",
+        "pattern": "textured",
+        "material": "denim",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_123",
+      "garment_group_id": "garment_group_61",
+      "image_path": "assets/figma_images/c5f1343a6b6001b47016636fd55d2b5c9b57f428",
+      "split": "blind_test",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "bomber_jacket",
+        "primary_color_hex": "#FFFFFF",
+        "color_family": "white",
+        "fit": "Oversized",
+        "silhouette": "wide",
+        "pattern": "striped",
+        "material": "nylon",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_124",
+      "garment_group_id": "garment_group_61",
+      "image_path": "assets/figma_images/c66f18f2b55249ed7d3962a177cbb073271bb93c",
+      "split": "blind_test",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "boots",
+        "primary_color_hex": "#2B2C2E",
+        "color_family": "grey",
+        "fit": "Slim",
+        "silhouette": "boxy",
+        "pattern": "plaid",
+        "material": "cashmere",
+        "formality_score": 0.6,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_125",
+      "garment_group_id": "garment_group_62",
+      "image_path": "assets/figma_images/c6e3db8fbcccd344a727c0aa10115752d81fb103",
+      "split": "blind_test",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "scarf",
+        "primary_color_hex": "#1B263B",
+        "color_family": "navy",
+        "fit": "Fitted",
+        "silhouette": "fitted",
+        "pattern": "solid",
+        "material": "silk",
+        "formality_score": 0.7,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_126",
+      "garment_group_id": "garment_group_62",
+      "image_path": "assets/figma_images/c82db9a2c8e6b6e66c60dae88c79c5408c33c4ad",
+      "split": "blind_test",
+      "labels": {
+        "category": "tops",
+        "subcategory": "polo",
+        "primary_color_hex": "#D4C5B9",
+        "color_family": "beige",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "pattern": "textured",
+        "material": "synthetic",
+        "formality_score": 0.8,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_127",
+      "garment_group_id": "garment_group_63",
+      "image_path": "assets/figma_images/c883f66c0a35044e5a570f6a28df2debb598613c",
+      "split": "blind_test",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#8C7A6B",
+        "color_family": "brown",
+        "fit": "Relaxed",
+        "silhouette": "structured",
+        "pattern": "striped",
+        "material": "cotton",
+        "formality_score": 0.2,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_128",
+      "garment_group_id": "garment_group_63",
+      "image_path": "assets/figma_images/c8bfd8f899f4951400d8fc7a330ce712d5c667cc",
+      "split": "blind_test",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "trench_coat",
+        "primary_color_hex": "#3E4E3B",
+        "color_family": "olive",
+        "fit": "Oversized",
+        "silhouette": "straight",
+        "pattern": "plaid",
+        "material": "linen",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_129",
+      "garment_group_id": "garment_group_64",
+      "image_path": "assets/figma_images/c96ab37525be4af285038f2fccb03891b5635a2c",
+      "split": "blind_test",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "derbies",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Slim",
+        "silhouette": "relaxed",
+        "pattern": "solid",
+        "material": "wool",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_130",
+      "garment_group_id": "garment_group_64",
+      "image_path": "assets/figma_images/c9ce548cf1031023f400e33fb3c32411fbd39c19",
+      "split": "blind_test",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "sunglasses",
+        "primary_color_hex": "#F0EFEA",
+        "color_family": "cream",
+        "fit": "Fitted",
+        "silhouette": "wide",
+        "pattern": "textured",
+        "material": "leather",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_131",
+      "garment_group_id": "garment_group_65",
+      "image_path": "assets/figma_images/ca35f8b3d9fbfc8535bb84cad61ec07372da1643",
+      "split": "blind_test",
+      "labels": {
+        "category": "tops",
+        "subcategory": "hoodie",
+        "primary_color_hex": "#FFFFFF",
+        "color_family": "white",
+        "fit": "Regular",
+        "silhouette": "boxy",
+        "pattern": "striped",
+        "material": "denim",
+        "formality_score": 0.6,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_132",
+      "garment_group_id": "garment_group_65",
+      "image_path": "assets/figma_images/ca95b3bea305fedaf33c9b2e5988e9b00c7efc41",
+      "split": "blind_test",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#2B2C2E",
+        "color_family": "grey",
+        "fit": "Relaxed",
+        "silhouette": "fitted",
+        "pattern": "plaid",
+        "material": "nylon",
+        "formality_score": 0.7,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    }
+  ]
+}
