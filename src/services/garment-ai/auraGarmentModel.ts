@@ -45,6 +45,7 @@ export class AuraGarmentModel implements IGarmentUnderstandingModel {
           },
           latency_ms: elapsed,
           runtime_device: 'gpu_serverless',
+          calibrated: false,
         };
       }
     } catch (e) {
@@ -83,6 +84,7 @@ export class AuraGarmentModel implements IGarmentUnderstandingModel {
       },
       latency_ms: elapsed,
       runtime_device: 'deterministic_fallback',
+      calibrated: false,
     };
   }
 }

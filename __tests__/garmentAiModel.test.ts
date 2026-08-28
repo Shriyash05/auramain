@@ -2,29 +2,63 @@ import { DatasetValidator } from '../tools/ai-benchmark/garment/datasetValidator
 import { GarmentEvaluator } from '../tools/ai-benchmark/garment/evaluate';
 import { AuraGarmentModel } from '../src/services/garment-ai/auraGarmentModel';
 import { IGarmentVisionModel } from '../tools/ai-benchmark/types';
+import {
+  isHierarchicalFitMatch,
+  isHierarchicalMaterialMatch,
+  isHierarchicalColorMatch,
+} from '../src/types/garmentTaxonomy';
 import * as path from 'path';
 
-describe('AURA Garment-v1 Dataset, Validator & Model Suite', () => {
-  const manifestPath = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.1.json');
+describe('AURA Garment-v1 & v0.2 Dataset Benchmark Suite', () => {
+  const manifestPath = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.2.json');
   const projectRoot = path.resolve(__dirname, '..');
 
-  it('validates golden dataset manifest with zero taxonomy violations or leakage', () => {
+  it('validates golden dataset v0.2 manifest with zero taxonomy violations or leakage', () => {
     const report = DatasetValidator.validateManifest(manifestPath, projectRoot);
 
     expect(report.isValid).toBe(true);
-    expect(report.totalItems).toBe(18);
-    expect(report.trainCount).toBe(10);
-    expect(report.valCount).toBe(4);
-    expect(report.testCount).toBe(4);
+    expect(report.totalItems).toBe(46);
+    expect(report.splitCounts.train).toBe(22);
+    expect(report.splitCounts.validation).toBe(6);
+    expect(report.splitCounts.test).toBe(6);
+    expect(report.splitCounts.hard_test).toBe(6);
+    expect(report.splitCounts.real_world_test).toBe(6);
     expect(report.leakageDetected).toBe(false);
     expect(report.issues.length).toBe(0);
+    expect(report.categoryDistribution.tops.count).toBeGreaterThan(0);
+    expect(report.categoryDistribution.bottoms.count).toBeGreaterThan(0);
   });
 
-  it('runs GarmentEvaluator on test split and computes measured metrics', async () => {
+  it('computes perceptual hashes and flags cross-split duplicate leakage', () => {
+    const hash = DatasetValidator.computeImageFingerprint(path.resolve(projectRoot, 'assets/curated/asset_0.png'));
+    expect(hash).toBeDefined();
+    expect(typeof hash).toBe('string');
+    expect(hash.length).toBeGreaterThan(5);
+  });
+
+  it('verifies hierarchical taxonomy helper matches correctly', () => {
+    // Fit hierarchy
+    expect(isHierarchicalFitMatch('Relaxed', 'Oversized')).toBe(true);
+    expect(isHierarchicalFitMatch('Oversized', 'Relaxed')).toBe(true);
+    expect(isHierarchicalFitMatch('Regular', 'Oversized')).toBe(false);
+
+    // Material hierarchy
+    expect(isHierarchicalMaterialMatch('synthetic', 'nylon')).toBe(true);
+    expect(isHierarchicalMaterialMatch('nylon', 'synthetic')).toBe(true);
+    expect(isHierarchicalMaterialMatch('cotton', 'nylon')).toBe(false);
+
+    // Color hierarchy
+    expect(isHierarchicalColorMatch('white', 'cream')).toBe(true);
+    expect(isHierarchicalColorMatch('cream', 'white')).toBe(true);
+    expect(isHierarchicalColorMatch('black', 'cream')).toBe(false);
+  });
+
+  it('runs GarmentEvaluator across blind test, hard test, and real-world splits', async () => {
     const mockModel: IGarmentVisionModel = {
-      modelId: 'aura-garment-v1-test',
-      version: '0.1.0',
+      modelId: 'aura-garment-v1-v0.2-test',
+      version: '0.2.0',
       extractAttributes: async (img: string) => {
+        // Blind test mock
         if (img.includes('asset_14')) {
           return {
             category: 'tops',
@@ -38,42 +72,30 @@ describe('AURA Garment-v1 Dataset, Validator & Model Suite', () => {
             confidence: 0.95,
           };
         }
-        if (img.includes('asset_15')) {
+        if (img.includes('garment_4')) {
+          // Hard test: cream vs white challenge
           return {
-            category: 'bottoms',
-            primary_color: '#2B2C2E',
-            fit: 'Relaxed', // Simulated slight taxonomy mismatch (Oversized -> Relaxed)
+            category: 'tops',
+            primary_color: '#FFFFFF', // Off-white/cream slight variation
+            fit: 'Relaxed', // Hierarchical match with Oversized
             pattern: 'solid',
-            material: 'wool',
-            season: ['Fall'],
-            occasion: ['Work / Office'],
-            formality_score: 0.7,
-            confidence: 0.9,
-          };
-        }
-        if (img.includes('asset_16')) {
-          return {
-            category: 'outerwear',
-            primary_color: '#4A4C50',
-            fit: 'Relaxed',
-            pattern: 'solid',
-            material: 'nylon',
-            season: ['Fall'],
-            occasion: ['Streetwear'],
+            material: 'linen',
+            season: ['All Season'],
+            occasion: ['Casual'],
             formality_score: 0.45,
-            confidence: 0.9,
+            confidence: 0.88,
           };
         }
         return {
-          category: 'shoes',
-          primary_color: '#111111',
-          fit: 'Regular',
+          category: 'bottoms',
+          primary_color: '#1A1A1A',
+          fit: 'Relaxed',
           pattern: 'solid',
-          material: 'leather',
+          material: 'wool',
           season: ['Fall'],
-          occasion: ['Casual'],
-          formality_score: 0.7,
-          confidence: 0.95,
+          occasion: ['Work / Office'],
+          formality_score: 0.75,
+          confidence: 0.92,
         };
       },
     };
@@ -82,6 +104,7 @@ describe('AURA Garment-v1 Dataset, Validator & Model Suite', () => {
       {
         image_id: 'test_top',
         image_path: 'assets/curated/asset_14.png',
+        split: 'test',
         labels: {
           category: 'tops' as const,
           subcategory: 'tank' as const,
@@ -97,34 +120,40 @@ describe('AURA Garment-v1 Dataset, Validator & Model Suite', () => {
         },
       },
       {
-        image_id: 'test_bot',
-        image_path: 'assets/curated/asset_15.png',
+        image_id: 'hard_top',
+        image_path: 'assets/figma_curated/garments/garment_4.png',
+        split: 'hard_test',
+        challenge_type: 'cream_vs_white_boundary',
         labels: {
-          category: 'bottoms' as const,
-          subcategory: 'pleated_pants' as const,
-          primary_color_hex: '#2B2C2E',
-          color_family: 'grey' as const,
+          category: 'tops' as const,
+          subcategory: 'overshirt' as const,
+          primary_color_hex: '#F4F3EF',
+          color_family: 'cream' as const,
           fit: 'Oversized' as const,
-          silhouette: 'wide' as const,
+          silhouette: 'relaxed' as const,
           pattern: 'solid' as const,
-          material: 'wool' as const,
-          formality_score: 0.7,
-          occasions: ['Work / Office' as const],
-          seasons: ['Fall' as const],
+          material: 'linen' as const,
+          formality_score: 0.45,
+          occasions: ['Casual' as const],
+          seasons: ['All Season' as const],
         },
       },
     ];
 
-    const result = await GarmentEvaluator.evaluate(mockModel, testRecords, 'v0.1.0');
+    // Evaluate on blind test
+    const blindRes = await GarmentEvaluator.evaluate(mockModel, testRecords, 'test', 'v0.2.0');
+    expect(blindRes.metrics.category_top1_accuracy.value).toBe(1.0);
+    expect(blindRes.metrics.category_top1_accuracy.sample_size).toBe(1);
+    expect(blindRes.metrics.category_top1_accuracy.status).toBe('MEASURED');
 
-    expect(result.metrics.category_top1_accuracy.value).toBe(1.0);
-    expect(result.metrics.category_top1_accuracy.status).toBe('MEASURED');
-    expect(result.metrics.fit_accuracy.value).toBe(0.5);
-    expect(result.failures.length).toBe(1);
-    expect(result.failures[0].failure_type).toBe('TAXONOMY PROBLEM');
+    // Evaluate on hard test
+    const hardRes = await GarmentEvaluator.evaluate(mockModel, testRecords, 'hard_test', 'v0.2.0');
+    expect(hardRes.metrics.fit_hierarchical_accuracy.value).toBe(0.75); // Hierarchical partial credit
+    expect(hardRes.failures.length).toBe(1);
+    expect(hardRes.failures[0].failure_type).toBe('TAXONOMY');
   });
 
-  it('runs AuraGarmentModel and returns structured prediction with fallback support', async () => {
+  it('runs AuraGarmentModel and returns calibrated prediction with fallback resilience', async () => {
     const model = new AuraGarmentModel();
     const res = await model.predictAttributes('file:///test_shirt.jpg');
 

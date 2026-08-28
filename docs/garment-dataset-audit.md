@@ -1,37 +1,37 @@
 # AURA Garment Dataset Audit & Licensing Assessment
 
 **Product:** AURA  
-**Document:** Training Dataset Licensing, Provenance & Attribute Audit for `aura-garment-v1`  
-**Version:** 1.0  
-**Status:** **ACTIVE DATASET AUDIT**  
+**Document:** Dataset Licensing, Provenance, Attribute & Commercial Rights Audit  
+**Version:** 0.2 (Phase 10B Update)  
+**Status:** **ACTIVE LEGAL & DATASET AUDIT**  
 
 ---
 
-## 1. Executive Summary
+## 1. Core Licensing & Data Governance Principles
 
-Training or fine-tuning `aura-garment-v1` requires establishing legally compliant, high-quality fashion imagery with comprehensive attribute labeling. In accordance with [`docs/training-data-policy.md`](file:///d:/Personal%20projects/aura/docs/training-data-policy.md):
-- **User Wardrobe Data is NOT Training Data:** Private user wardrobe photos are strictly excluded unless the user explicitly opts into the *AURA Fashion Research Contributor Program*.
-- **No Unlicensed Scraping:** Datasets must possess verifiable commercial permissions or permissive open licenses for commercial model derivative training.
-
----
-
-## 2. Dataset Licensing & Feasibility Matrix
-
-| Dataset Name | Source / Organization | Primary License | Commercial Training Permitted? | Image Count | Labeled Attributes | Known Limitations & Restrictions | Recommendation Status |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **DeepFashion2** | CUHK (MMLab) | DeepFashion2 Non-Commercial Agreement | **NO** (Academic / Non-Commercial Only) | ~491,000 | 13 categories, landmarks, segmentation masks, bounding boxes | Non-commercial clause prohibits commercial production model training without custom university license. | **REJECTED FOR PRODUCTION / EXPERIMENTAL REFERENCE ONLY** |
-| **Fashion-Gen** | Mila / SSENSE | Research Non-Commercial License | **NO** (Non-Commercial Research) | ~325,000 | Categories, subcategories, text descriptions, colors, materials | Non-commercial distribution restriction. | **REJECTED FOR PRODUCTION** |
-| **ModaNet (iMaterialist)** | eBay Research / CVPR | Creative Commons CC-BY 4.0 | **YES** (Permissive Commercial with Attribution) | ~55,176 | 13 polygon classes, categories, outer boundaries | High segmentation detail; lacks granular fit attributes (oversized vs relaxed). | **APPROVED FOR TAXONOMY & PRE-TRAINING** |
-| **OpenImages Fashion Subsets** | Google / OpenImages V7 | CC-BY 4.0 / Apache 2.0 | **YES** (Permissive Commercial) | ~120,000 | Clothing bounding boxes, high-level categories | Coarse attributes; requires fine-grained labeling. | **APPROVED FOR PRE-TRAINING** |
-| **AURA Curated Editorial Dataset (v0.1)** | In-House AURA Stylists | Proprietary (AURA Owned 100%) | **YES** (Full Commercial IP Ownership) | 168 curated Phase 1 fashion pieces | Category, subcategory, exact hex color, fit, silhouette, material, formality, season, occasion | Clean high-resolution photography; small seed size requiring augmentation. | **APPROVED PRIMARY GOLDEN DATASET** |
-| **AURA Contributor Research Dataset** | Opt-In User Program (Consent-gated) | AURA Contributor Terms (100% Owned) | **YES** (Explicit User Consent) | Currently 0 (Pre-Launch) | Full AURA schema | Opt-in pipeline initialized in database schema. | **APPROVED FOR FUTURE ITERATIONS** |
+In accordance with [`docs/training-data-policy.md`](file:///d:/Personal%20projects/aura/docs/training-data-policy.md):
+1. **User Wardrobe Data is NOT Training Data:** Private user wardrobe images are strictly isolated and never copied into training datasets.
+2. **Commercial Use Rights Mandatory:** No dataset with non-commercial (CC-BY-NC / Academic Research Only) clauses may be used to train or fine-tune models deployed in commercial production without an express commercial license agreement.
+3. **Attribution & Provenance:** All training samples must maintain traceable metadata, annotator verification, and license lineage.
 
 ---
 
-## 3. Findings & Strategy for `aura-garment-v1`
+## 2. Comprehensive External Dataset Audit Table
 
-1. **Academic Dataset Restrictions:** DeepFashion2 and Fashion-Gen cannot be used to train weights shipped in commercial production due to non-commercial academic license terms.
-2. **Approved Strategy:** 
-   - Use permissive **ModaNet (CC-BY 4.0)** and **OpenImages** for base feature representations.
-   - Use the **AURA Curated Editorial Golden Dataset (`dataset-v0.1.json`)** with our exact master taxonomy as the primary evaluation and fine-tuning target.
-   - Augment with synthetic color, lighting, and geometric transformations.
+| Dataset Name | Source Organization / URL | Exact License | Commercial Use Permitted? | Redistribution Permitted? | Modification Permitted? | Image Count | Attribute Availability | AURA Decision Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **AURA Curated Editorial Archive (v0.2)** | AURA In-House Editorial Team | **AURA Proprietary (100% Owned)** | **YES** | **YES** | **YES** | 168 base assets + curated augmentations | Full AURA Master Taxonomy (Category, Subcategory, Color, Fit, Silhouette, Pattern, Material, Formality, Occasion, Season) | **APPROVED (Primary Golden Set)** |
+| **ModaNet (iMaterialist)** | eBay Research / CVPR | **CC-BY 4.0** | **YES** (With Attribution) | **YES** | **YES** | ~55,176 | 13 polygon garment categories, boundaries | **APPROVED FOR PRE-TRAINING / TAXONOMY MAPPING** |
+| **OpenImages V7 (Fashion Subset)** | Google LLC | **CC-BY 4.0 / Apache 2.0** | **YES** | **YES** | **YES** | ~120,000 | Clothing bounding boxes, coarse categories | **APPROVED FOR PRE-TRAINING** |
+| **DeepFashion2** | CUHK (MMLab) | DeepFashion2 Non-Commercial Agreement | **NO** (Academic Research Only) | **NO** | **YES** (Internal Research Only) | ~491,000 | Categories, landmarks, segmentation masks | **REJECTED FOR PRODUCTION (Academic Only)** |
+| **Fashion-Gen** | Mila / SSENSE | Research Non-Commercial License | **NO** (Academic Research Only) | **NO** | **NO** | ~325,000 | Categories, descriptions, colors, materials | **REJECTED FOR PRODUCTION (Academic Only)** |
+| **iMaterialist (Fashion 2019/2020)** | Kaggle / FGVC | FGVC Competition Rules / Academic | **REVIEW REQUIRED** (Commercial grant varies by sub-tier) | **NO** | **YES** | ~45,000 | Fine-grained attributes | **REVIEW REQUIRED (Restricted)** |
+| **AURA Research Contributor Program** | Opt-in Users (Consent-gated) | AURA Contributor Terms | **YES** (Explicit Opt-in Consent) | **NO** (Private Internal) | **YES** | 0 (Pre-Launch Pipeline) | Full AURA Taxonomy | **APPROVED (Consent-Gated Only)** |
+
+---
+
+## 3. Dataset Expansion Strategy for `AURA-Garment-Golden-v0.2`
+
+1. **Rejection of Academic Sets:** DeepFashion2 and Fashion-Gen remain **strictly rejected** from production training manifests to prevent IP contamination.
+2. **100% Owned In-House Asset Utilization:** The golden dataset `v0.2` expands across our 168 in-house editorial assets across all 5 core categories, augmented with real-world photography variations (flat lay, hanging, on-body, wrinkled, ambient indoor/outdoor lighting) and adversarial hard-test samples.
+3. **Audit State:** **APPROVED & FULLY COMPLIANT**.
