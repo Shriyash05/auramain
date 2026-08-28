@@ -1,0 +1,17 @@
+{
+  "experiment_id": "garment-exp-0005",
+  "split": "blind_test (frozen)",
+  "sample_size_N": 20,
+  "status": "MEASURED",
+  "metrics": {
+    "category_top1_accuracy": 1.0,
+    "color_family_accuracy": 1.0,
+    "fit_hierarchical_accuracy": 0.8875,
+    "silhouette_accuracy": 0.85,
+    "material_hierarchical_accuracy": 0.8875,
+    "pattern_accuracy": 1.0,
+    "macro_f1": 0.9438,
+    "unknown_refusal_rate": 0.0,
+    "false_confidence_rate": 0.0
+  }
+}

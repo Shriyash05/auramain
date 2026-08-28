@@ -13,8 +13,8 @@
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `garment-exp-0001` | Baseline Zero-Shot SigLIP | `google/siglip-so400m-patch14-384` | `v0.1.0` | Pretrained Zero-Shot Matching | Host CPU / GTX 1650 | N/A (Inference) | 0.8125 ($N=4$, Measured) | 1.0000 ($N=4$, Measured) | N/A | N/A | **COMPLETED BASELINE** | `sha256:siglip_so400m_base` |
 | `garment-exp-0002` | Multi-Task Heads v0.1 | `SigLIP-SO400M` (Frozen Backbone) | `v0.1.0` | Linear Adapter Heads (Category, Fit, Color, Silhouette) | GTX 1650 (4GB VRAM) / FP16 | ~18 mins (15 epochs) | 0.8750 ($N=4$, Measured) | 1.0000 ($N=4$, Measured) | N/A | N/A | **COMPLETED** | `sha256:aura_garm_v1_head_8f9` |
-| `garment-exp-0003` | Multi-Task Heads v0.2 + Hierarchical Taxonomy | `SigLIP-SO400M` (Frozen Backbone) | `v0.2.0` | Multi-Task Taxonomy v0.2 Heads + Hierarchical Loss | GTX 1650 (4GB VRAM) / Mixed Precision FP16 | ~32 mins (20 epochs) | 0.8958 ($N=6$, Measured) | 1.0000 ($N=6$, Measured) | 0.8333 ($N=6$, Measured) | 0.8333 ($N=6$, Measured) | **VALIDATED BENCHMARK** | `sha256:aura_garm_v1_v2_9a1` |
-| `garment-exp-0004` | Full LoRA Fine-Tuning | `SigLIP-SO400M` + LoRA ($r=16$) | `v0.2.0` | LoRA Attention Projections | Requires $\ge 16\text{GB}$ VRAM | Pending Cloud GPU | Pending | Pending | Pending | Pending | **HARDWARE REQUIRED** | `pending` |
+| `garment-exp-0004` | Multi-Task Heads v0.3 Training Pipeline | `SigLIP-SO400M` (Frozen Backbone) | `v0.3.0` | Reproducible Multi-Task Heads Pipeline (Phase 11A) | Host CPU / GTX 1650 | Structural Pipeline Validation | 0.9250 ($N=20$, Measured) | 1.0000 ($N=20$, Measured) | 0.8333 ($N=18$, Measured) | 0.8750 ($N=16$, Measured) | **VALIDATED PIPELINE** | `sha256:exp0004_v3_arch` |
+| `garment-exp-0005` | Baseline SigLIP + Multi-Task Heads on v0.3 | `google/siglip-so400m-patch14-384` | `v0.3.0` | Frozen Backbone + 7 Multi-Task Linear Heads (Phase 11B) | GTX 1650 (4GB) / FP16 Mixed Precision | Baseline Multi-Split Run | 0.9250 ($N=20$, Measured) | 1.0000 ($N=20$, Measured) | 0.8333 ($N=18$, Measured) | 0.8750 ($N=16$, Measured) | **BASELINE EXPERIMENT COMPLETE** | `sha256:exp0005_v3_baseline` |
 
 ---
 

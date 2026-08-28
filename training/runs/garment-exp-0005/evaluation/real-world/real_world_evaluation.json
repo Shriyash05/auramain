@@ -1,0 +1,15 @@
+{
+  "experiment_id": "garment-exp-0005",
+  "split": "real_world_test (ambient/wrinkled)",
+  "sample_size_N": 16,
+  "status": "MEASURED",
+  "metrics": {
+    "category_top1_accuracy": 0.875,
+    "color_family_accuracy": 0.9375,
+    "fit_hierarchical_accuracy": 0.7813,
+    "material_hierarchical_accuracy": 0.7813,
+    "macro_f1": 0.8438,
+    "unknown_refusal_rate": 0.0625,
+    "false_confidence_rate": 0.0
+  }
+}

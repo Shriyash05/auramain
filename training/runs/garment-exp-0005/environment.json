@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-08-28T14:45:28.015827+00:00",
+  "git_commit": "9aa917a488a21df21cc0254bf5f2009db4d637d9",
+  "python_version": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "win32",
+  "hardware": {
+    "cpu": "Intel Core i5-10300H CPU @ 2.50GHz (4 Cores / 8 Threads)",
+    "ram_total_gb": 16.0,
+    "gpu": "NVIDIA GeForce GTX 1650",
+    "vram_total_mb": 4096,
+    "cuda_driver_version": "13.3",
+    "cuda_kmd_version": "610.88"
+  },
+  "dependency_status": {
+    "pytorch_installed": false,
+    "host_python": "3.14.7",
+    "note": "PyTorch pre-built wheels currently target Python <=3.12. Local execution validates structural dataset integrity, split isolation, and evaluation harness."
+  }
+}

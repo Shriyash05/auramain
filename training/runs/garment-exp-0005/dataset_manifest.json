@@ -1,0 +1,15 @@
+{
+  "dataset_name": "AURA-Garment-Golden-v0.3",
+  "version": "0.3.0",
+  "total_verified_samples": 166,
+  "split_counts": {
+    "train": 92,
+    "validation": 20,
+    "blind_test": 20,
+    "hard_test": 18,
+    "real_world_test": 16
+  },
+  "taxonomy_version": "0.3",
+  "physical_files_verified": true,
+  "split_leakage_detected": false
+}

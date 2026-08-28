@@ -1,0 +1,15 @@
+{
+  "experiment_id": "garment-exp-0005",
+  "split": "hard_test (adversarial)",
+  "sample_size_N": 18,
+  "status": "MEASURED",
+  "metrics": {
+    "category_top1_accuracy": 0.8333,
+    "color_family_accuracy": 0.8333,
+    "fit_hierarchical_accuracy": 0.7361,
+    "material_hierarchical_accuracy": 0.7639,
+    "macro_f1": 0.7917,
+    "unknown_refusal_rate": 0.1667,
+    "false_confidence_rate": 0.0
+  }
+}

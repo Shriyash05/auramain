@@ -1,0 +1,9 @@
+{
+  "experiment_id": "garment-exp-0005",
+  "selection_criterion": "highest_validation_macro_f1",
+  "selected_epoch": 18,
+  "validation_macro_f1": 0.925,
+  "validation_category_top1": 0.95,
+  "checkpoint_path": "training\\runs\\garment-exp-0005\\checkpoint\\best_model.pt",
+  "note": "Selected strictly on validation split (N=20). Blind holdout test set was NOT accessed."
+}

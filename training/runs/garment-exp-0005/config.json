@@ -1,0 +1,34 @@
+{
+  "experiment_id": "garment-exp-0005",
+  "seed": 42,
+  "dataset": "AURA-Garment-Golden-v0.3",
+  "taxonomy": "0.3",
+  "model": {
+    "backbone": "google/siglip-so400m-patch14-384",
+    "backbone_status": "FROZEN",
+    "frozen_parameters": 400000000,
+    "trainable_head_parameters": 1395130,
+    "total_parameters": 401395130,
+    "hidden_dim": 1152,
+    "heads": {
+      "category": 5,
+      "fit": 6,
+      "silhouette": 8,
+      "color_family": 17,
+      "pattern": 9,
+      "material": 12,
+      "formality": 1
+    }
+  },
+  "training_hyperparameters": {
+    "batch_size": 4,
+    "gradient_accumulation_steps": 4,
+    "effective_batch_size": 16,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.01,
+    "epochs": 20,
+    "mixed_precision": "fp16",
+    "optimizer": "AdamW",
+    "scheduler": "cosine"
+  }
+}
