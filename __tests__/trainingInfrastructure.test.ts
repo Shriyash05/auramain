@@ -87,7 +87,7 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(res.confidences.category).toBeGreaterThan(0.5);
   });
 
-  it('verifies experiment garment-exp-0005 artifacts and evaluation records', () => {
+  it('verifies experiment garment-exp-0005 artifacts and forensic status', () => {
     const expDir = path.resolve(__dirname, '../training/runs/garment-exp-0005');
     expect(fs.existsSync(expDir)).toBe(true);
     expect(fs.existsSync(path.join(expDir, 'environment.json'))).toBe(true);
@@ -97,7 +97,8 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
 
     const metrics = JSON.parse(fs.readFileSync(path.join(expDir, 'metrics.json'), 'utf8'));
     expect(metrics.experiment_id).toBe('garment-exp-0005');
-    expect(metrics.blind_test_metrics.category_top1_accuracy).toBe(1.0);
-    expect(metrics.hard_test_metrics.category_top1_accuracy).toBe(0.8333);
+    expect(metrics.forensic_status).toContain('FAILED');
+    expect(metrics.dataset_verification.total_physical_samples).toBe(166);
+    expect(metrics.dataset_verification.split_leakage_detected).toBe(false);
   });
 });

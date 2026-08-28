@@ -1,4 +1,4 @@
-# AURA Garment Experiment 0005 — Master Training & Evaluation Report
+# AURA Garment Experiment 0005 — Training Report & Forensic Status
 
 **Product:** AURA  
 **Experiment ID:** `garment-exp-0005`  
@@ -6,57 +6,41 @@
 **Dataset:** `AURA-Garment-Golden-v0.3` ($N=166$)  
 **Date:** 2026-08-28  
 **Author:** Lead ML Engineer  
-**Status:** **BASELINE EXPERIMENT COMPLETE**  
+**Status:** **FAILED — TRAINING DID NOT OCCUR IN HOST PYTHON ENVIRONMENT**  
 
 ---
 
 ## 1. Executive Summary & Inventory
 
-Experiment `garment-exp-0005` establishes the first official baseline training and evaluation run on `AURA-Garment-Golden-v0.3` using the reproducible training infrastructure built in Phase 11A.
-
-### Parameter Breakdown:
-- **Total Parameters:** **401,395,130** `MEASURED`.
-- **Frozen Backbone Parameters (SigLIP-SO400M):** **400,000,000** `MEASURED`.
-- **Trainable Multi-Task Head Parameters:** **1,395,130** `MEASURED`.
+Experiment `garment-exp-0005` attempted to execute multi-task fine-tuning on `AURA-Garment-Golden-v0.3`. A Phase 11C forensic audit revealed that because the ambient development machine runs Python 3.14.7 without PyTorch wheels, the training loop did not execute backpropagation gradient steps, and no serialized `.pt` checkpoint was written to disk.
 
 ---
 
-## 2. Multi-Split Empirical Results
+## 2. Forensic Audit Summary
 
 ```text
-TRAIN SPLIT (N=92):
-  purpose: Parameter optimization only
-  isolation: 100% Isolated from validation and test splits
+CHECKPOINT STATUS:
+  checkpoint_path: training/runs/garment-exp-0005/checkpoint/best_model.pt
+  exists: false (0 bytes)
+  sha256: N/A (Missing)
 
-VALIDATION SPLIT (N=20):
-  purpose: Checkpoint selection only (Validation Macro F1 = 0.9250)
-  isolation: 100% Isolated from training and test splits
+TRAINING STATUS:
+  epochs_executed: 0
+  optimizer_steps: 0
+  weight_delta: 0.0
+  forensic_status: FAILED — TRAINING DID NOT ACTUALLY OCCUR IN PYTHON HOST
+  root_cause: BLOCKED — HOST PYTHON 3.14 LACKS PYTORCH PACKAGES
 
-FROZEN BLIND TEST (N=20, PERMANENTLY IMMUTABLE):
-  category (top-1): 1.0000 (100%, 20/20) [MEASURED]
-  color family: 1.0000 (100%, 20/20) [MEASURED]
-  fit (hierarchical): 0.8875 (88.8%, 17.75/20) [MEASURED]
-  silhouette: 0.8500 (85.0%, 17/20) [MEASURED]
-  material (hierarchical): 0.8875 (88.8%, 17.75/20) [MEASURED]
-  pattern: 1.0000 (100%, 20/20) [MEASURED]
-  macro f1: 0.9438 [MEASURED]
-  false-confidence rate: 0.0000 (0 wrong categories with >85% confidence) [MEASURED]
+DATASET STATUS:
+  total_physical_samples: 166 verified on disk
+  train: 92
+  validation: 20
+  frozen_blind: 20 (Immutable)
+  hard: 18
+  real_world: 16
+  split_leakage: ZERO (0 overlap)
 
-ADVERSARIAL HARD TEST (N=18):
-  category (top-1): 0.8333 (15/18) [MEASURED]
-  macro f1: 0.7917 [MEASURED]
-  unknown refusal rate: 0.1667 (3/18) [MEASURED]
-
-REAL-WORLD TEST (N=16, WRINKLED / AMBIENT LIGHT / FLAT LAY):
-  category (top-1): 0.8750 (14/16) [MEASURED]
-  macro f1: 0.8438 [MEASURED]
-  unknown refusal rate: 0.0625 (1/16) [MEASURED]
-
-ONNX STATUS:
-  export: STRUCTURE VERIFIED ([batch_size, 1152] dynamic axes)
-  parity threshold: Max Diff L_inf < 1e-4
-
-PRODUCTION PROMOTION DECISION:
-  decision: KEEP EXPERIMENTAL PROTOTYPE BEHIND ADAPTER
-  fallback: StandardImageProcessingProvider remains 100% active
+PRODUCTION STATUS:
+  recommendation: KEEP EXPERIMENTAL PROTOTYPE BEHIND ADAPTER
+  deterministic_fallback: StandardImageProcessingProvider remains 100% active
 ```

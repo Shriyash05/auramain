@@ -1,53 +1,24 @@
 {
   "experiment_id": "garment-exp-0005",
-  "timestamp": "2026-08-28T14:45:28.058185+00:00",
-  "git_commit": "9aa917a488a21df21cc0254bf5f2009db4d637d9",
-  "status": "BASELINE_EXPERIMENT_VALIDATED",
-  "validation_metrics": {
-    "experiment_id": "garment-exp-0005",
-    "selection_criterion": "highest_validation_macro_f1",
-    "selected_epoch": 18,
-    "validation_macro_f1": 0.925,
-    "validation_category_top1": 0.95,
-    "checkpoint_path": "training\\runs\\garment-exp-0005\\checkpoint\\best_model.pt",
-    "note": "Selected strictly on validation split (N=20). Blind holdout test set was NOT accessed."
+  "timestamp": "2026-08-28T14:45:00Z",
+  "git_commit": "a097e7f",
+  "forensic_status": "FAILED — EVALUATION WAS NOT USING THE TRAINED MODEL",
+  "root_cause": "Host ambient Python 3.14.7 lacks pre-built PyTorch wheels; training loop did not execute backpropagation gradient steps to produce best_model.pt.",
+  "checkpoint_status": {
+    "checkpoint_path": "training/runs/garment-exp-0005/checkpoint/best_model.pt",
+    "exists": false,
+    "sha256": "N/A (File Missing)"
   },
-  "blind_test_metrics": {
-    "category_top1_accuracy": 1.0,
-    "color_family_accuracy": 1.0,
-    "fit_hierarchical_accuracy": 0.8875,
-    "silhouette_accuracy": 0.85,
-    "material_hierarchical_accuracy": 0.8875,
-    "pattern_accuracy": 1.0,
-    "macro_f1": 0.9438,
-    "unknown_refusal_rate": 0.0,
-    "false_confidence_rate": 0.0
+  "dataset_verification": {
+    "dataset_name": "AURA-Garment-Golden-v0.3",
+    "total_physical_samples": 166,
+    "train_samples": 92,
+    "val_samples": 20,
+    "blind_samples": 20,
+    "hard_samples": 18,
+    "real_world_samples": 16,
+    "physical_files_verified": true,
+    "split_leakage_detected": false
   },
-  "hard_test_metrics": {
-    "category_top1_accuracy": 0.8333,
-    "color_family_accuracy": 0.8333,
-    "fit_hierarchical_accuracy": 0.7361,
-    "material_hierarchical_accuracy": 0.7639,
-    "macro_f1": 0.7917,
-    "unknown_refusal_rate": 0.1667,
-    "false_confidence_rate": 0.0
-  },
-  "real_world_test_metrics": {
-    "category_top1_accuracy": 0.875,
-    "color_family_accuracy": 0.9375,
-    "fit_hierarchical_accuracy": 0.7813,
-    "material_hierarchical_accuracy": 0.7813,
-    "macro_f1": 0.8438,
-    "unknown_refusal_rate": 0.0625,
-    "false_confidence_rate": 0.0
-  },
-  "hardware_detected": {
-    "cpu": "Intel Core i5-10300H CPU @ 2.50GHz (4 Cores / 8 Threads)",
-    "ram_total_gb": 16.0,
-    "gpu": "NVIDIA GeForce GTX 1650",
-    "vram_total_mb": 4096,
-    "cuda_driver_version": "13.3",
-    "cuda_kmd_version": "610.88"
-  },
-  "production_recommendation": "KEEP EXPERIMENTAL BEHIND ADAPTER"
+  "production_recommendation": "KEEP EXPERIMENTAL BEHIND ADAPTER (Maintain StandardImageProcessingProvider fallback)"
 }
