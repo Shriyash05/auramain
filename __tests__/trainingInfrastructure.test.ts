@@ -206,5 +206,38 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(forensicVerif.checks.split_evaluations.hard_test.status).toBe('REAL_MEASURED');
     expect(forensicVerif.checks.split_evaluations.real_world_test.status).toBe('REAL_MEASURED');
   });
+
+  it('verifies experiment garment-exp-0010 loss-weighted probe & forensic audit (Phase 11I)', () => {
+    const expDir = path.resolve(__dirname, '../training/runs/garment-exp-0010');
+    expect(fs.existsSync(expDir)).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'environment.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'training_log.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'checkpoint', 'best_model.pt'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'metrics.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'forensics', 'forensic_verification.json'))).toBe(true);
+
+    const env = JSON.parse(fs.readFileSync(path.join(expDir, 'environment.json'), 'utf8'));
+    expect(env.experiment_id).toBe('garment-exp-0010');
+    expect(env.head_type).toBe('lightweight');
+    expect(env.bottleneck_dim).toBe(256);
+    expect(env.trainable_parameters).toBe(310586);
+    expect(env.loss_weights.material).toBe(1.5);
+    expect(env.loss_weights.color).toBe(1.25);
+    expect(env.loss_weights.pattern).toBe(1.1);
+    expect(env.initial_heads_hash).not.toBe(env.final_heads_hash);
+    expect(env.total_optimizer_steps).toBeGreaterThan(0);
+
+    const forensicVerif = JSON.parse(fs.readFileSync(path.join(expDir, 'forensics', 'forensic_verification.json'), 'utf8'));
+    expect(forensicVerif.checks.checkpoint_integrity.status).toBe('PASS');
+    expect(forensicVerif.checks.architecture.status).toBe('PASS');
+    expect(forensicVerif.checks.architecture.head_type).toBe('lightweight');
+    expect(forensicVerif.checks.architecture.bottleneck_dim).toBe(256);
+    expect(forensicVerif.checks.loss_weights.status).toBe('PASS');
+    expect(forensicVerif.checks.parameter_counts.matches_expected).toBe(true);
+    expect(forensicVerif.checks.zero_commercial_apis.status).toBe('PASS');
+    expect(forensicVerif.checks.split_evaluations.blind_test.status).toBe('REAL_MEASURED');
+    expect(forensicVerif.checks.split_evaluations.real_world_test.status).toBe('REAL_MEASURED');
+  });
 });
+
 

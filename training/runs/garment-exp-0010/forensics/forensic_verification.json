@@ -1,0 +1,178 @@
+{
+  "experiment_id": "garment-exp-0010",
+  "control_experiment_id": "garment-exp-0008",
+  "baseline_comparison_ids": [
+    "garment-exp-0007",
+    "garment-exp-0008",
+    "garment-exp-0009"
+  ],
+  "checks": {
+    "checkpoint_integrity": {
+      "status": "PASS",
+      "size_bytes": 3752181,
+      "sha256": "222ed000e0890d596bb8d6e6304ab2585a79167cac8817efabc510566cc645df"
+    },
+    "architecture": {
+      "status": "PASS",
+      "backbone_model_name": "google/siglip-so400m-patch14-384",
+      "head_type": "lightweight",
+      "bottleneck_dim": 256,
+      "heads_keys_count": 18,
+      "best_val_macro_f1": 0.20833333333333334,
+      "best_epoch": 1
+    },
+    "parameter_counts": {
+      "status": "PASS",
+      "total_head_parameters": 310586,
+      "expected_params": 310586,
+      "matches_expected": true
+    },
+    "loss_weights": {
+      "status": "PASS",
+      "expected_weights": {
+        "category": 1.0,
+        "fit": 0.75,
+        "silhouette": 0.75,
+        "color": 1.25,
+        "pattern": 1.1,
+        "material": 1.5,
+        "formality": 0.75
+      },
+      "actual_weights": {
+        "category": 1.0,
+        "fit": 0.75,
+        "silhouette": 0.75,
+        "color": 1.25,
+        "pattern": 1.1,
+        "material": 1.5,
+        "formality": 0.75
+      },
+      "weights_match": true
+    },
+    "pretrained_weights": {
+      "status": "PASS",
+      "total_backbone_parameters": 428225600,
+      "backbone_weight_sha256": "99ef82c091a1a34b20abe7c4b6fa3aff3a95b1e3f38183864fd1b5d1591d678d"
+    },
+    "training_execution": {
+      "status": "PASS",
+      "weight_delta_verified": true,
+      "optimizer_steps": 600,
+      "epochs_executed": 50,
+      "duration_seconds": 9.01,
+      "head_type": "lightweight",
+      "bottleneck_dim": 256,
+      "head_dropout": 0.3,
+      "weight_decay": 0.05,
+      "loss_weights": {
+        "category": 1.0,
+        "fit": 0.75,
+        "silhouette": 0.75,
+        "color": 1.25,
+        "pattern": 1.1,
+        "material": 1.5,
+        "formality": 0.75
+      }
+    },
+    "split_evaluations": {
+      "train": {
+        "sample_size": 92,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.337,
+        "color_acc": 0.3696,
+        "fit_acc": 0.3587,
+        "silhouette_acc": 0.2826,
+        "material_acc": 0.337,
+        "pattern_acc": 0.3913,
+        "macro_f1": 0.346,
+        "unknown_refusal_rate": 1.0,
+        "false_confidence_rate": 0.0
+      },
+      "validation": {
+        "sample_size": 20,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.25,
+        "color_acc": 0.05,
+        "fit_acc": 0.35,
+        "silhouette_acc": 0.2,
+        "material_acc": 0.15,
+        "pattern_acc": 0.25,
+        "macro_f1": 0.2083,
+        "unknown_refusal_rate": 1.0,
+        "false_confidence_rate": 0.0
+      },
+      "blind_test": {
+        "sample_size": 20,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.2,
+        "color_acc": 0.15,
+        "fit_acc": 0.2,
+        "silhouette_acc": 0.15,
+        "material_acc": 0.1,
+        "pattern_acc": 0.3,
+        "macro_f1": 0.1833,
+        "unknown_refusal_rate": 1.0,
+        "false_confidence_rate": 0.0
+      },
+      "hard_test": {
+        "sample_size": 18,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.0556,
+        "color_acc": 0.1111,
+        "fit_acc": 0.0556,
+        "silhouette_acc": 0.1667,
+        "material_acc": 0.1111,
+        "pattern_acc": 0.2778,
+        "macro_f1": 0.1296,
+        "unknown_refusal_rate": 1.0,
+        "false_confidence_rate": 0.0
+      },
+      "real_world_test": {
+        "sample_size": 16,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.25,
+        "color_acc": 0.1875,
+        "fit_acc": 0.1875,
+        "silhouette_acc": 0.1875,
+        "material_acc": 0.25,
+        "pattern_acc": 0.1875,
+        "macro_f1": 0.2083,
+        "unknown_refusal_rate": 1.0,
+        "false_confidence_rate": 0.0
+      }
+    },
+    "zero_commercial_apis": {
+      "status": "PASS"
+    },
+    "frozen_blind_integrity": {
+      "status": "PASS",
+      "sha256": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd"
+    }
+  },
+  "comparison": {
+    "exp0008_control": {
+      "blind_macro_f1": 0.25,
+      "blind_cat_acc": 0.3,
+      "blind_mat_acc": 0.15,
+      "blind_col_acc": 0.2,
+      "blind_pat_acc": 0.3,
+      "hard_macro_f1": 0.1389,
+      "hard_cat_acc": 0.0556,
+      "rw_macro_f1": 0.2083,
+      "rw_cat_acc": 0.3125,
+      "rw_mat_acc": 0.1875
+    },
+    "exp0010_loss_weighted": {
+      "blind_macro_f1": 0.1833,
+      "blind_cat_acc": 0.2,
+      "blind_mat_acc": 0.1,
+      "blind_col_acc": 0.15,
+      "blind_pat_acc": 0.3,
+      "hard_macro_f1": 0.1296,
+      "hard_cat_acc": 0.0556,
+      "rw_macro_f1": 0.2083,
+      "rw_cat_acc": 0.25,
+      "rw_mat_acc": 0.25
+    }
+  }
+}

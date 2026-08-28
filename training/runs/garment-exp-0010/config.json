@@ -1,0 +1,59 @@
+{
+  "experiment": {
+    "id": "garment-exp-0010",
+    "name": "aura-garment-v1-siglip-so400m-loss-weighted-probe",
+    "seed": 42,
+    "description": "Loss-weighted 256-dim bottleneck linear probe: category=1.0, fit=0.75, silhouette=0.75, color=1.25, pattern=1.10, material=1.50, formality=0.75. Tests fine-grained attribute recovery vs Exp-0008 control."
+  },
+  "model": {
+    "base_architecture": "google/siglip-so400m-patch14-384",
+    "canonical_taxonomy_path": "data/garment/metadata/canonical_taxonomy.json",
+    "freeze_backbone": true,
+    "hidden_dim": 1152,
+    "bottleneck_dim": 256,
+    "head_dropout": 0.3,
+    "use_lora": false
+  },
+  "dataset": {
+    "manifest_path": "data/garment/metadata/dataset-v0.3.json",
+    "canonical_taxonomy_path": "data/garment/metadata/canonical_taxonomy.json",
+    "version": "0.3.0",
+    "image_size": 384,
+    "num_workers": 2,
+    "allowed_splits": [
+      "train",
+      "validation"
+    ],
+    "isolated_test_splits": [
+      "blind_test",
+      "hard_test",
+      "real_world_test"
+    ]
+  },
+  "training": {
+    "device": "cuda",
+    "mixed_precision": "fp16",
+    "batch_size": 8,
+    "gradient_accumulation_steps": 1,
+    "epochs": 50,
+    "learning_rate": 0.0005,
+    "weight_decay": 0.05,
+    "optimizer": "AdamW",
+    "scheduler": "cosine",
+    "early_stopping_patience": 15
+  },
+  "loss_weights": {
+    "category_loss": 1.0,
+    "fit_loss": 0.75,
+    "silhouette_loss": 0.75,
+    "color_loss": 1.25,
+    "pattern_loss": 1.1,
+    "material_loss": 1.5,
+    "formality_loss": 0.75
+  },
+  "output": {
+    "runs_dir": "training/runs",
+    "save_best_only": false,
+    "export_onnx": false
+  }
+}

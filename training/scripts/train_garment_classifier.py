@@ -285,9 +285,15 @@ class AuraGarmentClassifier(nn.Module):
 class MultiTaskFashionLoss(nn.Module):
     def __init__(self, weights: Dict[str, float]):
         super().__init__()
-        self.weights = weights
+        self.weights = weights or {}
         self.ce = nn.CrossEntropyLoss()
         self.mse = nn.MSELoss()
+
+    def get_weight(self, task: str, default: float = 1.0) -> float:
+        for k in [task, f"{task}_weight", f"{task}_loss"]:
+            if k in self.weights:
+                return float(self.weights[k])
+        return default
 
     def forward(self, preds: Dict[str, torch.Tensor], targets: Dict[str, torch.Tensor]) -> Tuple[torch.Tensor, Dict[str, float]]:
         loss_cat = self.ce(preds["category_logits"], targets["category"])
@@ -298,14 +304,22 @@ class MultiTaskFashionLoss(nn.Module):
         loss_mat = self.ce(preds["material_logits"], targets["material"])
         loss_for = self.mse(preds["formality_score"], targets["formality"])
 
+        w_cat = self.get_weight("category", 1.0)
+        w_fit = self.get_weight("fit", 0.8)
+        w_sil = self.get_weight("silhouette", 0.6)
+        w_col = self.get_weight("color", 0.8)
+        w_pat = self.get_weight("pattern", 0.5)
+        w_mat = self.get_weight("material", 0.6)
+        w_for = self.get_weight("formality", 0.4)
+
         total_loss = (
-            self.weights.get("category_loss", 1.0) * loss_cat +
-            self.weights.get("fit_loss", 0.8) * loss_fit +
-            self.weights.get("silhouette_loss", 0.6) * loss_sil +
-            self.weights.get("color_loss", 0.8) * loss_col +
-            self.weights.get("pattern_loss", 0.5) * loss_pat +
-            self.weights.get("material_loss", 0.6) * loss_mat +
-            self.weights.get("formality_loss", 0.4) * loss_for
+            w_cat * loss_cat +
+            w_fit * loss_fit +
+            w_sil * loss_sil +
+            w_col * loss_col +
+            w_pat * loss_pat +
+            w_mat * loss_mat +
+            w_for * loss_for
         )
 
         metrics = {
@@ -316,7 +330,16 @@ class MultiTaskFashionLoss(nn.Module):
             "loss_color": float(loss_col.item()),
             "loss_pattern": float(loss_pat.item()),
             "loss_material": float(loss_mat.item()),
-            "loss_formality": float(loss_for.item())
+            "loss_formality": float(loss_for.item()),
+            "weights_used": {
+                "category": w_cat,
+                "fit": w_fit,
+                "silhouette": w_sil,
+                "color": w_col,
+                "pattern": w_pat,
+                "material": w_mat,
+                "formality": w_for
+            }
         }
 
         return total_loss, metrics
@@ -620,8 +643,15 @@ def train_experiment(config_path: str):
                 model_state = heads.state_dict()
             else:
                 full_model = AuraGarmentClassifier(taxonomy, backbone_model_name=backbone_name, hidden_dim=hidden_dim, load_backbone=False)
-                full_model.heads.load_state_dict(heads.state_dict())
-                model_state = full_model.state_dict()
+            loss_weights_dict = {
+                "category": loss_fn.get_weight("category", 1.0),
+                "fit": loss_fn.get_weight("fit", 0.8),
+                "silhouette": loss_fn.get_weight("silhouette", 0.6),
+                "color": loss_fn.get_weight("color", 0.8),
+                "pattern": loss_fn.get_weight("pattern", 0.5),
+                "material": loss_fn.get_weight("material", 0.6),
+                "formality": loss_fn.get_weight("formality", 0.4)
+            }
 
             torch.save({
                 "experiment_id": exp_id,
@@ -637,6 +667,7 @@ def train_experiment(config_path: str):
                 "manifest_hash": manifest_hash,
                 "bottleneck_dim": bottleneck_dim,
                 "head_type": "lightweight" if use_lightweight else "full",
+                "loss_weights": loss_weights_dict,
                 "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
             }, best_ckpt_path)
 
@@ -677,6 +708,16 @@ def train_experiment(config_path: str):
     reloaded_hash = compute_model_parameter_hash(reload_heads)
     print(f"[+] Checkpoint Saved & Verified: {best_ckpt_path} ({ckpt_size:,} bytes, SHA-256: {ckpt_sha256[:16]}...)")
 
+    loss_weights_final = {
+        "category": loss_fn.get_weight("category", 1.0),
+        "fit": loss_fn.get_weight("fit", 0.8),
+        "silhouette": loss_fn.get_weight("silhouette", 0.6),
+        "color": loss_fn.get_weight("color", 0.8),
+        "pattern": loss_fn.get_weight("pattern", 0.5),
+        "material": loss_fn.get_weight("material", 0.6),
+        "formality": loss_fn.get_weight("formality", 0.4)
+    }
+
     # Save Run Metadata
     env_info = {
         "experiment_id": exp_id,
@@ -700,6 +741,7 @@ def train_experiment(config_path: str):
         "bottleneck_dim": bottleneck_dim,
         "head_dropout": dropout,
         "weight_decay": weight_decay,
+        "loss_weights": loss_weights_final,
         "initial_heads_hash": initial_param_hash,
         "final_heads_hash": final_param_hash,
         "total_optimizer_steps": total_optimizer_steps,
@@ -750,7 +792,8 @@ def train_experiment(config_path: str):
             "epochs": epochs,
             "optimizer_steps": total_optimizer_steps,
             "duration_seconds": round(duration_seconds, 2),
-            "weight_delta_verified": True
+            "weight_delta_verified": True,
+            "loss_weights": loss_weights_final
         }
     }
     with open(os.path.join(run_dir, "metrics.json"), "w", encoding="utf-8") as f:
