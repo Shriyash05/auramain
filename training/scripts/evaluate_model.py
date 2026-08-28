@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 AURA — Forensically Verified Multi-Split Model Evaluator
-Loads a trained PyTorch checkpoint (.pt), executes real batch inference across dataset splits,
+Loads a trained PyTorch checkpoint (.pt), executes real batch inference across dataset splits
+using the genuine pretrained SigLIP backbone + multi-task heads,
 generates predictions.json manifests, and computes empirical classification metrics.
 """
 
@@ -15,10 +16,24 @@ from typing import Dict, Any, List, Optional
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
-from train_garment_classifier import AuraGarmentDataset, AuraGarmentClassifier, load_json, compute_file_sha256
+from train_garment_classifier import (
+    AuraGarmentDataset,
+    AuraSigLIPBackbone,
+    AuraMultiTaskHeads,
+    AuraLightweightHeads,
+    load_json,
+    compute_file_sha256
+)
 
 
-def evaluate_split(manifest_path: str, split_name: str, taxonomy_path: str, checkpoint_path: str, output_dir: Optional[str] = None) -> Dict[str, Any]:
+def evaluate_split(
+    manifest_path: str,
+    split_name: str,
+    taxonomy_path: str,
+    checkpoint_path: str,
+    output_dir: Optional[str] = None,
+    backbone_name: str = "google/siglip-so400m-patch14-384"
+) -> Dict[str, Any]:
     manifest = load_json(manifest_path)
     taxonomy = load_json(taxonomy_path)
 
@@ -32,14 +47,40 @@ def evaluate_split(manifest_path: str, split_name: str, taxonomy_path: str, chec
     print(f"[*] Initializing evaluation for split '{split_name}' using checkpoint: {checkpoint_path}")
     print(f"[*] Device: {device} | Checkpoint SHA-256: {ckpt_sha256[:16]}... ({ckpt_size:,} bytes)")
 
-    # Load Model from checkpoint
-    model = AuraGarmentClassifier(taxonomy).to(device)
+    # Load Checkpoint State
     saved_state = torch.load(checkpoint_path, map_location=device)
-    model.load_state_dict(saved_state["model_state_dict"])
-    model.eval()
+    actual_backbone_name = saved_state.get("backbone_model_name", backbone_name)
+
+    # Initialize Backbone and Heads
+    backbone = AuraSigLIPBackbone(model_name=actual_backbone_name).to(device)
+    backbone.eval()
+
+    # Detect head architecture from checkpoint metadata
+    ckpt_bottleneck_dim = saved_state.get("bottleneck_dim", None)
+    ckpt_head_type = saved_state.get("head_type", "full")
+
+    if ckpt_bottleneck_dim is not None and ckpt_head_type == "lightweight":
+        heads = AuraLightweightHeads(taxonomy, input_dim=backbone.embedding_dim, bottleneck_dim=ckpt_bottleneck_dim).to(device)
+        print(f"[+] Detected LIGHTWEIGHT heads: bottleneck_dim={ckpt_bottleneck_dim}")
+    else:
+        heads = AuraMultiTaskHeads(taxonomy, hidden_dim=backbone.embedding_dim).to(device)
+        print(f"[+] Detected FULL-DIM heads: hidden_dim={backbone.embedding_dim}")
+
+    if "heads_state_dict" in saved_state:
+        heads.load_state_dict(saved_state["heads_state_dict"])
+    elif "model_state_dict" in saved_state:
+        # Extract heads state dict from full model dict
+        head_dict = {}
+        for k, v in saved_state["model_state_dict"].items():
+            if k.startswith("heads."):
+                head_dict[k[6:]] = v
+            elif not k.startswith("backbone."):
+                head_dict[k] = v
+        heads.load_state_dict(head_dict)
+    heads.eval()
 
     # Load dataset split
-    dataset = AuraGarmentDataset(manifest_path, taxonomy_path, split=split_name)
+    dataset = AuraGarmentDataset(manifest_path, taxonomy_path, split=split_name, processor_name=actual_backbone_name)
     loader = DataLoader(dataset, batch_size=4, shuffle=False)
 
     cat_classes = taxonomy["categories"]["classes"]
@@ -65,7 +106,8 @@ def evaluate_split(manifest_path: str, split_name: str, taxonomy_path: str, chec
             image_ids = batch["image_id"]
 
             with torch.amp.autocast('cuda' if torch.cuda.is_available() else 'cpu', dtype=torch.float16 if torch.cuda.is_available() else torch.float32):
-                preds = model(pixel_values)
+                features = backbone(pixel_values)
+                preds = heads(features)
 
             cat_probs = torch.softmax(preds["category_logits"], dim=-1)
             col_probs = torch.softmax(preds["color_logits"], dim=-1)
@@ -160,7 +202,7 @@ def evaluate_split(manifest_path: str, split_name: str, taxonomy_path: str, chec
 
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
-        with open(os.path.join(output_dir, "predictions.json"), "w", encoding="utf-8") as f:
+        with open(os.path.join(output_dir, f"{split_name}_predictions.json"), "w", encoding="utf-8") as f:
             json.dump(predictions, f, indent=2)
         with open(os.path.join(output_dir, f"{split_name}_evaluation.json"), "w", encoding="utf-8") as f:
             json.dump(eval_result, f, indent=2)
@@ -173,7 +215,7 @@ def main():
     parser = argparse.ArgumentParser(description="Evaluate trained aura-garment-v1 checkpoint")
     parser.add_argument("--manifest", type=str, default="data/garment/metadata/dataset-v0.3.json", help="Path to dataset manifest")
     parser.add_argument("--taxonomy", type=str, default="data/garment/metadata/canonical_taxonomy.json", help="Path to taxonomy JSON")
-    parser.add_argument("--split", type=str, default="blind_test", choices=["validation", "blind_test", "hard_test", "real_world_test"], help="Split to evaluate")
+    parser.add_argument("--split", type=str, default="blind_test", choices=["train", "validation", "blind_test", "hard_test", "real_world_test"], help="Split to evaluate")
     parser.add_argument("--checkpoint", type=str, required=True, help="Path to PyTorch checkpoint (.pt)")
     parser.add_argument("--output-dir", type=str, default=None, help="Directory to save predictions.json and metrics")
     args = parser.parse_args()

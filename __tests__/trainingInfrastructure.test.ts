@@ -118,4 +118,93 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(env.checkpoint_size_bytes).toBeGreaterThan(0);
     expect(env.initial_weight_hash).not.toBe(env.final_weight_hash);
   });
+
+  it('verifies experiment garment-exp-0007 genuine pretrained SigLIP training & forensic audit (Phase 11F)', () => {
+    const expDir = path.resolve(__dirname, '../training/runs/garment-exp-0007');
+    expect(fs.existsSync(expDir)).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'environment.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'training_log.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'checkpoint', 'best_model.pt'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'metrics.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'forensics', 'pretrained_weight_verification.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'forensics', 'sanity_test.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'forensics', 'forensic_verification.json'))).toBe(true);
+
+    const weightVerif = JSON.parse(fs.readFileSync(path.join(expDir, 'forensics', 'pretrained_weight_verification.json'), 'utf8'));
+    expect(weightVerif.experiment_id).toBe('garment-exp-0007');
+    expect(weightVerif.backbone_model_name).toBe('google/siglip-so400m-patch14-384');
+    expect(weightVerif.is_genuine_pretrained).toBe(true);
+    expect(weightVerif.total_backbone_parameters).toBe(428225600);
+
+    const sanityTest = JSON.parse(fs.readFileSync(path.join(expDir, 'forensics', 'sanity_test.json'), 'utf8'));
+    expect(sanityTest.status).toBe('PASS');
+    expect(sanityTest.final_category_accuracy).toBe(1.0);
+    expect(sanityTest.final_loss).toBeLessThan(sanityTest.initial_loss);
+
+    const forensicVerif = JSON.parse(fs.readFileSync(path.join(expDir, 'forensics', 'forensic_verification.json'), 'utf8'));
+    expect(forensicVerif.checks.checkpoint_integrity.status).toBe('PASS');
+    expect(forensicVerif.checks.pretrained_weights.status).toBe('PASS');
+    expect(forensicVerif.checks.sanity_test.status).toBe('PASS');
+    expect(forensicVerif.checks.zero_commercial_apis.status).toBe('PASS');
+    expect(forensicVerif.checks.split_evaluations.blind_test.status).toBe('REAL_MEASURED');
+    expect(forensicVerif.checks.split_evaluations.train.category_top1).toBeGreaterThan(0.7);
+  });
+
+  it('verifies experiment garment-exp-0008 lightweight regularized probe & forensic audit (Phase 11G)', () => {
+    const expDir = path.resolve(__dirname, '../training/runs/garment-exp-0008');
+    expect(fs.existsSync(expDir)).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'environment.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'training_log.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'checkpoint', 'best_model.pt'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'metrics.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'forensics', 'forensic_verification.json'))).toBe(true);
+
+    const env = JSON.parse(fs.readFileSync(path.join(expDir, 'environment.json'), 'utf8'));
+    expect(env.experiment_id).toBe('garment-exp-0008');
+    expect(env.head_type).toBe('lightweight');
+    expect(env.bottleneck_dim).toBe(256);
+    expect(env.trainable_parameters).toBe(310586);
+    expect(env.initial_heads_hash).not.toBe(env.final_heads_hash);
+    expect(env.total_optimizer_steps).toBeGreaterThan(0);
+
+    const forensicVerif = JSON.parse(fs.readFileSync(path.join(expDir, 'forensics', 'forensic_verification.json'), 'utf8'));
+    expect(forensicVerif.checks.checkpoint_integrity.status).toBe('PASS');
+    expect(forensicVerif.checks.architecture.status).toBe('PASS');
+    expect(forensicVerif.checks.architecture.head_type).toBe('lightweight');
+    expect(forensicVerif.checks.architecture.bottleneck_dim).toBe(256);
+    expect(forensicVerif.checks.parameter_counts.matches_expected).toBe(true);
+    expect(forensicVerif.checks.zero_commercial_apis.status).toBe('PASS');
+    expect(forensicVerif.checks.split_evaluations.blind_test.status).toBe('REAL_MEASURED');
+    expect(forensicVerif.checks.split_evaluations.real_world_test.status).toBe('REAL_MEASURED');
+  });
+
+  it('verifies experiment garment-exp-0009 512-dim intermediate probe & forensic audit (Phase 11H)', () => {
+    const expDir = path.resolve(__dirname, '../training/runs/garment-exp-0009');
+    expect(fs.existsSync(expDir)).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'environment.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'training_log.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'checkpoint', 'best_model.pt'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'metrics.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'forensics', 'forensic_verification.json'))).toBe(true);
+
+    const env = JSON.parse(fs.readFileSync(path.join(expDir, 'environment.json'), 'utf8'));
+    expect(env.experiment_id).toBe('garment-exp-0009');
+    expect(env.head_type).toBe('lightweight');
+    expect(env.bottleneck_dim).toBe(512);
+    expect(env.trainable_parameters).toBe(621114);
+    expect(env.initial_heads_hash).not.toBe(env.final_heads_hash);
+    expect(env.total_optimizer_steps).toBeGreaterThan(0);
+
+    const forensicVerif = JSON.parse(fs.readFileSync(path.join(expDir, 'forensics', 'forensic_verification.json'), 'utf8'));
+    expect(forensicVerif.checks.checkpoint_integrity.status).toBe('PASS');
+    expect(forensicVerif.checks.architecture.status).toBe('PASS');
+    expect(forensicVerif.checks.architecture.head_type).toBe('lightweight');
+    expect(forensicVerif.checks.architecture.bottleneck_dim).toBe(512);
+    expect(forensicVerif.checks.parameter_counts.matches_expected).toBe(true);
+    expect(forensicVerif.checks.zero_commercial_apis.status).toBe('PASS');
+    expect(forensicVerif.checks.split_evaluations.blind_test.status).toBe('REAL_MEASURED');
+    expect(forensicVerif.checks.split_evaluations.hard_test.status).toBe('REAL_MEASURED');
+    expect(forensicVerif.checks.split_evaluations.real_world_test.status).toBe('REAL_MEASURED');
+  });
 });
+

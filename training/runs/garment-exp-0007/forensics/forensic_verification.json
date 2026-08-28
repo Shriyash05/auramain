@@ -1,0 +1,81 @@
+{
+  "verified_at": "2026-08-28T16:32:00Z",
+  "experiment_id": "garment-exp-0007",
+  "baseline_comparison_id": "garment-exp-0006",
+  "checks": {
+    "checkpoint_integrity": {
+      "status": "PASS",
+      "size_bytes": 22387189,
+      "sha256": "1db94a8cfa975710754ed284d1ae4e870b455862aa5bd62a92c7759c7da2a564"
+    },
+    "checkpoint_architecture": {
+      "status": "PASS",
+      "backbone_model_name": "google/siglip-so400m-patch14-384",
+      "heads_keys_count": 18,
+      "selection_metric": null,
+      "best_val_macro_f1": null
+    },
+    "pretrained_weights": {
+      "status": "PASS",
+      "total_backbone_parameters": 428225600,
+      "backbone_weight_sha256": "99ef82c091a1a34b20abe7c4b6fa3aff3a95b1e3f38183864fd1b5d1591d678d"
+    },
+    "sanity_test": {
+      "status": "PASS",
+      "initial_loss": 9.3459,
+      "final_loss": 0.0018,
+      "final_category_accuracy": 1.0,
+      "final_macro_f1": 1.0
+    },
+    "split_evaluations": {
+      "train": {
+        "sample_size": 92,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.7826,
+        "macro_f1": 0.8062,
+        "color_acc": 0.837
+      },
+      "validation": {
+        "sample_size": 20,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.2,
+        "macro_f1": 0.1667,
+        "color_acc": 0.1
+      },
+      "blind_test": {
+        "sample_size": 20,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.35,
+        "macro_f1": 0.2167,
+        "color_acc": 0.15
+      },
+      "hard_test": {
+        "sample_size": 18,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.2222,
+        "macro_f1": 0.1667,
+        "color_acc": 0.0556
+      },
+      "real_world_test": {
+        "sample_size": 16,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.0625,
+        "macro_f1": 0.125,
+        "color_acc": 0.125
+      }
+    },
+    "zero_commercial_apis": {
+      "status": "PASS",
+      "verified": true
+    }
+  },
+  "comparison_with_exp0006": {
+    "exp0006_backbone": "Random Conv2d (Untrained)",
+    "exp0007_backbone": "google/siglip-so400m-patch14-384 (Pretrained)",
+    "exp0006_blind_macro_f1": 0.1667,
+    "exp0007_blind_macro_f1": 0.2167,
+    "exp0006_blind_cat_acc": 0.25,
+    "exp0007_blind_cat_acc": 0.35,
+    "train_macro_f1_exp0007": 0.8062
+  }
+}

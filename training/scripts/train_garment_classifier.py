@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 AURA — aura-garment-v1 Forensically Hardened Multi-Task Training Pipeline
-Architecture: Frozen SigLIP-SO400M Feature Extractor + Multi-Task Fashion Taxonomy Heads
+Backbone: Genuine Pretrained google/siglip-so400m-patch14-384 Vision Transformer
+Heads: Multi-Task Fashion Taxonomy Projection & Classification Heads
 Hardware Target: NVIDIA GeForce GTX 1650 (4GB VRAM) / CUDA 12.6
 """
 
@@ -21,7 +22,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
-import torchvision.transforms as T
+from transformers import AutoImageProcessor, SiglipVisionModel
 
 
 def compute_file_sha256(file_path: str) -> str:
@@ -34,10 +35,10 @@ def compute_file_sha256(file_path: str) -> str:
     return h.hexdigest()
 
 
-def compute_model_parameter_hash(model: nn.Module) -> str:
+def compute_model_parameter_hash(model: nn.Module, trainable_only: bool = True) -> str:
     h = hashlib.sha256()
     for name, param in sorted(model.named_parameters()):
-        if param.requires_grad:
+        if (not trainable_only) or param.requires_grad:
             h.update(name.encode("utf-8"))
             h.update(param.detach().cpu().numpy().tobytes())
     return h.hexdigest()
@@ -59,10 +60,10 @@ def load_json(file_path: str) -> Dict[str, Any]:
 
 
 # ============================================================
-# 1. PyTorch Dataset Loader with Real Physical Image Loading
+# 1. PyTorch Dataset Loader with SigLIP Preprocessor
 # ============================================================
 class AuraGarmentDataset(Dataset):
-    def __init__(self, manifest_path: str, taxonomy_path: str, split: str, root_dir: str = "."):
+    def __init__(self, manifest_path: str, taxonomy_path: str, split: str, root_dir: str = ".", processor_name: str = "google/siglip-so400m-patch14-384"):
         self.manifest = load_json(manifest_path)
         self.taxonomy = load_json(taxonomy_path)
         self.split = split
@@ -88,12 +89,8 @@ class AuraGarmentDataset(Dataset):
         self.pat_map = self.taxonomy["patterns"]["mapping"]
         self.mat_map = self.taxonomy["materials"]["mapping"]
 
-        # Vision Transform (SigLIP 384x384 image resolution)
-        self.transform = T.Compose([
-            T.Resize((384, 384)),
-            T.ToTensor(),
-            T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-        ])
+        # Hugging Face SigLIP Image Processor
+        self.image_processor = AutoImageProcessor.from_pretrained(processor_name)
 
     def __len__(self) -> int:
         return len(self.items)
@@ -109,9 +106,10 @@ class AuraGarmentDataset(Dataset):
         try:
             with Image.open(img_full_path) as img:
                 img_rgb = img.convert("RGB")
-                pixel_values = self.transform(img_rgb)
+                processed = self.image_processor(images=img_rgb, return_tensors="pt")
+                pixel_values = processed["pixel_values"].squeeze(0)
         except Exception as e:
-            raise RuntimeError(f"Failed to load and transform image {img_full_path}: {e}")
+            raise RuntimeError(f"Failed to load and preprocess image {img_full_path}: {e}")
 
         labels = item.get("labels", {})
         cat_idx = self.cat_map.get(labels.get("category"), 0)
@@ -136,43 +134,41 @@ class AuraGarmentDataset(Dataset):
 
 
 # ============================================================
-# 2. PyTorch Multi-Task Model Architecture (SigLIP SO400M Compatible)
+# 2. PyTorch Multi-Task Model Architecture (SigLIP SO400M Pretrained)
 # ============================================================
-class AuraFeatureExtractor(nn.Module):
+class AuraSigLIPBackbone(nn.Module):
     """
-    SigLIP-SO400M Feature Extractor representation.
-    Extracts 1152-dimensional fashion embeddings from 384x384 image tensors.
+    Genuine Pretrained SigLIP-SO400M Vision Transformer Backbone.
+    Extracts 1152-dimensional fashion embeddings.
     """
-    def __init__(self, embedding_dim: int = 1152):
+    def __init__(self, model_name: str = "google/siglip-so400m-patch14-384"):
         super().__init__()
-        self.embedding_dim = embedding_dim
-        # Convolutional patch embedding + pooling module to simulate frozen vision backbone
-        self.patch_embed = nn.Sequential(
-            nn.Conv2d(3, 128, kernel_size=16, stride=16),
-            nn.GELU(),
-            nn.AdaptiveAvgPool2d((12, 12)),
-            nn.Flatten(),
-            nn.Linear(128 * 12 * 12, embedding_dim),
-            nn.LayerNorm(embedding_dim)
-        )
+        self.model_name = model_name
+        self.vision_model = SiglipVisionModel.from_pretrained(model_name)
+        self.embedding_dim = self.vision_model.config.hidden_size
+
         # Freeze backbone parameters
-        for param in self.parameters():
+        for param in self.vision_model.parameters():
             param.requires_grad = False
+        self.vision_model.eval()
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, pixel_values: torch.Tensor) -> torch.Tensor:
         with torch.no_grad():
-            return self.patch_embed(x)
+            outputs = self.vision_model(pixel_values=pixel_values)
+            # Use pooler_output if available, else pooled mean of hidden states
+            if hasattr(outputs, "pooler_output") and outputs.pooler_output is not None:
+                return outputs.pooler_output
+            return outputs.last_hidden_state.mean(dim=1)
 
 
-class AuraGarmentClassifier(nn.Module):
+class AuraMultiTaskHeads(nn.Module):
+    """
+    Trainable Multi-Task Projection and Classification Heads for AURA Taxonomy.
+    """
     def __init__(self, taxonomy: Dict[str, Any], hidden_dim: int = 1152, dropout: float = 0.1):
         super().__init__()
         self.hidden_dim = hidden_dim
 
-        # Frozen Vision Backbone
-        self.backbone = AuraFeatureExtractor(embedding_dim=hidden_dim)
-
-        # Trainable Multi-Task Projection & Heads
         self.feature_proj = nn.Sequential(
             nn.Linear(hidden_dim, hidden_dim),
             nn.LayerNorm(hidden_dim),
@@ -198,10 +194,7 @@ class AuraGarmentClassifier(nn.Module):
             nn.Sigmoid()
         )
 
-    def extract_features(self, pixel_values: torch.Tensor) -> torch.Tensor:
-        return self.backbone(pixel_values)
-
-    def forward_features(self, features: torch.Tensor) -> Dict[str, torch.Tensor]:
+    def forward(self, features: torch.Tensor) -> Dict[str, torch.Tensor]:
         proj = self.feature_proj(features)
         return {
             "category_logits": self.category_head(proj),
@@ -212,6 +205,74 @@ class AuraGarmentClassifier(nn.Module):
             "material_logits": self.material_head(proj),
             "formality_score": self.formality_head(proj).squeeze(-1)
         }
+
+
+class AuraLightweightHeads(nn.Module):
+    """
+    Lightweight Regularized Multi-Task Heads for AURA Taxonomy (Phase 11G).
+    Uses a 1152 -> bottleneck_dim compression to reduce overfitting on small datasets.
+    """
+    def __init__(self, taxonomy: Dict[str, Any], input_dim: int = 1152, bottleneck_dim: int = 256, dropout: float = 0.3):
+        super().__init__()
+        self.input_dim = input_dim
+        self.bottleneck_dim = bottleneck_dim
+        self.hidden_dim = input_dim  # compatibility alias for checkpoint saving
+
+        self.feature_proj = nn.Sequential(
+            nn.Linear(input_dim, bottleneck_dim),
+            nn.LayerNorm(bottleneck_dim),
+            nn.GELU(),
+            nn.Dropout(dropout)
+        )
+
+        num_cats = taxonomy["categories"]["count"]
+        num_fits = taxonomy["fits"]["count"]
+        num_sils = taxonomy["silhouettes"]["count"]
+        num_cols = taxonomy["color_families"]["count"]
+        num_pats = taxonomy["patterns"]["count"]
+        num_mats = taxonomy["materials"]["count"]
+
+        self.category_head = nn.Linear(bottleneck_dim, num_cats)
+        self.fit_head = nn.Linear(bottleneck_dim, num_fits)
+        self.silhouette_head = nn.Linear(bottleneck_dim, num_sils)
+        self.color_head = nn.Linear(bottleneck_dim, num_cols)
+        self.pattern_head = nn.Linear(bottleneck_dim, num_pats)
+        self.material_head = nn.Linear(bottleneck_dim, num_mats)
+        self.formality_head = nn.Sequential(
+            nn.Linear(bottleneck_dim, 1),
+            nn.Sigmoid()
+        )
+
+    def forward(self, features: torch.Tensor) -> Dict[str, torch.Tensor]:
+        proj = self.feature_proj(features)
+        return {
+            "category_logits": self.category_head(proj),
+            "fit_logits": self.fit_head(proj),
+            "silhouette_logits": self.silhouette_head(proj),
+            "color_logits": self.color_head(proj),
+            "pattern_logits": self.pattern_head(proj),
+            "material_logits": self.material_head(proj),
+            "formality_score": self.formality_head(proj).squeeze(-1)
+        }
+
+
+class AuraGarmentClassifier(nn.Module):
+    """
+    End-to-End AURA Garment Classifier combining Pretrained SigLIP + Multi-Task Heads.
+    """
+    def __init__(self, taxonomy: Dict[str, Any], backbone_model_name: str = "google/siglip-so400m-patch14-384", hidden_dim: int = 1152, dropout: float = 0.1, load_backbone: bool = True):
+        super().__init__()
+        self.hidden_dim = hidden_dim
+        self.backbone = AuraSigLIPBackbone(model_name=backbone_model_name) if load_backbone else None
+        self.heads = AuraMultiTaskHeads(taxonomy, hidden_dim=hidden_dim, dropout=dropout)
+
+    def extract_features(self, pixel_values: torch.Tensor) -> torch.Tensor:
+        if self.backbone is None:
+            raise RuntimeError("Backbone was not initialized in this instance of AuraGarmentClassifier.")
+        return self.backbone(pixel_values)
+
+    def forward_features(self, features: torch.Tensor) -> Dict[str, torch.Tensor]:
+        return self.heads(features)
 
     def forward(self, pixel_values: torch.Tensor) -> Dict[str, torch.Tensor]:
         features = self.extract_features(pixel_values)
@@ -262,7 +323,76 @@ class MultiTaskFashionLoss(nn.Module):
 
 
 # ============================================================
-# 4. Forensic Training Execution Engine
+# 4. Feature Extraction & Embedding Cache Helper
+# ============================================================
+def extract_split_embeddings(
+    dataset: AuraGarmentDataset,
+    backbone: AuraSigLIPBackbone,
+    device: torch.device,
+    batch_size: int = 4
+) -> Dict[str, Any]:
+    loader = DataLoader(dataset, batch_size=batch_size, shuffle=False)
+    all_features = []
+    all_targets = {
+        "image_id": [],
+        "category": [],
+        "fit": [],
+        "silhouette": [],
+        "color_family": [],
+        "pattern": [],
+        "material": [],
+        "formality": []
+    }
+
+    backbone.eval()
+    with torch.no_grad():
+        for batch in loader:
+            pixel_values = batch["pixel_values"].to(device)
+            with torch.amp.autocast('cuda', dtype=torch.float16):
+                feats = backbone(pixel_values)
+            all_features.append(feats.cpu().float())
+
+            all_targets["image_id"].extend(batch["image_id"])
+            for k in ["category", "fit", "silhouette", "color_family", "pattern", "material", "formality"]:
+                all_targets[k].append(batch[k])
+
+    features_tensor = torch.cat(all_features, dim=0)
+    for k in ["category", "fit", "silhouette", "color_family", "pattern", "material", "formality"]:
+        all_targets[k] = torch.cat(all_targets[k], dim=0)
+
+    return {
+        "features": features_tensor,
+        "targets": all_targets,
+        "sample_count": len(features_tensor)
+    }
+
+
+class CachedEmbeddingDataset(Dataset):
+    def __init__(self, cached_data: Dict[str, Any]):
+        self.features = cached_data["features"]
+        self.targets = cached_data["targets"]
+        self.image_ids = self.targets["image_id"]
+
+    def __len__(self) -> int:
+        return len(self.features)
+
+    def __getitem__(self, idx: int) -> Dict[str, Any]:
+        item = {
+            "image_id": self.image_ids[idx],
+            "features": self.features[idx],
+            "category": self.targets["category"][idx],
+            "fit": self.targets["fit"][idx],
+            "silhouette": self.targets["silhouette"][idx],
+            "color_family": self.targets["color_family"][idx],
+            "pattern": self.targets["pattern"][idx],
+            "material": self.targets["material"][idx],
+            "formality": self.targets["formality"][idx]
+        }
+        return item
+
+
+# ============================================================
+# 5. Forensic Training Execution Engine
 # ============================================================
 def train_experiment(config_path: str):
     print("============================================================")
@@ -281,10 +411,15 @@ def train_experiment(config_path: str):
     with open(config_path, "r", encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
 
-    exp_id = cfg.get("experiment", {}).get("id", "garment-exp-0006")
+    exp_id = cfg.get("experiment", {}).get("id", "garment-exp-0007")
     seed = cfg.get("experiment", {}).get("seed", 42)
     manifest_path = cfg.get("dataset", {}).get("manifest_path", "data/garment/metadata/dataset-v0.3.json")
     taxonomy_path = cfg.get("dataset", {}).get("canonical_taxonomy_path", "data/garment/metadata/canonical_taxonomy.json")
+    backbone_name = cfg.get("model", {}).get("base_architecture", "google/siglip-so400m-patch14-384")
+    hidden_dim = cfg.get("model", {}).get("hidden_dim", 1152)
+    bottleneck_dim = cfg.get("model", {}).get("bottleneck_dim", None)  # None = legacy full-dim heads
+    dropout = cfg.get("model", {}).get("head_dropout", 0.1)
+    use_lightweight = bottleneck_dim is not None and bottleneck_dim < hidden_dim
     frozen_blind_path = "data/garment/metadata/dataset-v0.3-blind-freeze.json"
 
     # Verify hashes of input manifests
@@ -293,55 +428,85 @@ def train_experiment(config_path: str):
     blind_freeze_hash = compute_file_sha256(frozen_blind_path)
 
     print(f"[*] Experiment ID: {exp_id}")
+    print(f"[*] Backbone: {backbone_name}")
     print(f"[*] Manifest Hash: {manifest_hash[:12]}...")
     print(f"[*] Frozen Blind Hash: {blind_freeze_hash[:12]}...")
 
     # Load datasets
-    train_dataset = AuraGarmentDataset(manifest_path, taxonomy_path, split="train")
-    val_dataset = AuraGarmentDataset(manifest_path, taxonomy_path, split="validation")
+    train_dataset = AuraGarmentDataset(manifest_path, taxonomy_path, split="train", processor_name=backbone_name)
+    val_dataset = AuraGarmentDataset(manifest_path, taxonomy_path, split="validation", processor_name=backbone_name)
 
     print(f"[+] Loaded Datasets: Train N={len(train_dataset)}, Val N={len(val_dataset)}")
 
+    # Initialize Pretrained SigLIP Backbone
+    print(f"\n[*] Loading Genuine Pretrained Vision Backbone: {backbone_name}...")
+    backbone = AuraSigLIPBackbone(model_name=backbone_name).to(device)
+    backbone_param_count = sum(p.numel() for p in backbone.parameters())
+    backbone_param_hash = compute_model_parameter_hash(backbone, trainable_only=False)
+    print(f"[+] Pretrained Backbone Loaded: {backbone_param_count:,} parameters | Weight Hash: {backbone_param_hash[:16]}...")
+
+    # Extract & Cache Features for Train & Val Splits
+    print("[*] Extracting and caching 1152-d embeddings on GPU for Train & Val splits...")
+    train_cache = extract_split_embeddings(train_dataset, backbone, device, batch_size=4)
+    val_cache = extract_split_embeddings(val_dataset, backbone, device, batch_size=4)
+    print(f"[+] Feature Extraction Complete! Train embeddings: {train_cache['features'].shape}, Val embeddings: {val_cache['features'].shape}")
+
     batch_size = cfg.get("training", {}).get("batch_size", 4)
-    grad_accum_steps = cfg.get("training", {}).get("gradient_accumulation_steps", 4)
-    epochs = cfg.get("training", {}).get("epochs", 20)
-    lr = float(cfg.get("training", {}).get("learning_rate", 0.0003))
+    epochs = cfg.get("training", {}).get("epochs", 30)
+    lr = float(cfg.get("training", {}).get("learning_rate", 0.001))
     weight_decay = float(cfg.get("training", {}).get("weight_decay", 0.01))
 
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, drop_last=False)
-    val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
+    cached_train_ds = CachedEmbeddingDataset(train_cache)
+    cached_val_ds = CachedEmbeddingDataset(val_cache)
+
+    train_loader = DataLoader(cached_train_ds, batch_size=batch_size, shuffle=True, drop_last=False)
+    val_loader = DataLoader(cached_val_ds, batch_size=batch_size, shuffle=False)
 
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
 
     taxonomy = load_json(taxonomy_path)
-    model = AuraGarmentClassifier(taxonomy).to(device)
+    if use_lightweight:
+        heads = AuraLightweightHeads(taxonomy, input_dim=hidden_dim, bottleneck_dim=bottleneck_dim, dropout=dropout).to(device)
+        print(f"[+] Using LIGHTWEIGHT heads: {hidden_dim} -> {bottleneck_dim} bottleneck, dropout={dropout}")
+    else:
+        heads = AuraMultiTaskHeads(taxonomy, hidden_dim=hidden_dim, dropout=dropout).to(device)
+        print(f"[+] Using FULL-DIM heads: {hidden_dim} -> {hidden_dim}, dropout={dropout}")
     loss_fn = MultiTaskFashionLoss(cfg.get("loss_weights", {}))
 
-    # Parameter counting
-    trainable_params = [p for p in model.parameters() if p.requires_grad]
-    frozen_params = [p for p in model.parameters() if not p.requires_grad]
-
+    trainable_params = [p for p in heads.parameters() if p.requires_grad]
     trainable_count = sum(p.numel() for p in trainable_params)
-    frozen_count = sum(p.numel() for p in frozen_params)
-
-    if trainable_count == 0:
-        print("[FATAL ERROR] No trainable parameters found in model!")
-        sys.exit(1)
-
-    print(f"[+] Trainable Parameters: {trainable_count:,} | Frozen Parameters: {frozen_count:,}")
+    print(f"[+] Multi-Task Heads Trainable Parameters: {trainable_count:,}")
 
     # Compute Initial Parameter Fingerprint
-    initial_param_hash = compute_model_parameter_hash(model)
-    print(f"[+] Initial Parameter Hash: {initial_param_hash}")
+    initial_param_hash = compute_model_parameter_hash(heads)
+    print(f"[+] Initial Heads Parameter Hash: {initial_param_hash}")
 
     optimizer = optim.AdamW(trainable_params, lr=lr, weight_decay=weight_decay)
-    scaler = torch.amp.GradScaler('cuda')
+    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs, eta_min=1e-5)
 
-    # Experiment run directory
+    # Experiment run directory & forensics directory
     run_dir = os.path.join("training", "runs", exp_id)
     ckpt_dir = os.path.join(run_dir, "checkpoint")
+    forensics_dir = os.path.join(run_dir, "forensics")
     os.makedirs(ckpt_dir, exist_ok=True)
+    os.makedirs(forensics_dir, exist_ok=True)
+
+    # Save Pretrained Backbone Verification Proof
+    pretrained_proof = {
+        "experiment_id": exp_id,
+        "backbone_model_name": backbone_name,
+        "total_backbone_parameters": backbone_param_count,
+        "backbone_weight_sha256": backbone_param_hash,
+        "is_genuine_pretrained": True,
+        "random_noise_baseline": False,
+        "hidden_dimension": hidden_dim,
+        "processor": "SiglipImageProcessor",
+        "image_size": 384,
+        "verified_at": datetime.datetime.now(datetime.timezone.utc).isoformat()
+    }
+    with open(os.path.join(forensics_dir, "pretrained_weight_verification.json"), "w", encoding="utf-8") as f:
+        json.dump(pretrained_proof, f, indent=2)
 
     training_logs = []
     best_val_macro_f1 = -1.0
@@ -351,59 +516,53 @@ def train_experiment(config_path: str):
     non_zero_gradients_seen = False
 
     start_time = datetime.datetime.now(datetime.timezone.utc)
-    print(f"\n[*] Starting GPU Training Loop on {gpu_name} ({epochs} epochs)...")
+    print(f"\n[*] Starting Multi-Task Training Loop on {gpu_name} ({epochs} epochs)...")
 
     for epoch in range(1, epochs + 1):
-        model.train()
+        heads.train()
         running_train_loss = 0.0
         train_batches = 0
-        optimizer.zero_grad()
 
         for step, batch in enumerate(train_loader):
-            pixel_values = batch["pixel_values"].to(device)
-            targets = {k: v.to(device) for k, v in batch.items() if k not in ["image_id", "pixel_values"]}
+            features = batch["features"].to(device)
+            targets = {k: v.to(device) for k, v in batch.items() if k not in ["image_id", "features"]}
 
-            with torch.amp.autocast('cuda', dtype=torch.float16):
-                preds = model(pixel_values)
-                loss, metrics = loss_fn(preds, targets)
-                scaled_loss = loss / grad_accum_steps
+            optimizer.zero_grad()
+            preds = heads(features)
+            loss, metrics = loss_fn(preds, targets)
+            loss.backward()
 
-            scaler.scale(scaled_loss).backward()
-
-            # Inspect gradients
             for p in trainable_params:
                 if p.grad is not None and torch.norm(p.grad).item() > 1e-7:
                     non_zero_gradients_seen = True
 
-            if (step + 1) % grad_accum_steps == 0 or (step + 1) == len(train_loader):
-                scaler.step(optimizer)
-                scaler.update()
-                optimizer.zero_grad()
-                total_optimizer_steps += 1
-
+            optimizer.step()
+            total_optimizer_steps += 1
             running_train_loss += loss.item()
             train_batches += 1
 
+        scheduler.step()
         avg_train_loss = running_train_loss / max(1, train_batches)
 
-        # Validation Loop (strictly validation split)
-        model.eval()
+        # Validation Loop (strictly validation split N=20)
+        heads.eval()
         running_val_loss = 0.0
         val_batches = 0
         correct_cat = 0
         correct_col = 0
         correct_fit = 0
+        correct_sil = 0
         correct_mat = 0
+        correct_pat = 0
         total_val_samples = 0
 
         with torch.no_grad():
             for batch in val_loader:
-                pixel_values = batch["pixel_values"].to(device)
-                targets = {k: v.to(device) for k, v in batch.items() if k not in ["image_id", "pixel_values"]}
+                features = batch["features"].to(device)
+                targets = {k: v.to(device) for k, v in batch.items() if k not in ["image_id", "features"]}
 
-                with torch.amp.autocast('cuda', dtype=torch.float16):
-                    preds = model(pixel_values)
-                    loss, _ = loss_fn(preds, targets)
+                preds = heads(features)
+                loss, _ = loss_fn(preds, targets)
 
                 running_val_loss += loss.item()
                 val_batches += 1
@@ -411,20 +570,26 @@ def train_experiment(config_path: str):
                 cat_preds = torch.argmax(preds["category_logits"], dim=-1)
                 col_preds = torch.argmax(preds["color_logits"], dim=-1)
                 fit_preds = torch.argmax(preds["fit_logits"], dim=-1)
+                sil_preds = torch.argmax(preds["silhouette_logits"], dim=-1)
                 mat_preds = torch.argmax(preds["material_logits"], dim=-1)
+                pat_preds = torch.argmax(preds["pattern_logits"], dim=-1)
 
                 correct_cat += (cat_preds == targets["category"]).sum().item()
                 correct_col += (col_preds == targets["color_family"]).sum().item()
                 correct_fit += (fit_preds == targets["fit"]).sum().item()
+                correct_sil += (sil_preds == targets["silhouette"]).sum().item()
                 correct_mat += (mat_preds == targets["material"]).sum().item()
+                correct_pat += (pat_preds == targets["pattern"]).sum().item()
                 total_val_samples += len(cat_preds)
 
         avg_val_loss = running_val_loss / max(1, val_batches)
         cat_acc = correct_cat / total_val_samples
         col_acc = correct_col / total_val_samples
         fit_acc = correct_fit / total_val_samples
+        sil_acc = correct_sil / total_val_samples
         mat_acc = correct_mat / total_val_samples
-        val_macro_f1 = (cat_acc + col_acc + fit_acc + mat_acc) / 4.0
+        pat_acc = correct_pat / total_val_samples
+        val_macro_f1 = (cat_acc + col_acc + fit_acc + sil_acc + mat_acc + pat_acc) / 6.0
 
         epoch_record = {
             "epoch": epoch,
@@ -433,39 +598,53 @@ def train_experiment(config_path: str):
             "val_category_accuracy": round(cat_acc, 4),
             "val_color_accuracy": round(col_acc, 4),
             "val_fit_accuracy": round(fit_acc, 4),
+            "val_silhouette_accuracy": round(sil_acc, 4),
             "val_material_accuracy": round(mat_acc, 4),
+            "val_pattern_accuracy": round(pat_acc, 4),
             "val_macro_f1": round(val_macro_f1, 4),
             "optimizer_steps_cumulative": total_optimizer_steps
         }
         training_logs.append(epoch_record)
 
-        print(f"  Epoch {epoch:02d}/{epochs:02d} | Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f} | Val Macro F1: {val_macro_f1:.4f} (Cat: {cat_acc*100:.1f}%)")
+        print(f"  Epoch {epoch:02d}/{epochs:02d} | Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f} | Val Macro F1: {val_macro_f1:.4f} (Cat: {cat_acc*100:.1f}%, Col: {col_acc*100:.1f}%)")
 
-        # Save Best Validation Checkpoint
+        # Save Best Validation Checkpoint (Strictly by Validation Macro F1)
         if val_macro_f1 > best_val_macro_f1:
             best_val_macro_f1 = val_macro_f1
             best_epoch = epoch
             best_val_cat_acc = cat_acc
             best_ckpt_path = os.path.join(ckpt_dir, "best_model.pt")
 
+            # Build checkpoint - for lightweight heads, save directly without wrapping
+            if use_lightweight:
+                model_state = heads.state_dict()
+            else:
+                full_model = AuraGarmentClassifier(taxonomy, backbone_model_name=backbone_name, hidden_dim=hidden_dim, load_backbone=False)
+                full_model.heads.load_state_dict(heads.state_dict())
+                model_state = full_model.state_dict()
+
             torch.save({
                 "experiment_id": exp_id,
                 "epoch": epoch,
-                "model_state_dict": model.state_dict(),
+                "model_state_dict": model_state,
+                "heads_state_dict": heads.state_dict(),
                 "optimizer_state_dict": optimizer.state_dict(),
                 "val_macro_f1": val_macro_f1,
                 "val_category_accuracy": cat_acc,
+                "backbone_model_name": backbone_name,
+                "backbone_weight_sha256": backbone_param_hash,
                 "taxonomy_hash": taxonomy_hash,
                 "manifest_hash": manifest_hash,
+                "bottleneck_dim": bottleneck_dim,
+                "head_type": "lightweight" if use_lightweight else "full",
                 "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
             }, best_ckpt_path)
 
     end_time = datetime.datetime.now(datetime.timezone.utc)
     duration_seconds = (end_time - start_time).total_seconds()
 
-    # Compute Final Parameter Fingerprint
-    final_param_hash = compute_model_parameter_hash(model)
-    print(f"\n[+] Final Parameter Hash: {final_param_hash}")
+    final_param_hash = compute_model_parameter_hash(heads)
+    print(f"\n[+] Final Heads Parameter Hash: {final_param_hash}")
 
     # Forensic Verification Assertions
     if initial_param_hash == final_param_hash:
@@ -489,14 +668,16 @@ def train_experiment(config_path: str):
     ckpt_sha256 = compute_file_sha256(best_ckpt_path)
 
     # Reload verification test
-    reload_model = AuraGarmentClassifier(taxonomy).to(device)
     saved_state = torch.load(best_ckpt_path, map_location=device)
-    reload_model.load_state_dict(saved_state["model_state_dict"])
-    reloaded_hash = compute_model_parameter_hash(reload_model)
-
+    if use_lightweight:
+        reload_heads = AuraLightweightHeads(taxonomy, input_dim=hidden_dim, bottleneck_dim=bottleneck_dim, dropout=dropout).to(device)
+    else:
+        reload_heads = AuraMultiTaskHeads(taxonomy, hidden_dim=hidden_dim).to(device)
+    reload_heads.load_state_dict(saved_state["heads_state_dict"])
+    reloaded_hash = compute_model_parameter_hash(reload_heads)
     print(f"[+] Checkpoint Saved & Verified: {best_ckpt_path} ({ckpt_size:,} bytes, SHA-256: {ckpt_sha256[:16]}...)")
 
-    # Staging run metadata
+    # Save Run Metadata
     env_info = {
         "experiment_id": exp_id,
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -507,23 +688,30 @@ def train_experiment(config_path: str):
         "gpu_name": gpu_name,
         "vram_total_mb": vram_mb,
         "random_seed": seed,
+        "backbone_model_name": backbone_name,
+        "backbone_weight_sha256": backbone_param_hash,
+        "backbone_parameters": backbone_param_count,
         "manifest_sha256": manifest_hash,
         "frozen_blind_sha256": blind_freeze_hash,
         "train_samples": len(train_dataset),
         "validation_samples": len(val_dataset),
         "trainable_parameters": trainable_count,
-        "frozen_parameters": frozen_count,
-        "initial_weight_hash": initial_param_hash,
-        "final_weight_hash": final_param_hash,
+        "head_type": "lightweight" if use_lightweight else "full",
+        "bottleneck_dim": bottleneck_dim,
+        "head_dropout": dropout,
+        "weight_decay": weight_decay,
+        "initial_heads_hash": initial_param_hash,
+        "final_heads_hash": final_param_hash,
         "total_optimizer_steps": total_optimizer_steps,
         "epochs_executed": epochs,
         "duration_seconds": round(duration_seconds, 2),
         "best_epoch": best_epoch,
         "best_validation_macro_f1": best_val_macro_f1,
+        "best_validation_category_accuracy": best_val_cat_acc,
         "checkpoint_path": best_ckpt_path,
         "checkpoint_sha256": ckpt_sha256,
         "checkpoint_size_bytes": ckpt_size,
-        "forensic_status": "REAL GPU TRAINING VERIFIED"
+        "forensic_status": "REAL PRETRAINED GPU TRAINING VERIFIED"
     }
     with open(os.path.join(run_dir, "environment.json"), "w", encoding="utf-8") as f:
         json.dump(env_info, f, indent=2)
@@ -551,7 +739,7 @@ def train_experiment(config_path: str):
         "experiment_id": exp_id,
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "git_commit": get_git_commit(),
-        "status": "REAL_MODEL_TRAINING_VERIFIED",
+        "status": "REAL_PRETRAINED_MODEL_TRAINING_VERIFIED",
         "validation_metrics": selected_ckpt_info,
         "hardware": {
             "gpu": gpu_name,
@@ -568,22 +756,23 @@ def train_experiment(config_path: str):
     with open(os.path.join(run_dir, "metrics.json"), "w", encoding="utf-8") as f:
         json.dump(metrics_info, f, indent=2)
 
-    readme_content = f"""# AURA Garment Experiment 0006 — Real GPU Training Run
+    readme_content = f"""# AURA Garment Experiment 0007 — Genuine Pretrained SigLIP Baseline
 
 **Model:** `aura-garment-v1`  
-**Backbone:** Frozen `google/siglip-so400m-patch14-384`  
+**Backbone:** Genuine Pretrained `{backbone_name}` ({backbone_param_count:,} parameters)  
 **Hardware:** `{gpu_name}` ({vram_mb} MB VRAM)  
 **Date:** {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}  
-**Status:** **REAL GPU TRAINING VERIFIED**  
+**Status:** **REAL PRETRAINED GPU TRAINING VERIFIED**  
 
 ---
 
 ## 1. Proven Training Optimization
-- **Initial Weight Hash:** `{initial_param_hash}`
-- **Final Weight Hash:** `{final_param_hash}`
+- **Backbone SHA-256:** `{backbone_param_hash}`
+- **Initial Heads Hash:** `{initial_param_hash}`
+- **Final Heads Hash:** `{final_param_hash}`
 - **Total Optimizer Steps:** `{total_optimizer_steps}`
 - **Epochs Executed:** `{epochs}`
-- **Best Epoch:** `{best_epoch}` (Validation Macro F1: `{best_val_macro_f1:.4f}`)
+- **Best Epoch:** `{best_epoch}` (Validation Macro F1: `{best_val_macro_f1:.4f}`, Category: `{best_val_cat_acc*100:.1f}%`)
 - **Checkpoint SHA-256:** `{ckpt_sha256}` ({ckpt_size:,} bytes)
 """
     with open(os.path.join(run_dir, "README.md"), "w", encoding="utf-8") as f:
@@ -594,7 +783,7 @@ def train_experiment(config_path: str):
 
 def main():
     parser = argparse.ArgumentParser(description="Train aura-garment-v1 model on GPU")
-    parser.add_argument("--config", type=str, default="training/configs/siglip_so400m_garment_v1.yaml", help="Path to config")
+    parser.add_argument("--config", type=str, default="training/configs/siglip_so400m_garment_exp0007.yaml", help="Path to config")
     args = parser.parse_args()
 
     train_experiment(args.config)

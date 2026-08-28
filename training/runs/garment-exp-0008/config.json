@@ -1,0 +1,59 @@
+{
+  "experiment": {
+    "id": "garment-exp-0008",
+    "name": "aura-garment-v1-siglip-so400m-lightweight-probe",
+    "seed": 42,
+    "description": "Lightweight regularized linear probe: 1152->256 bottleneck, dropout 0.3, weight_decay 0.05. Tests overfitting reduction vs Exp-0007 large head."
+  },
+  "model": {
+    "base_architecture": "google/siglip-so400m-patch14-384",
+    "canonical_taxonomy_path": "data/garment/metadata/canonical_taxonomy.json",
+    "freeze_backbone": true,
+    "hidden_dim": 1152,
+    "bottleneck_dim": 256,
+    "head_dropout": 0.3,
+    "use_lora": false
+  },
+  "dataset": {
+    "manifest_path": "data/garment/metadata/dataset-v0.3.json",
+    "canonical_taxonomy_path": "data/garment/metadata/canonical_taxonomy.json",
+    "version": "0.3.0",
+    "image_size": 384,
+    "num_workers": 2,
+    "allowed_splits": [
+      "train",
+      "validation"
+    ],
+    "isolated_test_splits": [
+      "blind_test",
+      "hard_test",
+      "real_world_test"
+    ]
+  },
+  "training": {
+    "device": "cuda",
+    "mixed_precision": "fp16",
+    "batch_size": 8,
+    "gradient_accumulation_steps": 1,
+    "epochs": 50,
+    "learning_rate": 0.0005,
+    "weight_decay": 0.05,
+    "optimizer": "AdamW",
+    "scheduler": "cosine",
+    "early_stopping_patience": 15
+  },
+  "loss_weights": {
+    "category_loss": 1.0,
+    "fit_loss": 0.8,
+    "silhouette_loss": 0.6,
+    "color_loss": 0.8,
+    "pattern_loss": 0.5,
+    "material_loss": 0.6,
+    "formality_loss": 0.4
+  },
+  "output": {
+    "runs_dir": "training/runs",
+    "save_best_only": false,
+    "export_onnx": false
+  }
+}

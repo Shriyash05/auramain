@@ -1,0 +1,56 @@
+# ============================================================
+# AURA-GARMENT-V1 REPRODUCIBLE TRAINING CONFIGURATION
+# Experiment: garment-exp-0007
+# Model: Genuine Pretrained SigLIP-SO400M + Multi-Task Classification Heads
+# Hardware: NVIDIA GeForce GTX 1650 (4GB VRAM) / CUDA 12.6
+# ============================================================
+
+experiment:
+  id: "garment-exp-0007"
+  name: "aura-garment-v1-siglip-so400m-pretrained-baseline"
+  seed: 42
+  description: "Genuine pretrained google/siglip-so400m-patch14-384 vision backbone with multi-task classification heads trained on real NVIDIA GTX 1650 GPU"
+
+model:
+  base_architecture: "google/siglip-so400m-patch14-384"
+  canonical_taxonomy_path: "data/garment/metadata/canonical_taxonomy.json"
+  freeze_backbone: true
+  hidden_dim: 1152 # SigLIP-SO400M embedding dimension
+  head_dropout: 0.1
+  use_lora: false
+
+dataset:
+  manifest_path: "data/garment/metadata/dataset-v0.3.json"
+  canonical_taxonomy_path: "data/garment/metadata/canonical_taxonomy.json"
+  version: "0.3.0"
+  image_size: 384
+  num_workers: 2
+  allowed_splits: ["train", "validation"]
+  isolated_test_splits: ["blind_test", "hard_test", "real_world_test"]
+
+training:
+  device: "cuda"
+  mixed_precision: "fp16"
+  batch_size: 4
+  gradient_accumulation_steps: 4
+  epochs: 30
+  learning_rate: 0.001
+  weight_decay: 0.01
+  optimizer: "AdamW"
+  scheduler: "cosine"
+  early_stopping_patience: 10
+
+loss_weights:
+  category_loss: 1.0
+  fit_loss: 0.8
+  silhouette_loss: 0.6
+  color_loss: 0.8
+  pattern_loss: 0.5
+  material_loss: 0.6
+  formality_loss: 0.4
+
+output:
+  runs_dir: "training/runs"
+  save_best_only: false
+  export_onnx: true
+  onnx_output_path: "aura-garment-v1.onnx"

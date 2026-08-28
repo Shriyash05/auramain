@@ -1,0 +1,17 @@
+{
+  "split": "train",
+  "sample_size": 92,
+  "status": "REAL_MEASURED",
+  "checkpoint_sha256": "e97f4e2e97564f85de50cfc13116623e7826f1bd89c5d6a2c5c04d1764e70573",
+  "checkpoint_size_bytes": 3751989,
+  "metrics": {
+    "category_top1_accuracy": 0.3913,
+    "color_accuracy": 0.3913,
+    "fit_accuracy": 0.4239,
+    "silhouette_accuracy": 0.3261,
+    "material_accuracy": 0.1739,
+    "pattern_accuracy": 0.3804,
+    "macro_f1": 0.3478,
+    "unknown_refusal_rate": 1.0
+  }
+}

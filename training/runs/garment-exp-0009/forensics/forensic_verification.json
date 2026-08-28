@@ -1,0 +1,139 @@
+{
+  "experiment_id": "garment-exp-0009",
+  "baseline_comparison_ids": [
+    "garment-exp-0007",
+    "garment-exp-0008"
+  ],
+  "checks": {
+    "checkpoint_integrity": {
+      "status": "PASS",
+      "size_bytes": 7478325,
+      "sha256": "a62c26f202ab0f12037d5b2c7c73a3affe31c7ab0ff09d80f2b364fde79aeba7"
+    },
+    "architecture": {
+      "status": "PASS",
+      "backbone_model_name": "google/siglip-so400m-patch14-384",
+      "head_type": "lightweight",
+      "bottleneck_dim": 512,
+      "heads_keys_count": 18,
+      "best_val_macro_f1": 0.18333333333333335,
+      "best_epoch": 1
+    },
+    "parameter_counts": {
+      "status": "PASS",
+      "total_head_parameters": 621114,
+      "expected_params": 621114,
+      "matches_expected": true
+    },
+    "pretrained_weights": {
+      "status": "PASS",
+      "total_backbone_parameters": 428225600,
+      "backbone_weight_sha256": "99ef82c091a1a34b20abe7c4b6fa3aff3a95b1e3f38183864fd1b5d1591d678d"
+    },
+    "training_execution": {
+      "status": "PASS",
+      "weight_delta_verified": true,
+      "optimizer_steps": 600,
+      "epochs_executed": 50,
+      "duration_seconds": 8.15,
+      "head_type": "lightweight",
+      "bottleneck_dim": 512,
+      "head_dropout": 0.3,
+      "weight_decay": 0.05
+    },
+    "split_evaluations": {
+      "train": {
+        "sample_size": 92,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.4674,
+        "color_acc": 0.4022,
+        "fit_acc": 0.4783,
+        "silhouette_acc": 0.4022,
+        "material_acc": 0.3478,
+        "pattern_acc": 0.5435,
+        "macro_f1": 0.4402,
+        "unknown_refusal_rate": 0.9891,
+        "false_confidence_rate": 0.0
+      },
+      "validation": {
+        "sample_size": 20,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.05,
+        "color_acc": 0.2,
+        "fit_acc": 0.15,
+        "silhouette_acc": 0.25,
+        "material_acc": 0.15,
+        "pattern_acc": 0.3,
+        "macro_f1": 0.1833,
+        "unknown_refusal_rate": 1.0,
+        "false_confidence_rate": 0.0
+      },
+      "blind_test": {
+        "sample_size": 20,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.3,
+        "color_acc": 0.15,
+        "fit_acc": 0.4,
+        "silhouette_acc": 0.2,
+        "material_acc": 0.05,
+        "pattern_acc": 0.2,
+        "macro_f1": 0.2167,
+        "unknown_refusal_rate": 1.0,
+        "false_confidence_rate": 0.0
+      },
+      "hard_test": {
+        "sample_size": 18,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.1667,
+        "color_acc": 0.0556,
+        "fit_acc": 0.0556,
+        "silhouette_acc": 0.1111,
+        "material_acc": 0.1111,
+        "pattern_acc": 0.2778,
+        "macro_f1": 0.1296,
+        "unknown_refusal_rate": 1.0,
+        "false_confidence_rate": 0.0
+      },
+      "real_world_test": {
+        "sample_size": 16,
+        "status": "REAL_MEASURED",
+        "category_top1": 0.3125,
+        "color_acc": 0.0,
+        "fit_acc": 0.1875,
+        "silhouette_acc": 0.1875,
+        "material_acc": 0.0,
+        "pattern_acc": 0.125,
+        "macro_f1": 0.1354,
+        "unknown_refusal_rate": 1.0,
+        "false_confidence_rate": 0.0
+      }
+    },
+    "zero_commercial_apis": {
+      "status": "PASS"
+    },
+    "frozen_blind_integrity": {
+      "status": "PASS",
+      "sha256": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd"
+    }
+  },
+  "comparison": {
+    "exp0007": {
+      "blind_macro_f1": 0.2167,
+      "blind_cat_acc": 0.35,
+      "rw_macro_f1": 0.125,
+      "rw_cat_acc": 0.0625
+    },
+    "exp0008": {
+      "blind_macro_f1": 0.25,
+      "blind_cat_acc": 0.3,
+      "rw_macro_f1": 0.2083,
+      "rw_cat_acc": 0.3125
+    },
+    "exp0009": {
+      "blind_macro_f1": 0.2167,
+      "blind_cat_acc": 0.3,
+      "rw_macro_f1": 0.1354,
+      "rw_cat_acc": 0.3125
+    }
+  }
+}
