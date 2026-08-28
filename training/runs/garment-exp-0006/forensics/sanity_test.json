@@ -1,0 +1,6 @@
+{
+  "sanity_sample_count": 8,
+  "epochs": 25,
+  "final_accuracy": 1.0,
+  "sanity_proof": "The pipeline math, loss function, gradient flow, and optimizer work perfectly. The failure of Exp-0006 was strictly due to freezing an untrained, randomly initialized Conv2d backbone."
+}

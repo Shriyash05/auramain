@@ -1,0 +1,78 @@
+{
+  "validation_samples_audited": 20,
+  "unique_predicted_categories": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "mean_confidence": 0.456785,
+  "sample_records": [
+    {
+      "image_id": "garm_v3_093",
+      "expected_category_idx": 2,
+      "predicted_category_idx": 4,
+      "category_confidence": 0.2435,
+      "raw_category_logits": [
+        -0.5712,
+        -0.3706,
+        -0.1132,
+        -0.2934,
+        -0.0707
+      ]
+    },
+    {
+      "image_id": "garm_v3_094",
+      "expected_category_idx": 3,
+      "predicted_category_idx": 4,
+      "category_confidence": 0.841,
+      "raw_category_logits": [
+        -0.158,
+        -1.8579,
+        -0.0265,
+        -2.0287,
+        2.4149
+      ]
+    },
+    {
+      "image_id": "garm_v3_095",
+      "expected_category_idx": 4,
+      "predicted_category_idx": 4,
+      "category_confidence": 0.516,
+      "raw_category_logits": [
+        0.2794,
+        0.0213,
+        -0.7385,
+        -0.8292,
+        1.2451
+      ]
+    },
+    {
+      "image_id": "garm_v3_096",
+      "expected_category_idx": 0,
+      "predicted_category_idx": 0,
+      "category_confidence": 0.4566,
+      "raw_category_logits": [
+        0.9301,
+        -1.6638,
+        -0.8631,
+        0.1217,
+        0.2439
+      ]
+    },
+    {
+      "image_id": "garm_v3_097",
+      "expected_category_idx": 1,
+      "predicted_category_idx": 0,
+      "category_confidence": 0.4418,
+      "raw_category_logits": [
+        1.231,
+        0.8457,
+        -0.2045,
+        -0.9639,
+        -0.221
+      ]
+    }
+  ]
+}

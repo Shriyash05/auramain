@@ -1,0 +1,13 @@
+{
+  "model_class": "AuraGarmentClassifier",
+  "backbone_class": "AuraFeatureExtractor",
+  "is_huggingface_pretrained": false,
+  "pretrained_weights_loaded": false,
+  "architecture_mismatch": true,
+  "claimed_architecture": "google/siglip-so400m-patch14-384 (Pretrained Vision Transformer)",
+  "actual_architecture": "AuraFeatureExtractor (Randomly Initialized 2-Layer Conv2d + Frozen Linear Embedding)",
+  "total_parameters": 22732986,
+  "trainable_parameters": 1397434,
+  "frozen_parameters": 21335552,
+  "root_cause_finding": "CRITICAL: The vision backbone was a randomly initialized custom Conv2d module with requires_grad=False. It did NOT load pretrained SigLIP weights. Consequently, the multi-task heads were trained on random static noise embeddings."
+}

@@ -1,0 +1,52 @@
+{
+  "train": {
+    "total": 92,
+    "category_distribution": {
+      "tops": 19,
+      "bottoms": 19,
+      "outerwear": 18,
+      "shoes": 18,
+      "accessories": 18
+    }
+  },
+  "validation": {
+    "total": 20,
+    "category_distribution": {
+      "outerwear": 4,
+      "shoes": 4,
+      "accessories": 4,
+      "tops": 4,
+      "bottoms": 4
+    }
+  },
+  "blind_test": {
+    "total": 20,
+    "category_distribution": {
+      "outerwear": 4,
+      "shoes": 4,
+      "accessories": 4,
+      "tops": 4,
+      "bottoms": 4
+    }
+  },
+  "hard_test": {
+    "total": 18,
+    "category_distribution": {
+      "outerwear": 4,
+      "shoes": 4,
+      "accessories": 4,
+      "tops": 3,
+      "bottoms": 3
+    }
+  },
+  "real_world_test": {
+    "total": 16,
+    "category_distribution": {
+      "tops": 4,
+      "bottoms": 3,
+      "outerwear": 3,
+      "shoes": 3,
+      "accessories": 3
+    }
+  }
+}
