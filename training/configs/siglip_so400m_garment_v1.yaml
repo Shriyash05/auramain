@@ -5,10 +5,10 @@
 # ============================================================
 
 experiment:
-  id: "garment-exp-0004"
-  name: "aura-garment-v1-siglip-multitask-heads-v0.3"
+  id: "garment-exp-0006"
+  name: "aura-garment-v1-siglip-multitask-heads-v0.3-real-gpu"
   seed: 42
-  description: "Frozen SigLIP-SO400M vision backbone with multi-task classification heads for category, fit, silhouette, color, pattern, material, and formality"
+  description: "Frozen SigLIP-SO400M vision backbone with multi-task classification heads trained on real NVIDIA GTX 1650 GPU"
 
 model:
   base_architecture: "google/siglip-so400m-patch14-384"

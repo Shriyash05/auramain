@@ -101,4 +101,21 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(metrics.dataset_verification.total_physical_samples).toBe(166);
     expect(metrics.dataset_verification.split_leakage_detected).toBe(false);
   });
+
+  it('verifies experiment garment-exp-0006 real GPU training artifacts and ONNX export', () => {
+    const expDir = path.resolve(__dirname, '../training/runs/garment-exp-0006');
+    expect(fs.existsSync(expDir)).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'environment.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'training_log.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'checkpoint', 'best_model.pt'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'checkpoint', 'aura-garment-v1.onnx'))).toBe(true);
+
+    const env = JSON.parse(fs.readFileSync(path.join(expDir, 'environment.json'), 'utf8'));
+    expect(env.experiment_id).toBe('garment-exp-0006');
+    expect(env.forensic_status).toBe('REAL GPU TRAINING VERIFIED');
+    expect(env.epochs_executed).toBe(20);
+    expect(env.total_optimizer_steps).toBe(120);
+    expect(env.checkpoint_size_bytes).toBeGreaterThan(0);
+    expect(env.initial_weight_hash).not.toBe(env.final_weight_hash);
+  });
 });

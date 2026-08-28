@@ -1,0 +1,27 @@
+{
+  "experiment_id": "garment-exp-0006",
+  "timestamp": "2026-08-28T15:54:19.878855+00:00",
+  "git_commit": "8b2aaedbd13df9f1e8c1903c634c48a3ec731301",
+  "status": "REAL_MODEL_TRAINING_VERIFIED",
+  "validation_metrics": {
+    "experiment_id": "garment-exp-0006",
+    "selection_criterion": "highest_validation_macro_f1",
+    "best_epoch": 6,
+    "best_validation_macro_f1": 0.1625,
+    "best_validation_category_accuracy": 0.15,
+    "checkpoint_path": "training\\runs\\garment-exp-0006\\checkpoint\\best_model.pt",
+    "checkpoint_sha256": "616692c6e9fc6d1302540847a77ba5f308793268a972501526aad5d6b4850307",
+    "reloaded_verified": true
+  },
+  "hardware": {
+    "gpu": "NVIDIA GeForce GTX 1650",
+    "vram_mb": 4095.69,
+    "cuda": "12.6"
+  },
+  "training_execution": {
+    "epochs": 20,
+    "optimizer_steps": 120,
+    "duration_seconds": 88.87,
+    "weight_delta_verified": true
+  }
+}

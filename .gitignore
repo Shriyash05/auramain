@@ -16,6 +16,15 @@ web-build/
 .env.local
 .env*.local
 
+# Python / ML Virtual Environments & Weights
+.venv*/
+venv/
+__pycache__/
+*.pyc
+*.pt
+*.bin
+*.onnx
+
 # Scratch / IDE
 .system_generated/
 scratch/
