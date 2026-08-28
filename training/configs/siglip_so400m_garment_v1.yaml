@@ -1,47 +1,47 @@
 # ============================================================
-# AURA-GARMENT-V1 TRAINING CONFIGURATION
+# AURA-GARMENT-V1 REPRODUCIBLE TRAINING CONFIGURATION
 # Model: SigLIP-SO400M + Multi-Task Classification Heads
-# Experiment: garment-exp-0001
+# Experiment: garment-exp-0004
 # ============================================================
 
 experiment:
-  id: "garment-exp-0001"
-  name: "aura-garment-v1-siglip-multitask-heads"
+  id: "garment-exp-0004"
+  name: "aura-garment-v1-siglip-multitask-heads-v0.3"
   seed: 42
-  description: "Frozen SigLIP backbone with multi-task classification heads for category, fit, silhouette, pattern, and formality"
+  description: "Frozen SigLIP-SO400M vision backbone with multi-task classification heads for category, fit, silhouette, color, pattern, material, and formality"
 
 model:
   base_architecture: "google/siglip-so400m-patch14-384"
+  canonical_taxonomy_path: "data/garment/metadata/canonical_taxonomy.json"
   freeze_backbone: true
+  hidden_dim: 1152 # SigLIP-SO400M embedding dimension
+  head_dropout: 0.1
   use_lora: false
   lora_r: 16
   lora_alpha: 32
   lora_dropout: 0.05
-  num_categories: 5
-  num_fits: 6
-  num_silhouettes: 8
-  num_color_families: 17
-  num_patterns: 9
-  num_materials: 12
 
 dataset:
-  manifest_path: "data/garment/metadata/dataset-v0.1.json"
-  version: "0.1.0"
+  manifest_path: "data/garment/metadata/dataset-v0.3.json"
+  canonical_taxonomy_path: "data/garment/metadata/canonical_taxonomy.json"
+  version: "0.3.0"
   image_size: 384
   num_workers: 2
+  allowed_splits: ["train", "validation"]
+  isolated_test_splits: ["blind_test", "hard_test", "real_world_test"]
 
 training:
-  device: "cuda" # Auto-falls back to CPU if CUDA unavailable
-  mixed_precision: "fp16" # Crucial for 4GB VRAM (GTX 1650)
+  device: "cuda" # Automatically falls back to CPU if CUDA unavailable
+  mixed_precision: "fp16" # Essential for 4GB VRAM budget (NVIDIA GTX 1650)
   batch_size: 4          # Sized for 4GB VRAM budget
   gradient_accumulation_steps: 4 # Effective batch size = 16
-  epochs: 15
+  epochs: 20
   learning_rate: 0.0003
   weight_decay: 0.01
   warmup_ratio: 0.1
   optimizer: "AdamW"
   scheduler: "cosine"
-  early_stopping_patience: 4
+  early_stopping_patience: 5
 
 loss_weights:
   category_loss: 1.0
@@ -49,11 +49,11 @@ loss_weights:
   silhouette_loss: 0.6
   color_loss: 0.8
   pattern_loss: 0.5
-  material_loss: 0.5
+  material_loss: 0.6
   formality_loss: 0.4
 
 output:
-  checkpoint_dir: "training/checkpoints/garment-exp-0001"
-  save_best_only: true
+  runs_dir: "training/runs"
+  save_best_only: false
   export_onnx: true
-  onnx_output_path: "training/checkpoints/garment-exp-0001/aura-garment-v1.onnx"
+  onnx_output_path: "aura-garment-v1.onnx"

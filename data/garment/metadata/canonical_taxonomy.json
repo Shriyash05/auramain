@@ -1,0 +1,250 @@
+{
+  "taxonomy_version": "0.3",
+  "generated_at": "2026-08-28T14:43:11.668Z",
+  "description": "Canonical machine-readable taxonomy bridging TypeScript application types and PyTorch ML training heads",
+  "confidence_refusal_threshold": 0.65,
+  "categories": {
+    "classes": [
+      "tops",
+      "bottoms",
+      "outerwear",
+      "shoes",
+      "accessories"
+    ],
+    "count": 5,
+    "mapping": {
+      "tops": 0,
+      "bottoms": 1,
+      "outerwear": 2,
+      "shoes": 3,
+      "accessories": 4
+    }
+  },
+  "subcategories": {
+    "classes": [
+      "t_shirt",
+      "overshirt",
+      "button_down",
+      "knit_sweater",
+      "hoodie",
+      "tank",
+      "polo",
+      "trousers",
+      "pleated_pants",
+      "jeans",
+      "shorts",
+      "sweatpants",
+      "blazer",
+      "trench_coat",
+      "wool_coat",
+      "bomber_jacket",
+      "leather_jacket",
+      "denim_jacket",
+      "puffer_jacket",
+      "sneakers",
+      "loafers",
+      "derbies",
+      "boots",
+      "mules",
+      "sandals",
+      "belt",
+      "tote_bag",
+      "crossbody_bag",
+      "sunglasses",
+      "scarf",
+      "hat",
+      "unknown"
+    ],
+    "count": 32,
+    "mapping": {
+      "t_shirt": 0,
+      "overshirt": 1,
+      "button_down": 2,
+      "knit_sweater": 3,
+      "hoodie": 4,
+      "tank": 5,
+      "polo": 6,
+      "trousers": 7,
+      "pleated_pants": 8,
+      "jeans": 9,
+      "shorts": 10,
+      "sweatpants": 11,
+      "blazer": 12,
+      "trench_coat": 13,
+      "wool_coat": 14,
+      "bomber_jacket": 15,
+      "leather_jacket": 16,
+      "denim_jacket": 17,
+      "puffer_jacket": 18,
+      "sneakers": 19,
+      "loafers": 20,
+      "derbies": 21,
+      "boots": 22,
+      "mules": 23,
+      "sandals": 24,
+      "belt": 25,
+      "tote_bag": 26,
+      "crossbody_bag": 27,
+      "sunglasses": 28,
+      "scarf": 29,
+      "hat": 30,
+      "unknown": 31
+    }
+  },
+  "fits": {
+    "classes": [
+      "Oversized",
+      "Relaxed",
+      "Regular",
+      "Slim",
+      "Fitted",
+      "unknown"
+    ],
+    "count": 6,
+    "mapping": {
+      "Oversized": 0,
+      "Relaxed": 1,
+      "Regular": 2,
+      "Slim": 3,
+      "Fitted": 4,
+      "unknown": 5
+    },
+    "hierarchy": {
+      "Oversized": "Relaxed",
+      "Fitted": "Slim",
+      "unknown": null
+    }
+  },
+  "silhouettes": {
+    "classes": [
+      "structured",
+      "straight",
+      "relaxed",
+      "wide",
+      "boxy",
+      "fitted",
+      "flowing",
+      "unknown"
+    ],
+    "count": 8,
+    "mapping": {
+      "structured": 0,
+      "straight": 1,
+      "relaxed": 2,
+      "wide": 3,
+      "boxy": 4,
+      "fitted": 5,
+      "flowing": 6,
+      "unknown": 7
+    }
+  },
+  "color_families": {
+    "classes": [
+      "black",
+      "white",
+      "cream",
+      "beige",
+      "brown",
+      "grey",
+      "navy",
+      "blue",
+      "green",
+      "olive",
+      "red",
+      "pink",
+      "purple",
+      "yellow",
+      "orange",
+      "multi",
+      "unknown"
+    ],
+    "count": 17,
+    "mapping": {
+      "black": 0,
+      "white": 1,
+      "cream": 2,
+      "beige": 3,
+      "brown": 4,
+      "grey": 5,
+      "navy": 6,
+      "blue": 7,
+      "green": 8,
+      "olive": 9,
+      "red": 10,
+      "pink": 11,
+      "purple": 12,
+      "yellow": 13,
+      "orange": 14,
+      "multi": 15,
+      "unknown": 16
+    },
+    "hierarchy": {
+      "cream": "white",
+      "beige": "brown",
+      "charcoal": "grey",
+      "navy": "blue"
+    }
+  },
+  "patterns": {
+    "classes": [
+      "solid",
+      "striped",
+      "plaid",
+      "checkered",
+      "graphic",
+      "floral",
+      "textured",
+      "houndstooth",
+      "unknown"
+    ],
+    "count": 9,
+    "mapping": {
+      "solid": 0,
+      "striped": 1,
+      "plaid": 2,
+      "checkered": 3,
+      "graphic": 4,
+      "floral": 5,
+      "textured": 6,
+      "houndstooth": 7,
+      "unknown": 8
+    }
+  },
+  "materials": {
+    "classes": [
+      "cotton",
+      "linen",
+      "wool",
+      "silk",
+      "leather",
+      "denim",
+      "nylon",
+      "knit",
+      "suede",
+      "synthetic",
+      "cashmere",
+      "unknown"
+    ],
+    "count": 12,
+    "mapping": {
+      "cotton": 0,
+      "linen": 1,
+      "wool": 2,
+      "silk": 3,
+      "leather": 4,
+      "denim": 5,
+      "nylon": 6,
+      "knit": 7,
+      "suede": 8,
+      "synthetic": 9,
+      "cashmere": 10,
+      "unknown": 11
+    },
+    "hierarchy": {
+      "nylon": "synthetic",
+      "polyester": "synthetic",
+      "cashmere": "wool",
+      "linen": "cotton"
+    }
+  }
+}
