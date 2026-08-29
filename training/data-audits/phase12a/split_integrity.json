@@ -1,0 +1,13 @@
+{
+  "split_counts": {
+    "train": 92,
+    "validation": 20,
+    "blind_test": 20,
+    "hard_test": 18,
+    "real_world_test": 16
+  },
+  "total_garment_groups": 83,
+  "cross_split_leakage_count": 0,
+  "cross_split_leakage": [],
+  "split_isolation_pass": true
+}

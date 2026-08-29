@@ -1,0 +1,161 @@
+{
+  "analysis_version": "1.0.0",
+  "phase": "Phase 12A",
+  "baseline_dataset": "AURA-Garment-Golden-v0.3",
+  "total_baseline_assets": 166,
+  "target_milestone": 250,
+  "additional_required": 84,
+  "measured_baseline": {
+    "categories": {
+      "tops": 34,
+      "bottoms": 33,
+      "outerwear": 33,
+      "shoes": 33,
+      "accessories": 33,
+      "one_piece": 0
+    },
+    "contexts": {
+      "studio": 132,
+      "flat_lay": 150,
+      "on_body": 16,
+      "hanger": 0,
+      "folded": 0,
+      "wrinkled": 18,
+      "ambient_warm_lighting": 16,
+      "low_light": 0,
+      "cluttered_consumer_bg": 16,
+      "partial_occlusion": 18
+    },
+    "studio_vs_real_world_ratio": "3.88:1"
+  },
+  "target_allocation_plan_84_assets": {
+    "categories": {
+      "one_piece": 18,
+      "outerwear": 20,
+      "tops": 16,
+      "bottoms": 15,
+      "shoes": 8,
+      "accessories": 7
+    },
+    "contexts": {
+      "on_body_min": 36,
+      "cluttered_bg_min": 32,
+      "warm_low_light_min": 28,
+      "wrinkled_folded_min": 24
+    }
+  },
+  "category_deficits": [
+    {
+      "category": "one_piece",
+      "current_count": 0,
+      "current_percentage": 0.0,
+      "target_allocation_in_new_cohort": 18,
+      "subcategories_needed": [
+        "dress",
+        "jumpsuit",
+        "romper",
+        "dungaree"
+      ],
+      "urgency": "CRITICAL"
+    },
+    {
+      "category": "outerwear",
+      "current_count": 33,
+      "current_percentage": 19.88,
+      "target_allocation_in_new_cohort": 20,
+      "subcategories_needed": [
+        "jacket",
+        "blazer",
+        "winter_coat",
+        "cardigan",
+        "hoodie",
+        "overshirt"
+      ],
+      "urgency": "HIGH",
+      "rationale": "Mitigate recurring tops vs outerwear confusion."
+    },
+    {
+      "category": "tops",
+      "current_count": 34,
+      "current_percentage": 20.48,
+      "target_allocation_in_new_cohort": 16,
+      "subcategories_needed": [
+        "knitwear",
+        "layered_top",
+        "tank_top",
+        "polo",
+        "blouse"
+      ],
+      "urgency": "MEDIUM"
+    },
+    {
+      "category": "bottoms",
+      "current_count": 33,
+      "current_percentage": 19.88,
+      "target_allocation_in_new_cohort": 15,
+      "subcategories_needed": [
+        "cargo_pants",
+        "midi_skirt",
+        "tailored_trousers",
+        "denim_shorts"
+      ],
+      "urgency": "MEDIUM"
+    },
+    {
+      "category": "shoes",
+      "current_count": 33,
+      "current_percentage": 19.88,
+      "target_allocation_in_new_cohort": 8,
+      "subcategories_needed": [
+        "boots",
+        "loafers",
+        "sandals",
+        "sneakers"
+      ],
+      "urgency": "LOW"
+    },
+    {
+      "category": "accessories",
+      "current_count": 33,
+      "current_percentage": 19.88,
+      "target_allocation_in_new_cohort": 7,
+      "subcategories_needed": [
+        "handbag",
+        "belt",
+        "scarf",
+        "hat"
+      ],
+      "urgency": "LOW"
+    }
+  ],
+  "context_deficits": [
+    {
+      "dimension": "on_body_imagery",
+      "current_count": 16,
+      "target_in_new_cohort": 36,
+      "priority": "CRITICAL",
+      "description": "Smartphones, mirror selfies, real-world user wearing garment."
+    },
+    {
+      "dimension": "warm_and_low_lighting",
+      "current_count": 16,
+      "target_in_new_cohort": 28,
+      "priority": "HIGH",
+      "description": "Warm tungsten bulbs, dim bedroom ambient lighting, backlit scenes."
+    },
+    {
+      "dimension": "wrinkled_folded_condition",
+      "current_count": 18,
+      "target_in_new_cohort": 24,
+      "priority": "HIGH",
+      "description": "Casual flat-lay with non-pristine folds, rumpled cotton, unsteamed linen."
+    },
+    {
+      "dimension": "cluttered_consumer_background",
+      "current_count": 16,
+      "target_in_new_cohort": 32,
+      "priority": "HIGH",
+      "description": "Bedroom floors, chairs, messy closets, changing rooms, street."
+    }
+  ]
+}

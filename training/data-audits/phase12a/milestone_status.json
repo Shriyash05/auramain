@@ -1,0 +1,10 @@
+{
+  "milestone": "MILESTONE_250",
+  "status": "PARTIAL",
+  "target_production_assets": 250,
+  "current_verified_assets": 166,
+  "pure_train_val_pool": 112,
+  "remaining_gap_to_250": 84,
+  "blind_integrity_pass": true,
+  "quality_and_governance_pass": true
+}

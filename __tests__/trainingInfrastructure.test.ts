@@ -330,6 +330,29 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
       expect(item.production_eligible).toBe(true);
     }
   });
+
+  it('verifies Phase 12A Milestone 250 target gap analysis, acquisition registry, and audit v12a', () => {
+    const trackerPath = path.resolve(__dirname, '../data/garment/metadata/phase12a-acquisition-registry.json');
+    const gapAnalysisPath = path.resolve(__dirname, '../training/data-audits/phase12a/target_gap_analysis.json');
+    const gapDocPath = path.resolve(__dirname, '../docs/phase-12a-target-gap-analysis.md');
+    const auditDir12a = path.resolve(__dirname, '../training/data-audits/phase12a');
+
+    expect(fs.existsSync(trackerPath)).toBe(true);
+    expect(fs.existsSync(gapAnalysisPath)).toBe(true);
+    expect(fs.existsSync(gapDocPath)).toBe(true);
+    expect(fs.existsSync(path.join(auditDir12a, 'milestone_status.json'))).toBe(true);
+    expect(fs.existsSync(path.join(auditDir12a, 'blind_integrity.json'))).toBe(true);
+
+    const gap = JSON.parse(fs.readFileSync(gapAnalysisPath, 'utf8'));
+    expect(gap.target_milestone).toBe(250);
+    expect(gap.additional_required).toBe(84);
+    expect(gap.measured_baseline.categories.one_piece).toBe(0);
+
+    const milestoneStatus = JSON.parse(fs.readFileSync(path.join(auditDir12a, 'milestone_status.json'), 'utf8'));
+    expect(milestoneStatus.blind_integrity_pass).toBe(true);
+    expect(['MILESTONE_250_REACHED', 'PARTIAL', 'NOT_READY']).toContain(milestoneStatus.status);
+    expect(milestoneStatus.remaining_gap_to_250).toBe(84);
+  });
 });
 
 

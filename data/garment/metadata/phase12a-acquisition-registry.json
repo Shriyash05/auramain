@@ -1,0 +1,19 @@
+{
+  "registry_name": "AURA Phase 12A Milestone 250 Acquisition Tracker",
+  "version": "1.0.0",
+  "updated_at": "2026-08-29T18:00:00Z",
+  "governance_policy": "AURA_DATASET_GOVERNANCE_V1",
+  "ownership_policy": "ZERO_COMMERCIAL_AI_APIS",
+  "baseline_count": 166,
+  "target_milestone": 250,
+  "cohort_target": 84,
+  "statuses_summary": {
+    "APPROVED": 166,
+    "REVIEW_PENDING": 0,
+    "LICENSE_PENDING": 0,
+    "QUALITY_FAILED": 0,
+    "REJECTED": 0,
+    "CANDIDATE": 0
+  },
+  "candidates": []
+}

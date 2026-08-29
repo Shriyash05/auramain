@@ -1,0 +1,12 @@
+{
+  "total_assets": 166,
+  "context_distribution": {
+    "on_body": 16,
+    "flat_lay": 150,
+    "hanger": 0,
+    "folded": 0,
+    "wrinkled": 18,
+    "cluttered_bg": 16,
+    "studio": 132
+  }
+}

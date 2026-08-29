@@ -1,0 +1,11 @@
+{
+  "total_assets": 166,
+  "lighting_distribution": {
+    "daylight": 0,
+    "warm_tungsten": 0,
+    "cool_led": 0,
+    "low_light": 0,
+    "ambient_indoor": 16,
+    "studio_neutral": 132
+  }
+}
