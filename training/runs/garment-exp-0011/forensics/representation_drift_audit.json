@@ -1,0 +1,10 @@
+{
+  "sample_count": 20,
+  "mean_cosine_similarity": 0.994037,
+  "min_cosine_similarity": 0.991134,
+  "max_cosine_similarity": 0.996804,
+  "base_embedding_norm": 20.5879,
+  "adapted_embedding_norm": 20.3987,
+  "mean_representation_drift_l2": 2.2209,
+  "catastrophic_forgetting_detected": false
+}

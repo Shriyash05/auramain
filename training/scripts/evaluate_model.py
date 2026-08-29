@@ -53,6 +53,9 @@ def evaluate_split(
 
     # Initialize Backbone and Heads
     backbone = AuraSigLIPBackbone(model_name=actual_backbone_name).to(device)
+    if "backbone_state_dict" in saved_state:
+        backbone.load_state_dict(saved_state["backbone_state_dict"])
+        print("[+] Loaded ADAPTED backbone weights from checkpoint.")
     backbone.eval()
 
     # Detect head architecture from checkpoint metadata

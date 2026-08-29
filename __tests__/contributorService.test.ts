@@ -13,8 +13,12 @@ describe('AURA Fashion Research Contributor Program Suite', () => {
   const projectRoot = path.resolve(__dirname, '..');
 
   afterAll(() => {
-    if (fs.existsSync(tempManifest)) {
-      fs.unlinkSync(tempManifest);
+    try {
+      if (fs.existsSync(tempManifest)) {
+        fs.unlinkSync(tempManifest);
+      }
+    } catch {
+      // Ignore transient Windows file lock during test cleanup
     }
   });
 

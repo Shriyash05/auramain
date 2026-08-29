@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import * as crypto from 'crypto';
 import {
   AURA_CATEGORIES,
   AURA_FITS,
@@ -238,6 +239,68 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(forensicVerif.checks.split_evaluations.blind_test.status).toBe('REAL_MEASURED');
     expect(forensicVerif.checks.split_evaluations.real_world_test.status).toBe('REAL_MEASURED');
   });
+
+  it('verifies dataset governance registry and manifest tier separation (Phase 11J)', () => {
+    const regPath = path.resolve(__dirname, '../data/garment/metadata/external-dataset-registry.json');
+    const prodPath = path.resolve(__dirname, '../data/garment/metadata/production-training-manifest.json');
+    const resPath = path.resolve(__dirname, '../data/garment/metadata/research-training-manifest.json');
+    const blindPath = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.3-blind-freeze.json');
+
+    expect(fs.existsSync(regPath)).toBe(true);
+    expect(fs.existsSync(prodPath)).toBe(true);
+    expect(fs.existsSync(resPath)).toBe(true);
+    expect(fs.existsSync(blindPath)).toBe(true);
+
+    const registry = JSON.parse(fs.readFileSync(regPath, 'utf8'));
+    expect(registry.ownership_policy).toBe('ZERO_COMMERCIAL_AI_APIS');
+    const df = registry.datasets.find((d: any) => d.dataset_id === 'deepfashion-inshop');
+    expect(df.tier).toBe('TIER_C');
+    expect(df.commercial_training_allowed).toBe(false);
+
+    const prodManifest = JSON.parse(fs.readFileSync(prodPath, 'utf8'));
+    expect(prodManifest.production_eligible).toBe(true);
+    expect(prodManifest.items.length).toBe(166);
+    for (const item of prodManifest.items) {
+      expect(['TIER_A', 'TIER_B']).toContain(item.tier);
+      expect(['APPROVED_FOR_AURA_TRAINING', 'APPROVED_WITH_ATTRIBUTION']).toContain(item.license_status);
+    }
+
+    const resManifest = JSON.parse(fs.readFileSync(resPath, 'utf8'));
+    expect(resManifest.production_eligible).toBe(false);
+
+    const blindRaw = fs.readFileSync(blindPath);
+    const blindHash = crypto.createHash('sha256').update(blindRaw).digest('hex');
+    expect(blindHash).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
+  });
+
+  it('verifies experiment garment-exp-0011 representation adaptation pilot & drift audit (Phase 11J)', () => {
+    const expDir = path.resolve(__dirname, '../training/runs/garment-exp-0011');
+    expect(fs.existsSync(expDir)).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'environment.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'training_log.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'checkpoint', 'best_model.pt'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'metrics.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'forensics', 'pretrained_weight_verification.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'forensics', 'representation_drift_audit.json'))).toBe(true);
+
+    const env = JSON.parse(fs.readFileSync(path.join(expDir, 'environment.json'), 'utf8'));
+    expect(env.experiment_id).toBe('garment-exp-0011');
+    expect(env.unfreeze_last_n_layers).toBe(1);
+    expect(env.trainable_backbone_parameters).toBe(30480160);
+    expect(env.trainable_head_parameters).toBe(310586);
+    expect(env.trainable_parameters).toBe(30790746);
+    expect(env.initial_heads_hash).not.toBe(env.final_heads_hash);
+    expect(env.total_optimizer_steps).toBeGreaterThan(0);
+
+    const drift = JSON.parse(fs.readFileSync(path.join(expDir, 'forensics', 'representation_drift_audit.json'), 'utf8'));
+    expect(drift.catastrophic_forgetting_detected).toBe(false);
+    expect(drift.mean_cosine_similarity).toBeGreaterThan(0.95);
+
+    const evalBlind = JSON.parse(fs.readFileSync(path.join(expDir, 'evaluations', 'blind_test_evaluation.json'), 'utf8'));
+    expect(evalBlind.status).toBe('REAL_MEASURED');
+    expect(evalBlind.metrics.category_top1_accuracy).toBe(0.35);
+  });
 });
+
 
 

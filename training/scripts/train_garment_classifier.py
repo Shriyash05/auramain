@@ -140,25 +140,35 @@ class AuraSigLIPBackbone(nn.Module):
     """
     Genuine Pretrained SigLIP-SO400M Vision Transformer Backbone.
     Extracts 1152-dimensional fashion embeddings.
+    Supports frozen baseline or selective representation adaptation of final layers.
     """
-    def __init__(self, model_name: str = "google/siglip-so400m-patch14-384"):
+    def __init__(self, model_name: str = "google/siglip-so400m-patch14-384", unfreeze_last_n_layers: int = 0):
         super().__init__()
         self.model_name = model_name
         self.vision_model = SiglipVisionModel.from_pretrained(model_name)
         self.embedding_dim = self.vision_model.config.hidden_size
+        self.unfreeze_last_n_layers = unfreeze_last_n_layers
 
-        # Freeze backbone parameters
+        # Freeze all parameters first
         for param in self.vision_model.parameters():
             param.requires_grad = False
-        self.vision_model.eval()
+
+        # Unfreeze final n encoder layers and post layernorm if requested
+        if unfreeze_last_n_layers > 0:
+            for layer in self.vision_model.encoder.layers[-unfreeze_last_n_layers:]:
+                for param in layer.parameters():
+                    param.requires_grad = True
+            for param in self.vision_model.post_layernorm.parameters():
+                param.requires_grad = True
+            if hasattr(self.vision_model, "head") and self.vision_model.head is not None:
+                for param in self.vision_model.head.parameters():
+                    param.requires_grad = True
 
     def forward(self, pixel_values: torch.Tensor) -> torch.Tensor:
-        with torch.no_grad():
-            outputs = self.vision_model(pixel_values=pixel_values)
-            # Use pooler_output if available, else pooled mean of hidden states
-            if hasattr(outputs, "pooler_output") and outputs.pooler_output is not None:
-                return outputs.pooler_output
-            return outputs.last_hidden_state.mean(dim=1)
+        outputs = self.vision_model(pixel_values=pixel_values)
+        if hasattr(outputs, "pooler_output") and outputs.pooler_output is not None:
+            return outputs.pooler_output
+        return outputs.last_hidden_state.mean(dim=1)
 
 
 class AuraMultiTaskHeads(nn.Module):
@@ -461,29 +471,24 @@ def train_experiment(config_path: str):
 
     print(f"[+] Loaded Datasets: Train N={len(train_dataset)}, Val N={len(val_dataset)}")
 
+    # Check representation adaptation settings
+    unfreeze_last_n_layers = int(cfg.get("model", {}).get("unfreeze_last_n_layers", 0))
+    backbone_lr = float(cfg.get("training", {}).get("backbone_learning_rate", 1e-5))
+    grad_accum_steps = int(cfg.get("training", {}).get("gradient_accumulation_steps", 1))
+
     # Initialize Pretrained SigLIP Backbone
-    print(f"\n[*] Loading Genuine Pretrained Vision Backbone: {backbone_name}...")
-    backbone = AuraSigLIPBackbone(model_name=backbone_name).to(device)
+    print(f"\n[*] Loading Genuine Pretrained Vision Backbone: {backbone_name} (unfreeze_last_n_layers={unfreeze_last_n_layers})...")
+    backbone = AuraSigLIPBackbone(model_name=backbone_name, unfreeze_last_n_layers=unfreeze_last_n_layers).to(device)
     backbone_param_count = sum(p.numel() for p in backbone.parameters())
     backbone_param_hash = compute_model_parameter_hash(backbone, trainable_only=False)
-    print(f"[+] Pretrained Backbone Loaded: {backbone_param_count:,} parameters | Weight Hash: {backbone_param_hash[:16]}...")
-
-    # Extract & Cache Features for Train & Val Splits
-    print("[*] Extracting and caching 1152-d embeddings on GPU for Train & Val splits...")
-    train_cache = extract_split_embeddings(train_dataset, backbone, device, batch_size=4)
-    val_cache = extract_split_embeddings(val_dataset, backbone, device, batch_size=4)
-    print(f"[+] Feature Extraction Complete! Train embeddings: {train_cache['features'].shape}, Val embeddings: {val_cache['features'].shape}")
+    backbone_trainable_params = [p for p in backbone.parameters() if p.requires_grad]
+    backbone_trainable_count = sum(p.numel() for p in backbone_trainable_params)
+    print(f"[+] Pretrained Backbone Loaded: {backbone_param_count:,} parameters ({backbone_trainable_count:,} trainable) | Weight Hash: {backbone_param_hash[:16]}...")
 
     batch_size = cfg.get("training", {}).get("batch_size", 4)
     epochs = cfg.get("training", {}).get("epochs", 30)
     lr = float(cfg.get("training", {}).get("learning_rate", 0.001))
     weight_decay = float(cfg.get("training", {}).get("weight_decay", 0.01))
-
-    cached_train_ds = CachedEmbeddingDataset(train_cache)
-    cached_val_ds = CachedEmbeddingDataset(val_cache)
-
-    train_loader = DataLoader(cached_train_ds, batch_size=batch_size, shuffle=True, drop_last=False)
-    val_loader = DataLoader(cached_val_ds, batch_size=batch_size, shuffle=False)
 
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
@@ -497,15 +502,37 @@ def train_experiment(config_path: str):
         print(f"[+] Using FULL-DIM heads: {hidden_dim} -> {hidden_dim}, dropout={dropout}")
     loss_fn = MultiTaskFashionLoss(cfg.get("loss_weights", {}))
 
-    trainable_params = [p for p in heads.parameters() if p.requires_grad]
-    trainable_count = sum(p.numel() for p in trainable_params)
-    print(f"[+] Multi-Task Heads Trainable Parameters: {trainable_count:,}")
+    head_trainable_params = [p for p in heads.parameters() if p.requires_grad]
+    head_trainable_count = sum(p.numel() for p in head_trainable_params)
+    total_trainable_count = head_trainable_count + backbone_trainable_count
+    print(f"[+] Trainable Parameters: {total_trainable_count:,} (Heads: {head_trainable_count:,}, Backbone: {backbone_trainable_count:,})")
 
     # Compute Initial Parameter Fingerprint
-    initial_param_hash = compute_model_parameter_hash(heads)
-    print(f"[+] Initial Heads Parameter Hash: {initial_param_hash}")
+    initial_heads_hash = compute_model_parameter_hash(heads)
+    initial_backbone_hash = compute_model_parameter_hash(backbone, trainable_only=False)
+    print(f"[+] Initial Heads Hash: {initial_heads_hash}")
 
-    optimizer = optim.AdamW(trainable_params, lr=lr, weight_decay=weight_decay)
+    if unfreeze_last_n_layers > 0:
+        param_groups = [
+            {"params": backbone_trainable_params, "lr": backbone_lr, "weight_decay": weight_decay},
+            {"params": head_trainable_params, "lr": lr, "weight_decay": weight_decay}
+        ]
+        train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, drop_last=False)
+        val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
+    else:
+        # Pre-cache embeddings for frozen backbone
+        print("[*] Extracting and caching 1152-d embeddings on GPU for Train & Val splits...")
+        train_cache = extract_split_embeddings(train_dataset, backbone, device, batch_size=4)
+        val_cache = extract_split_embeddings(val_dataset, backbone, device, batch_size=4)
+        print(f"[+] Feature Extraction Complete! Train embeddings: {train_cache['features'].shape}, Val embeddings: {val_cache['features'].shape}")
+        cached_train_ds = CachedEmbeddingDataset(train_cache)
+        cached_val_ds = CachedEmbeddingDataset(val_cache)
+        train_loader = DataLoader(cached_train_ds, batch_size=batch_size, shuffle=True, drop_last=False)
+        val_loader = DataLoader(cached_val_ds, batch_size=batch_size, shuffle=False)
+        param_groups = head_trainable_params
+
+    all_trainable_params = backbone_trainable_params + head_trainable_params
+    optimizer = optim.AdamW(param_groups, lr=lr, weight_decay=weight_decay)
     scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs, eta_min=1e-5)
 
     # Experiment run directory & forensics directory
@@ -520,8 +547,10 @@ def train_experiment(config_path: str):
         "experiment_id": exp_id,
         "backbone_model_name": backbone_name,
         "total_backbone_parameters": backbone_param_count,
+        "trainable_backbone_parameters": backbone_trainable_count,
         "backbone_weight_sha256": backbone_param_hash,
         "is_genuine_pretrained": True,
+        "unfreeze_last_n_layers": unfreeze_last_n_layers,
         "random_noise_baseline": False,
         "hidden_dimension": hidden_dim,
         "processor": "SiglipImageProcessor",
@@ -542,25 +571,37 @@ def train_experiment(config_path: str):
     print(f"\n[*] Starting Multi-Task Training Loop on {gpu_name} ({epochs} epochs)...")
 
     for epoch in range(1, epochs + 1):
+        if unfreeze_last_n_layers > 0:
+            backbone.train()
         heads.train()
         running_train_loss = 0.0
         train_batches = 0
+        optimizer.zero_grad()
 
         for step, batch in enumerate(train_loader):
-            features = batch["features"].to(device)
-            targets = {k: v.to(device) for k, v in batch.items() if k not in ["image_id", "features"]}
+            targets = {k: v.to(device) for k, v in batch.items() if k not in ["image_id", "features", "pixel_values"]}
 
-            optimizer.zero_grad()
-            preds = heads(features)
-            loss, metrics = loss_fn(preds, targets)
-            loss.backward()
+            with torch.amp.autocast('cuda', dtype=torch.float16):
+                if unfreeze_last_n_layers > 0:
+                    pixel_values = batch["pixel_values"].to(device)
+                    features = backbone(pixel_values)
+                else:
+                    features = batch["features"].to(device)
+                preds = heads(features)
+                loss, metrics = loss_fn(preds, targets)
+                loss_scaled = loss / grad_accum_steps
 
-            for p in trainable_params:
-                if p.grad is not None and torch.norm(p.grad).item() > 1e-7:
-                    non_zero_gradients_seen = True
+            loss_scaled.backward()
 
-            optimizer.step()
-            total_optimizer_steps += 1
+            if (step + 1) % grad_accum_steps == 0 or (step + 1) == len(train_loader):
+                for p in all_trainable_params:
+                    if p.grad is not None and torch.norm(p.grad).item() > 1e-7:
+                        non_zero_gradients_seen = True
+
+                optimizer.step()
+                optimizer.zero_grad()
+                total_optimizer_steps += 1
+
             running_train_loss += loss.item()
             train_batches += 1
 
@@ -568,6 +609,7 @@ def train_experiment(config_path: str):
         avg_train_loss = running_train_loss / max(1, train_batches)
 
         # Validation Loop (strictly validation split N=20)
+        backbone.eval()
         heads.eval()
         running_val_loss = 0.0
         val_batches = 0
@@ -581,11 +623,16 @@ def train_experiment(config_path: str):
 
         with torch.no_grad():
             for batch in val_loader:
-                features = batch["features"].to(device)
-                targets = {k: v.to(device) for k, v in batch.items() if k not in ["image_id", "features"]}
+                targets = {k: v.to(device) for k, v in batch.items() if k not in ["image_id", "features", "pixel_values"]}
 
-                preds = heads(features)
-                loss, _ = loss_fn(preds, targets)
+                with torch.amp.autocast('cuda', dtype=torch.float16):
+                    if unfreeze_last_n_layers > 0:
+                        pixel_values = batch["pixel_values"].to(device)
+                        features = backbone(pixel_values)
+                    else:
+                        features = batch["features"].to(device)
+                    preds = heads(features)
+                    loss, _ = loss_fn(preds, targets)
 
                 running_val_loss += loss.item()
                 val_batches += 1
@@ -638,7 +685,7 @@ def train_experiment(config_path: str):
             best_val_cat_acc = cat_acc
             best_ckpt_path = os.path.join(ckpt_dir, "best_model.pt")
 
-            # Build checkpoint - for lightweight heads, save directly without wrapping
+            # Build checkpoint
             if use_lightweight:
                 model_state = heads.state_dict()
             else:
@@ -653,7 +700,7 @@ def train_experiment(config_path: str):
                 "formality": loss_fn.get_weight("formality", 0.4)
             }
 
-            torch.save({
+            ckpt_payload = {
                 "experiment_id": exp_id,
                 "epoch": epoch,
                 "model_state_dict": model_state,
@@ -668,8 +715,13 @@ def train_experiment(config_path: str):
                 "bottleneck_dim": bottleneck_dim,
                 "head_type": "lightweight" if use_lightweight else "full",
                 "loss_weights": loss_weights_dict,
+                "unfreeze_last_n_layers": unfreeze_last_n_layers,
                 "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
-            }, best_ckpt_path)
+            }
+            if unfreeze_last_n_layers > 0:
+                ckpt_payload["backbone_state_dict"] = backbone.state_dict()
+
+            torch.save(ckpt_payload, best_ckpt_path)
 
     end_time = datetime.datetime.now(datetime.timezone.utc)
     duration_seconds = (end_time - start_time).total_seconds()
@@ -678,7 +730,7 @@ def train_experiment(config_path: str):
     print(f"\n[+] Final Heads Parameter Hash: {final_param_hash}")
 
     # Forensic Verification Assertions
-    if initial_param_hash == final_param_hash:
+    if initial_heads_hash == final_param_hash:
         print("[FATAL ERROR] Model weights did NOT change after training loop! Forensic failure.")
         sys.exit(1)
 
@@ -706,6 +758,14 @@ def train_experiment(config_path: str):
         reload_heads = AuraMultiTaskHeads(taxonomy, hidden_dim=hidden_dim).to(device)
     reload_heads.load_state_dict(saved_state["heads_state_dict"])
     reloaded_hash = compute_model_parameter_hash(reload_heads)
+
+    if unfreeze_last_n_layers > 0 and "backbone_state_dict" in saved_state:
+        reload_backbone = AuraSigLIPBackbone(model_name=backbone_name, unfreeze_last_n_layers=unfreeze_last_n_layers).to(device)
+        reload_backbone.load_state_dict(saved_state["backbone_state_dict"])
+        final_backbone_hash = compute_model_parameter_hash(reload_backbone, trainable_only=False)
+    else:
+        final_backbone_hash = backbone_param_hash
+
     print(f"[+] Checkpoint Saved & Verified: {best_ckpt_path} ({ckpt_size:,} bytes, SHA-256: {ckpt_sha256[:16]}...)")
 
     loss_weights_final = {
@@ -732,18 +792,24 @@ def train_experiment(config_path: str):
         "backbone_model_name": backbone_name,
         "backbone_weight_sha256": backbone_param_hash,
         "backbone_parameters": backbone_param_count,
+        "trainable_backbone_parameters": backbone_trainable_count,
+        "trainable_head_parameters": head_trainable_count,
+        "trainable_parameters": total_trainable_count,
+        "unfreeze_last_n_layers": unfreeze_last_n_layers,
+        "backbone_learning_rate": backbone_lr if unfreeze_last_n_layers > 0 else 0.0,
         "manifest_sha256": manifest_hash,
         "frozen_blind_sha256": blind_freeze_hash,
         "train_samples": len(train_dataset),
         "validation_samples": len(val_dataset),
-        "trainable_parameters": trainable_count,
         "head_type": "lightweight" if use_lightweight else "full",
         "bottleneck_dim": bottleneck_dim,
         "head_dropout": dropout,
         "weight_decay": weight_decay,
         "loss_weights": loss_weights_final,
-        "initial_heads_hash": initial_param_hash,
+        "initial_heads_hash": initial_heads_hash,
         "final_heads_hash": final_param_hash,
+        "initial_backbone_hash": initial_backbone_hash,
+        "final_backbone_hash": final_backbone_hash,
         "total_optimizer_steps": total_optimizer_steps,
         "epochs_executed": epochs,
         "duration_seconds": round(duration_seconds, 2),
@@ -811,7 +877,7 @@ def train_experiment(config_path: str):
 
 ## 1. Proven Training Optimization
 - **Backbone SHA-256:** `{backbone_param_hash}`
-- **Initial Heads Hash:** `{initial_param_hash}`
+- **Initial Heads Hash:** `{initial_heads_hash}`
 - **Final Heads Hash:** `{final_param_hash}`
 - **Total Optimizer Steps:** `{total_optimizer_steps}`
 - **Epochs Executed:** `{epochs}`

@@ -1,0 +1,10 @@
+{
+  "manifest_name": "AURA-Research-Only-Manifest-v1.0",
+  "version": "1.0.0",
+  "created_at": "2026-08-29T00:00:00Z",
+  "governance_tier": "TIER_C_RESEARCH_ONLY",
+  "production_eligible": false,
+  "total_count": 0,
+  "items": [],
+  "notes": "Reserved strictly for academic/non-commercial research experiments (DeepFashion, ModaNet). PROHIBITED from production models."
+}

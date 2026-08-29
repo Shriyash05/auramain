@@ -1,0 +1,62 @@
+# ============================================================
+# AURA-GARMENT-V1 REPRODUCIBLE TRAINING CONFIGURATION
+# Experiment: garment-exp-0011
+# Model: Genuine Pretrained SigLIP-SO400M + Representation Adaptation Pilot
+# Hypothesis: Lightly adapting the final transformer block of SigLIP (15.2M params)
+# at a very low learning rate (1e-5) with a 256-dim probe improves generalization
+# without destroying pretrained feature quality.
+# Control: garment-exp-0008 (Frozen SigLIP + 256-dim probe)
+# Hardware: NVIDIA GeForce GTX 1650 (4GB VRAM) / CUDA 12.6
+# ============================================================
+
+experiment:
+  id: "garment-exp-0011"
+  name: "aura-garment-v1-siglip-so400m-representation-adaptation"
+  seed: 42
+  description: "Representation adaptation pilot: unfreezes final transformer block (layer 26) + post_layernorm of SigLIP with backbone_lr=1e-5, head_lr=5e-4, 256-dim bottleneck. Tests representation adaptation vs Exp-0008 frozen control."
+
+model:
+  base_architecture: "google/siglip-so400m-patch14-384"
+  canonical_taxonomy_path: "data/garment/metadata/canonical_taxonomy.json"
+  freeze_backbone: false
+  unfreeze_last_n_layers: 1  # Unfreezes layer 26 + post_layernorm (~15.2M parameters)
+  hidden_dim: 1152          # SigLIP-SO400M embedding dimension
+  bottleneck_dim: 256        # 256-dim compact bottleneck (control head)
+  head_dropout: 0.3          # Regularization dropout
+  use_lora: false
+
+dataset:
+  manifest_path: "data/garment/metadata/production-training-manifest.json"
+  canonical_taxonomy_path: "data/garment/metadata/canonical_taxonomy.json"
+  version: "0.3.0"
+  image_size: 384
+  num_workers: 2
+  allowed_splits: ["train", "validation"]
+  isolated_test_splits: ["blind_test", "hard_test", "real_world_test"]
+
+training:
+  device: "cuda"
+  mixed_precision: "fp16"
+  batch_size: 4
+  gradient_accumulation_steps: 2
+  epochs: 20
+  backbone_learning_rate: 0.00001
+  learning_rate: 0.0005
+  weight_decay: 0.05
+  optimizer: "AdamW"
+  scheduler: "cosine"
+  early_stopping_patience: 10
+
+loss_weights:
+  category_loss: 1.0
+  fit_loss: 0.8
+  silhouette_loss: 0.6
+  color_loss: 0.8
+  pattern_loss: 0.5
+  material_loss: 0.6
+  formality_loss: 0.4
+
+output:
+  runs_dir: "training/runs"
+  save_best_only: false
+  export_onnx: false

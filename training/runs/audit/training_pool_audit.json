@@ -1,0 +1,94 @@
+{
+  "manifest_path": "data/garment/metadata/production-training-manifest.json",
+  "total_images": 166,
+  "approved_count": 166,
+  "research_only_count": 0,
+  "rejected_count": 0,
+  "distributions": {
+    "splits": {
+      "train": 92,
+      "validation": 20,
+      "blind_test": 20,
+      "hard_test": 18,
+      "real_world_test": 16
+    },
+    "tiers": {
+      "TIER_A": 166
+    },
+    "license_statuses": {
+      "APPROVED_FOR_AURA_TRAINING": 166
+    },
+    "sources": {
+      "aura_in_house": 166
+    },
+    "categories": {
+      "tops": 34,
+      "bottoms": 33,
+      "outerwear": 33,
+      "shoes": 33,
+      "accessories": 33
+    },
+    "fits": {
+      "Regular": 34,
+      "Relaxed": 33,
+      "Oversized": 33,
+      "Slim": 33,
+      "Fitted": 33
+    },
+    "silhouettes": {
+      "structured": 24,
+      "straight": 24,
+      "relaxed": 24,
+      "wide": 24,
+      "boxy": 24,
+      "fitted": 23,
+      "flowing": 23
+    },
+    "color_families": {
+      "black": 21,
+      "cream": 21,
+      "white": 21,
+      "grey": 21,
+      "navy": 21,
+      "beige": 21,
+      "brown": 20,
+      "olive": 20
+    },
+    "materials": {
+      "cotton": 19,
+      "linen": 19,
+      "wool": 19,
+      "leather": 19,
+      "denim": 18,
+      "nylon": 18,
+      "cashmere": 18,
+      "silk": 18,
+      "synthetic": 18
+    },
+    "patterns": {
+      "solid": 42,
+      "textured": 42,
+      "striped": 41,
+      "plaid": 41
+    },
+    "contexts": {
+      "studio": 132,
+      "clean-background": 132,
+      "flat-lay": 150,
+      "wrinkled": 18,
+      "partial-occlusion": 18,
+      "on-body": 16,
+      "ambient-lighting": 16,
+      "consumer-photo": 16
+    }
+  },
+  "hygiene_checks": {
+    "missing_files_count": 0,
+    "unreadable_files_count": 0,
+    "exact_duplicate_count": 0,
+    "cross_split_leakage_count": 0,
+    "invalid_taxonomy_labels_count": 0,
+    "prohibited_in_production_count": 0
+  },
+  "audit_passed": true
+}
