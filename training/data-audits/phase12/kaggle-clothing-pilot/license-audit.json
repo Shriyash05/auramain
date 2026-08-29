@@ -1,0 +1,11 @@
+{
+  "dataset_id": "agrigorev/clothing-dataset-full",
+  "declared_license": "CC0 1.0 Universal",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "upstream_repository": "https://github.com/alexeygrigorev/clothing-dataset",
+  "upstream_license": "CC0 1.0 Universal",
+  "provenance_assessment": "Crowdsourced open photographic contributions under public domain dedication.",
+  "commercial_training_status": "APPROVED",
+  "production_eligibility": true,
+  "audit_conclusion": "APPROVED_FOR_COMMERCIAL_TRAINING"
+}

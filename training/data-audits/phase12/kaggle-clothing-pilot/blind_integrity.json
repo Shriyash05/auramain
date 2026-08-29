@@ -1,0 +1,6 @@
+{
+  "expected_sha256": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+  "measured_sha256": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+  "intact": true,
+  "status": "PASS"
+}

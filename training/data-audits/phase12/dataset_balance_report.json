@@ -1,8 +1,8 @@
 {
   "manifest_path": "data/garment/metadata/dataset-v0.4-candidates.json",
-  "total_assets": 195,
+  "total_assets": 295,
   "splits_distribution": {
-    "train": 121,
+    "train": 221,
     "validation": 20,
     "blind_test": 20,
     "hard_test": 18,
@@ -10,71 +10,74 @@
   },
   "tiers_distribution": {
     "TIER_A": 166,
-    "TIER_B": 29
+    "TIER_B": 129
   },
   "sources_distribution": {
     "aura_editorial_archive": 166,
-    "wikimedia_commons": 29
+    "wikimedia_commons": 29,
+    "kaggle_clothing_dataset": 100
   },
   "categories_distribution": {
-    "tops": 34,
-    "bottoms": 33,
-    "outerwear": 45,
-    "shoes": 33,
-    "accessories": 33,
-    "one_piece": 17
+    "tops": 54,
+    "bottoms": 53,
+    "outerwear": 70,
+    "shoes": 43,
+    "accessories": 38,
+    "one_piece": 37
   },
   "subcategories_distribution": {
-    "t_shirt": 5,
+    "t_shirt": 16,
     "pleated_pants": 33,
     "wool_coat": 8,
     "boots": 6,
     "scarf": 6,
     "tank": 5,
-    "blazer": 6,
+    "blazer": 9,
     "derbies": 6,
     "sunglasses": 6,
-    "knit_sweater": 5,
+    "knit_sweater": 12,
     "denim_jacket": 7,
     "loafers": 6,
     "crossbody_bag": 6,
     "overshirt": 5,
     "bomber_jacket": 8,
-    "sneakers": 5,
+    "sneakers": 15,
     "tote_bag": 5,
     "polo": 5,
     "trench_coat": 7,
     "sandals": 5,
     "belt": 5,
-    "hoodie": 5,
+    "hoodie": 10,
     "puffer_jacket": 4,
     "mules": 5,
-    "hat": 5,
-    "button_down": 4,
+    "hat": 10,
+    "button_down": 6,
     "leather_jacket": 4,
     "dungarees": 1,
-    "dress": 14,
+    "dress": 34,
     "jumpsuit": 2,
-    "jacket": 1
+    "jacket": 18,
+    "shorts": 6,
+    "trousers": 14
   },
   "fits_distribution": {
-    "Regular": 47,
-    "Relaxed": 37,
+    "Regular": 142,
+    "Relaxed": 42,
     "Oversized": 34,
     "Slim": 35,
     "Fitted": 42
   },
   "silhouettes_distribution": {
-    "structured": 28,
-    "straight": 34,
+    "structured": 36,
+    "straight": 99,
     "relaxed": 26,
     "wide": 24,
-    "boxy": 28,
+    "boxy": 33,
     "fitted": 24,
-    "flowing": 31
+    "flowing": 53
   },
   "color_families_distribution": {
-    "black": 25,
+    "black": 105,
     "cream": 22,
     "white": 24,
     "grey": 23,
@@ -82,17 +85,17 @@
     "beige": 22,
     "brown": 22,
     "olive": 20,
-    "blue": 7,
+    "blue": 27,
     "red": 4,
     "multi": 3,
     "orange": 1
   },
   "materials_distribution": {
-    "cotton": 23,
+    "cotton": 105,
     "linen": 20,
     "wool": 24,
     "leather": 20,
-    "denim": 20,
+    "denim": 38,
     "nylon": 19,
     "cashmere": 18,
     "silk": 27,
@@ -101,7 +104,7 @@
     "suede": 1
   },
   "patterns_distribution": {
-    "solid": 61,
+    "solid": 161,
     "textured": 48,
     "striped": 41,
     "plaid": 41,
@@ -110,43 +113,37 @@
   },
   "formality_distribution": {
     "casual (0.0-0.3)": 50,
-    "smart_casual (0.4-0.6)": 80,
-    "formal (0.7-1.0)": 65
+    "smart_casual (0.4-0.6)": 130,
+    "formal (0.7-1.0)": 115
   },
   "contexts_distribution": {
     "studio": 179,
     "flat_lay": 9,
-    "clean": 24,
+    "clean": 124,
     "daylight": 6,
     "hanger": 3,
-    "indoor_neutral": 23,
-    "on_body": 6,
-    "smartphone": 3,
+    "indoor_neutral": 123,
+    "on_body": 106,
+    "smartphone": 103,
     "street": 4,
     "cluttered": 1
   },
   "lighting_distribution": {
     "daylight": 6,
-    "indoor_neutral": 23
+    "indoor_neutral": 123
   },
   "backgrounds_distribution": {
-    "clean": 24,
+    "clean": 124,
     "street": 4,
     "cluttered": 1
   },
   "camera_views_distribution": {
-    "smartphone": 3
+    "smartphone": 103
   },
   "studio_vs_real_world": {
     "studio_samples": 155,
-    "real_world_samples": 40,
-    "studio_to_real_world_ratio": 3.88
+    "real_world_samples": 140,
+    "studio_to_real_world_ratio": 1.11
   },
-  "identified_gaps": [
-    {
-      "dimension": "photography_context",
-      "issue": "Studio to Real-World ratio is high (3.88:1)",
-      "recommendation": "Prioritize consumer photos: on-body selfies, bedroom mirror, wrinkled flat-lay, warm tungsten lighting."
-    }
-  ]
+  "identified_gaps": []
 }

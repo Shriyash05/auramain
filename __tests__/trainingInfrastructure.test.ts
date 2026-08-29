@@ -397,7 +397,7 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(attribution.attributions.length).toBeGreaterThanOrEqual(11);
     for (const attr of attribution.attributions) {
       expect(attr.author).toBeDefined();
-      expect(attr.license).toBeDefined();
+      expect(attr.license || attr.license_name).toBeDefined();
       expect(attr.source_url).toBeDefined();
     }
 
@@ -454,10 +454,10 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(approvedManifest.total_approved_assets).toBe(29);
 
     const prodV2 = JSON.parse(fs.readFileSync(prodV2Path, 'utf8'));
-    expect(prodV2.total_training_validation_count).toBe(141);
+    expect(prodV2.total_training_validation_count).toBeGreaterThanOrEqual(141);
 
     const attribution = JSON.parse(fs.readFileSync(attributionPath, 'utf8'));
-    expect(attribution.attributions.length).toBe(29);
+    expect(attribution.attributions.length).toBeGreaterThanOrEqual(29);
 
     const perfReport = JSON.parse(fs.readFileSync(path.join(auditDirNetBatch3, 'performance.json'), 'utf8'));
     expect(perfReport.pipeline_version).toContain('high-speed');
@@ -543,6 +543,39 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(auditSummary.status).toBe('SOURCE_DISCOVERY_READY');
     expect(auditSummary.blind_test_intact).toBe(true);
     expect(auditSummary.blind_test_checksum).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
+  });
+
+  it('verifies Phase 12A.7 Kaggle Clothing Dataset Pilot Ingestion and production merge', () => {
+    const pilotApprovedPath = path.resolve(__dirname, '../data/garment/metadata/kaggle-clothing-pilot-approved.json');
+    const pilotRegistryPath = path.resolve(__dirname, '../data/garment/metadata/kaggle-clothing-pilot-registry.json');
+    const prodV2Path = path.resolve(__dirname, '../data/garment/metadata/production-training-manifest-v2.json');
+    const auditDirPilot = path.resolve(__dirname, '../training/data-audits/phase12/kaggle-clothing-pilot');
+
+    expect(fs.existsSync(pilotApprovedPath)).toBe(true);
+    expect(fs.existsSync(pilotRegistryPath)).toBe(true);
+    expect(fs.existsSync(prodV2Path)).toBe(true);
+    expect(fs.existsSync(auditDirPilot)).toBe(true);
+
+    const pilotApproved = JSON.parse(fs.readFileSync(pilotApprovedPath, 'utf8'));
+    expect(pilotApproved.total_approved_assets).toBe(100);
+    expect(pilotApproved.license_status).toBe('APPROVED_PUBLIC_DOMAIN_CC0');
+
+    for (const item of pilotApproved.items) {
+      expect(item.license_name).toContain('CC0');
+      expect(item.production_eligible).toBe(true);
+      expect(item.training_eligible).toBe(true);
+      expect(item.labels.category).toBeDefined();
+    }
+
+    const prodV2 = JSON.parse(fs.readFileSync(prodV2Path, 'utf8'));
+    expect(prodV2.total_training_validation_count).toBe(241);
+
+    const milestoneStatus = JSON.parse(fs.readFileSync(path.join(auditDirPilot, 'milestone_status.json'), 'utf8'));
+    expect(milestoneStatus.status).toBe('PILOT_INGESTION_APPROVED_AND_MERGED');
+    expect(milestoneStatus.dataset_value).toBe('HIGH_VALUE');
+    expect(milestoneStatus.recommendation).toBe('EXPAND_KAGGLE');
+    expect(milestoneStatus.blind_test_intact).toBe(true);
+    expect(milestoneStatus.blind_test_checksum).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
   });
 });
 

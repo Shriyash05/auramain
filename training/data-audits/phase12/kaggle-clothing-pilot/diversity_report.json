@@ -1,0 +1,18 @@
+{
+  "total_approved_pilot_assets": 100,
+  "categories": {
+    "one_piece": 20,
+    "outerwear": 25,
+    "tops": 20,
+    "bottoms": 20,
+    "shoes": 10,
+    "accessories": 5
+  },
+  "context_distribution": {
+    "smartphone": 100,
+    "on_body": 100,
+    "flat_lay": 0,
+    "indoor_neutral": 100,
+    "clean": 100
+  }
+}

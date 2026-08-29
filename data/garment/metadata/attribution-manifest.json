@@ -1,9 +1,9 @@
 {
   "manifest_name": "AURA CC-BY and Permissive Attribution Manifest",
   "version": "1.0.0",
-  "updated_at": "2026-08-29T18:40:00Z",
+  "updated_at": "2026-08-29T16:43:21Z",
   "license_policy": "AURA_DATASET_GOVERNANCE_V1",
-  "total_attributed_assets": 29,
+  "total_attributed_assets": 129,
   "attributions": [
     {
       "image_id": "garm_net_001",
@@ -265,6 +265,806 @@
       "license_url": "https://creativecommons.org/licenses/by/2.0",
       "source_url": "https://commons.wikimedia.org/wiki/File:Yves_Saint_Laurent_vintage_knit_dress_deYoung_Museum.jpg",
       "attribution_statement": "File:Yves Saint Laurent vintage knit dress deYoung Museum.jpg by David Hilowitz (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Yves_Saint_Laurent_vintage_knit_dress_deYoung_Museum.jpg"
+    },
+    {
+      "image_id": "garm_kaggle_001",
+      "author": "Clothing Dataset Contributor (Sender 174)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image e3c8e575-c5b8-4c4c-9f49-62b37b611b6b from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_002",
+      "author": "Clothing Dataset Contributor (Sender 240)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 9a5bb17d-2ab7-45dc-af8b-08ad0f42ba16 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_003",
+      "author": "Clothing Dataset Contributor (Sender 221)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 4313db90-b7e8-4f73-b239-f70ad8e0bf7a from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_004",
+      "author": "Clothing Dataset Contributor (Sender 232)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 0a69db60-c052-4b9a-a90d-e53120d091d5 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_005",
+      "author": "Clothing Dataset Contributor (Sender 72)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 4e788cda-1b2a-43dd-ad4f-8a275475ea88 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_006",
+      "author": "Clothing Dataset Contributor (Sender 211)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 835a1782-1eaf-41f3-9d5f-232161f4db53 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_007",
+      "author": "Clothing Dataset Contributor (Sender 35)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image cea1326b-5c4b-4cbb-bb74-cd4c8a2666ef from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_008",
+      "author": "Clothing Dataset Contributor (Sender 158)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image a09d821a-cfa4-4dcb-b734-e45515b3ead0 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_009",
+      "author": "Clothing Dataset Contributor (Sender 148)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 2456b899-8146-4823-951a-efe3ab0c2a5b from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_010",
+      "author": "Clothing Dataset Contributor (Sender 260)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image f242fb73-77c7-4933-9291-1cf44b56ba2e from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_011",
+      "author": "Clothing Dataset Contributor (Sender 295)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image ac4e79c1-4bfd-4181-bdff-cd860af2c8d3 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_012",
+      "author": "Clothing Dataset Contributor (Sender 48)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 92f5cc49-20c0-4b60-a206-9f26e4b736a7 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_013",
+      "author": "Clothing Dataset Contributor (Sender 322)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 08e1576e-1a7c-4a80-813d-f6914b010a8a from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_014",
+      "author": "Clothing Dataset Contributor (Sender 48)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 396bd268-2b09-4412-a3c7-323b57cbf610 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_015",
+      "author": "Clothing Dataset Contributor (Sender 135)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 2074bc3b-b374-4fc6-b520-83dd51b98976 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_016",
+      "author": "Clothing Dataset Contributor (Sender 262)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image fef9c050-3515-4229-8f1c-215cc156df2c from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_017",
+      "author": "Clothing Dataset Contributor (Sender 267)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 146d59ff-931a-4997-a699-d27c062135fc from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_018",
+      "author": "Clothing Dataset Contributor (Sender 48)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 521c2c74-7131-427a-af36-0c48aa438119 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_019",
+      "author": "Clothing Dataset Contributor (Sender 48)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image d405f7e3-be05-4b67-8741-8b3507f2d405 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_020",
+      "author": "Clothing Dataset Contributor (Sender 204)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 28b09463-6bbb-491d-9ffc-f36df5c6b211 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_021",
+      "author": "Clothing Dataset Contributor (Sender 186)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 1b2ace0a-382e-4b87-8e9d-35cbcfac636b from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_022",
+      "author": "Clothing Dataset Contributor (Sender 242)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 5b32191d-85d4-4990-b419-ae928b56597b from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_023",
+      "author": "Clothing Dataset Contributor (Sender 152)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image ccb1280e-ae73-4884-b9bb-a73be3fac285 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_024",
+      "author": "Clothing Dataset Contributor (Sender 82)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 025b653a-8b58-44e8-a40a-1ec259ed0441 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_025",
+      "author": "Clothing Dataset Contributor (Sender 221)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 7ac30897-8228-4851-8395-ee69dfb37aba from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_026",
+      "author": "Clothing Dataset Contributor (Sender 370)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 459ec559-7f45-4906-95d7-d449d5eadfdf from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_027",
+      "author": "Clothing Dataset Contributor (Sender 158)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 5c4bae39-ff5e-4d76-a2b1-9386906a565b from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_028",
+      "author": "Clothing Dataset Contributor (Sender 322)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image a59154c9-0a36-4592-8cd1-31149605c6c5 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_029",
+      "author": "Clothing Dataset Contributor (Sender 361)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 29002194-4f1c-4ef8-aac0-3e92d79d5b37 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_030",
+      "author": "Clothing Dataset Contributor (Sender 50)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 5a4e23a8-81a0-4009-9fa0-9e010b652498 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_031",
+      "author": "Clothing Dataset Contributor (Sender 181)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image f061dc7c-8582-4234-b0b6-bb2bc20d6e43 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_032",
+      "author": "Clothing Dataset Contributor (Sender 181)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 21531a69-d7f0-4d77-a2d9-a4269652344e from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_033",
+      "author": "Clothing Dataset Contributor (Sender 181)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image b5d1e4db-4455-412d-903b-108fb83723a8 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_034",
+      "author": "Clothing Dataset Contributor (Sender 181)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 2ca50463-77b2-41ca-a96d-7a2d2d7fca5a from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_035",
+      "author": "Clothing Dataset Contributor (Sender 45)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image f4ab8ee7-6d11-409c-9c81-1a8912cd7b3a from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_036",
+      "author": "Clothing Dataset Contributor (Sender 181)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 161e35df-93d4-4b30-817e-de03c8c1d55a from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_037",
+      "author": "Clothing Dataset Contributor (Sender 181)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 42518e91-c969-49f5-ac68-dfe394d7451e from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_038",
+      "author": "Clothing Dataset Contributor (Sender 48)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image febae8c9-1a36-4303-90aa-9fc306278cb2 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_039",
+      "author": "Clothing Dataset Contributor (Sender 181)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 26f59ad4-2bac-4f38-a695-ff82498ab97a from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_040",
+      "author": "Clothing Dataset Contributor (Sender 204)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 0d73e759-eeaa-43ab-98d4-196b6974c41e from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_041",
+      "author": "Clothing Dataset Contributor (Sender 310)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image e0f22daa-fb95-490b-85a5-2cb85a5109db from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_042",
+      "author": "Clothing Dataset Contributor (Sender 204)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 2962430c-dee4-4c25-9afb-e6ee69768fe8 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_043",
+      "author": "Clothing Dataset Contributor (Sender 8)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 0d047b70-c53a-463d-946f-c8758c2af391 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_044",
+      "author": "Clothing Dataset Contributor (Sender 46)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 550cf9c1-e3a5-4104-b219-0d4155453308 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_045",
+      "author": "Clothing Dataset Contributor (Sender 104)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 9846b8a6-b0c7-404d-9380-d23b1eeb40df from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_046",
+      "author": "Clothing Dataset Contributor (Sender 168)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 62e1f14f-9376-4d4a-bf33-e2b3d864695a from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_047",
+      "author": "Clothing Dataset Contributor (Sender 148)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image ea7b6656-3f84-4eb3-9099-23e623fc1018 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_048",
+      "author": "Clothing Dataset Contributor (Sender 290)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image c7c0ee49-32c3-4273-b37b-980972e352eb from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_049",
+      "author": "Clothing Dataset Contributor (Sender 310)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image f86d0bfd-6a44-4dce-a1ee-235a5d0a49a8 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_050",
+      "author": "Clothing Dataset Contributor (Sender 248)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 35209eb5-489a-4774-9cf6-9fd028254883 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_051",
+      "author": "Clothing Dataset Contributor (Sender 262)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image dd0c3b93-fce0-4ae0-913f-0a291bf0c590 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_052",
+      "author": "Clothing Dataset Contributor (Sender 266)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 09ffb7d6-3045-4d5a-8f4b-f0e4738fa960 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_053",
+      "author": "Clothing Dataset Contributor (Sender 262)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image caa33042-e586-4f39-bd29-36d03ad5a89b from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_054",
+      "author": "Clothing Dataset Contributor (Sender 48)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 0bb100d9-e760-4bc6-8d74-4cdd429d38eb from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_055",
+      "author": "Clothing Dataset Contributor (Sender 267)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 414cf5c9-f0eb-4f7e-a20a-7ef77ef2e06f from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_056",
+      "author": "Clothing Dataset Contributor (Sender 260)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 164900f8-4d29-454b-97ba-5d7d22f5cfe2 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_057",
+      "author": "Clothing Dataset Contributor (Sender 322)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 185b7ae2-0400-40ae-8668-6ac72f737060 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_058",
+      "author": "Clothing Dataset Contributor (Sender 45)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 8fdc3533-5ae0-4111-9bb9-899a9156868f from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_059",
+      "author": "Clothing Dataset Contributor (Sender 322)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image dbd42bc7-1819-49bf-83b0-30844e9bc344 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_060",
+      "author": "Clothing Dataset Contributor (Sender 260)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 11331826-e5c9-461d-acd2-b078022a9146 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_061",
+      "author": "Clothing Dataset Contributor (Sender 260)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image cbceafc9-8c97-42a0-8716-e6d363d3c22a from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_062",
+      "author": "Clothing Dataset Contributor (Sender 181)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 17982ffc-9631-4afc-bb57-5881c740c8f0 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_063",
+      "author": "Clothing Dataset Contributor (Sender 204)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 973b5b65-72ef-41b4-8290-0ee84dd44bce from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_064",
+      "author": "Clothing Dataset Contributor (Sender 204)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 172950bd-f639-4ce5-bc55-d17cea7b9705 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_065",
+      "author": "Clothing Dataset Contributor (Sender 92)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 763f1369-1d31-434d-b2c0-f3dc60576a63 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_066",
+      "author": "Clothing Dataset Contributor (Sender 181)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 57948e3b-4f45-4ec2-adc1-f80658cf40a4 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_067",
+      "author": "Clothing Dataset Contributor (Sender 33)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image b9a10398-fdc0-425d-ac63-3b80b45eb899 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_068",
+      "author": "Clothing Dataset Contributor (Sender 138)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 5d3a1404-697f-479f-9090-c1ecd0413d27 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_069",
+      "author": "Clothing Dataset Contributor (Sender 95)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image f31fd334-0aef-4c15-aba0-92aa541013b2 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_070",
+      "author": "Clothing Dataset Contributor (Sender 41)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 9e29f08f-0e9a-42ff-86f3-7330babc2c6f from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_071",
+      "author": "Clothing Dataset Contributor (Sender 185)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image f1ff2780-2ab1-401f-8089-089b5dfa1cf2 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_072",
+      "author": "Clothing Dataset Contributor (Sender 266)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 4ba6deca-32d4-414a-8ccc-42bee703520d from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_073",
+      "author": "Clothing Dataset Contributor (Sender 182)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 725f2fc9-230b-4bcb-807b-6a757cefdf37 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_074",
+      "author": "Clothing Dataset Contributor (Sender 41)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 421c4931-edc5-4458-ae7e-4e3b7a6d8ea7 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_075",
+      "author": "Clothing Dataset Contributor (Sender 181)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image e73c67c9-50cb-4e1e-82b1-1ff6e78b2846 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_076",
+      "author": "Clothing Dataset Contributor (Sender 181)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image e78ca83f-6aed-43a1-bfea-0cd014316a1e from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_077",
+      "author": "Clothing Dataset Contributor (Sender 50)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 1015f2a4-265d-4d43-b697-17c5735cf46d from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_078",
+      "author": "Clothing Dataset Contributor (Sender 322)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image bb619008-bd02-46c2-8690-ddab946dc10e from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_079",
+      "author": "Clothing Dataset Contributor (Sender 61)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 35e0d6b8-da0c-4ce8-b2d6-6117d02e9549 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_080",
+      "author": "Clothing Dataset Contributor (Sender 48)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 5d6be0e5-7d7c-4105-b00c-251d62737863 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_081",
+      "author": "Clothing Dataset Contributor (Sender 262)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image bc9f281c-c89c-4655-99dd-585cb1c8b6cc from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_082",
+      "author": "Clothing Dataset Contributor (Sender 181)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 17bebe65-17cc-42b3-885f-4e6c64a16f26 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_083",
+      "author": "Clothing Dataset Contributor (Sender 204)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image fefa13bc-8c4a-4613-ae84-56d379d46984 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_084",
+      "author": "Clothing Dataset Contributor (Sender 204)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 6733e81a-d9a2-4f7c-869e-3420ab467112 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_085",
+      "author": "Clothing Dataset Contributor (Sender 260)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 0903f4c9-a877-4832-bb9e-2a4f4b8f7f67 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_086",
+      "author": "Clothing Dataset Contributor (Sender 72)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image c224d361-b064-41e3-9c21-45335e840a6f from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_087",
+      "author": "Clothing Dataset Contributor (Sender 331)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image ac07a0bf-533e-4e22-9b8d-35cec894b207 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_088",
+      "author": "Clothing Dataset Contributor (Sender 189)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 3b86d877-2b9e-4c8b-a6a2-1d87513309d0 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_089",
+      "author": "Clothing Dataset Contributor (Sender 291)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 75b7e88f-093d-453a-9238-a91e18ef80f5 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_090",
+      "author": "Clothing Dataset Contributor (Sender 294)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 240f72f6-d5c3-4e64-9d59-179db8a37569 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_091",
+      "author": "Clothing Dataset Contributor (Sender 141)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 15839171-a64e-4526-a4fa-314a7b2c72fc from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_092",
+      "author": "Clothing Dataset Contributor (Sender 204)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image f5ed50b6-79b3-4d9d-84a9-8010f5e1c581 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_093",
+      "author": "Clothing Dataset Contributor (Sender 204)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 8030ef80-857e-4485-a29d-af320acde3cf from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_094",
+      "author": "Clothing Dataset Contributor (Sender 204)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 562fcdc1-cda7-40cd-bb7b-9b2c908d0931 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_095",
+      "author": "Clothing Dataset Contributor (Sender 167)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image a283e901-d8da-4be1-91ae-2a3c94de48a2 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_096",
+      "author": "Clothing Dataset Contributor (Sender 262)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 09f0db06-5f01-468b-bb60-54a3093f7c27 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_097",
+      "author": "Clothing Dataset Contributor (Sender 167)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image e58c2375-a9cb-4226-b6a3-54126cad0451 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_098",
+      "author": "Clothing Dataset Contributor (Sender 154)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 8f809fea-1f7d-4695-be36-a061bd77c170 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_099",
+      "author": "Clothing Dataset Contributor (Sender 181)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image d794c5f1-e227-4007-ba34-8192faba5a05 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
+    },
+    {
+      "image_id": "garm_kaggle_100",
+      "author": "Clothing Dataset Contributor (Sender 267)",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 22745622-ae32-407f-9af1-9a25eb79d7b3 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0)."
     }
   ]
 }

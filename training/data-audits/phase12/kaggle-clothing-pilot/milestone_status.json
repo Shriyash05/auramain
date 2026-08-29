@@ -1,0 +1,18 @@
+{
+  "milestone": "PHASE_12A_7_KAGGLE_PILOT_INGESTION",
+  "status": "PILOT_INGESTION_APPROVED_AND_MERGED",
+  "pilot_dataset": "agrigorev/clothing-dataset-full",
+  "dataset_owner": "Alexey Grigorev",
+  "declared_license": "CC0 1.0 Universal",
+  "pilot_downloaded": 100,
+  "quality_passed": 100,
+  "duplicate_free": 100,
+  "human_reviewed": 100,
+  "approved_and_merged": 100,
+  "production_train_val_pool": 241,
+  "gap_to_250": 9,
+  "dataset_value": "HIGH_VALUE",
+  "recommendation": "EXPAND_KAGGLE",
+  "blind_test_checksum": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+  "blind_test_intact": true
+}

@@ -1,6 +1,6 @@
 {
   "manifest_path": "data/garment/metadata/dataset-v0.4-candidates.json",
-  "total_images_checked": 195,
+  "total_images_checked": 295,
   "quality_passed": true,
   "metrics": {
     "missing_files_count": 0,

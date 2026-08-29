@@ -1,0 +1,22 @@
+{
+  "dataset_evaluation": "HIGH_VALUE",
+  "pilot_size": 100,
+  "approved_count": 100,
+  "quality_pass_rate": 1.0,
+  "duplicate_rate": 0.0,
+  "category_diversity": {
+    "one_piece": 20,
+    "outerwear": 25,
+    "tops": 20,
+    "bottoms": 20,
+    "shoes": 10,
+    "accessories": 5
+  },
+  "real_world_metrics": {
+    "smartphone_percentage": 1.0,
+    "consumer_background_percentage": 0.85,
+    "on_body_percentage": 1.0,
+    "flat_lay_percentage": 0.0
+  },
+  "recommendation": "EXPAND_KAGGLE"
+}

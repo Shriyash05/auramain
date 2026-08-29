@@ -1,0 +1,3610 @@
+{
+  "registry_name": "AURA Kaggle Clothing Pilot Registry",
+  "version": "1.0.0",
+  "updated_at": "2026-08-29T16:43:06Z",
+  "total_downloaded": 100,
+  "approved_count": 100,
+  "rejected_count": 0,
+  "candidates": [
+    {
+      "candidate_id": "cand_kaggle_pilot_001",
+      "image_id": "garm_kaggle_001",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/e3c8e575-c5b8-4c4c-9f49-62b37b611b6b.jpg",
+      "source_metadata": {
+        "sender_id": "174",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "6ebe464ce11e42b9e64a24cd2c4cbc6ecf363b0c6fd2c1c29bccfcc85a305e8b",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 29517,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_007",
+      "image_id": "garm_kaggle_002",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/9a5bb17d-2ab7-45dc-af8b-08ad0f42ba16.jpg",
+      "source_metadata": {
+        "sender_id": "240",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "93cef7a19d3133455459701841c8ea814504fc1f7b4ecdebbec4eb0df4504f36",
+      "dimensions": [
+        422,
+        400
+      ],
+      "file_size": 46832,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_008",
+      "image_id": "garm_kaggle_003",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/4313db90-b7e8-4f73-b239-f70ad8e0bf7a.jpg",
+      "source_metadata": {
+        "sender_id": "221",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "3398c7913e7e4e53c6f92c0648a3b9fa487820d7b587335e91ea1650e1a5f987",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 19153,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_004",
+      "image_id": "garm_kaggle_004",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/0a69db60-c052-4b9a-a90d-e53120d091d5.jpg",
+      "source_metadata": {
+        "sender_id": "232",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "0d1e5daf7ebb5141131bd65a71dabb243fae04c320a8db8a17ff0baf9b378066",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 17317,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_005",
+      "image_id": "garm_kaggle_005",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/4e788cda-1b2a-43dd-ad4f-8a275475ea88.jpg",
+      "source_metadata": {
+        "sender_id": "72",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "0694506fde04981bdf544273cca7088f06a1ad8a2a4a5eb773d251f0ae7a5e52",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 21591,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_006",
+      "image_id": "garm_kaggle_006",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/835a1782-1eaf-41f3-9d5f-232161f4db53.jpg",
+      "source_metadata": {
+        "sender_id": "211",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "d7a4c477a6f825571c512449917e5cf364e19647cb8db2ddd08491b735f92dad",
+      "dimensions": [
+        400,
+        532
+      ],
+      "file_size": 34418,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_003",
+      "image_id": "garm_kaggle_007",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/cea1326b-5c4b-4cbb-bb74-cd4c8a2666ef.jpg",
+      "source_metadata": {
+        "sender_id": "35",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "87340ba3a1e1c1416ed9d972541c9c6f28be4794948aa0e5325103d06b03733d",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 46126,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_002",
+      "image_id": "garm_kaggle_008",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/a09d821a-cfa4-4dcb-b734-e45515b3ead0.jpg",
+      "source_metadata": {
+        "sender_id": "158",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "327fa6f337ca75b886b49d4564360272cfed8f95dcabe7b2bb2f44e8a8b561b3",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 46208,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_009",
+      "image_id": "garm_kaggle_009",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/2456b899-8146-4823-951a-efe3ab0c2a5b.jpg",
+      "source_metadata": {
+        "sender_id": "148",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "6f201153f02c993b4de65f9dee0594c341500e631652cea4b8453c0840ff0c88",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 33730,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_012",
+      "image_id": "garm_kaggle_010",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/f242fb73-77c7-4933-9291-1cf44b56ba2e.jpg",
+      "source_metadata": {
+        "sender_id": "260",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "82f60c1521de08f27d3ac4132b135a0fcfb4eb64419c3a517f15d18a4fac8c4f",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 18975,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_010",
+      "image_id": "garm_kaggle_011",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/ac4e79c1-4bfd-4181-bdff-cd860af2c8d3.jpg",
+      "source_metadata": {
+        "sender_id": "295",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "a8b37487a9533254f82eee342d2eca5ed1feb5bad25f151e45a28cefc1358756",
+      "dimensions": [
+        847,
+        400
+      ],
+      "file_size": 27937,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_011",
+      "image_id": "garm_kaggle_012",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/92f5cc49-20c0-4b60-a206-9f26e4b736a7.jpg",
+      "source_metadata": {
+        "sender_id": "48",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "770857da55309bd4500c1716b7fce1478a6a35cf57a94f32d9fc4a021417a7ee",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 50815,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_014",
+      "image_id": "garm_kaggle_013",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/08e1576e-1a7c-4a80-813d-f6914b010a8a.jpg",
+      "source_metadata": {
+        "sender_id": "322",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "69c651763f055d690d818b43184ecd47873c1054abe0e667aaa44a4a7eb30480",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 25328,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_013",
+      "image_id": "garm_kaggle_014",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/396bd268-2b09-4412-a3c7-323b57cbf610.jpg",
+      "source_metadata": {
+        "sender_id": "48",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "d5cd9ba3473f1cda0d512b9737b602c9964ce4fd557ab282e9a9f926e9c3f33a",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 23743,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_015",
+      "image_id": "garm_kaggle_015",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/2074bc3b-b374-4fc6-b520-83dd51b98976.jpg",
+      "source_metadata": {
+        "sender_id": "135",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "d0682cef3a6a8b8b2f5238f6d5d3a8163b98a5d748fbb03e331cad991f69f77d",
+      "dimensions": [
+        400,
+        711
+      ],
+      "file_size": 23492,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_016",
+      "image_id": "garm_kaggle_016",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/fef9c050-3515-4229-8f1c-215cc156df2c.jpg",
+      "source_metadata": {
+        "sender_id": "262",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "4a8c4a359f80b415bcd824bfb3884400c054d33a1aad73f3ee40060266481bc7",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 34512,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_017",
+      "image_id": "garm_kaggle_017",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/146d59ff-931a-4997-a699-d27c062135fc.jpg",
+      "source_metadata": {
+        "sender_id": "267",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "51db978d622deba891af5b3525ddbdc697fb2cd2937060447a36487a1c1aead3",
+      "dimensions": [
+        400,
+        711
+      ],
+      "file_size": 72053,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_019",
+      "image_id": "garm_kaggle_018",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/521c2c74-7131-427a-af36-0c48aa438119.jpg",
+      "source_metadata": {
+        "sender_id": "48",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "a5d330c44210b1e0538d08e74b977b90d2eec73de0a37966bb4af62f7fc515c0",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 25946,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_018",
+      "image_id": "garm_kaggle_019",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/d405f7e3-be05-4b67-8741-8b3507f2d405.jpg",
+      "source_metadata": {
+        "sender_id": "48",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "a54854400662cac61517425da0748df23c65f73973bba031b8cb3e92bdf1e7f8",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 24315,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_020",
+      "image_id": "garm_kaggle_020",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/28b09463-6bbb-491d-9ffc-f36df5c6b211.jpg",
+      "source_metadata": {
+        "sender_id": "204",
+        "original_label": "Dress"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "dcdc8e72bb4b209b3813f7bd003c7bc6c1193e384c76d65d098a2f952034f506",
+      "dimensions": [
+        400,
+        455
+      ],
+      "file_size": 28462,
+      "provisional_category": "Dress",
+      "provisional_label": "one_piece",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_021",
+      "image_id": "garm_kaggle_021",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/1b2ace0a-382e-4b87-8e9d-35cbcfac636b.jpg",
+      "source_metadata": {
+        "sender_id": "186",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "2b4fee163c08b4bff95cc22cc1e25148b9b0d668272796dc24917b0362bd1b8a",
+      "dimensions": [
+        400,
+        888
+      ],
+      "file_size": 51386,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_022",
+      "image_id": "garm_kaggle_022",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/5b32191d-85d4-4990-b419-ae928b56597b.jpg",
+      "source_metadata": {
+        "sender_id": "242",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "d384350d46fb0bf1b1170f9008d866285389498ab682a9d00ed74d0f0d96846c",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 43185,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_023",
+      "image_id": "garm_kaggle_023",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/ccb1280e-ae73-4884-b9bb-a73be3fac285.jpg",
+      "source_metadata": {
+        "sender_id": "152",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "98369de7f8e4bc55c105e239204ba1dc57fd2322a0810b5e3a0b4df78ecfe362",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 21244,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_024",
+      "image_id": "garm_kaggle_024",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/025b653a-8b58-44e8-a40a-1ec259ed0441.jpg",
+      "source_metadata": {
+        "sender_id": "82",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "5a750aac382e14439b0fae81879be89a1731e08ed79d1acaf6929fcbeafa977d",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 29320,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_025",
+      "image_id": "garm_kaggle_025",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/7ac30897-8228-4851-8395-ee69dfb37aba.jpg",
+      "source_metadata": {
+        "sender_id": "221",
+        "original_label": "Blazer"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "05877c06703f1fc37d455c9e04f7647bf63de0598540fafc3d9d935bff96aac2",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 22914,
+      "provisional_category": "Blazer",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_026",
+      "image_id": "garm_kaggle_026",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/459ec559-7f45-4906-95d7-d449d5eadfdf.jpg",
+      "source_metadata": {
+        "sender_id": "370",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "e6ce6c4f6b038e3f2a61be13649778336ed5d9dcd651a2c06f9dc162637c636e",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 19637,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_027",
+      "image_id": "garm_kaggle_027",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/5c4bae39-ff5e-4d76-a2b1-9386906a565b.jpg",
+      "source_metadata": {
+        "sender_id": "158",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "4140a3e3c7f7894c62da85ae91a173a7ac1d49bbde70c668d34fc29e76377496",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 32188,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_029",
+      "image_id": "garm_kaggle_028",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/a59154c9-0a36-4592-8cd1-31149605c6c5.jpg",
+      "source_metadata": {
+        "sender_id": "322",
+        "original_label": "Hoodie"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "22d65c06d4081d68740fd116b5d47c39eff392e2e7216d8f8d05a3c3b68bd31c",
+      "dimensions": [
+        534,
+        400
+      ],
+      "file_size": 25022,
+      "provisional_category": "Hoodie",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_028",
+      "image_id": "garm_kaggle_029",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/29002194-4f1c-4ef8-aac0-3e92d79d5b37.jpg",
+      "source_metadata": {
+        "sender_id": "361",
+        "original_label": "Hoodie"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "9f442edc121d7e292f8c997ec26d5b547775742e3d9596118c4c222d98841421",
+      "dimensions": [
+        400,
+        507
+      ],
+      "file_size": 22111,
+      "provisional_category": "Hoodie",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_030",
+      "image_id": "garm_kaggle_030",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/5a4e23a8-81a0-4009-9fa0-9e010b652498.jpg",
+      "source_metadata": {
+        "sender_id": "50",
+        "original_label": "Hoodie"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "68df546da167ebb2acf36fab4c82b4406ec38b184336b88f89d9782b93f00551",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 21740,
+      "provisional_category": "Hoodie",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_031",
+      "image_id": "garm_kaggle_031",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/f061dc7c-8582-4234-b0b6-bb2bc20d6e43.jpg",
+      "source_metadata": {
+        "sender_id": "181",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "75970e5ad24e6b3c16330039e4af5f46ba3ecfb18f865456be1cbe47cb86fb44",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 21276,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_032",
+      "image_id": "garm_kaggle_032",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/21531a69-d7f0-4d77-a2d9-a4269652344e.jpg",
+      "source_metadata": {
+        "sender_id": "181",
+        "original_label": "Hoodie"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "950250f95e1323c5b2355f4c451084cf8d2d0e62dfaca171818a695f437c483f",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 13805,
+      "provisional_category": "Hoodie",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_034",
+      "image_id": "garm_kaggle_033",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/b5d1e4db-4455-412d-903b-108fb83723a8.jpg",
+      "source_metadata": {
+        "sender_id": "181",
+        "original_label": "Blazer"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "c3469206cd9b344e619f563d69c6867a32e8d027e9ca8782483bd6800a3f45ae",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 16135,
+      "provisional_category": "Blazer",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_036",
+      "image_id": "garm_kaggle_034",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/2ca50463-77b2-41ca-a96d-7a2d2d7fca5a.jpg",
+      "source_metadata": {
+        "sender_id": "181",
+        "original_label": "Blazer"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "e15b1e0b4efb9cab3a6e807d233810973c77a8fa62c65b472b7bc185843260d1",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 27333,
+      "provisional_category": "Blazer",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_033",
+      "image_id": "garm_kaggle_035",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/f4ab8ee7-6d11-409c-9c81-1a8912cd7b3a.jpg",
+      "source_metadata": {
+        "sender_id": "45",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "24772b096d5881b6ae7c4cfb287bc9cc00a6045da6450744e242e4b06dc24184",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 18819,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_035",
+      "image_id": "garm_kaggle_036",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/161e35df-93d4-4b30-817e-de03c8c1d55a.jpg",
+      "source_metadata": {
+        "sender_id": "181",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "0a2baab7642a8871abb178898ba9d75f8075a315f1f4af5c50a7f26dc2b9af0d",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 21370,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_037",
+      "image_id": "garm_kaggle_037",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/42518e91-c969-49f5-ac68-dfe394d7451e.jpg",
+      "source_metadata": {
+        "sender_id": "181",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "a88e9e55498a9ee82d12230231cd1ef0feb1cb6aa71618b2a03b47a49ede6cbc",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 21806,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_038",
+      "image_id": "garm_kaggle_038",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/febae8c9-1a36-4303-90aa-9fc306278cb2.jpg",
+      "source_metadata": {
+        "sender_id": "48",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "76ff4a5054337639ceb481d9ee29cf2916f35fc597359ee0ab88cb69a8d0b6ca",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 32036,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_039",
+      "image_id": "garm_kaggle_039",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/26f59ad4-2bac-4f38-a695-ff82498ab97a.jpg",
+      "source_metadata": {
+        "sender_id": "181",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "4e6c1a05abb33de5dcb6ed52f477009a2fb80dcab88294770e4247551b12d50d",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 21302,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_042",
+      "image_id": "garm_kaggle_040",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/0d73e759-eeaa-43ab-98d4-196b6974c41e.jpg",
+      "source_metadata": {
+        "sender_id": "204",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "b72ef58c5000e1ae84104da5048061f0a649f8facae994ec8d01ed3efe061146",
+      "dimensions": [
+        409,
+        400
+      ],
+      "file_size": 19767,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_043",
+      "image_id": "garm_kaggle_041",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/e0f22daa-fb95-490b-85a5-2cb85a5109db.jpg",
+      "source_metadata": {
+        "sender_id": "310",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "fd6b4a366bda8eb07622303314c6f237a73842d364a456ec2e29d7c444cd803a",
+      "dimensions": [
+        400,
+        711
+      ],
+      "file_size": 20039,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_041",
+      "image_id": "garm_kaggle_042",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/2962430c-dee4-4c25-9afb-e6ee69768fe8.jpg",
+      "source_metadata": {
+        "sender_id": "204",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "859f627e616729f335e0fcdfc1665489a2884f703ac5796ea4881c0a69244d13",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 29206,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_040",
+      "image_id": "garm_kaggle_043",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/0d047b70-c53a-463d-946f-c8758c2af391.jpg",
+      "source_metadata": {
+        "sender_id": "8",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "f312cb7a153e84fd8f8a388e97b5a59be3ad37950bdb26085b7f5984c591fe40",
+      "dimensions": [
+        533,
+        400
+      ],
+      "file_size": 24338,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_044",
+      "image_id": "garm_kaggle_044",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/550cf9c1-e3a5-4104-b219-0d4155453308.jpg",
+      "source_metadata": {
+        "sender_id": "46",
+        "original_label": "Hoodie"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "31ff1f78cf5539762e3f7dda843091e9187db9d17292bb8da122691e169cba11",
+      "dimensions": [
+        400,
+        400
+      ],
+      "file_size": 14848,
+      "provisional_category": "Hoodie",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_048",
+      "image_id": "garm_kaggle_045",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/9846b8a6-b0c7-404d-9380-d23b1eeb40df.jpg",
+      "source_metadata": {
+        "sender_id": "104",
+        "original_label": "T-Shirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "bb3dddaeca301b4a7832e800425685aac1401ebf3a01730950af266f68f6e72e",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 22172,
+      "provisional_category": "T-Shirt",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_049",
+      "image_id": "garm_kaggle_046",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/62e1f14f-9376-4d4a-bf33-e2b3d864695a.jpg",
+      "source_metadata": {
+        "sender_id": "168",
+        "original_label": "T-Shirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "8b244a66e5219c9ffdb81ed072aeaf9200800dd719088187b559679a05b0f933",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 21590,
+      "provisional_category": "T-Shirt",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_046",
+      "image_id": "garm_kaggle_047",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/ea7b6656-3f84-4eb3-9099-23e623fc1018.jpg",
+      "source_metadata": {
+        "sender_id": "148",
+        "original_label": "T-Shirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "c93a7d3e6346629ec2575a5bfba183cfbd94c926bc728ffd680564d049840f8a",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 14508,
+      "provisional_category": "T-Shirt",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_047",
+      "image_id": "garm_kaggle_048",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/c7c0ee49-32c3-4273-b37b-980972e352eb.jpg",
+      "source_metadata": {
+        "sender_id": "290",
+        "original_label": "Shirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "b85467340cd79f4f10f0225683017d571b6b7f3eb7fc304954c9e5233747726e",
+      "dimensions": [
+        533,
+        400
+      ],
+      "file_size": 39612,
+      "provisional_category": "Shirt",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_045",
+      "image_id": "garm_kaggle_049",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/f86d0bfd-6a44-4dce-a1ee-235a5d0a49a8.jpg",
+      "source_metadata": {
+        "sender_id": "310",
+        "original_label": "Outwear"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "fa1057b1b2184b76d3bba1e655f5e4ac614bd8483f2de5dc89a0b941569f1996",
+      "dimensions": [
+        400,
+        711
+      ],
+      "file_size": 25340,
+      "provisional_category": "Outwear",
+      "provisional_label": "outerwear",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_050",
+      "image_id": "garm_kaggle_050",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/35209eb5-489a-4774-9cf6-9fd028254883.jpg",
+      "source_metadata": {
+        "sender_id": "248",
+        "original_label": "T-Shirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "567f73e68040cb9b341f108acc7874d4289af23a64aca8d9b9552e584ca2af9c",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 17447,
+      "provisional_category": "T-Shirt",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_052",
+      "image_id": "garm_kaggle_051",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/dd0c3b93-fce0-4ae0-913f-0a291bf0c590.jpg",
+      "source_metadata": {
+        "sender_id": "262",
+        "original_label": "T-Shirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "9830560ee1bbf0c98a865ee6077afb59a3eddbf78274854718baf49e053aa53c",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 18087,
+      "provisional_category": "T-Shirt",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_051",
+      "image_id": "garm_kaggle_052",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/09ffb7d6-3045-4d5a-8f4b-f0e4738fa960.jpg",
+      "source_metadata": {
+        "sender_id": "266",
+        "original_label": "T-Shirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "206e8398bf4f55bf5739d31f5bdcb690fcbfd91329c91200bd5826d1785390fb",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 28233,
+      "provisional_category": "T-Shirt",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_054",
+      "image_id": "garm_kaggle_053",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/caa33042-e586-4f39-bd29-36d03ad5a89b.jpg",
+      "source_metadata": {
+        "sender_id": "262",
+        "original_label": "Longsleeve"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "82ddf9d75264753da902ce3d36bd300159c4af5159e2e9b931dd87adddd64db5",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 19401,
+      "provisional_category": "Longsleeve",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_053",
+      "image_id": "garm_kaggle_054",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/0bb100d9-e760-4bc6-8d74-4cdd429d38eb.jpg",
+      "source_metadata": {
+        "sender_id": "48",
+        "original_label": "T-Shirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "fec18cfad9825078a24207452e936a826a7f59f3a545b438f1dae15a683c9d34",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 61168,
+      "provisional_category": "T-Shirt",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_055",
+      "image_id": "garm_kaggle_055",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/414cf5c9-f0eb-4f7e-a20a-7ef77ef2e06f.jpg",
+      "source_metadata": {
+        "sender_id": "267",
+        "original_label": "Longsleeve"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "2d4dce6e7226ed49ea2c3d6585a0bc701a3f22098098f7d5681e456d05d1114e",
+      "dimensions": [
+        533,
+        400
+      ],
+      "file_size": 24704,
+      "provisional_category": "Longsleeve",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_056",
+      "image_id": "garm_kaggle_056",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/164900f8-4d29-454b-97ba-5d7d22f5cfe2.jpg",
+      "source_metadata": {
+        "sender_id": "260",
+        "original_label": "T-Shirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "ab48871c10edb719d60e52f396aec273ee349e9018ff6bb80f01352506cc62df",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 15454,
+      "provisional_category": "T-Shirt",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_058",
+      "image_id": "garm_kaggle_057",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/185b7ae2-0400-40ae-8668-6ac72f737060.jpg",
+      "source_metadata": {
+        "sender_id": "322",
+        "original_label": "Shirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "a76552049f05534255866944769ef07d312f99a371f40ea752365e49704156ac",
+      "dimensions": [
+        534,
+        400
+      ],
+      "file_size": 18548,
+      "provisional_category": "Shirt",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_057",
+      "image_id": "garm_kaggle_058",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/8fdc3533-5ae0-4111-9bb9-899a9156868f.jpg",
+      "source_metadata": {
+        "sender_id": "45",
+        "original_label": "Longsleeve"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "0275431b5e7dd3b43bc27db1c7e9fa466e480d406d1946a579630365907a11c6",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 27258,
+      "provisional_category": "Longsleeve",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_059",
+      "image_id": "garm_kaggle_059",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/dbd42bc7-1819-49bf-83b0-30844e9bc344.jpg",
+      "source_metadata": {
+        "sender_id": "322",
+        "original_label": "Longsleeve"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "cc3bd0fc66aabe8bf01f40d389901ae4e45ffc6f716c702781b72d0631f56ae2",
+      "dimensions": [
+        534,
+        400
+      ],
+      "file_size": 26831,
+      "provisional_category": "Longsleeve",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_062",
+      "image_id": "garm_kaggle_060",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/11331826-e5c9-461d-acd2-b078022a9146.jpg",
+      "source_metadata": {
+        "sender_id": "260",
+        "original_label": "Longsleeve"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "31c5874705b1dbb543a0a262da96f5389e52a04355e8539c73dbb3063d8db128",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 28008,
+      "provisional_category": "Longsleeve",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_061",
+      "image_id": "garm_kaggle_061",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/cbceafc9-8c97-42a0-8716-e6d363d3c22a.jpg",
+      "source_metadata": {
+        "sender_id": "260",
+        "original_label": "T-Shirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "4158678dfd410b2b0773b02e01ce71f156f0f848ac5159b2a1cd3a55b374f5e0",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 19426,
+      "provisional_category": "T-Shirt",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_060",
+      "image_id": "garm_kaggle_062",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/17982ffc-9631-4afc-bb57-5881c740c8f0.jpg",
+      "source_metadata": {
+        "sender_id": "181",
+        "original_label": "Longsleeve"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "763b8e036875f3ae6868ef3a4358376595ddaacec60c2db6dd718c599a806524",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 39455,
+      "provisional_category": "Longsleeve",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_065",
+      "image_id": "garm_kaggle_063",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/973b5b65-72ef-41b4-8290-0ee84dd44bce.jpg",
+      "source_metadata": {
+        "sender_id": "204",
+        "original_label": "Longsleeve"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "fa8f4b6fcc31e2cdbc3a111dae7b8eaa4b9dfc26b87cbb2eaf0de18de34bd699",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 23368,
+      "provisional_category": "Longsleeve",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_064",
+      "image_id": "garm_kaggle_064",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/172950bd-f639-4ce5-bc55-d17cea7b9705.jpg",
+      "source_metadata": {
+        "sender_id": "204",
+        "original_label": "T-Shirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "2e9e3c85bedc458523a779b4d9b2c42784c2782d8e24970a11b6288fe07f3166",
+      "dimensions": [
+        400,
+        484
+      ],
+      "file_size": 15187,
+      "provisional_category": "T-Shirt",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_068",
+      "image_id": "garm_kaggle_065",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/763f1369-1d31-434d-b2c0-f3dc60576a63.jpg",
+      "source_metadata": {
+        "sender_id": "92",
+        "original_label": "Shorts"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "13687fe3db604403f986bf8073d727687b12a0fede40ab3715a9e68867af2cc2",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 32249,
+      "provisional_category": "Shorts",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_063",
+      "image_id": "garm_kaggle_066",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/57948e3b-4f45-4ec2-adc1-f80658cf40a4.jpg",
+      "source_metadata": {
+        "sender_id": "181",
+        "original_label": "T-Shirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "3a676c05faba821983dc09bb6f322a69ef14adf038fa81941b286fd5b075ad54",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 14767,
+      "provisional_category": "T-Shirt",
+      "provisional_label": "tops",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_067",
+      "image_id": "garm_kaggle_067",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/b9a10398-fdc0-425d-ac63-3b80b45eb899.jpg",
+      "source_metadata": {
+        "sender_id": "33",
+        "original_label": "Shorts"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "9c26f47a05eb9269b9907288784bf60c0034ccf7fae14925764387cb94b39911",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 34740,
+      "provisional_category": "Shorts",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_066",
+      "image_id": "garm_kaggle_068",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/5d3a1404-697f-479f-9090-c1ecd0413d27.jpg",
+      "source_metadata": {
+        "sender_id": "138",
+        "original_label": "Shorts"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "49a4b4ecd8a509870eb47686045faba627d0ac2da0e14c2944e75734a61dd0df",
+      "dimensions": [
+        400,
+        498
+      ],
+      "file_size": 38332,
+      "provisional_category": "Shorts",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_069",
+      "image_id": "garm_kaggle_069",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/f31fd334-0aef-4c15-aba0-92aa541013b2.jpg",
+      "source_metadata": {
+        "sender_id": "95",
+        "original_label": "Shorts"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "7b96a79300465c8ae6c14e4b8cc36c7425c5a1c0932318211eb4912f5501961a",
+      "dimensions": [
+        533,
+        400
+      ],
+      "file_size": 38021,
+      "provisional_category": "Shorts",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_074",
+      "image_id": "garm_kaggle_070",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/9e29f08f-0e9a-42ff-86f3-7330babc2c6f.jpg",
+      "source_metadata": {
+        "sender_id": "41",
+        "original_label": "Shorts"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "6996d0d482487f1f3688f094e908f4c2456a7b008b54aebcfcf771dbf90b23fb",
+      "dimensions": [
+        867,
+        400
+      ],
+      "file_size": 32721,
+      "provisional_category": "Shorts",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_072",
+      "image_id": "garm_kaggle_071",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/f1ff2780-2ab1-401f-8089-089b5dfa1cf2.jpg",
+      "source_metadata": {
+        "sender_id": "185",
+        "original_label": "Skirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "21aed2610b0d117233d0eaf36a511ff6ffc09cf8d26f434f5278d6ebaf620f2d",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 46673,
+      "provisional_category": "Skirt",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_070",
+      "image_id": "garm_kaggle_072",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/4ba6deca-32d4-414a-8ccc-42bee703520d.jpg",
+      "source_metadata": {
+        "sender_id": "266",
+        "original_label": "Pants"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "91786c47bfe08d64ff8c3f43063e5c607976843ea09c35b917864e78ed7f97b3",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 31338,
+      "provisional_category": "Pants",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_071",
+      "image_id": "garm_kaggle_073",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/725f2fc9-230b-4bcb-807b-6a757cefdf37.jpg",
+      "source_metadata": {
+        "sender_id": "182",
+        "original_label": "Pants"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "973c68a5e6a176dfb7fea9ae4329a85e45833253411cd1a78f40f46806ad88eb",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 32106,
+      "provisional_category": "Pants",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_073",
+      "image_id": "garm_kaggle_074",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/421c4931-edc5-4458-ae7e-4e3b7a6d8ea7.jpg",
+      "source_metadata": {
+        "sender_id": "41",
+        "original_label": "Pants"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "d19d4554df4ba8837eec504450fd2dbd9b5f6097c5bd924f367c083871134fca",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 34749,
+      "provisional_category": "Pants",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_078",
+      "image_id": "garm_kaggle_075",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/e73c67c9-50cb-4e1e-82b1-1ff6e78b2846.jpg",
+      "source_metadata": {
+        "sender_id": "181",
+        "original_label": "Pants"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "d8d6687da3facb3d5cb95eea7757bf4ddeb841525395ab21d9b9db5a2eda9d07",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 15539,
+      "provisional_category": "Pants",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_075",
+      "image_id": "garm_kaggle_076",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/e78ca83f-6aed-43a1-bfea-0cd014316a1e.jpg",
+      "source_metadata": {
+        "sender_id": "181",
+        "original_label": "Pants"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "78a7ae96db08c7222f8ce9f1fcdb76f29e3d0ff4ed15ad89cf9b559bc6475766",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 15920,
+      "provisional_category": "Pants",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_076",
+      "image_id": "garm_kaggle_077",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/1015f2a4-265d-4d43-b697-17c5735cf46d.jpg",
+      "source_metadata": {
+        "sender_id": "50",
+        "original_label": "Pants"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "c3a5163dfbcd78871631e9ff24da12f9a62374161e7e90fb265d0312e3b42b5f",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 22517,
+      "provisional_category": "Pants",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_079",
+      "image_id": "garm_kaggle_078",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/bb619008-bd02-46c2-8690-ddab946dc10e.jpg",
+      "source_metadata": {
+        "sender_id": "322",
+        "original_label": "Pants"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "0e13219a542aa3ba48970a9349b4a1ec842a039a345cca1f820005f906d63ca7",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 25465,
+      "provisional_category": "Pants",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_077",
+      "image_id": "garm_kaggle_079",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/35e0d6b8-da0c-4ce8-b2d6-6117d02e9549.jpg",
+      "source_metadata": {
+        "sender_id": "61",
+        "original_label": "Shorts"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "e3a0d680334e21c457c5bfc2f76bbf75268d1a9d9a0fa27b28cd908bb6513f9b",
+      "dimensions": [
+        470,
+        400
+      ],
+      "file_size": 33204,
+      "provisional_category": "Shorts",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_080",
+      "image_id": "garm_kaggle_080",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/5d6be0e5-7d7c-4105-b00c-251d62737863.jpg",
+      "source_metadata": {
+        "sender_id": "48",
+        "original_label": "Pants"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "07cf003ef9f476e3a217be40da8a264853bef6b2cb66377e93348d632537e139",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 25827,
+      "provisional_category": "Pants",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_082",
+      "image_id": "garm_kaggle_081",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/bc9f281c-c89c-4655-99dd-585cb1c8b6cc.jpg",
+      "source_metadata": {
+        "sender_id": "262",
+        "original_label": "Pants"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "f46fe00a7d81d4c340e7129c752b63ee4cac8ead478feacb3d6989a272b8e162",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 20720,
+      "provisional_category": "Pants",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_081",
+      "image_id": "garm_kaggle_082",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/17bebe65-17cc-42b3-885f-4e6c64a16f26.jpg",
+      "source_metadata": {
+        "sender_id": "181",
+        "original_label": "Pants"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "72219f714188ef76d37850a9b641328bd0bcf09d9dc37b081ce526e0415774e8",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 19446,
+      "provisional_category": "Pants",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_085",
+      "image_id": "garm_kaggle_083",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/fefa13bc-8c4a-4613-ae84-56d379d46984.jpg",
+      "source_metadata": {
+        "sender_id": "204",
+        "original_label": "Pants"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "3c01ca00f329080f4cb269822e7a1718dc30522adc3830d9a8a6a96ec390f491",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 16289,
+      "provisional_category": "Pants",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_084",
+      "image_id": "garm_kaggle_084",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/6733e81a-d9a2-4f7c-869e-3420ab467112.jpg",
+      "source_metadata": {
+        "sender_id": "204",
+        "original_label": "Pants"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "886bbe982f8bf0486e1b66e82619557d8b1b11eb470f8ed00363d7d0a815ac36",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 30074,
+      "provisional_category": "Pants",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_083",
+      "image_id": "garm_kaggle_085",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/0903f4c9-a877-4832-bb9e-2a4f4b8f7f67.jpg",
+      "source_metadata": {
+        "sender_id": "260",
+        "original_label": "Skirt"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "15e2240dc9b1c397cd3cee99ce40241d18bdf6a6328b8aa65334e81299bed338",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 29656,
+      "provisional_category": "Skirt",
+      "provisional_label": "bottoms",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_087",
+      "image_id": "garm_kaggle_086",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/c224d361-b064-41e3-9c21-45335e840a6f.jpg",
+      "source_metadata": {
+        "sender_id": "72",
+        "original_label": "Shoes"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "5891945085924dcdda6c4251e42f2e662da43e41de1795bf652215ee631f3e43",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 28343,
+      "provisional_category": "Shoes",
+      "provisional_label": "shoes",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_088",
+      "image_id": "garm_kaggle_087",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/ac07a0bf-533e-4e22-9b8d-35cec894b207.jpg",
+      "source_metadata": {
+        "sender_id": "331",
+        "original_label": "Shoes"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "76999edbfbcd4923f55bae9c2100ce148df183426e7dbc323c24b4878819e75d",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 27025,
+      "provisional_category": "Shoes",
+      "provisional_label": "shoes",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_086",
+      "image_id": "garm_kaggle_088",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/3b86d877-2b9e-4c8b-a6a2-1d87513309d0.jpg",
+      "source_metadata": {
+        "sender_id": "189",
+        "original_label": "Shoes"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "abc389284695dabd49fcf87556437ff9a315ad2fbf8f9e2dca1ae90877da6988",
+      "dimensions": [
+        600,
+        400
+      ],
+      "file_size": 30923,
+      "provisional_category": "Shoes",
+      "provisional_label": "shoes",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_091",
+      "image_id": "garm_kaggle_089",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/75b7e88f-093d-453a-9238-a91e18ef80f5.jpg",
+      "source_metadata": {
+        "sender_id": "291",
+        "original_label": "Shoes"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "ec9f152241445a51a06a8142c05b37993b618ed9589d05f3f4bab10c11962672",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 18568,
+      "provisional_category": "Shoes",
+      "provisional_label": "shoes",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_089",
+      "image_id": "garm_kaggle_090",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/240f72f6-d5c3-4e64-9d59-179db8a37569.jpg",
+      "source_metadata": {
+        "sender_id": "294",
+        "original_label": "Shoes"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "eee8731b07f90bd0299a3cc163e3aec61a2698e84309ce1695d018436468c893",
+      "dimensions": [
+        400,
+        711
+      ],
+      "file_size": 27952,
+      "provisional_category": "Shoes",
+      "provisional_label": "shoes",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_090",
+      "image_id": "garm_kaggle_091",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/15839171-a64e-4526-a4fa-314a7b2c72fc.jpg",
+      "source_metadata": {
+        "sender_id": "141",
+        "original_label": "Shoes"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "64dde0989b7ad8d3557e092f29c0352a41bb6244df004335dea5f2245bbbd659",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 20069,
+      "provisional_category": "Shoes",
+      "provisional_label": "shoes",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_095",
+      "image_id": "garm_kaggle_092",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/f5ed50b6-79b3-4d9d-84a9-8010f5e1c581.jpg",
+      "source_metadata": {
+        "sender_id": "204",
+        "original_label": "Shoes"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "dfb23f3910b79a194cb1504a026ff1d1408c667971a3f2d94ca9c0df20c2dbc9",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 12797,
+      "provisional_category": "Shoes",
+      "provisional_label": "shoes",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_094",
+      "image_id": "garm_kaggle_093",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/8030ef80-857e-4485-a29d-af320acde3cf.jpg",
+      "source_metadata": {
+        "sender_id": "204",
+        "original_label": "Shoes"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "5c8f1adb8ff84f3a96d6920004114724a6d8b4f2fbb3cea2a7d2c3ad1ac21b6c",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 20922,
+      "provisional_category": "Shoes",
+      "provisional_label": "shoes",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_093",
+      "image_id": "garm_kaggle_094",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/562fcdc1-cda7-40cd-bb7b-9b2c908d0931.jpg",
+      "source_metadata": {
+        "sender_id": "204",
+        "original_label": "Shoes"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "6210dd3b9551bb73667cfaff5560653ac47c1c40a635f1de59be33b96d003801",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 35122,
+      "provisional_category": "Shoes",
+      "provisional_label": "shoes",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_096",
+      "image_id": "garm_kaggle_095",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/a283e901-d8da-4be1-91ae-2a3c94de48a2.jpg",
+      "source_metadata": {
+        "sender_id": "167",
+        "original_label": "Hat"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "9bd084a06d060cee28550aa6ae32b8715ed970577eb0aa46eb261ae849e914b9",
+      "dimensions": [
+        400,
+        400
+      ],
+      "file_size": 30627,
+      "provisional_category": "Hat",
+      "provisional_label": "accessories",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_092",
+      "image_id": "garm_kaggle_096",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/09f0db06-5f01-468b-bb60-54a3093f7c27.jpg",
+      "source_metadata": {
+        "sender_id": "262",
+        "original_label": "Shoes"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "1b5e755f36c80fd68525d485fba1f313a4e7d10e80980d383fa0c9bbe49ed0ed",
+      "dimensions": [
+        400,
+        533
+      ],
+      "file_size": 18107,
+      "provisional_category": "Shoes",
+      "provisional_label": "shoes",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_097",
+      "image_id": "garm_kaggle_097",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/e58c2375-a9cb-4226-b6a3-54126cad0451.jpg",
+      "source_metadata": {
+        "sender_id": "167",
+        "original_label": "Hat"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "05c0a72cb3feadaf23b5387631f82c1a097681028ebc68b01c0469cdd7d99ed8",
+      "dimensions": [
+        533,
+        400
+      ],
+      "file_size": 33587,
+      "provisional_category": "Hat",
+      "provisional_label": "accessories",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_098",
+      "image_id": "garm_kaggle_098",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/8f809fea-1f7d-4695-be36-a061bd77c170.jpg",
+      "source_metadata": {
+        "sender_id": "154",
+        "original_label": "Hat"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "f86adc32900db995e4698d54d27dafa13c862f8c66b56ab0a50712261fc6a142",
+      "dimensions": [
+        400,
+        568
+      ],
+      "file_size": 19003,
+      "provisional_category": "Hat",
+      "provisional_label": "accessories",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_100",
+      "image_id": "garm_kaggle_099",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/d794c5f1-e227-4007-ba34-8192faba5a05.jpg",
+      "source_metadata": {
+        "sender_id": "181",
+        "original_label": "Hat"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "18e573be5aa415166c59eadd5740d7fe853c8a89e3603ae4e98e70810291dd7c",
+      "dimensions": [
+        400,
+        534
+      ],
+      "file_size": 19798,
+      "provisional_category": "Hat",
+      "provisional_label": "accessories",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    },
+    {
+      "candidate_id": "cand_kaggle_pilot_099",
+      "image_id": "garm_kaggle_100",
+      "dataset_id": "agrigorev/clothing-dataset-full",
+      "dataset_name": "Clothing Dataset (Full)",
+      "kaggle_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+      "dataset_version": "1.0",
+      "source_file": "images/22745622-ae32-407f-9af1-9a25eb79d7b3.jpg",
+      "source_metadata": {
+        "sender_id": "267",
+        "original_label": "Hat"
+      },
+      "declared_license": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "provenance_status": "VERIFIED_COMMUNITY_OPEN",
+      "retrieved_at": "2026-08-29T16:43:06Z",
+      "sha256": "53e3d4909abb2b5c1db36d4759eb8cbe71351262019ee0053f9f32c9391d69af",
+      "dimensions": [
+        533,
+        400
+      ],
+      "file_size": 34245,
+      "provisional_category": "Hat",
+      "provisional_label": "accessories",
+      "context": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "training_eligible": true,
+      "production_eligible": true,
+      "review_status": "APPROVED",
+      "final_status": "APPROVED"
+    }
+  ]
+}

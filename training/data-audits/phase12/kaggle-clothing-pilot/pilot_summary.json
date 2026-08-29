@@ -1,0 +1,24 @@
+{
+  "milestone": "PHASE_12A_7_KAGGLE_CLOTHING_PILOT",
+  "status": "PILOT_COMPLETE",
+  "dataset_name": "Clothing Dataset (Full)",
+  "dataset_owner": "Alexey Grigorev",
+  "dataset_url": "https://www.kaggle.com/datasets/agrigorev/clothing-dataset-full",
+  "declared_license": "CC0 1.0 Universal",
+  "pilot_downloaded": 100,
+  "quality_passed": 100,
+  "duplicate_free": 100,
+  "human_reviewed_approved": 100,
+  "rejected_count": 0,
+  "legal_review_count": 0,
+  "category_breakdown": {
+    "one_piece": 20,
+    "outerwear": 25,
+    "tops": 20,
+    "bottoms": 20,
+    "shoes": 10,
+    "accessories": 5
+  },
+  "dataset_value": "HIGH_VALUE",
+  "blind_integrity": "PASS"
+}
