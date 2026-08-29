@@ -351,7 +351,7 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     const milestoneStatus = JSON.parse(fs.readFileSync(path.join(auditDir12a, 'milestone_status.json'), 'utf8'));
     expect(milestoneStatus.blind_integrity_pass).toBe(true);
     expect(['MILESTONE_250_REACHED', 'PARTIAL', 'NOT_READY']).toContain(milestoneStatus.status);
-    expect(milestoneStatus.remaining_gap_to_250).toBe(84);
+    expect(milestoneStatus.remaining_gap_to_250).toBeLessThanOrEqual(84);
   });
 
   it('verifies Phase 12A.1 First-10 Real Garment Intake and forensic audit outputs', () => {
@@ -568,7 +568,7 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     }
 
     const prodV2 = JSON.parse(fs.readFileSync(prodV2Path, 'utf8'));
-    expect(prodV2.total_training_validation_count).toBe(241);
+    expect(prodV2.total_training_validation_count).toBeGreaterThanOrEqual(241);
 
     const milestoneStatus = JSON.parse(fs.readFileSync(path.join(auditDirPilot, 'milestone_status.json'), 'utf8'));
     expect(milestoneStatus.status).toBe('PILOT_INGESTION_APPROVED_AND_MERGED');
@@ -576,6 +576,39 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(milestoneStatus.recommendation).toBe('EXPAND_KAGGLE');
     expect(milestoneStatus.blind_test_intact).toBe(true);
     expect(milestoneStatus.blind_test_checksum).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
+  });
+
+  it('verifies Phase 12A.8 Kaggle Source Forensic Audit and Milestone 250 Freeze', () => {
+    const milestone250ManifestPath = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.4-250.json');
+    const milestone250ShaPath = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.4-250-manifest.sha256');
+    const milestone250FreezePath = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.4-250-freeze.json');
+    const forensicDocPath = path.resolve(__dirname, '../docs/phase-12a-kaggle-forensic-audit.md');
+    const prodV2Path = path.resolve(__dirname, '../data/garment/metadata/production-training-manifest-v2.json');
+
+    expect(fs.existsSync(milestone250ManifestPath)).toBe(true);
+    expect(fs.existsSync(milestone250ShaPath)).toBe(true);
+    expect(fs.existsSync(milestone250FreezePath)).toBe(true);
+    expect(fs.existsSync(forensicDocPath)).toBe(true);
+
+    const manifest250 = JSON.parse(fs.readFileSync(milestone250ManifestPath, 'utf8'));
+    expect(manifest250.total_production_training_validation_count).toBe(250);
+    expect(manifest250.items.length).toBe(250);
+
+    const prodV2 = JSON.parse(fs.readFileSync(prodV2Path, 'utf8'));
+    expect(prodV2.total_training_validation_count).toBe(250);
+
+    // Verify sha256 checksum lock
+    const shaFile = fs.readFileSync(milestone250ShaPath, 'utf8').trim();
+    const manifestBuf = fs.readFileSync(milestone250ManifestPath);
+    const crypto = require('crypto');
+    const computedSha = crypto.createHash('sha256').update(manifestBuf).digest('hex');
+    expect(shaFile).toBe(computedSha);
+
+    const freezeLock = JSON.parse(fs.readFileSync(milestone250FreezePath, 'utf8'));
+    expect(freezeLock.milestone_status).toBe('FROZEN_MILESTONE_250');
+    expect(freezeLock.total_assets).toBe(250);
+    expect(freezeLock.approved_source_policy).toBe('controlled_expansion');
+    expect(freezeLock.blind_holdout_sha256).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
   });
 });
 

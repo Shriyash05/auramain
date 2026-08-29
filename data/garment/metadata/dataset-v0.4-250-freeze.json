@@ -1,0 +1,12 @@
+{
+  "dataset_name": "AURA-Garment-Production-v0.4-250",
+  "milestone_status": "FROZEN_MILESTONE_250",
+  "frozen_at": "2026-08-29T16:47:28Z",
+  "manifest_sha256": "8bf14c5921ba25a2879d524172dde7f6a6ba91a706524b8fed039fc3664da062",
+  "total_assets": 250,
+  "train_count": 230,
+  "val_count": 0,
+  "blind_holdout_sha256": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+  "blind_holdout_status": "LOCKED_INTACT",
+  "approved_source_policy": "controlled_expansion"
+}

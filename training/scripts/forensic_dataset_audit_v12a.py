@@ -234,11 +234,11 @@ def run_forensic_audit_v12a():
 
     # 9. Milestone Status (Explicitly NOT_READY, PARTIAL, or MILESTONE_250_REACHED)
     target_count = 250
-    gap = max(0, target_count - total_prod_assets)
+    gap = max(0, target_count - pure_train_val_count)
 
-    if total_prod_assets >= 250 and blind_intact and duplicate_report["duplicate_pass"] and split_integrity["split_isolation_pass"]:
+    if pure_train_val_count >= 250 and blind_intact and duplicate_report["duplicate_pass"] and split_integrity["split_isolation_pass"]:
         status = "MILESTONE_250_REACHED"
-    elif total_prod_assets > 166:
+    elif pure_train_val_count > 112:
         status = "PARTIAL"
     else:
         status = "PARTIAL"
@@ -247,7 +247,6 @@ def run_forensic_audit_v12a():
         "milestone": "MILESTONE_250",
         "status": status,
         "target_production_assets": target_count,
-        "current_verified_assets": total_prod_assets,
         "pure_train_val_pool": pure_train_val_count,
         "remaining_gap_to_250": gap,
         "blind_integrity_pass": blind_intact,
@@ -261,7 +260,7 @@ def run_forensic_audit_v12a():
     with open(os.path.join(out_dir, "milestone_status.json"), "w", encoding="utf-8") as f:
         json.dump(milestone_status, f, indent=2)
 
-    print(f"[+] Total Verified Assets: {total_prod_assets} (Pure Train/Val: {pure_train_val_count}, Holdouts: {total_prod_assets - pure_train_val_count})")
+    print(f"[+] Total Verified Assets in Manifest: {total_prod_assets} | Pure Train/Val Pool: {pure_train_val_count}")
     print(f"[+] Milestone Status: {status} (Remaining Gap to 250: {gap} assets)")
     print(f"[+] Blind Integrity Check: {'PASS' if blind_intact else 'FAIL'}")
     print(f"[+] Reports written to {out_dir}/")

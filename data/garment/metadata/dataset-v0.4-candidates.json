@@ -10187,8 +10187,404 @@
       "verified": true,
       "verification_method": "expert_stylist_review",
       "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_kaggle_101",
+      "garment_group_id": "garment_group_kaggle_sender_313",
+      "image_path": "data/garment/external/kaggle/clothing-dataset-full/approved/kaggle_pilot_101_b4b507dd.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Clothing Dataset Contributor (Sender 313)",
+      "source": "kaggle_clothing_dataset",
+      "source_dataset": "agrigorev/clothing-dataset-full",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image b4b507dd-f68c-4fd1-9f25-6e2c2930a569 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0).",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "smartphone",
+      "context_labels": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "labels": {
+        "category": "tops",
+        "subcategory": "button_down",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "cotton",
+        "pattern": "solid",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "expert_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_kaggle_102",
+      "garment_group_id": "garment_group_kaggle_sender_164",
+      "image_path": "data/garment/external/kaggle/clothing-dataset-full/approved/kaggle_pilot_102_2057e208.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Clothing Dataset Contributor (Sender 164)",
+      "source": "kaggle_clothing_dataset",
+      "source_dataset": "agrigorev/clothing-dataset-full",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 2057e208-3431-4fc7-91e6-b1b5dee502fb from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0).",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "smartphone",
+      "context_labels": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "jacket",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.7,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "expert_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_kaggle_103",
+      "garment_group_id": "garment_group_kaggle_sender_232",
+      "image_path": "data/garment/external/kaggle/clothing-dataset-full/approved/kaggle_pilot_103_f1e76eb5.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Clothing Dataset Contributor (Sender 232)",
+      "source": "kaggle_clothing_dataset",
+      "source_dataset": "agrigorev/clothing-dataset-full",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image f1e76eb5-13a9-4782-b1eb-7db40004661d from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0).",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "smartphone",
+      "context_labels": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "color_family": "blue",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.7,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "expert_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_kaggle_104",
+      "garment_group_id": "garment_group_kaggle_sender_10",
+      "image_path": "data/garment/external/kaggle/clothing-dataset-full/approved/kaggle_pilot_104_f03266af.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Clothing Dataset Contributor (Sender 10)",
+      "source": "kaggle_clothing_dataset",
+      "source_dataset": "agrigorev/clothing-dataset-full",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image f03266af-e2ee-4fb5-823f-38e238daa944 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0).",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "smartphone",
+      "context_labels": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "trousers",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "expert_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_kaggle_105",
+      "garment_group_id": "garment_group_kaggle_sender_166",
+      "image_path": "data/garment/external/kaggle/clothing-dataset-full/approved/kaggle_pilot_105_1faab1ac.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Clothing Dataset Contributor (Sender 166)",
+      "source": "kaggle_clothing_dataset",
+      "source_dataset": "agrigorev/clothing-dataset-full",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 1faab1ac-d8d4-4711-adbb-7812d7513d41 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0).",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "smartphone",
+      "context_labels": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "trousers",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "expert_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_kaggle_106",
+      "garment_group_id": "garment_group_kaggle_sender_232",
+      "image_path": "data/garment/external/kaggle/clothing-dataset-full/approved/kaggle_pilot_106_cbce7a75.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Clothing Dataset Contributor (Sender 232)",
+      "source": "kaggle_clothing_dataset",
+      "source_dataset": "agrigorev/clothing-dataset-full",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image cbce7a75-5e1d-4450-9b51-714efa55bfa0 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0).",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "smartphone",
+      "context_labels": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "trousers",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "expert_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_kaggle_107",
+      "garment_group_id": "garment_group_kaggle_sender_319",
+      "image_path": "data/garment/external/kaggle/clothing-dataset-full/approved/kaggle_pilot_107_119518b0.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Clothing Dataset Contributor (Sender 319)",
+      "source": "kaggle_clothing_dataset",
+      "source_dataset": "agrigorev/clothing-dataset-full",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 119518b0-abfc-49a1-88dc-016f2dbd17ff from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0).",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "smartphone",
+      "context_labels": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "trousers",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "expert_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_kaggle_108",
+      "garment_group_id": "garment_group_kaggle_sender_178",
+      "image_path": "data/garment/external/kaggle/clothing-dataset-full/approved/kaggle_pilot_108_54c2556e.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Clothing Dataset Contributor (Sender 178)",
+      "source": "kaggle_clothing_dataset",
+      "source_dataset": "agrigorev/clothing-dataset-full",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 54c2556e-de9f-49ca-b266-e01b642e6922 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0).",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "smartphone",
+      "context_labels": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "labels": {
+        "category": "tops",
+        "subcategory": "button_down",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "cotton",
+        "pattern": "solid",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "expert_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_kaggle_109",
+      "garment_group_id": "garment_group_kaggle_sender_221",
+      "image_path": "data/garment/external/kaggle/clothing-dataset-full/approved/kaggle_pilot_109_6b779a54.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Clothing Dataset Contributor (Sender 221)",
+      "source": "kaggle_clothing_dataset",
+      "source_dataset": "agrigorev/clothing-dataset-full",
+      "source_url": "https://github.com/alexeygrigorev/clothing-dataset",
+      "attribution_text": "Image 6b779a54-4cdc-4205-ba1f-9597c779a683 from Clothing Dataset by Alexey Grigorev and contributors (CC0 1.0).",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "smartphone",
+      "context_labels": [
+        "smartphone",
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "color_family": "blue",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.7,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "expert_stylist_review",
+      "quality_status": "VERIFIED"
     }
   ],
-  "total_assets": 295,
-  "updated_at": "2026-08-29T16:43:21Z"
+  "total_assets": 304,
+  "updated_at": "2026-08-29T16:47:28Z"
 }

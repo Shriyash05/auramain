@@ -1,14 +1,20 @@
 {
-  "manifest_name": "AURA-Production-Training-Manifest-v2.0",
-  "version": "2.0.0",
-  "created_at": "2026-08-29T18:00:00Z",
-  "governance_tier": "TIER_A_AND_TIER_B_ONLY",
-  "production_eligible": true,
-  "total_training_validation_count": 250,
-  "splits": {
-    "train_count": 121,
-    "val_count": 20,
-    "total_train_val_count": 141
+  "manifest_name": "AURA-Garment-Production-v0.4-250",
+  "milestone": "MILESTONE_250_REACHED",
+  "version": "0.4.0",
+  "created_at": "2026-08-29T16:47:28Z",
+  "total_production_training_validation_count": 250,
+  "sources_breakdown": {
+    "original_aura_golden_train_val": 112,
+    "tier_b_internet_approved": 29,
+    "kaggle_clothing_dataset_approved": 109
+  },
+  "license_distribution": {
+    "AURA_PROPRIETARY": 112,
+    "CC0_1_0_UNIVERSAL": 120,
+    "CC_BY_2_0": 9,
+    "CC_BY_2_5": 5,
+    "CC_BY_4_0": 4
   },
   "items": [
     {
@@ -10206,11 +10212,5 @@
       "verification_method": "expert_stylist_review",
       "quality_status": "VERIFIED"
     }
-  ],
-  "evaluation_sets_reference": {
-    "frozen_blind_manifest": "data/garment/metadata/dataset-v0.3-blind-freeze.json",
-    "hard_test_count": 18,
-    "real_world_test_count": 16
-  },
-  "updated_at": "2026-08-29T16:47:28Z"
+  ]
 }
