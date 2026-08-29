@@ -1,0 +1,12 @@
+{
+  "phase": "Phase 12A.1",
+  "baseline_assets": 166,
+  "current_total_production_assets": 166,
+  "pure_train_val_assets": 112,
+  "new_candidates": 0,
+  "new_approved": 0,
+  "new_rejected": 0,
+  "target_first10": 10,
+  "remaining_gap_to_250": 84,
+  "blind_integrity": "PASS"
+}

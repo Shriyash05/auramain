@@ -353,6 +353,21 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(['MILESTONE_250_REACHED', 'PARTIAL', 'NOT_READY']).toContain(milestoneStatus.status);
     expect(milestoneStatus.remaining_gap_to_250).toBe(84);
   });
+
+  it('verifies Phase 12A.1 First-10 Real Garment Intake and forensic audit outputs', () => {
+    const auditDir12a = path.resolve(__dirname, '../training/data-audits/phase12a');
+    expect(fs.existsSync(path.join(auditDir12a, 'first10_dataset_summary.json'))).toBe(true);
+    expect(fs.existsSync(path.join(auditDir12a, 'first10_provenance_report.json'))).toBe(true);
+    expect(fs.existsSync(path.join(auditDir12a, 'first10_quality_report.json'))).toBe(true);
+    expect(fs.existsSync(path.join(auditDir12a, 'first10_duplicate_report.json'))).toBe(true);
+    expect(fs.existsSync(path.join(auditDir12a, 'first10_milestone_status.json'))).toBe(true);
+
+    const first10Status = JSON.parse(fs.readFileSync(path.join(auditDir12a, 'first10_milestone_status.json'), 'utf8'));
+    expect(['WAITING_FOR_REAL_IMAGES', 'PARTIAL', 'FIRST_10_APPROVED']).toContain(first10Status.status);
+    expect(first10Status.model_training).toBe('NOT_RUN');
+    expect(first10Status.blind_test_intact).toBe(true);
+    expect(first10Status.blind_test_checksum).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
+  });
 });
 
 

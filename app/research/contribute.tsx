@@ -17,18 +17,47 @@ import { DatabaseService } from '../../src/services/database/databaseService';
 import { ContributorImageService } from '../../src/services/research/contributorImageService';
 import { AuthService } from '../../src/services/auth/authService';
 import { Garment } from '../../src/types/garment';
-import { ContributionCaptureContext, ContributionDifficulty } from '../../src/types/contributor';
+import {
+  ContributionCaptureContext,
+  ContributionDifficulty,
+  PhotographyContext,
+  LightingContext,
+  GarmentCondition,
+  BackgroundContext,
+} from '../../src/types/contributor';
 import { GarmentTaxonomyLabels, AuraCategory, AuraFit, AuraMaterial } from '../../src/types/garmentTaxonomy';
 
-const CONTEXT_OPTIONS: ContributionCaptureContext[] = [
+const CONTEXT_OPTIONS: PhotographyContext[] = [
   'flat_lay',
   'on_body',
+  'hanger',
   'folded',
-  'wrinkled',
-  'ambient_light',
+  'held_in_hand',
+];
+
+const LIGHTING_OPTIONS: LightingContext[] = [
+  'indoor_neutral',
+  'daylight',
+  'warm_tungsten',
+  'cool_led',
   'low_light',
-  'studio',
-  'occluded',
+  'shadowed',
+];
+
+const BACKGROUND_OPTIONS: BackgroundContext[] = [
+  'clean',
+  'bedroom',
+  'closet',
+  'floor',
+  'street',
+  'cluttered',
+];
+
+const CONDITION_OPTIONS: GarmentCondition[] = [
+  'pristine',
+  'wrinkled',
+  'folded',
+  'partially_obscured',
 ];
 
 const DIFFICULTY_OPTIONS: ContributionDifficulty[] = ['easy', 'normal', 'hard', 'adversarial'];
@@ -40,7 +69,10 @@ export default function ResearchContributeScreen() {
   const [currentUserId, setCurrentUserId] = useState<string>('guest_user');
   const [garments, setGarments] = useState<Garment[]>([]);
   const [selectedGarment, setSelectedGarment] = useState<Garment | null>(null);
-  const [selectedContext, setSelectedContext] = useState<ContributionCaptureContext>('flat_lay');
+  const [selectedContext, setSelectedContext] = useState<PhotographyContext>('flat_lay');
+  const [selectedLighting, setSelectedLighting] = useState<LightingContext>('indoor_neutral');
+  const [selectedBackground, setSelectedBackground] = useState<BackgroundContext>('clean');
+  const [selectedCondition, setSelectedCondition] = useState<GarmentCondition>('pristine');
   const [selectedDifficulty, setSelectedDifficulty] = useState<ContributionDifficulty>('normal');
 
   useEffect(() => {
@@ -101,7 +133,14 @@ export default function ResearchContributeScreen() {
         garment: selectedGarment,
         labels,
         difficulty: selectedDifficulty,
-        captureContext: selectedContext,
+        captureContext: selectedContext as any,
+        detailedContext: {
+          photography_context: selectedContext,
+          lighting: selectedLighting,
+          condition: selectedCondition,
+          background: selectedBackground,
+          camera_view: 'smartphone',
+        },
         challengeNotes: `Contributed via AURA mobile client from wardrobe item ${selectedGarment.id}`,
       });
 
@@ -194,10 +233,12 @@ export default function ResearchContributeScreen() {
             </View>
 
             {/* Step 3: Capture Context */}
-            <Text style={styles.stepTitle}>3. PHOTO CONTEXT</Text>
+            <Text style={styles.stepTitle}>3. PHOTO CONTEXT & LIGHTING</Text>
             <Text style={styles.stepSubtitle}>
-              Help us learn how this photo was captured (wrinkles, lighting, flat-lay).
+              Help us learn how this photo was captured (wrinkles, lighting, background).
             </Text>
+
+            <Text style={[styles.stepSubtitle, { marginTop: 8, fontWeight: '600' }]}>CAPTURE STYLE</Text>
             <View style={styles.chipsWrap}>
               {CONTEXT_OPTIONS.map((ctx) => {
                 const isSelected = selectedContext === ctx;
@@ -208,7 +249,61 @@ export default function ResearchContributeScreen() {
                     onPress={() => setSelectedContext(ctx)}
                   >
                     <Text style={[styles.chipText, isSelected && styles.chipTextSelected]}>
-                      {ctx.replace('_', ' ').toUpperCase()}
+                      {ctx.replace(/_/g, ' ').toUpperCase()}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+
+            <Text style={[styles.stepSubtitle, { marginTop: 8, fontWeight: '600' }]}>LIGHTING CONDITION</Text>
+            <View style={styles.chipsWrap}>
+              {LIGHTING_OPTIONS.map((l) => {
+                const isSelected = selectedLighting === l;
+                return (
+                  <TouchableOpacity
+                    key={l}
+                    style={[styles.chip, isSelected && styles.chipSelected]}
+                    onPress={() => setSelectedLighting(l)}
+                  >
+                    <Text style={[styles.chipText, isSelected && styles.chipTextSelected]}>
+                      {l.replace(/_/g, ' ').toUpperCase()}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+
+            <Text style={[styles.stepSubtitle, { marginTop: 8, fontWeight: '600' }]}>GARMENT CONDITION</Text>
+            <View style={styles.chipsWrap}>
+              {CONDITION_OPTIONS.map((cond) => {
+                const isSelected = selectedCondition === cond;
+                return (
+                  <TouchableOpacity
+                    key={cond}
+                    style={[styles.chip, isSelected && styles.chipSelected]}
+                    onPress={() => setSelectedCondition(cond)}
+                  >
+                    <Text style={[styles.chipText, isSelected && styles.chipTextSelected]}>
+                      {cond.replace(/_/g, ' ').toUpperCase()}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+
+            <Text style={[styles.stepSubtitle, { marginTop: 8, fontWeight: '600' }]}>BACKGROUND ENVIRONMENT</Text>
+            <View style={styles.chipsWrap}>
+              {BACKGROUND_OPTIONS.map((bg) => {
+                const isSelected = selectedBackground === bg;
+                return (
+                  <TouchableOpacity
+                    key={bg}
+                    style={[styles.chip, isSelected && styles.chipSelected]}
+                    onPress={() => setSelectedBackground(bg)}
+                  >
+                    <Text style={[styles.chipText, isSelected && styles.chipTextSelected]}>
+                      {bg.replace(/_/g, ' ').toUpperCase()}
                     </Text>
                   </TouchableOpacity>
                 );

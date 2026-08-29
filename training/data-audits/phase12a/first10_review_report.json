@@ -1,0 +1,7 @@
+{
+  "human_review_tool": "tools/ai-benchmark/garment/reviewTool.ts",
+  "total_reviewed": 0,
+  "approved": 0,
+  "rejected": 0,
+  "legal_review_required": 0
+}

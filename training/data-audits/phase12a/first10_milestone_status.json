@@ -1,0 +1,11 @@
+{
+  "milestone": "PHASE_12A_1_FIRST_10",
+  "status": "WAITING_FOR_REAL_IMAGES",
+  "new_approved_count": 0,
+  "required_first10_count": 10,
+  "current_total_verified_assets": 166,
+  "remaining_to_milestone_250": 84,
+  "blind_test_checksum": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+  "blind_test_intact": true,
+  "model_training": "NOT_RUN"
+}
