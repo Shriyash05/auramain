@@ -1,0 +1,13 @@
+{
+  "total_evaluated_candidates": 79,
+  "license_distribution": {
+    "APPROVED_PUBLIC_DOMAIN_CC0": 23,
+    "APPROVED_WITH_ATTRIBUTION": 28,
+    "LEGAL_REVIEW_REQUIRED": 28
+  },
+  "approved_for_production": 29,
+  "held_for_legal_review": 28,
+  "prohibited_rejected": 0,
+  "sharealike_in_production": 0,
+  "license_purity_pass": true
+}

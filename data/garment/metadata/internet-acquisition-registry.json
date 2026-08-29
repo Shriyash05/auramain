@@ -4,14 +4,14 @@
   "updated_at": "2026-08-29T18:40:00Z",
   "governance_policy": "AURA_DATASET_GOVERNANCE_V1",
   "summary": {
-    "total_discovered": 60,
-    "total_downloaded": 30,
+    "total_discovered": 79,
+    "total_downloaded": 56,
     "license_verified": 32,
     "candidates_logged": 68,
-    "review_pending": 16,
+    "review_pending": 21,
     "rejected": 0,
     "legal_review_required": 28,
-    "approved": 23
+    "approved": 29
   },
   "candidates": [
     {
@@ -2273,6 +2273,463 @@
         "on_body",
         "indoor_neutral",
         "clean"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020901_004",
+      "source": "wikimedia_commons",
+      "source_platform": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1913_Worth_evening_gown,_orange_taffeta,_silver_brocade_and_net_04.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/1913_Worth_evening_gown%2C_orange_taffeta%2C_silver_brocade_and_net_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/1913_Worth_evening_gown%2C_orange_taffeta%2C_silver_brocade_and_net_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "download_path": "data/garment/internet_candidates/pending/cand_net_1788020901_004.jpg",
+      "title": "File:1913 Worth evening gown, orange taffeta, silver brocade and net 04.jpg",
+      "author": "Photographer commissioned by the Rhode Island School of Design Museum",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "attribution_text": "File:1913 Worth evening gown, orange taffeta, silver brocade and net 04.jpg by Photographer commissioned by the Rhode Island School of Design Museum (CC0) - https://commons.wikimedia.org/wiki/File:1913_Worth_evening_gown,_orange_taffeta,_silver_brocade_and_net_04.jpg",
+      "retrieved_at": "2026-08-29T16:28:25Z",
+      "sha256": "ba5541906cf32e2377da73a8e1eb787f46c71bcae1f70322aa22cbb4ee4d163f",
+      "original_dimensions": [
+        658,
+        900
+      ],
+      "file_size_bytes": 62696,
+      "provenance_status": "VERIFIED",
+      "quality_status": "PASSED",
+      "taxonomy_status": "PROVISIONAL",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING",
+      "suggested_category": "one_piece"
+    },
+    {
+      "candidate_id": "cand_net_1788020901_003",
+      "source": "wikimedia_commons",
+      "source_platform": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1913_Worth_evening_gown,_orange_taffeta,_silver_brocade_and_net_03.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/1913_Worth_evening_gown%2C_orange_taffeta%2C_silver_brocade_and_net_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/1913_Worth_evening_gown%2C_orange_taffeta%2C_silver_brocade_and_net_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "download_path": "data/garment/internet_candidates/pending/cand_net_1788020901_003.jpg",
+      "title": "File:1913 Worth evening gown, orange taffeta, silver brocade and net 03.jpg",
+      "author": "Photographer commissioned by the Rhode Island School of Design Museum",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "attribution_text": "File:1913 Worth evening gown, orange taffeta, silver brocade and net 03.jpg by Photographer commissioned by the Rhode Island School of Design Museum (CC0) - https://commons.wikimedia.org/wiki/File:1913_Worth_evening_gown,_orange_taffeta,_silver_brocade_and_net_03.jpg",
+      "retrieved_at": "2026-08-29T16:28:25Z",
+      "sha256": "c783639ebed1701c16f19cb3c9dd207782cd53274e447997fd46dde3c9861ced",
+      "original_dimensions": [
+        636,
+        900
+      ],
+      "file_size_bytes": 72285,
+      "provenance_status": "VERIFIED",
+      "quality_status": "PASSED",
+      "taxonomy_status": "PROVISIONAL",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING",
+      "suggested_category": "one_piece"
+    },
+    {
+      "candidate_id": "cand_net_1788020901_001",
+      "source": "wikimedia_commons",
+      "source_platform": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1913_Worth_evening_gown,_orange_taffeta,_silver_brocade_and_net_01.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/1913_Worth_evening_gown%2C_orange_taffeta%2C_silver_brocade_and_net_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/1913_Worth_evening_gown%2C_orange_taffeta%2C_silver_brocade_and_net_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "download_path": "data/garment/internet_candidates/pending/cand_net_1788020901_001.jpg",
+      "title": "File:1913 Worth evening gown, orange taffeta, silver brocade and net 01.jpg",
+      "author": "Photographer commissioned by the Rhode Island School of Design Museum",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "attribution_text": "File:1913 Worth evening gown, orange taffeta, silver brocade and net 01.jpg by Photographer commissioned by the Rhode Island School of Design Museum (CC0) - https://commons.wikimedia.org/wiki/File:1913_Worth_evening_gown,_orange_taffeta,_silver_brocade_and_net_01.jpg",
+      "retrieved_at": "2026-08-29T16:28:25Z",
+      "sha256": "6c35974fed7ea013e20a38458bfd7bfd0a4a477a7c0b314cb5b58d45dad3c444",
+      "original_dimensions": [
+        636,
+        900
+      ],
+      "file_size_bytes": 73867,
+      "provenance_status": "VERIFIED",
+      "quality_status": "PASSED",
+      "taxonomy_status": "PROVISIONAL",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "suggested_category": "one_piece",
+      "reviewer_notes": "1913 Worth evening gown, orange taffeta and brocade.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_030.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "color_family": "orange",
+        "material": "silk",
+        "pattern": "textured",
+        "formality_score": 0.9,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020901_006",
+      "source": "wikimedia_commons",
+      "source_platform": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Deep_petrol_blue_evening_gown_by_Sybil_Connolly.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Deep_petrol_blue_evening_gown_by_Sybil_Connolly.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Deep_petrol_blue_evening_gown_by_Sybil_Connolly.jpg/1280px-Deep_petrol_blue_evening_gown_by_Sybil_Connolly.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "download_path": "data/garment/internet_candidates/pending/cand_net_1788020901_006.jpg",
+      "title": "File:Deep petrol blue evening gown by Sybil Connolly.jpg",
+      "author": "Hunt Museum and Eamonn O'Mahony",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "attribution_text": "File:Deep petrol blue evening gown by Sybil Connolly.jpg by Hunt Museum and Eamonn O'Mahony (CC0) - https://commons.wikimedia.org/wiki/File:Deep_petrol_blue_evening_gown_by_Sybil_Connolly.jpg",
+      "retrieved_at": "2026-08-29T16:28:25Z",
+      "sha256": "5f5b467b2ce1a04f973c119e8ad5510011b561360c8befc8bc79d0638f421280",
+      "original_dimensions": [
+        1280,
+        1923
+      ],
+      "file_size_bytes": 142780,
+      "provenance_status": "VERIFIED",
+      "quality_status": "PASSED",
+      "taxonomy_status": "PROVISIONAL",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "suggested_category": "one_piece",
+      "reviewer_notes": "Deep petrol blue evening gown by Sybil Connolly.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_031.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "flowing",
+        "color_family": "blue",
+        "material": "silk",
+        "pattern": "solid",
+        "formality_score": 0.9,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020901_002",
+      "source": "wikimedia_commons",
+      "source_platform": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1913_Worth_evening_gown,_orange_taffeta,_silver_brocade_and_net_02.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/1913_Worth_evening_gown%2C_orange_taffeta%2C_silver_brocade_and_net_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/1913_Worth_evening_gown%2C_orange_taffeta%2C_silver_brocade_and_net_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "download_path": "data/garment/internet_candidates/pending/cand_net_1788020901_002.jpg",
+      "title": "File:1913 Worth evening gown, orange taffeta, silver brocade and net 02.jpg",
+      "author": "Photographer commissioned by the Rhode Island School of Design Museum",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "attribution_text": "File:1913 Worth evening gown, orange taffeta, silver brocade and net 02.jpg by Photographer commissioned by the Rhode Island School of Design Museum (CC0) - https://commons.wikimedia.org/wiki/File:1913_Worth_evening_gown,_orange_taffeta,_silver_brocade_and_net_02.jpg",
+      "retrieved_at": "2026-08-29T16:28:25Z",
+      "sha256": "f7acb19906f06c50c7a8ad6344394d8ed611402a5a14bad067638c6ef3d9e713",
+      "original_dimensions": [
+        675,
+        900
+      ],
+      "file_size_bytes": 190227,
+      "provenance_status": "VERIFIED",
+      "quality_status": "PASSED",
+      "taxonomy_status": "PROVISIONAL",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING",
+      "suggested_category": "one_piece"
+    },
+    {
+      "candidate_id": "cand_net_1788020901_005",
+      "source": "wikimedia_commons",
+      "source_platform": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Debutantes_having_a_dress_rehearsal,_February_2009.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Debutantes_having_a_dress_rehearsal%2C_February_2009.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Debutantes_having_a_dress_rehearsal%2C_February_2009.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "download_path": "data/garment/internet_candidates/pending/cand_net_1788020901_005.jpg",
+      "title": "File:Debutantes having a dress rehearsal, February 2009.jpg",
+      "author": "Karl Koenen",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "attribution_text": "File:Debutantes having a dress rehearsal, February 2009.jpg by Karl Koenen (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Debutantes_having_a_dress_rehearsal,_February_2009.jpg",
+      "retrieved_at": "2026-08-29T16:28:25Z",
+      "sha256": "46bd8c4da61c9def355826f04d07652a81c43278ca15d38c93e10eda8b2518e1",
+      "original_dimensions": [
+        1044,
+        665
+      ],
+      "file_size_bytes": 311899,
+      "provenance_status": "VERIFIED",
+      "quality_status": "PASSED",
+      "taxonomy_status": "PROVISIONAL",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "suggested_category": "one_piece",
+      "reviewer_notes": "Debutantes white evening gowns on-body rehearsal.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_032.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "flowing",
+        "color_family": "white",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "on_body",
+        "indoor_neutral",
+        "cluttered"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020902_008",
+      "source": "wikimedia_commons",
+      "source_platform": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Evening_gowns,_1947.png",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Evening_gowns%2C_1947.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Evening_gowns%2C_1947.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "download_path": "data/garment/internet_candidates/pending/cand_net_1788020902_008.png",
+      "title": "File:Evening gowns, 1947.png",
+      "author": "Los Angeles Times",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "attribution_text": "File:Evening gowns, 1947.png by Los Angeles Times (CC BY 4.0) - https://commons.wikimedia.org/wiki/File:Evening_gowns,_1947.png",
+      "retrieved_at": "2026-08-29T16:28:25Z",
+      "sha256": "ef12119642dabeeaac3b95a93defc4d3b23d0769ae2c298b2bd2de2dc766b37d",
+      "original_dimensions": [
+        454,
+        371
+      ],
+      "file_size_bytes": 185865,
+      "provenance_status": "VERIFIED",
+      "quality_status": "PASSED",
+      "taxonomy_status": "PROVISIONAL",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING",
+      "suggested_category": "one_piece"
+    },
+    {
+      "candidate_id": "cand_net_1788020902_007",
+      "source": "wikimedia_commons",
+      "source_platform": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Evening_gown.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Evening_gown.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Evening_gown.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "download_path": "data/garment/internet_candidates/pending/cand_net_1788020902_007.jpg",
+      "title": "File:Evening gown.jpg",
+      "author": "David Ring",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "attribution_text": "File:Evening gown.jpg by David Ring (CC0) - https://commons.wikimedia.org/wiki/File:Evening_gown.jpg",
+      "retrieved_at": "2026-08-29T16:28:25Z",
+      "sha256": "e14e18d9c8baa135dac452e23a5a73bee743c7ea69de3ec02f852c7c4507f2fa",
+      "original_dimensions": [
+        734,
+        1026
+      ],
+      "file_size_bytes": 105311,
+      "provenance_status": "VERIFIED",
+      "quality_status": "PASSED",
+      "taxonomy_status": "PROVISIONAL",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "suggested_category": "one_piece",
+      "reviewer_notes": "Black silk formal evening gown on mannequin.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_033.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "flowing",
+        "color_family": "black",
+        "material": "silk",
+        "pattern": "solid",
+        "formality_score": 0.9,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020902_009",
+      "source": "wikimedia_commons",
+      "source_platform": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Madeleine_Vionnet_evening_gown_in_ombr%C3%A9_silk_chiffon_crepe,_c1932_01.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Madeleine_Vionnet_evening_gown_in_ombr%C3%A9_silk_chiffon_crepe%2C_c1932_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Madeleine_Vionnet_evening_gown_in_ombr%C3%A9_silk_chiffon_crepe%2C_c1932_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "download_path": "data/garment/internet_candidates/pending/cand_net_1788020902_009.jpg",
+      "title": "File:Madeleine Vionnet evening gown in ombr\u00e9 silk chiffon crepe, c1932 01.jpg",
+      "author": "Photographer for the Rhode Island School of Design Museum of Art",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "attribution_text": "File:Madeleine Vionnet evening gown in ombr\u00e9 silk chiffon crepe, c1932 01.jpg by Photographer for the Rhode Island School of Design Museum of Art (CC0) - https://commons.wikimedia.org/wiki/File:Madeleine_Vionnet_evening_gown_in_ombr%C3%A9_silk_chiffon_crepe,_c1932_01.jpg",
+      "retrieved_at": "2026-08-29T16:28:25Z",
+      "sha256": "803b0bb31c3595d19befd437c247854ae2bae61b84aadd3e7bd24ad60a53961b",
+      "original_dimensions": [
+        600,
+        900
+      ],
+      "file_size_bytes": 42757,
+      "provenance_status": "VERIFIED",
+      "quality_status": "PASSED",
+      "taxonomy_status": "PROVISIONAL",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "suggested_category": "one_piece",
+      "reviewer_notes": "Madeleine Vionnet ombre silk chiffon crepe evening gown, c1932.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_034.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "color_family": "multi",
+        "material": "silk",
+        "pattern": "textured",
+        "formality_score": 0.9,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020902_010",
+      "source": "wikimedia_commons",
+      "source_platform": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Madeleine_Vionnet_evening_gown_in_ombr%C3%A9_silk_chiffon_crepe,_c1932_02.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Madeleine_Vionnet_evening_gown_in_ombr%C3%A9_silk_chiffon_crepe%2C_c1932_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Madeleine_Vionnet_evening_gown_in_ombr%C3%A9_silk_chiffon_crepe%2C_c1932_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "download_path": "data/garment/internet_candidates/pending/cand_net_1788020902_010.jpg",
+      "title": "File:Madeleine Vionnet evening gown in ombr\u00e9 silk chiffon crepe, c1932 02.jpg",
+      "author": "Photographer for the Rhode Island School of Design Museum of Art",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "attribution_text": "File:Madeleine Vionnet evening gown in ombr\u00e9 silk chiffon crepe, c1932 02.jpg by Photographer for the Rhode Island School of Design Museum of Art (CC0) - https://commons.wikimedia.org/wiki/File:Madeleine_Vionnet_evening_gown_in_ombr%C3%A9_silk_chiffon_crepe,_c1932_02.jpg",
+      "retrieved_at": "2026-08-29T16:28:25Z",
+      "sha256": "96709c3f846e8cf6a259c73d37e0c084586f21045712c549c2f0482ff8b17cba",
+      "original_dimensions": [
+        602,
+        900
+      ],
+      "file_size_bytes": 44195,
+      "provenance_status": "VERIFIED",
+      "quality_status": "PASSED",
+      "taxonomy_status": "PROVISIONAL",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING",
+      "suggested_category": "one_piece"
+    },
+    {
+      "candidate_id": "cand_net_1788020903_022",
+      "source": "wikimedia_commons",
+      "source_platform": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Yves_Saint_Laurent_vintage_knit_dress_deYoung_Museum.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Yves_Saint_Laurent_vintage_knit_dress_deYoung_Museum.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Yves_Saint_Laurent_vintage_knit_dress_deYoung_Museum.jpg/1280px-Yves_Saint_Laurent_vintage_knit_dress_deYoung_Museum.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "download_path": "data/garment/internet_candidates/pending/cand_net_1788020903_022.jpg",
+      "title": "File:Yves Saint Laurent vintage knit dress deYoung Museum.jpg",
+      "author": "David Hilowitz",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "attribution_text": "File:Yves Saint Laurent vintage knit dress deYoung Museum.jpg by David Hilowitz (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Yves_Saint_Laurent_vintage_knit_dress_deYoung_Museum.jpg",
+      "retrieved_at": "2026-08-29T16:28:25Z",
+      "sha256": "e296c730c6ca6ac4a48c3fc0ed70c92f2fd2909a1ece83390f50188e61b9d284",
+      "original_dimensions": [
+        1280,
+        1707
+      ],
+      "file_size_bytes": 635389,
+      "provenance_status": "VERIFIED",
+      "quality_status": "PASSED",
+      "taxonomy_status": "PROVISIONAL",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "suggested_category": "one_piece",
+      "reviewer_notes": "Yves Saint Laurent vintage patterned knit dress.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_035.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "straight",
+        "color_family": "multi",
+        "material": "knit",
+        "pattern": "graphic",
+        "formality_score": 0.7,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
       ]
     }
   ]

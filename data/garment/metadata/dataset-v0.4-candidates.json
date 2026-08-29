@@ -3,16 +3,16 @@
   "version": "0.4.0-candidate",
   "created_at": "2026-08-29T18:45:00Z",
   "license": "AURA Multi-Tiered Research & Commercial Permissive Dataset",
-  "total_count": 189,
-  "production_pool_count": 135,
+  "total_count": 195,
+  "production_pool_count": 141,
   "evaluation_holdout_count": 54,
   "splits": {
-    "train_count": 115,
+    "train_count": 121,
     "val_count": 20,
     "blind_test_count": 20,
     "hard_test_count": 18,
     "real_world_test_count": 16,
-    "total_count": 189
+    "total_count": 195
   },
   "items": [
     {
@@ -5519,6 +5519,264 @@
         "material": "wool",
         "pattern": "solid",
         "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_030",
+      "garment_group_id": "garment_group_net_30",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_030.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "author": "Photographer commissioned by the Rhode Island School of Design Museum",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1913_Worth_evening_gown,_orange_taffeta,_silver_brocade_and_net_01.jpg",
+      "attribution_text": "File:1913 Worth evening gown, orange taffeta, silver brocade and net 01.jpg by Photographer commissioned by the Rhode Island School of Design Museum (CC0) - https://commons.wikimedia.org/wiki/File:1913_Worth_evening_gown,_orange_taffeta,_silver_brocade_and_net_01.jpg",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "studio",
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "color_family": "orange",
+        "material": "silk",
+        "pattern": "textured",
+        "formality_score": 0.9,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_031",
+      "garment_group_id": "garment_group_net_31",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_031.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "author": "Hunt Museum and Eamonn O'Mahony",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Deep_petrol_blue_evening_gown_by_Sybil_Connolly.jpg",
+      "attribution_text": "File:Deep petrol blue evening gown by Sybil Connolly.jpg by Hunt Museum and Eamonn O'Mahony (CC0) - https://commons.wikimedia.org/wiki/File:Deep_petrol_blue_evening_gown_by_Sybil_Connolly.jpg",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "studio",
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "flowing",
+        "color_family": "blue",
+        "material": "silk",
+        "pattern": "solid",
+        "formality_score": 0.9,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_032",
+      "garment_group_id": "garment_group_net_32",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_032.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "author": "Karl Koenen",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Debutantes_having_a_dress_rehearsal,_February_2009.jpg",
+      "attribution_text": "File:Debutantes having a dress rehearsal, February 2009.jpg by Karl Koenen (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Debutantes_having_a_dress_rehearsal,_February_2009.jpg",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "on_body",
+      "context_labels": [
+        "on_body",
+        "indoor_neutral",
+        "cluttered"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "flowing",
+        "color_family": "white",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_033",
+      "garment_group_id": "garment_group_net_33",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_033.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "author": "David Ring",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Evening_gown.jpg",
+      "attribution_text": "File:Evening gown.jpg by David Ring (CC0) - https://commons.wikimedia.org/wiki/File:Evening_gown.jpg",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "studio",
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "flowing",
+        "color_family": "black",
+        "material": "silk",
+        "pattern": "solid",
+        "formality_score": 0.9,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_034",
+      "garment_group_id": "garment_group_net_34",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_034.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "author": "Photographer for the Rhode Island School of Design Museum of Art",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Madeleine_Vionnet_evening_gown_in_ombr%C3%A9_silk_chiffon_crepe,_c1932_01.jpg",
+      "attribution_text": "File:Madeleine Vionnet evening gown in ombr\u00e9 silk chiffon crepe, c1932 01.jpg by Photographer for the Rhode Island School of Design Museum of Art (CC0) - https://commons.wikimedia.org/wiki/File:Madeleine_Vionnet_evening_gown_in_ombr%C3%A9_silk_chiffon_crepe,_c1932_01.jpg",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "studio",
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "color_family": "multi",
+        "material": "silk",
+        "pattern": "textured",
+        "formality_score": 0.9,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_035",
+      "garment_group_id": "garment_group_net_35",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_035.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "author": "David Hilowitz",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Yves_Saint_Laurent_vintage_knit_dress_deYoung_Museum.jpg",
+      "attribution_text": "File:Yves Saint Laurent vintage knit dress deYoung Museum.jpg by David Hilowitz (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Yves_Saint_Laurent_vintage_knit_dress_deYoung_Museum.jpg",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "studio",
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "straight",
+        "color_family": "multi",
+        "material": "knit",
+        "pattern": "graphic",
+        "formality_score": 0.7,
         "occasions": [
           "Formal"
         ],

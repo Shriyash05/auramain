@@ -418,7 +418,7 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
 
     const approvedManifest = JSON.parse(fs.readFileSync(approvedManifestPath, 'utf8'));
     expect(approvedManifest.tier).toBe('TIER_B');
-    expect(approvedManifest.total_approved_assets).toBe(23);
+    expect(approvedManifest.total_approved_assets).toBeGreaterThanOrEqual(23);
 
     // Verify zero ShareAlike in approved production manifest
     for (const item of approvedManifest.items) {
@@ -429,13 +429,46 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     }
 
     const prodV2 = JSON.parse(fs.readFileSync(prodV2Path, 'utf8'));
-    expect(prodV2.total_training_validation_count).toBe(135);
+    expect(prodV2.total_training_validation_count).toBeGreaterThanOrEqual(135);
 
     const milestoneStatus = JSON.parse(fs.readFileSync(path.join(auditDirNetBatch2, 'milestone_status.json'), 'utf8'));
     expect(milestoneStatus.status).toBe('BATCH_COMPLETE');
     expect(milestoneStatus.blind_test_intact).toBe(true);
     expect(milestoneStatus.blind_test_checksum).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
     expect(milestoneStatus.production_train_val_pool).toBe(135);
+  });
+
+  it('verifies Phase 12A.4 High-Speed Acquisition Engine, concurrency, and performance report', () => {
+    const approvedManifestPath = path.resolve(__dirname, '../data/garment/metadata/internet-tier-b-approved.json');
+    const prodV2Path = path.resolve(__dirname, '../data/garment/metadata/production-training-manifest-v2.json');
+    const attributionPath = path.resolve(__dirname, '../data/garment/metadata/attribution-manifest.json');
+    const auditDirNetBatch3 = path.resolve(__dirname, '../training/data-audits/phase12a/internet-batch3');
+
+    expect(fs.existsSync(approvedManifestPath)).toBe(true);
+    expect(fs.existsSync(prodV2Path)).toBe(true);
+    expect(fs.existsSync(attributionPath)).toBe(true);
+    expect(fs.existsSync(auditDirNetBatch3)).toBe(true);
+
+    const approvedManifest = JSON.parse(fs.readFileSync(approvedManifestPath, 'utf8'));
+    expect(approvedManifest.tier).toBe('TIER_B');
+    expect(approvedManifest.total_approved_assets).toBe(29);
+
+    const prodV2 = JSON.parse(fs.readFileSync(prodV2Path, 'utf8'));
+    expect(prodV2.total_training_validation_count).toBe(141);
+
+    const attribution = JSON.parse(fs.readFileSync(attributionPath, 'utf8'));
+    expect(attribution.attributions.length).toBe(29);
+
+    const perfReport = JSON.parse(fs.readFileSync(path.join(auditDirNetBatch3, 'performance.json'), 'utf8'));
+    expect(perfReport.pipeline_version).toContain('high-speed');
+    expect(perfReport.concurrency).toBe(6);
+    expect(perfReport.candidates_per_minute).toBeGreaterThan(100);
+
+    const milestoneStatus = JSON.parse(fs.readFileSync(path.join(auditDirNetBatch3, 'milestone_status.json'), 'utf8'));
+    expect(milestoneStatus.status).toBe('ACQUISITION_PIPELINE_OPTIMIZED');
+    expect(milestoneStatus.blind_test_intact).toBe(true);
+    expect(milestoneStatus.blind_test_checksum).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
+    expect(milestoneStatus.production_train_val_pool).toBe(141);
   });
 });
 

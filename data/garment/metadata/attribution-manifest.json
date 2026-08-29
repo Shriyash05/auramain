@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "updated_at": "2026-08-29T18:40:00Z",
   "license_policy": "AURA_DATASET_GOVERNANCE_V1",
-  "total_attributed_assets": 23,
+  "total_attributed_assets": 29,
   "attributions": [
     {
       "image_id": "garm_net_001",
@@ -211,6 +211,60 @@
       "license_url": "https://creativecommons.org/licenses/by/2.5/dk/deed.en",
       "source_url": "https://commons.wikimedia.org/wiki/File:Bente_Dahl.jpg",
       "attribution_statement": "Photo 'File:Bente Dahl.jpg' by Photographer Henrik S\u00f8rensen, licensed under CC BY 2.5 dk via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Bente_Dahl.jpg)"
+    },
+    {
+      "image_id": "garm_net_030",
+      "title": "File:1913 Worth evening gown, orange taffeta, silver brocade and net 01.jpg",
+      "author": "Photographer commissioned by the Rhode Island School of Design Museum",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1913_Worth_evening_gown,_orange_taffeta,_silver_brocade_and_net_01.jpg",
+      "attribution_statement": "File:1913 Worth evening gown, orange taffeta, silver brocade and net 01.jpg by Photographer commissioned by the Rhode Island School of Design Museum (CC0) - https://commons.wikimedia.org/wiki/File:1913_Worth_evening_gown,_orange_taffeta,_silver_brocade_and_net_01.jpg"
+    },
+    {
+      "image_id": "garm_net_031",
+      "title": "File:Deep petrol blue evening gown by Sybil Connolly.jpg",
+      "author": "Hunt Museum and Eamonn O'Mahony",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Deep_petrol_blue_evening_gown_by_Sybil_Connolly.jpg",
+      "attribution_statement": "File:Deep petrol blue evening gown by Sybil Connolly.jpg by Hunt Museum and Eamonn O'Mahony (CC0) - https://commons.wikimedia.org/wiki/File:Deep_petrol_blue_evening_gown_by_Sybil_Connolly.jpg"
+    },
+    {
+      "image_id": "garm_net_032",
+      "title": "File:Debutantes having a dress rehearsal, February 2009.jpg",
+      "author": "Karl Koenen",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Debutantes_having_a_dress_rehearsal,_February_2009.jpg",
+      "attribution_statement": "File:Debutantes having a dress rehearsal, February 2009.jpg by Karl Koenen (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Debutantes_having_a_dress_rehearsal,_February_2009.jpg"
+    },
+    {
+      "image_id": "garm_net_033",
+      "title": "File:Evening gown.jpg",
+      "author": "David Ring",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Evening_gown.jpg",
+      "attribution_statement": "File:Evening gown.jpg by David Ring (CC0) - https://commons.wikimedia.org/wiki/File:Evening_gown.jpg"
+    },
+    {
+      "image_id": "garm_net_034",
+      "title": "File:Madeleine Vionnet evening gown in ombr\u00e9 silk chiffon crepe, c1932 01.jpg",
+      "author": "Photographer for the Rhode Island School of Design Museum of Art",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Madeleine_Vionnet_evening_gown_in_ombr%C3%A9_silk_chiffon_crepe,_c1932_01.jpg",
+      "attribution_statement": "File:Madeleine Vionnet evening gown in ombr\u00e9 silk chiffon crepe, c1932 01.jpg by Photographer for the Rhode Island School of Design Museum of Art (CC0) - https://commons.wikimedia.org/wiki/File:Madeleine_Vionnet_evening_gown_in_ombr%C3%A9_silk_chiffon_crepe,_c1932_01.jpg"
+    },
+    {
+      "image_id": "garm_net_035",
+      "title": "File:Yves Saint Laurent vintage knit dress deYoung Museum.jpg",
+      "author": "David Hilowitz",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Yves_Saint_Laurent_vintage_knit_dress_deYoung_Museum.jpg",
+      "attribution_statement": "File:Yves Saint Laurent vintage knit dress deYoung Museum.jpg by David Hilowitz (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Yves_Saint_Laurent_vintage_knit_dress_deYoung_Museum.jpg"
     }
   ]
 }

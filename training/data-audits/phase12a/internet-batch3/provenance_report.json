@@ -1,0 +1,35 @@
+{
+  "total_candidates": 79,
+  "missing_provenance_records": 0,
+  "provenance_pass": true,
+  "attributions_count": 29,
+  "sample_attributions": [
+    {
+      "image_id": "garm_net_001",
+      "title": "File:Clothes.jpg",
+      "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+      "license": "Public domain",
+      "license_url": "",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Clothes.jpg",
+      "attribution_statement": "Photo 'File:Clothes.jpg' by Unknown author<span style=\"display: none;\">Unknown author</span>, licensed under Public domain via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Clothes.jpg)"
+    },
+    {
+      "image_id": "garm_net_002",
+      "title": "File:Dress (AM 13219-1).jpg",
+      "author": "<div class=\"fn value\">\nUnknown author<span style=\"display: none;\">Unknown author</span></div>",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Dress_(AM_13219-1).jpg",
+      "attribution_statement": "Photo 'File:Dress (AM 13219-1).jpg' by <div class=\"fn value\">\nUnknown author<span style=\"display: none;\">Unknown author</span></div>, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dress_(AM_13219-1).jpg)"
+    },
+    {
+      "image_id": "garm_net_003",
+      "title": "File:KIM MATA HIPOL (DRESS).jpg",
+      "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:SuperRheaV&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:SuperRheaV (page does not exist)\">SuperRheaV</a>",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "source_url": "https://commons.wikimedia.org/wiki/File:KIM_MATA_HIPOL_(DRESS).jpg",
+      "attribution_statement": "Photo 'File:KIM MATA HIPOL (DRESS).jpg' by <a href=\"//commons.wikimedia.org/w/index.php?title=User:SuperRheaV&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:SuperRheaV (page does not exist)\">SuperRheaV</a>, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:KIM_MATA_HIPOL_(DRESS).jpg)"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "production_eligible_assets": 29,
+  "pure_train_val_manifest_count": 141,
+  "tier": "TIER_B",
+  "commercial_training_allowed": true,
+  "eligibility_pass": true
+}

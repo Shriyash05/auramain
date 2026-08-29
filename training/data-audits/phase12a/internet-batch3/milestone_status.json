@@ -1,0 +1,12 @@
+{
+  "milestone": "PHASE_12A_4_HIGH_SPEED_ACQUISITION",
+  "status": "ACQUISITION_PIPELINE_OPTIMIZED",
+  "approved_internet_assets": 29,
+  "production_train_val_pool": 141,
+  "total_verified_physical_assets": 195,
+  "remaining_gap_to_250_training_pool": 109,
+  "remaining_gap_to_250_total_assets": 55,
+  "blind_test_checksum": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+  "blind_test_intact": true,
+  "attribution_manifest_updated": true
+}
