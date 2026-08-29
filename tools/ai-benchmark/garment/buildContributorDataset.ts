@@ -60,18 +60,34 @@ export class ContributorDatasetBuilder {
     );
 
     // Build anonymized contributor items without user ID
-    const newItems = approved.map((c, idx) => ({
-      image_id: c.contributor_sample_id,
-      garment_group_id: `contributor_garment_${idx}`,
-      image_path: c.sanitized_image_uri,
-      split: 'train', // Initial contributor cohort stages into train split
-      difficulty: c.difficulty,
-      capture_context: c.capture_context,
-      labels: c.reviewed_labels || c.submitted_labels,
-      source: 'aura_research_contributor_program',
-      verified: true,
-      verification_method: 'human_stylist_review',
-    }));
+    const newItems = approved.map((c, idx) => {
+      const contextLabels: string[] = [c.capture_context];
+      if (c.detailed_context) {
+        if (c.detailed_context.photography_context) contextLabels.push(c.detailed_context.photography_context);
+        if (c.detailed_context.lighting) contextLabels.push(c.detailed_context.lighting);
+        if (c.detailed_context.condition) contextLabels.push(c.detailed_context.condition);
+        if (c.detailed_context.background) contextLabels.push(c.detailed_context.background);
+      }
+      return {
+        image_id: c.contributor_sample_id,
+        garment_group_id: `contributor_garment_${idx}`,
+        image_path: c.sanitized_image_uri,
+        split: 'train', // Initial contributor cohort stages into train split
+        tier: 'TIER_A',
+        license_status: 'APPROVED_FOR_AURA_TRAINING',
+        license_evidence: 'Explicit user opt-in via AURA Research Contributor Program (AURA_RESEARCH_CONSENT_V1)',
+        production_eligible: true,
+        difficulty: c.difficulty,
+        capture_context: c.capture_context,
+        context_labels: Array.from(new Set(contextLabels)),
+        labels: c.reviewed_labels || c.submitted_labels,
+        source: 'aura_research_contributor_program',
+        source_dataset: `aura-contributor-${params.targetVersion}`,
+        verified: true,
+        verification_method: 'human_stylist_review',
+        quality_status: 'VERIFIED',
+      };
+    });
 
     const combinedItems = [...baselineItems, ...newItems];
 

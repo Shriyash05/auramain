@@ -1,0 +1,16 @@
+{
+  "total_assets": 166,
+  "real_world_samples": 34,
+  "studio_samples": 132,
+  "real_world_percentage": 20.48,
+  "context_distribution": {
+    "studio": 132,
+    "clean-background": 132,
+    "flat-lay": 150,
+    "wrinkled": 18,
+    "partial-occlusion": 18,
+    "on-body": 16,
+    "ambient-lighting": 16,
+    "consumer-photo": 16
+  }
+}

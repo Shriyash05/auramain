@@ -1,0 +1,82 @@
+{
+  "total_assets": 166,
+  "categories": {
+    "tops": 34,
+    "bottoms": 33,
+    "outerwear": 33,
+    "shoes": 33,
+    "accessories": 33
+  },
+  "subcategories": {
+    "t_shirt": 5,
+    "pleated_pants": 33,
+    "wool_coat": 5,
+    "boots": 6,
+    "scarf": 6,
+    "tank": 5,
+    "blazer": 5,
+    "derbies": 6,
+    "sunglasses": 6,
+    "knit_sweater": 5,
+    "denim_jacket": 5,
+    "loafers": 6,
+    "crossbody_bag": 6,
+    "overshirt": 5,
+    "bomber_jacket": 5,
+    "sneakers": 5,
+    "tote_bag": 5,
+    "polo": 5,
+    "trench_coat": 5,
+    "sandals": 5,
+    "belt": 5,
+    "hoodie": 5,
+    "puffer_jacket": 4,
+    "mules": 5,
+    "hat": 5,
+    "button_down": 4,
+    "leather_jacket": 4
+  },
+  "fits": {
+    "Regular": 34,
+    "Relaxed": 33,
+    "Oversized": 33,
+    "Slim": 33,
+    "Fitted": 33
+  },
+  "silhouettes": {
+    "structured": 24,
+    "straight": 24,
+    "relaxed": 24,
+    "wide": 24,
+    "boxy": 24,
+    "fitted": 23,
+    "flowing": 23
+  },
+  "color_families": {
+    "black": 21,
+    "cream": 21,
+    "white": 21,
+    "grey": 21,
+    "navy": 21,
+    "beige": 21,
+    "brown": 20,
+    "olive": 20
+  },
+  "materials": {
+    "cotton": 19,
+    "linen": 19,
+    "wool": 19,
+    "leather": 19,
+    "denim": 18,
+    "nylon": 18,
+    "cashmere": 18,
+    "silk": 18,
+    "synthetic": 18
+  },
+  "patterns": {
+    "solid": 42,
+    "textured": 42,
+    "striped": 41,
+    "plaid": 41
+  }
+}

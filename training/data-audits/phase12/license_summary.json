@@ -1,0 +1,47 @@
+{
+  "ownership_policy": "ZERO_COMMERCIAL_AI_APIS",
+  "total_production_assets": 166,
+  "license_status_distribution": {
+    "APPROVED_FOR_AURA_TRAINING": 166
+  },
+  "tier_distribution": {
+    "TIER_A": 166
+  },
+  "registered_dataset_governance": {
+    "aura-garment-golden-v0.3": {
+      "tier": "TIER_A",
+      "legal_status": "APPROVED_FOR_AURA_TRAINING",
+      "commercial_training_allowed": true,
+      "attribution_required": false
+    },
+    "deepfashion-inshop": {
+      "tier": "TIER_C",
+      "legal_status": "RESEARCH_ONLY",
+      "commercial_training_allowed": false,
+      "attribution_required": true
+    },
+    "modanet": {
+      "tier": "TIER_C",
+      "legal_status": "RESEARCH_ONLY",
+      "commercial_training_allowed": false,
+      "attribution_required": true
+    },
+    "fashionpedia": {
+      "tier": "TIER_C",
+      "legal_status": "LEGAL_REVIEW_REQUIRED",
+      "commercial_training_allowed": false,
+      "attribution_required": true
+    },
+    "open-images-fashion-v7": {
+      "tier": "TIER_B",
+      "legal_status": "APPROVED_WITH_ATTRIBUTION",
+      "commercial_training_allowed": true,
+      "attribution_required": true
+    }
+  },
+  "production_purity": {
+    "tier_c_in_production": 0,
+    "research_only_in_production": 0,
+    "purity_pass": true
+  }
+}

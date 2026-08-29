@@ -18,11 +18,35 @@ export type ContributionCaptureContext =
   | 'studio'
   | 'flat_lay'
   | 'on_body'
+  | 'hanger'
   | 'folded'
   | 'wrinkled'
+  | 'held_in_hand'
   | 'ambient_light'
   | 'low_light'
-  | 'occluded';
+  | 'warm_tungsten'
+  | 'cool_led'
+  | 'daylight'
+  | 'occluded'
+  | 'cluttered_background'
+  | 'closet_environment'
+  | 'bedroom'
+  | 'changing_room'
+  | 'outdoor';
+
+export type PhotographyContext = 'on_body' | 'flat_lay' | 'hanger' | 'folded' | 'held_in_hand' | 'partial_garment' | 'closet_environment' | 'bedroom' | 'changing_room' | 'outdoor';
+export type LightingContext = 'daylight' | 'indoor_neutral' | 'warm_tungsten' | 'cool_led' | 'low_light' | 'uneven_lighting' | 'backlit' | 'shadowed';
+export type GarmentCondition = 'pristine' | 'wrinkled' | 'folded' | 'partially_obscured' | 'layered' | 'low_contrast';
+export type CameraViewContext = 'smartphone' | 'wide_angle' | 'portrait_mode' | 'close_range' | 'medium_range' | 'oblique_view';
+export type BackgroundContext = 'clean' | 'bedroom' | 'closet' | 'floor' | 'chair' | 'street' | 'bathroom' | 'cluttered';
+
+export interface DetailedCaptureContext {
+  photography_context?: PhotographyContext;
+  lighting?: LightingContext;
+  condition?: GarmentCondition;
+  camera_view?: CameraViewContext;
+  background?: BackgroundContext;
+}
 
 export interface ContributorProgramProfile {
   user_id: string;
@@ -46,6 +70,7 @@ export interface ResearchContribution {
   consent_version: ContributorConsentVersion;
   difficulty: ContributionDifficulty;
   capture_context: ContributionCaptureContext;
+  detailed_context?: DetailedCaptureContext;
   challenge_notes?: string;
   sanitized_image_uri: string;
   submitted_labels: GarmentTaxonomyLabels;

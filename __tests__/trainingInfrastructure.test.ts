@@ -300,6 +300,36 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(evalBlind.status).toBe('REAL_MEASURED');
     expect(evalBlind.metrics.category_top1_accuracy).toBe(0.35);
   });
+
+  it('verifies Phase 12 dataset expansion governance, audit outputs, and production manifest v2', () => {
+    const prodV2Path = path.resolve(__dirname, '../data/garment/metadata/production-training-manifest-v2.json');
+    const auditDir = path.resolve(__dirname, '../training/data-audits/phase12');
+    const expansionReportPath = path.resolve(__dirname, '../docs/phase-12-dataset-expansion-report.md');
+
+    expect(fs.existsSync(prodV2Path)).toBe(true);
+    expect(fs.existsSync(auditDir)).toBe(true);
+    expect(fs.existsSync(expansionReportPath)).toBe(true);
+
+    expect(fs.existsSync(path.join(auditDir, 'dataset_summary.json'))).toBe(true);
+    expect(fs.existsSync(path.join(auditDir, 'license_summary.json'))).toBe(true);
+    expect(fs.existsSync(path.join(auditDir, 'category_balance.json'))).toBe(true);
+    expect(fs.existsSync(path.join(auditDir, 'context_balance.json'))).toBe(true);
+    expect(fs.existsSync(path.join(auditDir, 'blind_integrity.json'))).toBe(true);
+
+    const summary = JSON.parse(fs.readFileSync(path.join(auditDir, 'dataset_summary.json'), 'utf8'));
+    expect(summary.overall_audit_passed).toBe(true);
+    expect(summary.frozen_blind_intact).toBe(true);
+    expect(summary.production_purity_pass).toBe(true);
+
+    const prodV2 = JSON.parse(fs.readFileSync(prodV2Path, 'utf8'));
+    expect(prodV2.production_eligible).toBe(true);
+    expect(prodV2.total_training_validation_count).toBe(112);
+    for (const item of prodV2.items) {
+      expect(['train', 'validation']).toContain(item.split);
+      expect(item.training_eligible).toBe(true);
+      expect(item.production_eligible).toBe(true);
+    }
+  });
 });
 
 

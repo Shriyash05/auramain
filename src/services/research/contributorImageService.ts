@@ -7,6 +7,7 @@ import {
   ContributionStatus,
   ContributionDifficulty,
   ContributionCaptureContext,
+  DetailedCaptureContext,
   ContributorStats,
 } from '../../types/contributor';
 import { GarmentTaxonomyLabels } from '../../types/garmentTaxonomy';
@@ -115,6 +116,7 @@ export class ContributorImageService {
     labels: GarmentTaxonomyLabels;
     difficulty?: ContributionDifficulty;
     captureContext?: ContributionCaptureContext;
+    detailedContext?: DetailedCaptureContext;
     challengeNotes?: string;
   }): Promise<ResearchContribution> {
     const profile = await this.getProfile(params.userId);
@@ -138,6 +140,7 @@ export class ContributorImageService {
       consent_version: profile.consent_version,
       difficulty: params.difficulty || 'normal',
       capture_context: params.captureContext || 'flat_lay',
+      detailed_context: params.detailedContext,
       challenge_notes: params.challengeNotes,
       sanitized_image_uri: sanitizedUri,
       submitted_labels: params.labels,

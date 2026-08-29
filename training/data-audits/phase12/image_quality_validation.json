@@ -1,0 +1,27 @@
+{
+  "manifest_path": "data/garment/metadata/production-training-manifest.json",
+  "total_images_checked": 166,
+  "quality_passed": true,
+  "metrics": {
+    "missing_files_count": 0,
+    "corrupt_files_count": 0,
+    "extreme_aspect_ratio_count": 0,
+    "low_resolution_count": 0,
+    "grayscale_image_count": 0,
+    "exact_duplicate_count": 0,
+    "missing_context_count": 0,
+    "invalid_taxonomy_labels_count": 0,
+    "cross_split_leakage_count": 0
+  },
+  "details": {
+    "missing_files": [],
+    "corrupt_files": [],
+    "extreme_aspect_ratios": [],
+    "low_resolutions": [],
+    "grayscale_images": [],
+    "duplicates": [],
+    "missing_context_metadata": [],
+    "invalid_taxonomy_labels": [],
+    "cross_split_leakage": []
+  }
+}

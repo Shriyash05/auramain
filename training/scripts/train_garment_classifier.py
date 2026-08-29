@@ -75,12 +75,30 @@ class AuraGarmentDataset(Dataset):
         if len(self.items) == 0:
             raise ValueError(f"Dataset split '{split}' is empty in manifest '{manifest_path}'!")
 
-        # Enforce split isolation: no test samples in training
-        if split == "train":
+        # Enforce strict training eligibility and governance checks
+        if split in ["train", "validation"]:
             for item in self.items:
                 s = item.get("split")
+                iid = item.get("image_id")
+                tier = item.get("tier", "TIER_A")
+                lic = item.get("license_status", "APPROVED_FOR_AURA_TRAINING")
+                status = item.get("status", "approved")
+                src_ds = item.get("source_dataset", "")
+
                 if s in ["blind_test", "hard_test", "real_world_test"]:
-                    raise ValueError(f"CRITICAL LEAKAGE: Item {item.get('image_id')} with split '{s}' found in training loader!")
+                    raise ValueError(f"CRITICAL LEAKAGE: Item {iid} with test split '{s}' found in {split} dataset!")
+
+                if tier == "TIER_C" or lic == "RESEARCH_ONLY":
+                    raise ValueError(f"GOVERNANCE VIOLATION: Research-only item {iid} (Tier C / {lic}) cannot be loaded for production training/validation!")
+
+                if status in ["rejected", "withdrawn"]:
+                    raise ValueError(f"ELIGIBILITY VIOLATION: Item {iid} with status '{status}' cannot be loaded for training!")
+
+                if item.get("training_eligible") is False:
+                    raise ValueError(f"ELIGIBILITY VIOLATION: Item {iid} explicitly marked training_eligible: false!")
+
+                if src_ds in ["deepfashion-inshop", "modanet"]:
+                    raise ValueError(f"PROHIBITED DATASET: Item {iid} from prohibited source dataset '{src_ds}' cannot be trained on!")
 
         self.cat_map = self.taxonomy["categories"]["mapping"]
         self.fit_map = self.taxonomy["fits"]["mapping"]

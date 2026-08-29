@@ -1,0 +1,52 @@
+{
+  "total_assets": 166,
+  "missing_provenance_count": 0,
+  "provenance_pass": true,
+  "sample_entries": [
+    {
+      "image_id": "garm_v3_001",
+      "source": "aura_in_house",
+      "source_dataset": "aura-garment-golden-v0.3",
+      "tier": "TIER_A",
+      "license_status": "APPROVED_FOR_AURA_TRAINING",
+      "license_evidence": "AURA proprietary verified physical garment asset",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_v3_002",
+      "source": "aura_in_house",
+      "source_dataset": "aura-garment-golden-v0.3",
+      "tier": "TIER_A",
+      "license_status": "APPROVED_FOR_AURA_TRAINING",
+      "license_evidence": "AURA proprietary verified physical garment asset",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_v3_003",
+      "source": "aura_in_house",
+      "source_dataset": "aura-garment-golden-v0.3",
+      "tier": "TIER_A",
+      "license_status": "APPROVED_FOR_AURA_TRAINING",
+      "license_evidence": "AURA proprietary verified physical garment asset",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_v3_004",
+      "source": "aura_in_house",
+      "source_dataset": "aura-garment-golden-v0.3",
+      "tier": "TIER_A",
+      "license_status": "APPROVED_FOR_AURA_TRAINING",
+      "license_evidence": "AURA proprietary verified physical garment asset",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_v3_005",
+      "source": "aura_in_house",
+      "source_dataset": "aura-garment-golden-v0.3",
+      "tier": "TIER_A",
+      "license_status": "APPROVED_FOR_AURA_TRAINING",
+      "license_evidence": "AURA proprietary verified physical garment asset",
+      "quality_status": "VERIFIED"
+    }
+  ]
+}
