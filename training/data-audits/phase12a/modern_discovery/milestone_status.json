@@ -1,0 +1,10 @@
+{
+  "milestone": "PHASE_12A_5_MODERN_DISCOVERY_LAYER",
+  "status": "DISCOVERY_ARCHITECTURE_OPERATIONAL",
+  "total_search_themes": 21,
+  "discovered_references": 6,
+  "inspiration_library_items": 4,
+  "potential_training_intake": 2,
+  "blind_test_checksum": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+  "blind_test_intact": true
+}

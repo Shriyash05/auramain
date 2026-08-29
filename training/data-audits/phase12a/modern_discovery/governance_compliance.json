@@ -1,0 +1,8 @@
+{
+  "anti_scraping_policy": "NO_PINTEREST_SCRAPING_DISCOVERY_LAYER_ONLY",
+  "commercial_ai_api_policy": "ZERO_COMMERCIAL_AI_APIS",
+  "no_unauthorized_training_leakage": true,
+  "inspiration_funnel_active": true,
+  "training_funnel_gated": true,
+  "status": "COMPLIANT"
+}

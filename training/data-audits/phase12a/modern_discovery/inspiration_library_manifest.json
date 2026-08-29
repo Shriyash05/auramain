@@ -1,0 +1,150 @@
+{
+  "manifest_name": "AURA-Inspiration-Library-Manifest",
+  "total_items": 4,
+  "items": [
+    {
+      "discovery_id": "mod_disc_001",
+      "platform": "pinterest",
+      "pin_url": "https://www.pinterest.com/pin/1010000000001",
+      "image_reference": "ref_streetwear_oversized_hoodie_wide_pants.jpg",
+      "title": "Minimalist Streetwear: Layered Grey Hoodie and Wide Trousers",
+      "description": "Contemporary urban streetwear outfit featuring relaxed drop-shoulder hoodie with pleated wide-leg pants and retro running sneakers.",
+      "board": "Modern Streetwear Inspo 2026",
+      "creator": "StudioModa",
+      "discovered_at": "2026-08-29T22:00:00Z",
+      "original_source_url": "https://studiomoda.example.com/looks/2026-fw-01",
+      "original_source_domain": "studiomoda.example.com",
+      "license_status": "PROPRIETARY_EDITORIAL",
+      "provenance_status": "RESOLVED_NON_COMMERCIAL",
+      "training_eligible": false,
+      "inspiration_only": true,
+      "style_attributes": {
+        "aesthetic": "minimal_streetwear",
+        "formality_score": 0.3,
+        "silhouettes": [
+          "oversized",
+          "wide"
+        ],
+        "palette": [
+          "grey",
+          "black",
+          "white"
+        ],
+        "key_garments": [
+          "hoodie",
+          "pleated_pants",
+          "sneakers"
+        ]
+      },
+      "notes": "High aesthetic relevance for AURA Inspiration Library. Ineligible for model training due to editorial copyright."
+    },
+    {
+      "discovery_id": "mod_disc_002",
+      "platform": "pinterest",
+      "pin_url": "https://www.pinterest.com/pin/1010000000002",
+      "image_reference": "ref_contemporary_tailoring_box_blazer.jpg",
+      "title": "Relaxed Double-Breasted Tailoring with Silk Knit",
+      "description": "Modern tailoring silhouette showing unconstructed taupe blazer over silk knit polo and relaxed straight trousers.",
+      "board": "Contemporary Tailoring & Sartorial",
+      "creator": "AtelierNordic",
+      "discovered_at": "2026-08-29T22:01:00Z",
+      "original_source_url": "https://ateliernordic.example.com/editorial/autumn-tailoring",
+      "original_source_domain": "ateliernordic.example.com",
+      "license_status": "PROPRIETARY_EDITORIAL",
+      "provenance_status": "RESOLVED_NON_COMMERCIAL",
+      "training_eligible": false,
+      "inspiration_only": true,
+      "style_attributes": {
+        "aesthetic": "modern_tailoring",
+        "formality_score": 0.7,
+        "silhouettes": [
+          "boxy",
+          "straight"
+        ],
+        "palette": [
+          "taupe",
+          "cream",
+          "navy"
+        ],
+        "key_garments": [
+          "blazer",
+          "polo",
+          "trousers"
+        ]
+      },
+      "notes": "Excellent aesthetic moodboard anchor for Smart Casual planner rules."
+    },
+    {
+      "discovery_id": "mod_disc_004",
+      "platform": "pinterest",
+      "pin_url": "https://www.pinterest.com/pin/1010000000004",
+      "image_reference": "ref_modern_wide_denim_styling.jpg",
+      "title": "Clean Indigo Wide-Leg Jeans and Cropped Cotton Cardigan",
+      "description": "Casual daily outfit showing high-rise wide-leg raw denim paired with buttoned cropped cardigan in ecru.",
+      "board": "Current Denim Trends 2026",
+      "creator": "DenimArchive",
+      "discovered_at": "2026-08-29T22:03:00Z",
+      "original_source_url": "https://denimarchive.example.com/looks/raw-denim-04",
+      "original_source_domain": "denimarchive.example.com",
+      "license_status": "PROPRIETARY_EDITORIAL",
+      "provenance_status": "RESOLVED_NON_COMMERCIAL",
+      "training_eligible": false,
+      "inspiration_only": true,
+      "style_attributes": {
+        "aesthetic": "clean_casual",
+        "formality_score": 0.4,
+        "silhouettes": [
+          "wide",
+          "fitted"
+        ],
+        "palette": [
+          "blue",
+          "cream",
+          "brown"
+        ],
+        "key_garments": [
+          "jeans",
+          "knit_sweater",
+          "boots"
+        ]
+      },
+      "notes": "Used for silhouette matching rules in wardrobe recommendation engine."
+    },
+    {
+      "discovery_id": "mod_disc_006",
+      "platform": "pinterest",
+      "pin_url": "https://www.pinterest.com/pin/1010000000006",
+      "image_reference": "ref_leather_biker_jacket_layering.jpg",
+      "title": "Boxy Leather Biker Jacket with Vintage Wash Denim",
+      "description": "Edgy luxury streetwear look featuring cropped heavyweight leather motorcycle jacket, vintage faded jeans, and chunky derbies.",
+      "board": "Modern Leather & Outerwear",
+      "creator": "MetroAesthetics",
+      "discovered_at": "2026-08-29T22:05:00Z",
+      "original_source_url": "https://instagram.com/p/example_post_006",
+      "original_source_domain": "instagram.com",
+      "license_status": "ALL_RIGHTS_RESERVED",
+      "provenance_status": "SOCIAL_MEDIA_UNLICENSED",
+      "training_eligible": false,
+      "inspiration_only": true,
+      "style_attributes": {
+        "aesthetic": "luxury_streetwear",
+        "formality_score": 0.5,
+        "silhouettes": [
+          "boxy",
+          "straight"
+        ],
+        "palette": [
+          "black",
+          "blue",
+          "white"
+        ],
+        "key_garments": [
+          "leather_jacket",
+          "jeans",
+          "derbies"
+        ]
+      },
+      "notes": "Social media post. Retained strictly in inspiration library for visual aesthetic analysis."
+    }
+  ]
+}

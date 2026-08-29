@@ -470,6 +470,30 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(milestoneStatus.blind_test_checksum).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
     expect(milestoneStatus.production_train_val_pool).toBe(141);
   });
+
+  it('verifies Phase 12A.5 Modern Fashion Discovery Layer, search themes, and inspiration-only segregation', () => {
+    const discoveryRegistryPath = path.resolve(__dirname, '../data/garment/metadata/modern-fashion-discovery-registry.json');
+    const auditDirModern = path.resolve(__dirname, '../training/data-audits/phase12a/modern_discovery');
+
+    expect(fs.existsSync(discoveryRegistryPath)).toBe(true);
+    expect(fs.existsSync(auditDirModern)).toBe(true);
+
+    const registry = JSON.parse(fs.readFileSync(discoveryRegistryPath, 'utf8'));
+    expect(registry.platform_policy.primary_discovery_source).toBe('pinterest');
+    expect(registry.platform_policy.scraping_policy).toBe('NO_SCRAPING_DISCOVERY_LAYER_ONLY');
+    expect(registry.platform_policy.commercial_ai_api_policy).toBe('ZERO_COMMERCIAL_AI_APIS');
+    expect(registry.search_themes.length).toBeGreaterThanOrEqual(20);
+
+    const compliance = JSON.parse(fs.readFileSync(path.join(auditDirModern, 'governance_compliance.json'), 'utf8'));
+    expect(compliance.status).toBe('COMPLIANT');
+    expect(compliance.no_unauthorized_training_leakage).toBe(true);
+
+    const summary = JSON.parse(fs.readFileSync(path.join(auditDirModern, 'discovery_summary.json'), 'utf8'));
+    expect(summary.pinterest_references_discovered).toBeGreaterThanOrEqual(5);
+    expect(summary.no_pinterest_scraping_violations).toBe(true);
+    expect(summary.no_commercial_ai_api_usage).toBe(true);
+    expect(summary.blind_integrity).toBe('PASS');
+  });
 });
 
 
