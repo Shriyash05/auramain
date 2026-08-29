@@ -1,25 +1,28 @@
 {
-  "manifest_path": "data/garment/metadata/production-training-manifest.json",
-  "total_assets": 166,
+  "manifest_path": "data/garment/metadata/dataset-v0.4-candidates.json",
+  "total_assets": 177,
   "splits_distribution": {
-    "train": 92,
+    "train": 103,
     "validation": 20,
     "blind_test": 20,
     "hard_test": 18,
     "real_world_test": 16
   },
   "tiers_distribution": {
-    "TIER_A": 166
+    "TIER_A": 166,
+    "TIER_B": 11
   },
   "sources_distribution": {
-    "aura_in_house": 166
+    "aura_editorial_archive": 166,
+    "wikimedia_commons": 11
   },
   "categories_distribution": {
     "tops": 34,
     "bottoms": 33,
-    "outerwear": 33,
+    "outerwear": 34,
     "shoes": 33,
-    "accessories": 33
+    "accessories": 33,
+    "one_piece": 10
   },
   "subcategories_distribution": {
     "t_shirt": 5,
@@ -48,80 +51,108 @@
     "mules": 5,
     "hat": 5,
     "button_down": 4,
-    "leather_jacket": 4
+    "leather_jacket": 4,
+    "dungarees": 1,
+    "dress": 5,
+    "jumpsuit": 4,
+    "jacket": 1
   },
   "fits_distribution": {
-    "Regular": 34,
-    "Relaxed": 33,
+    "Regular": 39,
+    "Relaxed": 35,
     "Oversized": 33,
     "Slim": 33,
-    "Fitted": 33
+    "Fitted": 37
   },
   "silhouettes_distribution": {
     "structured": 24,
-    "straight": 24,
+    "straight": 28,
     "relaxed": 24,
     "wide": 24,
     "boxy": 24,
     "fitted": 23,
-    "flowing": 23
+    "flowing": 23,
+    "a_line": 2,
+    "oversized": 1,
+    "hourglass": 3,
+    "wide_leg": 1
   },
   "color_families_distribution": {
-    "black": 21,
-    "cream": 21,
-    "white": 21,
+    "black": 23,
+    "cream": 22,
+    "white": 22,
     "grey": 21,
-    "navy": 21,
+    "navy": 22,
     "beige": 21,
     "brown": 20,
-    "olive": 20
+    "olive": 20,
+    "blue": 3,
+    "multicolor": 1,
+    "red": 1,
+    "pink": 1
   },
   "materials_distribution": {
-    "cotton": 19,
-    "linen": 19,
-    "wool": 19,
+    "cotton": 23,
+    "linen": 20,
+    "wool": 20,
     "leather": 19,
     "denim": 18,
     "nylon": 18,
     "cashmere": 18,
-    "silk": 18,
-    "synthetic": 18
+    "silk": 20,
+    "synthetic": 21
   },
   "patterns_distribution": {
-    "solid": 42,
-    "textured": 42,
+    "solid": 50,
+    "textured": 43,
     "striped": 41,
-    "plaid": 41
+    "plaid": 41,
+    "floral": 2
   },
   "formality_distribution": {
-    "casual (0.0-0.3)": 48,
-    "smart_casual (0.4-0.6)": 72,
-    "formal (0.7-1.0)": 46
+    "casual (0.0-0.3)": 49,
+    "smart_casual (0.4-0.6)": 77,
+    "formal (0.7-1.0)": 51
   },
   "contexts_distribution": {
-    "studio": 132,
-    "clean-background": 132,
-    "flat-lay": 150,
-    "wrinkled": 18,
-    "partial-occlusion": 18,
-    "on-body": 16,
-    "ambient-lighting": 16,
-    "consumer-photo": 16
+    "studio": 168,
+    "flat_lay": 3,
+    "clean": 6,
+    "daylight": 4,
+    "hanger": 3,
+    "indoor_neutral": 6,
+    "on_body": 4,
+    "smartphone": 3,
+    "street": 3,
+    "cluttered": 2,
+    "closet": 1,
+    "warm_tungsten": 1,
+    "bedroom": 1
   },
   "lighting_distribution": {
-    "ambient-lighting": 16
+    "daylight": 4,
+    "indoor_neutral": 6,
+    "warm_tungsten": 1
   },
-  "backgrounds_distribution": {},
-  "camera_views_distribution": {},
+  "backgrounds_distribution": {
+    "clean": 6,
+    "street": 3,
+    "cluttered": 2,
+    "closet": 1,
+    "bedroom": 1
+  },
+  "camera_views_distribution": {
+    "smartphone": 3
+  },
   "studio_vs_real_world": {
-    "studio_samples": 132,
-    "real_world_samples": 34,
-    "studio_to_real_world_ratio": 3.88
+    "studio_samples": 138,
+    "real_world_samples": 39,
+    "studio_to_real_world_ratio": 3.54
   },
   "identified_gaps": [
     {
       "dimension": "photography_context",
-      "issue": "Studio to Real-World ratio is high (3.88:1)",
+      "issue": "Studio to Real-World ratio is high (3.54:1)",
       "recommendation": "Prioritize consumer photos: on-body selfies, bedroom mirror, wrinkled flat-lay, warm tungsten lighting."
     }
   ]

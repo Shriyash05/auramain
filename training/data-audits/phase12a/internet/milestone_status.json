@@ -1,0 +1,13 @@
+{
+  "milestone": "PHASE_12A_2_INTERNET_ACQUISITION",
+  "status": "READY",
+  "approved_internet_samples": 11,
+  "target_approved": 10,
+  "production_train_val_pool_before": 112,
+  "production_train_val_pool_after": 123,
+  "total_verified_physical_assets": 177,
+  "remaining_gap_to_250": 127,
+  "blind_test_checksum": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+  "blind_test_intact": true,
+  "attribution_manifest_updated": true
+}

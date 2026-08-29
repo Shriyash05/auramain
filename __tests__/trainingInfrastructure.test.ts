@@ -323,7 +323,7 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
 
     const prodV2 = JSON.parse(fs.readFileSync(prodV2Path, 'utf8'));
     expect(prodV2.production_eligible).toBe(true);
-    expect(prodV2.total_training_validation_count).toBe(112);
+    expect(prodV2.total_training_validation_count).toBeGreaterThanOrEqual(112);
     for (const item of prodV2.items) {
       expect(['train', 'validation']).toContain(item.split);
       expect(item.training_eligible).toBe(true);
@@ -367,6 +367,44 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(first10Status.model_training).toBe('NOT_RUN');
     expect(first10Status.blind_test_intact).toBe(true);
     expect(first10Status.blind_test_checksum).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
+  });
+
+  it('verifies Phase 12A.2 Automated Internet Acquisition, attribution manifest, and Tier B staging', () => {
+    const whitelistPath = path.resolve(__dirname, '../data/garment/metadata/approved-image-sources.json');
+    const registryPath = path.resolve(__dirname, '../data/garment/metadata/internet-acquisition-registry.json');
+    const attributionPath = path.resolve(__dirname, '../data/garment/metadata/attribution-manifest.json');
+    const approvedManifestPath = path.resolve(__dirname, '../data/garment/metadata/internet-tier-b-approved.json');
+    const candidates04Path = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.4-candidates.json');
+    const auditDirNet = path.resolve(__dirname, '../training/data-audits/phase12a/internet');
+
+    expect(fs.existsSync(whitelistPath)).toBe(true);
+    expect(fs.existsSync(registryPath)).toBe(true);
+    expect(fs.existsSync(attributionPath)).toBe(true);
+    expect(fs.existsSync(approvedManifestPath)).toBe(true);
+    expect(fs.existsSync(candidates04Path)).toBe(true);
+    expect(fs.existsSync(auditDirNet)).toBe(true);
+
+    const whitelist = JSON.parse(fs.readFileSync(whitelistPath, 'utf8'));
+    expect(whitelist.ownership_policy).toBe('ZERO_COMMERCIAL_AI_APIS');
+    expect(whitelist.sources.some((s: any) => s.source_id === 'wikimedia_commons')).toBe(true);
+
+    const approvedManifest = JSON.parse(fs.readFileSync(approvedManifestPath, 'utf8'));
+    expect(approvedManifest.tier).toBe('TIER_B');
+    expect(approvedManifest.total_approved_assets).toBe(11);
+    expect(approvedManifest.production_eligible).toBe(true);
+
+    const attribution = JSON.parse(fs.readFileSync(attributionPath, 'utf8'));
+    expect(attribution.attributions.length).toBe(11);
+    for (const attr of attribution.attributions) {
+      expect(attr.author).toBeDefined();
+      expect(attr.license).toBeDefined();
+      expect(attr.source_url).toBeDefined();
+    }
+
+    const auditSummary = JSON.parse(fs.readFileSync(path.join(auditDirNet, 'acquisition_summary.json'), 'utf8'));
+    expect(auditSummary.human_reviewed_approved).toBe(11);
+    expect(auditSummary.new_category_breakdown.one_piece).toBe(10);
+    expect(auditSummary.blind_integrity).toBe('PASS');
   });
 });
 

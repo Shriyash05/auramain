@@ -1,0 +1,748 @@
+{
+  "registry_name": "AURA Internet Garment Acquisition Registry",
+  "version": "1.0.0",
+  "updated_at": "2026-08-29T18:40:00Z",
+  "governance_policy": "AURA_DATASET_GOVERNANCE_V1",
+  "summary": {
+    "total_discovered": 30,
+    "total_downloaded": 15,
+    "license_verified": 23,
+    "candidates_logged": 18,
+    "review_pending": 4,
+    "rejected": 0,
+    "legal_review_required": 3,
+    "approved": 11
+  },
+  "candidates": [
+    {
+      "candidate_id": "cand_net_1788009130_001",
+      "image_id": "garm_net_001",
+      "garment_group_id": "group_net_001",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/96/Clothes.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Clothes.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+      "title": "File:Clothes.jpg",
+      "license_name": "Public domain",
+      "license_url": "",
+      "attribution_text": "Photo 'File:Clothes.jpg' by Unknown author<span style=\"display: none;\">Unknown author</span>, licensed under Public domain via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Clothes.jpg)",
+      "retrieved_at": "2026-08-29T13:12:12Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009130_001.jpg",
+      "sha256": "a90f93abbd11c274bdbde625e946bcaa468446ef9bc5aa940d0054e75a09ac05",
+      "original_dimensions": [
+        1566,
+        2460
+      ],
+      "file_format": "JPG",
+      "file_size": 1760867,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Verified dungaree one-piece outfit on flat-lay background.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_001.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dungarees",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "cotton",
+        "pattern": "solid",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "flat_lay",
+        "clean",
+        "daylight"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788009132_002",
+      "image_id": "garm_net_002",
+      "garment_group_id": "group_net_002",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Dress_%28AM_13219-1%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Dress_(AM_13219-1).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<div class=\"fn value\">\nUnknown author<span style=\"display: none;\">Unknown author</span></div>",
+      "title": "File:Dress (AM 13219-1).jpg",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution_text": "Photo 'File:Dress (AM 13219-1).jpg' by <div class=\"fn value\">\nUnknown author<span style=\"display: none;\">Unknown author</span></div>, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dress_(AM_13219-1).jpg)",
+      "retrieved_at": "2026-08-29T13:12:15Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009132_002.jpg",
+      "sha256": "ca60ba311d6ac28a4dafb3c21ca8a2028d977f22a56decd010484d2a87e86e7d",
+      "original_dimensions": [
+        1944,
+        2592
+      ],
+      "file_format": "JPG",
+      "file_size": 2379770,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Floral silk evening dress from museum archives.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_002.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "color_family": "cream",
+        "material": "silk",
+        "pattern": "floral",
+        "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "hanger",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788009135_003",
+      "image_id": "garm_net_003",
+      "garment_group_id": "group_net_003",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/KIM_MATA_HIPOL_%28DRESS%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:KIM_MATA_HIPOL_(DRESS).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:SuperRheaV&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:SuperRheaV (page does not exist)\">SuperRheaV</a>",
+      "title": "File:KIM MATA HIPOL (DRESS).jpg",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution_text": "Photo 'File:KIM MATA HIPOL (DRESS).jpg' by <a href=\"//commons.wikimedia.org/w/index.php?title=User:SuperRheaV&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:SuperRheaV (page does not exist)\">SuperRheaV</a>, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:KIM_MATA_HIPOL_(DRESS).jpg)",
+      "retrieved_at": "2026-08-29T13:12:17Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009135_003.jpg",
+      "sha256": "486057b8f6ffd247c91465c696fad995df66a497dc1b5c99763cd12754ae576f",
+      "original_dimensions": [
+        1280,
+        960
+      ],
+      "file_format": "JPG",
+      "file_size": 240155,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "On-body white summer dress captured outdoors.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_003.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Relaxed",
+        "silhouette": "relaxed",
+        "color_family": "white",
+        "material": "cotton",
+        "pattern": "solid",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "on_body",
+        "smartphone",
+        "daylight",
+        "street"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788009137_004",
+      "image_id": "garm_net_004",
+      "garment_group_id": "group_net_004",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Ladies_dresses_in_a_shop.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ladies_dresses_in_a_shop.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Challiyan\" title=\"User:Challiyan\">Challiyan</a>",
+      "title": "File:Ladies dresses in a shop.jpg",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution_text": "Photo 'File:Ladies dresses in a shop.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Challiyan\" title=\"User:Challiyan\">Challiyan</a>, licensed under CC BY-SA 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Ladies_dresses_in_a_shop.jpg)",
+      "retrieved_at": "2026-08-29T13:12:19Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009137_004.jpg",
+      "sha256": "3c5734c978e42b9d4f2b76505a96c45b749c98bf29f8a998d2dddaebe5493b62",
+      "original_dimensions": [
+        3696,
+        2145
+      ],
+      "file_format": "JPG",
+      "file_size": 1213970,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Retail store rack display dresses on hangers.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_004.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "color_family": "multi",
+        "material": "cotton",
+        "pattern": "floral",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "hanger",
+        "cluttered",
+        "indoor_neutral",
+        "closet"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788009139_005",
+      "image_id": "garm_net_005",
+      "garment_group_id": "group_net_005",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/3/37/Window_shopping_in_Mexico_City.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Window_shopping_in_Mexico_City.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Tomascastelazo\" title=\"User:Tomascastelazo\">Tomascastelazo</a>",
+      "title": "File:Window shopping in Mexico City.jpg",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution_text": "Photo 'File:Window shopping in Mexico City.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Tomascastelazo\" title=\"User:Tomascastelazo\">Tomascastelazo</a>, licensed under CC BY-SA 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Window_shopping_in_Mexico_City.jpg)",
+      "retrieved_at": "2026-08-29T13:12:23Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009139_005.jpg",
+      "sha256": "68c913440107a26ca6ef551f5e6f1406435cce77f76d857672e39772bbb03964",
+      "original_dimensions": [
+        4414,
+        2902
+      ],
+      "file_format": "JPG",
+      "file_size": 8017996,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Window mannequin red party dress under warm lighting.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_005.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "fitted",
+        "color_family": "red",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.7,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "on_body",
+        "cluttered",
+        "warm_tungsten",
+        "street"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788009143_006",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Woman%27s_shirt_from_Kutch%2C_Gujarat%2C_India%2C_IMA_55114.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Woman%27s_shirt_from_Kutch,_Gujarat,_India,_IMA_55114.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Woman's shirt from Kutch, Gujarat, India, IMA 55114.jpg",
+      "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Indianapolis_Museum_of_Art\" class=\"extiw\" title=\"w:en:Indianapolis Museum of Art\"><span title=\"art museum in Indianapolis\">Indianapolis Museum of Art</span></a>\n</bdi>",
+      "license_name": "Copyrighted free use",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788009144_007",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Catalogue_no._16%2C_spring-summer_-_R._H._Macy_and_Co._%281911%29_%2814597965827%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Catalogue_no._16,_spring-summer_-_R._H._Macy_and_Co._(1911)_(14597965827).jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Catalogue no. 16, spring-summer - R. H. Macy and Co. (1911) (14597965827).jpg",
+      "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/126377022@N07\">Internet Archive Book Images</a>",
+      "license_name": "No restrictions",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788009144_008",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/1/19/Demonstration_of_use_of_dress_form_to_fit_garments_at_Summer_Session_in_August_1920._%283856302224%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Demonstration_of_use_of_dress_form_to_fit_garments_at_Summer_Session_in_August_1920._(3856302224).jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Demonstration of use of dress form to fit garments at Summer Session in August 1920. (3856302224).jpg",
+      "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/30515687@N05\">Cornell University Library</a>",
+      "license_name": "No restrictions",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788009144_009",
+      "image_id": "garm_net_009",
+      "garment_group_id": "group_net_009",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Ghent%3B_Bishop_in_choir_dress_-_Summer.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ghent;_Bishop_in_choir_dress_-_Summer.JPG",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "No machine-readable author provided. <a href=\"//commons.wikimedia.org/wiki/User:Carolus\" title=\"User:Carolus\">Carolus</a> assumed (based on copyright claims).",
+      "title": "File:Ghent; Bishop in choir dress - Summer.JPG",
+      "license_name": "CC BY 2.5",
+      "license_url": "https://creativecommons.org/licenses/by/2.5",
+      "attribution_text": "Photo 'File:Ghent; Bishop in choir dress - Summer.JPG' by No machine-readable author provided. <a href=\"//commons.wikimedia.org/wiki/User:Carolus\" title=\"User:Carolus\">Carolus</a> assumed (based on copyright claims)., licensed under CC BY 2.5 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Ghent;_Bishop_in_choir_dress_-_Summer.JPG)",
+      "retrieved_at": "2026-08-29T13:12:26Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009144_009.jpg",
+      "sha256": "d607650de4f0b9154d8d67681190a9f145334984da6f4214c0560931e23ef9aa",
+      "original_dimensions": [
+        870,
+        1203
+      ],
+      "file_format": "JPG",
+      "file_size": 130517,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788009148_010",
+      "image_id": "garm_net_010",
+      "garment_group_id": "group_net_010",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/The_Chinese_Summer_dress.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:The_Chinese_Summer_dress.png",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Abby E. Underwood",
+      "title": "File:The Chinese Summer dress.png",
+      "license_name": "Public domain",
+      "license_url": "",
+      "attribution_text": "Photo 'File:The Chinese Summer dress.png' by Abby E. Underwood, licensed under Public domain via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:The_Chinese_Summer_dress.png)",
+      "retrieved_at": "2026-08-29T13:12:30Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009148_010.png",
+      "sha256": "c4b2e698ff1d3f8d4e0567fbe6a198092886a05cc3e68e0fa798dafa2b6ccd24",
+      "original_dimensions": [
+        1458,
+        1008
+      ],
+      "file_format": "PNG",
+      "file_size": 434673,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Classic summer cheongsam dress.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_006.png",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "silk",
+        "pattern": "textured",
+        "formality_score": 0.7,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "flat_lay",
+        "clean",
+        "daylight"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788009153_011",
+      "image_id": "garm_net_011",
+      "garment_group_id": "group_net_011",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/2/24/Gaultier_pink_jumpsuit_%2824158%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Gaultier_pink_jumpsuit_(24158).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Rhododendrites\" title=\"User:Rhododendrites\">Rhododendrites</a>",
+      "title": "File:Gaultier pink jumpsuit (24158).jpg",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution_text": "Photo 'File:Gaultier pink jumpsuit (24158).jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Rhododendrites\" title=\"User:Rhododendrites\">Rhododendrites</a>, licensed under CC BY-SA 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Gaultier_pink_jumpsuit_(24158).jpg)",
+      "retrieved_at": "2026-08-29T13:12:36Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009153_011.jpg",
+      "sha256": "e1d6316b7ee5ea4af82f2d4db06d85f82a0762f790f0e942981918dff7b34f2c",
+      "original_dimensions": [
+        3218,
+        5086
+      ],
+      "file_format": "JPG",
+      "file_size": 7891064,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Pink designer jumpsuit.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_007.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "jumpsuit",
+        "fit": "Fitted",
+        "silhouette": "fitted",
+        "color_family": "pink",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788009156_012",
+      "image_id": "garm_net_012",
+      "garment_group_id": "group_net_012",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Jumpsuit_with_pleated_legs_-_front.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Jumpsuit_with_pleated_legs_-_front.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>",
+      "title": "File:Jumpsuit with pleated legs - front.jpg",
+      "license_name": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "attribution_text": "Photo 'File:Jumpsuit with pleated legs - front.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>, licensed under CC BY-SA 3.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jumpsuit_with_pleated_legs_-_front.jpg)",
+      "retrieved_at": "2026-08-29T13:12:39Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009156_012.jpg",
+      "sha256": "66fe9b0ec79b3c5d4b3168ed8208c7e6b10211f9fe9c3d14091d0cf18d33632a",
+      "original_dimensions": [
+        2926,
+        4389
+      ],
+      "file_format": "JPG",
+      "file_size": 5282405,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Black jumpsuit with pleated wide legs on mannequin.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_008.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "jumpsuit",
+        "fit": "Relaxed",
+        "silhouette": "wide",
+        "color_family": "black",
+        "material": "cotton",
+        "pattern": "solid",
+        "formality_score": 0.6,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "hanger",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788009159_013",
+      "image_id": "garm_net_013",
+      "garment_group_id": "group_net_013",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Lace_bodysuit_with_thong_back_under_a_jumpsuit_-_modelled_by_Anastasia_Voloshina.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Lace_bodysuit_with_thong_back_under_a_jumpsuit_-_modelled_by_Anastasia_Voloshina.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>",
+      "title": "File:Lace bodysuit with thong back under a jumpsuit - modelled by Anastasia Voloshina.jpg",
+      "license_name": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "attribution_text": "Photo 'File:Lace bodysuit with thong back under a jumpsuit - modelled by Anastasia Voloshina.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>, licensed under CC BY-SA 3.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Lace_bodysuit_with_thong_back_under_a_jumpsuit_-_modelled_by_Anastasia_Voloshina.jpg)",
+      "retrieved_at": "2026-08-29T13:12:43Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009159_013.jpg",
+      "sha256": "7f69651988bb13283491431a8cf74712d63a44cc9bc36714cb130c77275144ef",
+      "original_dimensions": [
+        3860,
+        5790
+      ],
+      "file_format": "JPG",
+      "file_size": 11019379,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "On-body jumpsuit model in indoor setting.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_009.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "jumpsuit",
+        "fit": "Fitted",
+        "silhouette": "fitted",
+        "color_family": "black",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.6,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "on_body",
+        "smartphone",
+        "indoor_neutral",
+        "bedroom"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788009163_014",
+      "image_id": "garm_net_014",
+      "garment_group_id": "group_net_014",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Lace_bodysuit_with_thong_back_under_a_jumpsuit_-_zipper_partly_open_-_modelled_by_Anastasia_Voloshina.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Lace_bodysuit_with_thong_back_under_a_jumpsuit_-_zipper_partly_open_-_modelled_by_Anastasia_Voloshina.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>",
+      "title": "File:Lace bodysuit with thong back under a jumpsuit - zipper partly open - modelled by Anastasia Voloshina.jpg",
+      "license_name": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "attribution_text": "Photo 'File:Lace bodysuit with thong back under a jumpsuit - zipper partly open - modelled by Anastasia Voloshina.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>, licensed under CC BY-SA 3.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Lace_bodysuit_with_thong_back_under_a_jumpsuit_-_zipper_partly_open_-_modelled_by_Anastasia_Voloshina.jpg)",
+      "retrieved_at": "2026-08-29T13:12:47Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009163_014.jpg",
+      "sha256": "3a6e8b276ce722435064aabb2289a890ff288cce46feca845fce947b3065bda6",
+      "original_dimensions": [
+        4000,
+        6000
+      ],
+      "file_format": "JPG",
+      "file_size": 11579242,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788009167_015",
+      "image_id": "garm_net_015",
+      "garment_group_id": "group_net_015",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Turquoise_Jumpsuit_%28Unsplash%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Turquoise_Jumpsuit_(Unsplash).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Darko  Mitev <a rel=\"nofollow\" class=\"external text\" href=\"https://unsplash.com/@darko_ar\">darko_ar</a>",
+      "title": "File:Turquoise Jumpsuit (Unsplash).jpg",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution_text": "Photo 'File:Turquoise Jumpsuit (Unsplash).jpg' by Darko  Mitev <a rel=\"nofollow\" class=\"external text\" href=\"https://unsplash.com/@darko_ar\">darko_ar</a>, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Turquoise_Jumpsuit_(Unsplash).jpg)",
+      "retrieved_at": "2026-08-29T13:12:51Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009167_015.jpg",
+      "sha256": "b2eead267fbcb2d6ffeb17c27a8666eeb4c915e0e3155ded315f7bf0abe86f4d",
+      "original_dimensions": [
+        3830,
+        6016
+      ],
+      "file_format": "JPG",
+      "file_size": 11451962,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Turquoise summer jumpsuit on-body.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_010.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "jumpsuit",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "linen",
+        "pattern": "solid",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "on_body",
+        "daylight",
+        "street",
+        "smartphone"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788009171_016",
+      "image_id": "garm_net_016",
+      "garment_group_id": "group_net_016",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Turquoise_jumpsuit%2C_objectnr_69128.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Turquoise_jumpsuit,_objectnr_69128.JPG",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "ontwerp: Puck &amp; Hans",
+      "title": "File:Turquoise jumpsuit, objectnr 69128.JPG",
+      "license_name": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "attribution_text": "Photo 'File:Turquoise jumpsuit, objectnr 69128.JPG' by ontwerp: Puck &amp; Hans, licensed under CC BY-SA 3.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Turquoise_jumpsuit,_objectnr_69128.JPG)",
+      "retrieved_at": "2026-08-29T13:12:54Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009171_016.jpg",
+      "sha256": "31b46a9d7f2a447cb8e506a1c94ecd81267891b61d62bb14909e9ac2ecf895f8",
+      "original_dimensions": [
+        2592,
+        3872
+      ],
+      "file_format": "JPG",
+      "file_size": 2332081,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788009187_017",
+      "image_id": "garm_net_017",
+      "garment_group_id": "group_net_017",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Jacket%2C_naval_%28AM_1961.53-11%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Jacket,_naval_(AM_1961.53-11).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Unknown Author",
+      "title": "File:Jacket, naval (AM 1961.53-11).jpg",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution_text": "Photo 'File:Jacket, naval (AM 1961.53-11).jpg' by Unknown Author, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jacket,_naval_(AM_1961.53-11).jpg)",
+      "retrieved_at": "2026-08-29T13:13:11Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009187_017.jpg",
+      "sha256": "93f3ab058711e5beb9138719d29fa4dc70660b760ab492e6c0e3398083eba425",
+      "original_dimensions": [
+        5184,
+        3456
+      ],
+      "file_format": "JPG",
+      "file_size": 3588651,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "outerwear",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Tailored double-breasted naval jacket.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_011.jpg",
+      "taxonomy_labels": {
+        "category": "outerwear",
+        "subcategory": "jacket",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "navy",
+        "material": "wool",
+        "pattern": "solid",
+        "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "clean",
+        "indoor_neutral",
+        "flat_lay"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788009191_018",
+      "image_id": "garm_net_018",
+      "garment_group_id": "group_net_018",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Jacket%2C_naval_%28AM_1961.53-14%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Jacket,_naval_(AM_1961.53-14).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Unknown Author",
+      "title": "File:Jacket, naval (AM 1961.53-14).jpg",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution_text": "Photo 'File:Jacket, naval (AM 1961.53-14).jpg' by Unknown Author, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jacket,_naval_(AM_1961.53-14).jpg)",
+      "retrieved_at": "2026-08-29T13:13:14Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009191_018.jpg",
+      "sha256": "0cca84ad5ed6ccec7b9b6282b05eb8c2393e61096f3ccc8584480af50429a52b",
+      "original_dimensions": [
+        5184,
+        3456
+      ],
+      "file_format": "JPG",
+      "file_size": 6222485,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "outerwear",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    }
+  ]
+}

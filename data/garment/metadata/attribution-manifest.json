@@ -1,0 +1,108 @@
+{
+  "manifest_name": "AURA CC-BY and Permissive Attribution Manifest",
+  "version": "1.0.0",
+  "updated_at": "2026-08-29T18:40:00Z",
+  "license_policy": "AURA_DATASET_GOVERNANCE_V1",
+  "total_attributed_assets": 11,
+  "attributions": [
+    {
+      "image_id": "garm_net_001",
+      "title": "File:Clothes.jpg",
+      "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+      "license": "Public domain",
+      "license_url": "",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Clothes.jpg",
+      "attribution_statement": "Photo 'File:Clothes.jpg' by Unknown author<span style=\"display: none;\">Unknown author</span>, licensed under Public domain via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Clothes.jpg)"
+    },
+    {
+      "image_id": "garm_net_002",
+      "title": "File:Dress (AM 13219-1).jpg",
+      "author": "<div class=\"fn value\">\nUnknown author<span style=\"display: none;\">Unknown author</span></div>",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Dress_(AM_13219-1).jpg",
+      "attribution_statement": "Photo 'File:Dress (AM 13219-1).jpg' by <div class=\"fn value\">\nUnknown author<span style=\"display: none;\">Unknown author</span></div>, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dress_(AM_13219-1).jpg)"
+    },
+    {
+      "image_id": "garm_net_003",
+      "title": "File:KIM MATA HIPOL (DRESS).jpg",
+      "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:SuperRheaV&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:SuperRheaV (page does not exist)\">SuperRheaV</a>",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "source_url": "https://commons.wikimedia.org/wiki/File:KIM_MATA_HIPOL_(DRESS).jpg",
+      "attribution_statement": "Photo 'File:KIM MATA HIPOL (DRESS).jpg' by <a href=\"//commons.wikimedia.org/w/index.php?title=User:SuperRheaV&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:SuperRheaV (page does not exist)\">SuperRheaV</a>, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:KIM_MATA_HIPOL_(DRESS).jpg)"
+    },
+    {
+      "image_id": "garm_net_004",
+      "title": "File:Ladies dresses in a shop.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Challiyan\" title=\"User:Challiyan\">Challiyan</a>",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ladies_dresses_in_a_shop.jpg",
+      "attribution_statement": "Photo 'File:Ladies dresses in a shop.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Challiyan\" title=\"User:Challiyan\">Challiyan</a>, licensed under CC BY-SA 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Ladies_dresses_in_a_shop.jpg)"
+    },
+    {
+      "image_id": "garm_net_005",
+      "title": "File:Window shopping in Mexico City.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Tomascastelazo\" title=\"User:Tomascastelazo\">Tomascastelazo</a>",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Window_shopping_in_Mexico_City.jpg",
+      "attribution_statement": "Photo 'File:Window shopping in Mexico City.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Tomascastelazo\" title=\"User:Tomascastelazo\">Tomascastelazo</a>, licensed under CC BY-SA 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Window_shopping_in_Mexico_City.jpg)"
+    },
+    {
+      "image_id": "garm_net_006",
+      "title": "File:The Chinese Summer dress.png",
+      "author": "Abby E. Underwood",
+      "license": "Public domain",
+      "license_url": "",
+      "source_url": "https://commons.wikimedia.org/wiki/File:The_Chinese_Summer_dress.png",
+      "attribution_statement": "Photo 'File:The Chinese Summer dress.png' by Abby E. Underwood, licensed under Public domain via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:The_Chinese_Summer_dress.png)"
+    },
+    {
+      "image_id": "garm_net_007",
+      "title": "File:Gaultier pink jumpsuit (24158).jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Rhododendrites\" title=\"User:Rhododendrites\">Rhododendrites</a>",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Gaultier_pink_jumpsuit_(24158).jpg",
+      "attribution_statement": "Photo 'File:Gaultier pink jumpsuit (24158).jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Rhododendrites\" title=\"User:Rhododendrites\">Rhododendrites</a>, licensed under CC BY-SA 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Gaultier_pink_jumpsuit_(24158).jpg)"
+    },
+    {
+      "image_id": "garm_net_008",
+      "title": "File:Jumpsuit with pleated legs - front.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Jumpsuit_with_pleated_legs_-_front.jpg",
+      "attribution_statement": "Photo 'File:Jumpsuit with pleated legs - front.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>, licensed under CC BY-SA 3.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jumpsuit_with_pleated_legs_-_front.jpg)"
+    },
+    {
+      "image_id": "garm_net_009",
+      "title": "File:Lace bodysuit with thong back under a jumpsuit - modelled by Anastasia Voloshina.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Lace_bodysuit_with_thong_back_under_a_jumpsuit_-_modelled_by_Anastasia_Voloshina.jpg",
+      "attribution_statement": "Photo 'File:Lace bodysuit with thong back under a jumpsuit - modelled by Anastasia Voloshina.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>, licensed under CC BY-SA 3.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Lace_bodysuit_with_thong_back_under_a_jumpsuit_-_modelled_by_Anastasia_Voloshina.jpg)"
+    },
+    {
+      "image_id": "garm_net_010",
+      "title": "File:Turquoise Jumpsuit (Unsplash).jpg",
+      "author": "Darko  Mitev <a rel=\"nofollow\" class=\"external text\" href=\"https://unsplash.com/@darko_ar\">darko_ar</a>",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Turquoise_Jumpsuit_(Unsplash).jpg",
+      "attribution_statement": "Photo 'File:Turquoise Jumpsuit (Unsplash).jpg' by Darko  Mitev <a rel=\"nofollow\" class=\"external text\" href=\"https://unsplash.com/@darko_ar\">darko_ar</a>, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Turquoise_Jumpsuit_(Unsplash).jpg)"
+    },
+    {
+      "image_id": "garm_net_011",
+      "title": "File:Jacket, naval (AM 1961.53-11).jpg",
+      "author": "Unknown Author",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Jacket,_naval_(AM_1961.53-11).jpg",
+      "attribution_statement": "Photo 'File:Jacket, naval (AM 1961.53-11).jpg' by Unknown Author, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jacket,_naval_(AM_1961.53-11).jpg)"
+    }
+  ]
+}

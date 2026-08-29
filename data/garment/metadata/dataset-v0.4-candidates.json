@@ -1,26 +1,24 @@
 {
-  "manifest_name": "AURA-Production-Training-Manifest-v2.0",
-  "version": "2.0.0",
-  "created_at": "2026-08-29T18:00:00Z",
-  "governance_tier": "TIER_A_AND_TIER_B_ONLY",
-  "production_eligible": true,
-  "total_training_validation_count": 123,
+  "dataset_name": "AURA-Garment-Candidates-v0.4",
+  "version": "0.4.0-candidate",
+  "created_at": "2026-08-29T18:45:00Z",
+  "license": "AURA Multi-Tiered Research & Commercial Permissive Dataset",
+  "total_count": 177,
+  "production_pool_count": 123,
+  "evaluation_holdout_count": 54,
   "splits": {
     "train_count": 103,
     "val_count": 20,
-    "total_train_val_count": 123
+    "blind_test_count": 20,
+    "hard_test_count": 18,
+    "real_world_test_count": 16,
+    "total_count": 177
   },
   "items": [
     {
       "image_id": "garm_v3_001",
       "garment_group_id": "garment_group_0",
       "image_path": "assets/figma_images/01fb17598d2399b2cee2557ec9f52fd4e5a7eb7a",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -40,24 +38,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_002",
       "garment_group_id": "garment_group_0",
       "image_path": "assets/figma_images/02a37fe5aada718b47b32c11cd6c4109716193d9",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -77,24 +65,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_003",
       "garment_group_id": "garment_group_1",
       "image_path": "assets/figma_images/03d7b4090c9ca833781900d10444976398dd9819",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -114,24 +92,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_004",
       "garment_group_id": "garment_group_1",
       "image_path": "assets/figma_images/057ab8d8ff8d863e96463184c14cad162348f862",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -151,24 +119,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_005",
       "garment_group_id": "garment_group_2",
       "image_path": "assets/figma_images/0628f73586436d330db2331d976cacfffb5bd4ec",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -188,24 +146,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_006",
       "garment_group_id": "garment_group_2",
       "image_path": "assets/figma_images/08ce0fef3b91a9672b26fe10bdc8fe8ce9574fd4",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -225,24 +173,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_007",
       "garment_group_id": "garment_group_3",
       "image_path": "assets/figma_images/08e27170246c7bedc15e567fedade5a7604d71de",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -262,24 +200,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_008",
       "garment_group_id": "garment_group_3",
       "image_path": "assets/figma_images/0ae9a8b8ec3eebaa13fc7bc7d61658396eef1c20",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -299,24 +227,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_009",
       "garment_group_id": "garment_group_4",
       "image_path": "assets/figma_images/0af234666662c8a67167e2c9e41e9b1fa264b6a2",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -336,24 +254,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_010",
       "garment_group_id": "garment_group_4",
       "image_path": "assets/figma_images/0b0393b7c813e98a5a40db4626a0695e7634e5c2",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -373,24 +281,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_011",
       "garment_group_id": "garment_group_5",
       "image_path": "assets/figma_images/0d25e2139f13730a318704439690b540440c4ede",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -410,24 +308,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_012",
       "garment_group_id": "garment_group_5",
       "image_path": "assets/figma_images/0e0f714f05e0319b0f68bda949e58d9570afdcb2",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -447,24 +335,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_013",
       "garment_group_id": "garment_group_6",
       "image_path": "assets/figma_images/0f0a1f859848bbec2846e9f217fd4c7ad50bdb8a",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -484,24 +362,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_014",
       "garment_group_id": "garment_group_6",
       "image_path": "assets/figma_images/0fc67e337fdee28f9f6a8bef0170fb98dbefa927",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -521,24 +389,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_015",
       "garment_group_id": "garment_group_7",
       "image_path": "assets/figma_images/100193655787176a481fb42211951066750bbcde",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -558,24 +416,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_016",
       "garment_group_id": "garment_group_7",
       "image_path": "assets/figma_images/120bfc0a77975f59fd7dbd850bbd5f87046fb0b8",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -596,24 +444,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_017",
       "garment_group_id": "garment_group_8",
       "image_path": "assets/figma_images/154a22575b518ed7ffca5f21987f51be6e97a5d1",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -633,24 +471,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_018",
       "garment_group_id": "garment_group_8",
       "image_path": "assets/figma_images/19b4027eed48c647d6cdcddf4e0f4147875eb659",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -670,24 +498,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_019",
       "garment_group_id": "garment_group_9",
       "image_path": "assets/figma_images/1cd930acff9eaa9748d44779b0e4f223922182d6",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -707,24 +525,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_020",
       "garment_group_id": "garment_group_9",
       "image_path": "assets/figma_images/1f10aa9d473c61fba29922f3d46a5d2971ab82c0",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -744,24 +552,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_021",
       "garment_group_id": "garment_group_10",
       "image_path": "assets/figma_images/1f98e2c87082354d35fd9ec399e1f76b86b3979c",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -781,24 +579,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_022",
       "garment_group_id": "garment_group_10",
       "image_path": "assets/figma_images/205562ba7b37930d4b1051cabd06eab9f19da91d",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -818,24 +606,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_023",
       "garment_group_id": "garment_group_11",
       "image_path": "assets/figma_images/210d27a143c1530e7214abdd347ae5c35e301d21",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -855,24 +633,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_024",
       "garment_group_id": "garment_group_11",
       "image_path": "assets/figma_images/2194731d5e441857a5205346b4d22b0e7a3e5ebc",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -892,24 +660,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_025",
       "garment_group_id": "garment_group_12",
       "image_path": "assets/figma_images/21ab5f238aa6a21bcda8d5b46280f9c79920a78c",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -929,24 +687,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_026",
       "garment_group_id": "garment_group_12",
       "image_path": "assets/figma_images/22151da596d083cb95b5815b73287e031203a1a5",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -966,24 +714,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_027",
       "garment_group_id": "garment_group_13",
       "image_path": "assets/figma_images/2247a0fa41aa62391ce9eace4ad313f4e7a4eb39",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -1003,24 +741,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_028",
       "garment_group_id": "garment_group_13",
       "image_path": "assets/figma_images/24305d2de81d7cec76c8eec10ae9a04cda418045",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -1040,24 +768,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_029",
       "garment_group_id": "garment_group_14",
       "image_path": "assets/figma_images/24fed42db3488b45874ca9d057f2f3a9b17650cc",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -1077,24 +795,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_030",
       "garment_group_id": "garment_group_14",
       "image_path": "assets/figma_images/27ff4ebf7378443b02282e3ba183aefcf595d960",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -1114,24 +822,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_031",
       "garment_group_id": "garment_group_15",
       "image_path": "assets/figma_images/2e308bb6b67e61dfc46bf2347445f2314c84c2d9",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -1151,24 +849,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_032",
       "garment_group_id": "garment_group_15",
       "image_path": "assets/figma_images/2fb4ff19bf4cfc18c0e5ce29615c8391472975e7",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -1188,24 +876,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_033",
       "garment_group_id": "garment_group_16",
       "image_path": "assets/figma_images/301b8b1750dd2ba1de42d390c0b512e00e243fdc",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -1225,24 +903,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_034",
       "garment_group_id": "garment_group_16",
       "image_path": "assets/figma_images/30c2d1dfbd0e5b08900f4d89da17354d6885d120",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -1262,24 +930,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_035",
       "garment_group_id": "garment_group_17",
       "image_path": "assets/figma_images/327641bf2fdf2c08c4ff15378c9c44afa6b604ef",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -1299,24 +957,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_036",
       "garment_group_id": "garment_group_17",
       "image_path": "assets/figma_images/3509cca7ebbeff651a2a5d0bd0fb20aabf4d799e",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -1336,24 +984,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_037",
       "garment_group_id": "garment_group_18",
       "image_path": "assets/figma_images/36408cae6eb9841686d41ae289bea41c809e5e84",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -1373,24 +1011,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_038",
       "garment_group_id": "garment_group_18",
       "image_path": "assets/figma_images/3a2667c37b12d5afd27d89edfda2606e47df3cb2",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -1410,24 +1038,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_039",
       "garment_group_id": "garment_group_19",
       "image_path": "assets/figma_images/3e7567dd2b9017c712780c639b36bac23adb2864",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -1447,24 +1065,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_040",
       "garment_group_id": "garment_group_19",
       "image_path": "assets/figma_images/3f2dad8ca29f3cfce9b2bec57d424fc44ae15022",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -1484,24 +1092,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_041",
       "garment_group_id": "garment_group_20",
       "image_path": "assets/figma_images/42ac7c1f57e7e7e3fc03af3012a3140710553581",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -1521,24 +1119,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_042",
       "garment_group_id": "garment_group_20",
       "image_path": "assets/figma_images/44b655dceb2aef5956aea3f3c9f8f1010427430c",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -1558,24 +1146,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_043",
       "garment_group_id": "garment_group_21",
       "image_path": "assets/figma_images/4634583601e82f40d8c036e7366a7d0f960dafd0",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -1595,24 +1173,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_044",
       "garment_group_id": "garment_group_21",
       "image_path": "assets/figma_images/4821eba7cad0bcdeea8e50f75b71afa0bebe930f",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -1632,24 +1200,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_045",
       "garment_group_id": "garment_group_22",
       "image_path": "assets/figma_images/4a256d8d9ae1eec940a8f62b49fedde384a953bb",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -1669,24 +1227,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_046",
       "garment_group_id": "garment_group_22",
       "image_path": "assets/figma_images/4c9855afb000a4e121b863130f8773dff78ab9ac",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -1706,24 +1254,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_047",
       "garment_group_id": "garment_group_23",
       "image_path": "assets/figma_images/4f0a5c9f16f8f3c580afc3c98a77a6f8da147ed3",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -1743,24 +1281,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_048",
       "garment_group_id": "garment_group_23",
       "image_path": "assets/figma_images/4fc0385d8bf4bcdea6ce1622a3da5a9d895c8028",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -1780,24 +1308,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_049",
       "garment_group_id": "garment_group_24",
       "image_path": "assets/figma_images/4fe17731db462f885fcd55cc17cbd9de3922790f",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -1817,24 +1335,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_050",
       "garment_group_id": "garment_group_24",
       "image_path": "assets/figma_images/4fe77b089f5d7f9f818e3348fe736d12027f6749",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -1854,24 +1362,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_051",
       "garment_group_id": "garment_group_25",
       "image_path": "assets/figma_images/51a92c88a4c9887e7515ca9e4a1ac935f8b46687",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -1892,24 +1390,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_052",
       "garment_group_id": "garment_group_25",
       "image_path": "assets/figma_images/5352884c7605cc1d195a7509b0c1c74b6a48c785",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -1929,24 +1417,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_053",
       "garment_group_id": "garment_group_26",
       "image_path": "assets/figma_images/55e093a8393fbddd088bbbc5ce7901664383bfe5",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -1966,24 +1444,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_054",
       "garment_group_id": "garment_group_26",
       "image_path": "assets/figma_images/56a589b6c09db44aff94a175d9ee034650894557",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -2003,24 +1471,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_055",
       "garment_group_id": "garment_group_27",
       "image_path": "assets/figma_images/598875f011b7920f9e54a712a6cad7cd06714053",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -2040,24 +1498,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_056",
       "garment_group_id": "garment_group_27",
       "image_path": "assets/figma_images/5a6f50ef57b7e3f17d95ed410f4b488634ba34d1",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -2077,24 +1525,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_057",
       "garment_group_id": "garment_group_28",
       "image_path": "assets/figma_images/5a8fcd1fcf0d7fe67b1bbeb283eafd9cd1c5a886",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -2114,24 +1552,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_058",
       "garment_group_id": "garment_group_28",
       "image_path": "assets/figma_images/5b17bb64eb8aac6c952ab0013f6c4c768415cd53",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -2151,24 +1579,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_059",
       "garment_group_id": "garment_group_29",
       "image_path": "assets/figma_images/5d0999ab0d5ce87b0a11c0522528a7f565562385",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -2188,24 +1606,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_060",
       "garment_group_id": "garment_group_29",
       "image_path": "assets/figma_images/5d344101bdba9f5e723407fa56a9cb647c2d9d1f",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -2225,24 +1633,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_061",
       "garment_group_id": "garment_group_30",
       "image_path": "assets/figma_images/5dc81da2a387706ddf7546058125f639fb615074",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -2262,24 +1660,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_062",
       "garment_group_id": "garment_group_30",
       "image_path": "assets/figma_images/62306ed5eb2e77b3de4e9fad6aacc25909e7eaef",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -2299,24 +1687,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_063",
       "garment_group_id": "garment_group_31",
       "image_path": "assets/figma_images/680db4cf9959ec5ecb2df7de8b7cbaaeef35361a",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -2336,24 +1714,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_064",
       "garment_group_id": "garment_group_31",
       "image_path": "assets/figma_images/685b19aa01e9a652c3f272e2efd63079adc83bc7",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -2373,24 +1741,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_065",
       "garment_group_id": "garment_group_32",
       "image_path": "assets/figma_images/68f0259a35a2f25a1e6a1998bd2cb29abbcee787",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -2410,24 +1768,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_066",
       "garment_group_id": "garment_group_32",
       "image_path": "assets/figma_images/699b5bb9f805ef3d476e913e26929985d88dc85d",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -2447,24 +1795,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_067",
       "garment_group_id": "garment_group_33",
       "image_path": "assets/figma_images/6cf7937d2edb1b0edcfc6438d663788a63a24c1d",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -2484,24 +1822,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_068",
       "garment_group_id": "garment_group_33",
       "image_path": "assets/figma_images/6e184af9ae50e60c76e350707296a9d99b253f87",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -2521,24 +1849,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_069",
       "garment_group_id": "garment_group_34",
       "image_path": "assets/figma_images/6e4877f2fff2038c85a9f1d2c6383db0159aca5c",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -2558,24 +1876,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_070",
       "garment_group_id": "garment_group_34",
       "image_path": "assets/figma_images/6efe559ad2763dc087a62d97b7a4fb7de43ceb30",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -2595,24 +1903,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_071",
       "garment_group_id": "garment_group_35",
       "image_path": "assets/figma_images/71fe417db66a6d5ef0459758cfb467ded27b11ac",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -2632,24 +1930,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_072",
       "garment_group_id": "garment_group_35",
       "image_path": "assets/figma_images/72d669c19bf0d84d2992c1cfef0bcabbfbc72282",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -2669,24 +1957,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_073",
       "garment_group_id": "garment_group_36",
       "image_path": "assets/figma_images/765b78420af1e9b376134d473e5f4f56072140e0",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -2706,24 +1984,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_074",
       "garment_group_id": "garment_group_36",
       "image_path": "assets/figma_images/77612d2753023ba2091a10b7b80c512f2a31e77a",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -2743,24 +2011,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_075",
       "garment_group_id": "garment_group_37",
       "image_path": "assets/figma_images/77b007f08ef3baa61a5b0c31ad976e1ade9f81e1",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -2780,24 +2038,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_076",
       "garment_group_id": "garment_group_37",
       "image_path": "assets/figma_images/794b866ed3a85df4b95e6222cc684eb67b050400",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -2817,24 +2065,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_077",
       "garment_group_id": "garment_group_38",
       "image_path": "assets/figma_images/79ffd510cac5d908ac69152af6a31a35044b6980",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -2854,24 +2092,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_078",
       "garment_group_id": "garment_group_38",
       "image_path": "assets/figma_images/7a18768213aea866d364ea87c2f0705d7fa6e920",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -2891,24 +2119,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_079",
       "garment_group_id": "garment_group_39",
       "image_path": "assets/figma_images/7c8bf71e0a82c0901e7061a69f44238f6ffd4874",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -2928,24 +2146,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_080",
       "garment_group_id": "garment_group_39",
       "image_path": "assets/figma_images/8100192c7e5b24c5eb81cf779fa16e659b1a7e4d",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -2965,24 +2173,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_081",
       "garment_group_id": "garment_group_40",
       "image_path": "assets/figma_images/865426683a59ba837f88266683edbf1f4f67402f",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -3002,24 +2200,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_082",
       "garment_group_id": "garment_group_40",
       "image_path": "assets/figma_images/86ac726a54f4e81cc64a76f6d349bbb4a673d54b",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -3039,24 +2227,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_083",
       "garment_group_id": "garment_group_41",
       "image_path": "assets/figma_images/86fa261f5edbc4716a477b8a37faf747870f3b5c",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -3076,24 +2254,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_084",
       "garment_group_id": "garment_group_41",
       "image_path": "assets/figma_images/8716fee0c88484af03b766799ea842e2ae4386f2",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -3113,24 +2281,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_085",
       "garment_group_id": "garment_group_42",
       "image_path": "assets/figma_images/882585ceffbcea2939741c9ecccb66c71c7565cb",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -3150,24 +2308,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_086",
       "garment_group_id": "garment_group_42",
       "image_path": "assets/figma_images/89e9f86edbd95868c9e69be60d3943ad93fc2273",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -3188,24 +2336,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_087",
       "garment_group_id": "garment_group_43",
       "image_path": "assets/figma_images/8eee9b2282c7ecf373e964f3e01268bc899117f7",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -3225,24 +2363,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_088",
       "garment_group_id": "garment_group_43",
       "image_path": "assets/figma_images/9249fc354e60888307ce900131a0abc4faee13c4",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "outerwear",
@@ -3262,24 +2390,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_089",
       "garment_group_id": "garment_group_44",
       "image_path": "assets/figma_images/92c037cfb9407d01077e03a1ec6282d629d7b3dc",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "shoes",
@@ -3299,24 +2417,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_090",
       "garment_group_id": "garment_group_44",
       "image_path": "assets/figma_images/93d32249ef407c6fb0aa9dc17a9488f2e74dbd89",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "accessories",
@@ -3336,24 +2444,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_091",
       "garment_group_id": "garment_group_45",
       "image_path": "assets/figma_images/971efc01161343cf3950ea93e2589c5d0f69fddf",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "tops",
@@ -3373,24 +2471,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_092",
       "garment_group_id": "garment_group_45",
       "image_path": "assets/figma_images/98b5eb64ed10f5243846137fed99f1d04f767294",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "train",
       "labels": {
         "category": "bottoms",
@@ -3410,24 +2498,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_093",
       "garment_group_id": "garment_group_46",
       "image_path": "assets/figma_images/99c413e59e78d94998902c092e611b919c73e8eb",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "outerwear",
@@ -3447,24 +2525,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_094",
       "garment_group_id": "garment_group_46",
       "image_path": "assets/figma_images/9a82b2a7c4ea62d45a47b708841bebeb9274642d",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "shoes",
@@ -3484,24 +2552,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_095",
       "garment_group_id": "garment_group_47",
       "image_path": "assets/figma_images/9c80134651509c49be5dd131bd0b3c680c9f6479",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "accessories",
@@ -3521,24 +2579,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_096",
       "garment_group_id": "garment_group_47",
       "image_path": "assets/figma_images/a05690dd2931be4b88dfdadf51fdf485fb95f5c8",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "tops",
@@ -3558,24 +2606,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_097",
       "garment_group_id": "garment_group_48",
       "image_path": "assets/figma_images/a23ad8ab0f33ab5f2cfe91175e1b6fb615ba1690",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "bottoms",
@@ -3595,24 +2633,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_098",
       "garment_group_id": "garment_group_48",
       "image_path": "assets/figma_images/a2bba7d632ad8e4b1d6a286ba23881b60970db15",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "outerwear",
@@ -3632,24 +2660,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_099",
       "garment_group_id": "garment_group_49",
       "image_path": "assets/figma_images/a43c6167d9cd293be1851aa0eb8ac842170e86b0",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "shoes",
@@ -3669,24 +2687,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_100",
       "garment_group_id": "garment_group_49",
       "image_path": "assets/figma_images/a4c5d331e3619944cf3bfd00cb79315002905500",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "accessories",
@@ -3706,24 +2714,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_101",
       "garment_group_id": "garment_group_50",
       "image_path": "assets/figma_images/a564c36c3e02fe3e7cc871cf1ed2468bcdbb1377",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "tops",
@@ -3743,24 +2741,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_102",
       "garment_group_id": "garment_group_50",
       "image_path": "assets/figma_images/a8c2358dbdf3b1bdb1d74c2d353ce44e73f1acf5",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "bottoms",
@@ -3780,24 +2768,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_103",
       "garment_group_id": "garment_group_51",
       "image_path": "assets/figma_images/a8d3d96ac1d93dd33afe9c8474922f0ec8fc4b58",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "outerwear",
@@ -3817,24 +2795,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_104",
       "garment_group_id": "garment_group_51",
       "image_path": "assets/figma_images/a8f8c1eb1e086ffd53ff61e78b2501c38246691f",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "shoes",
@@ -3854,24 +2822,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_105",
       "garment_group_id": "garment_group_52",
       "image_path": "assets/figma_images/a9e892019e385c4daca46dd3b4754c5518c524f5",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "accessories",
@@ -3891,24 +2849,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_106",
       "garment_group_id": "garment_group_52",
       "image_path": "assets/figma_images/aa2c92e59c23bd8b4d2db4262b8cee815966636e",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "tops",
@@ -3928,24 +2876,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_107",
       "garment_group_id": "garment_group_53",
       "image_path": "assets/figma_images/aaa4548b61c6011cf54f10e3d91f79eb449a49b8",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "bottoms",
@@ -3965,24 +2903,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_108",
       "garment_group_id": "garment_group_53",
       "image_path": "assets/figma_images/ae1d165914ecc502d732e1545dad32071ea54015",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "outerwear",
@@ -4002,24 +2930,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_109",
       "garment_group_id": "garment_group_54",
       "image_path": "assets/figma_images/b3233cd8f559f26efac2bc834cb70bee14e2b4a4",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "shoes",
@@ -4039,24 +2957,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_110",
       "garment_group_id": "garment_group_54",
       "image_path": "assets/figma_images/b75b22ea95d1ef8f09a3712e9e068608f41488b9",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "accessories",
@@ -4076,24 +2984,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_111",
       "garment_group_id": "garment_group_55",
       "image_path": "assets/figma_images/b9c2b25d31b137eea3475ad2da9f8fe136215e88",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "tops",
@@ -4113,24 +3011,14 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
     },
     {
       "image_id": "garm_v3_112",
       "garment_group_id": "garment_group_55",
       "image_path": "assets/figma_images/b9db5d7994e129310d95a9a772914315dac780f1",
-      "source": "aura_in_house",
-      "source_dataset": "aura-garment-golden-v0.3",
-      "tier": "TIER_A",
-      "license_status": "APPROVED_FOR_AURA_TRAINING",
-      "license_evidence": "AURA proprietary verified physical garment asset",
-      "production_eligible": true,
       "split": "validation",
       "labels": {
         "category": "bottoms",
@@ -4150,13 +3038,1503 @@
           "All Season"
         ]
       },
-      "context_labels": [
-        "studio",
-        "clean-background",
-        "flat-lay"
-      ],
-      "quality_status": "VERIFIED",
-      "training_eligible": true
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "stylist_editorial_review"
+    },
+    {
+      "image_id": "garm_v3_113",
+      "garment_group_id": "garment_group_56",
+      "image_path": "assets/figma_images/bae71620ff55a7ff90295f0cb83c214cc7d18831",
+      "split": "blind_test",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "blazer",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Oversized",
+        "silhouette": "structured",
+        "pattern": "solid",
+        "material": "denim",
+        "formality_score": 0.2,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_114",
+      "garment_group_id": "garment_group_56",
+      "image_path": "assets/figma_images/bd6ac62a6b60a5a2d753bb2748de8b235597d802",
+      "split": "blind_test",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "sandals",
+        "primary_color_hex": "#F0EFEA",
+        "color_family": "cream",
+        "fit": "Slim",
+        "silhouette": "straight",
+        "pattern": "textured",
+        "material": "nylon",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_115",
+      "garment_group_id": "garment_group_57",
+      "image_path": "assets/figma_images/bef304a934cb18f0b606049c22d8decadf29e387",
+      "split": "blind_test",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "belt",
+        "primary_color_hex": "#FFFFFF",
+        "color_family": "white",
+        "fit": "Fitted",
+        "silhouette": "relaxed",
+        "pattern": "striped",
+        "material": "cashmere",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_116",
+      "garment_group_id": "garment_group_57",
+      "image_path": "assets/figma_images/bf4dfd18f9a3b29b79bb85ebd205a4e3082c6ec7",
+      "split": "blind_test",
+      "labels": {
+        "category": "tops",
+        "subcategory": "knit_sweater",
+        "primary_color_hex": "#2B2C2E",
+        "color_family": "grey",
+        "fit": "Regular",
+        "silhouette": "wide",
+        "pattern": "plaid",
+        "material": "silk",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_117",
+      "garment_group_id": "garment_group_58",
+      "image_path": "assets/figma_images/bfa930b49de34ddf1285b093432d12745faa83fd",
+      "split": "blind_test",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#1B263B",
+        "color_family": "navy",
+        "fit": "Relaxed",
+        "silhouette": "boxy",
+        "pattern": "solid",
+        "material": "synthetic",
+        "formality_score": 0.6,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_118",
+      "garment_group_id": "garment_group_58",
+      "image_path": "assets/figma_images/c10655f957b4289f272e52064ce3f8fa71aef0de",
+      "split": "blind_test",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "denim_jacket",
+        "primary_color_hex": "#D4C5B9",
+        "color_family": "beige",
+        "fit": "Oversized",
+        "silhouette": "fitted",
+        "pattern": "textured",
+        "material": "cotton",
+        "formality_score": 0.7,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_119",
+      "garment_group_id": "garment_group_59",
+      "image_path": "assets/figma_images/c18e9fb9aa6265187d28307aeab2fc3ac08c9c3a",
+      "split": "blind_test",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "mules",
+        "primary_color_hex": "#8C7A6B",
+        "color_family": "brown",
+        "fit": "Slim",
+        "silhouette": "flowing",
+        "pattern": "striped",
+        "material": "linen",
+        "formality_score": 0.8,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_120",
+      "garment_group_id": "garment_group_59",
+      "image_path": "assets/figma_images/c220cd5e580f5192157aa54eb3791e449be9d0cd",
+      "split": "blind_test",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "hat",
+        "primary_color_hex": "#3E4E3B",
+        "color_family": "olive",
+        "fit": "Fitted",
+        "silhouette": "structured",
+        "pattern": "plaid",
+        "material": "wool",
+        "formality_score": 0.2,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_121",
+      "garment_group_id": "garment_group_60",
+      "image_path": "assets/figma_images/c4da93ead9be44d732aa66edaee053253fb7c04f",
+      "split": "blind_test",
+      "labels": {
+        "category": "tops",
+        "secondary_category": "outerwear",
+        "subcategory": "overshirt",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "pattern": "solid",
+        "material": "leather",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_122",
+      "garment_group_id": "garment_group_60",
+      "image_path": "assets/figma_images/c5b811516d525f81ad1889595007ee532c3d25ac",
+      "split": "blind_test",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#F0EFEA",
+        "color_family": "cream",
+        "fit": "Relaxed",
+        "silhouette": "relaxed",
+        "pattern": "textured",
+        "material": "denim",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_123",
+      "garment_group_id": "garment_group_61",
+      "image_path": "assets/figma_images/c5f1343a6b6001b47016636fd55d2b5c9b57f428",
+      "split": "blind_test",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "bomber_jacket",
+        "primary_color_hex": "#FFFFFF",
+        "color_family": "white",
+        "fit": "Oversized",
+        "silhouette": "wide",
+        "pattern": "striped",
+        "material": "nylon",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_124",
+      "garment_group_id": "garment_group_61",
+      "image_path": "assets/figma_images/c66f18f2b55249ed7d3962a177cbb073271bb93c",
+      "split": "blind_test",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "boots",
+        "primary_color_hex": "#2B2C2E",
+        "color_family": "grey",
+        "fit": "Slim",
+        "silhouette": "boxy",
+        "pattern": "plaid",
+        "material": "cashmere",
+        "formality_score": 0.6,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_125",
+      "garment_group_id": "garment_group_62",
+      "image_path": "assets/figma_images/c6e3db8fbcccd344a727c0aa10115752d81fb103",
+      "split": "blind_test",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "scarf",
+        "primary_color_hex": "#1B263B",
+        "color_family": "navy",
+        "fit": "Fitted",
+        "silhouette": "fitted",
+        "pattern": "solid",
+        "material": "silk",
+        "formality_score": 0.7,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_126",
+      "garment_group_id": "garment_group_62",
+      "image_path": "assets/figma_images/c82db9a2c8e6b6e66c60dae88c79c5408c33c4ad",
+      "split": "blind_test",
+      "labels": {
+        "category": "tops",
+        "subcategory": "polo",
+        "primary_color_hex": "#D4C5B9",
+        "color_family": "beige",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "pattern": "textured",
+        "material": "synthetic",
+        "formality_score": 0.8,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_127",
+      "garment_group_id": "garment_group_63",
+      "image_path": "assets/figma_images/c883f66c0a35044e5a570f6a28df2debb598613c",
+      "split": "blind_test",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#8C7A6B",
+        "color_family": "brown",
+        "fit": "Relaxed",
+        "silhouette": "structured",
+        "pattern": "striped",
+        "material": "cotton",
+        "formality_score": 0.2,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_128",
+      "garment_group_id": "garment_group_63",
+      "image_path": "assets/figma_images/c8bfd8f899f4951400d8fc7a330ce712d5c667cc",
+      "split": "blind_test",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "trench_coat",
+        "primary_color_hex": "#3E4E3B",
+        "color_family": "olive",
+        "fit": "Oversized",
+        "silhouette": "straight",
+        "pattern": "plaid",
+        "material": "linen",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_129",
+      "garment_group_id": "garment_group_64",
+      "image_path": "assets/figma_images/c96ab37525be4af285038f2fccb03891b5635a2c",
+      "split": "blind_test",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "derbies",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Slim",
+        "silhouette": "relaxed",
+        "pattern": "solid",
+        "material": "wool",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_130",
+      "garment_group_id": "garment_group_64",
+      "image_path": "assets/figma_images/c9ce548cf1031023f400e33fb3c32411fbd39c19",
+      "split": "blind_test",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "sunglasses",
+        "primary_color_hex": "#F0EFEA",
+        "color_family": "cream",
+        "fit": "Fitted",
+        "silhouette": "wide",
+        "pattern": "textured",
+        "material": "leather",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_131",
+      "garment_group_id": "garment_group_65",
+      "image_path": "assets/figma_images/ca35f8b3d9fbfc8535bb84cad61ec07372da1643",
+      "split": "blind_test",
+      "labels": {
+        "category": "tops",
+        "subcategory": "hoodie",
+        "primary_color_hex": "#FFFFFF",
+        "color_family": "white",
+        "fit": "Regular",
+        "silhouette": "boxy",
+        "pattern": "striped",
+        "material": "denim",
+        "formality_score": 0.6,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_132",
+      "garment_group_id": "garment_group_65",
+      "image_path": "assets/figma_images/ca95b3bea305fedaf33c9b2e5988e9b00c7efc41",
+      "split": "blind_test",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#2B2C2E",
+        "color_family": "grey",
+        "fit": "Relaxed",
+        "silhouette": "fitted",
+        "pattern": "plaid",
+        "material": "nylon",
+        "formality_score": 0.7,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_133",
+      "garment_group_id": "garment_group_66",
+      "image_path": "assets/figma_images/cd5d80f9907ffb09640402c1fb250e34fb5bd953",
+      "split": "hard_test",
+      "challenge_type": "cream_vs_white_boundary",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "puffer_jacket",
+        "primary_color_hex": "#1B263B",
+        "color_family": "navy",
+        "fit": "Oversized",
+        "silhouette": "flowing",
+        "pattern": "solid",
+        "material": "cashmere",
+        "formality_score": 0.8,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_134",
+      "garment_group_id": "garment_group_66",
+      "image_path": "assets/figma_images/cffa2da192c7c2ebde78157b155568ef55acea34",
+      "split": "hard_test",
+      "challenge_type": "oversized_vs_relaxed_tailoring",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "loafers",
+        "primary_color_hex": "#D4C5B9",
+        "color_family": "beige",
+        "fit": "Slim",
+        "silhouette": "structured",
+        "pattern": "textured",
+        "material": "silk",
+        "formality_score": 0.2,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_135",
+      "garment_group_id": "garment_group_67",
+      "image_path": "assets/figma_images/d00a583d62dc4cf134de155dfe8c445aaef7a9cb",
+      "split": "hard_test",
+      "challenge_type": "nylon_vs_synthetic_hierarchy",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "crossbody_bag",
+        "primary_color_hex": "#8C7A6B",
+        "color_family": "brown",
+        "fit": "Fitted",
+        "silhouette": "straight",
+        "pattern": "striped",
+        "material": "synthetic",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_136",
+      "garment_group_id": "garment_group_67",
+      "image_path": "assets/figma_images/d123b661b3aa0b0842aacb92a04b6af662bde758",
+      "split": "hard_test",
+      "challenge_type": "cream_vs_white_boundary",
+      "labels": {
+        "category": "tops",
+        "subcategory": "button_down",
+        "primary_color_hex": "#3E4E3B",
+        "color_family": "olive",
+        "fit": "Regular",
+        "silhouette": "relaxed",
+        "pattern": "plaid",
+        "material": "cotton",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_137",
+      "garment_group_id": "garment_group_68",
+      "image_path": "assets/figma_images/d1acae055452707baaf1f7a221e308bfd286acb4",
+      "split": "hard_test",
+      "challenge_type": "oversized_vs_relaxed_tailoring",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Relaxed",
+        "silhouette": "wide",
+        "pattern": "solid",
+        "material": "linen",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_138",
+      "garment_group_id": "garment_group_68",
+      "image_path": "assets/figma_images/d584edd01d15f71d2ac90afbd36cf0d9a20982bb",
+      "split": "hard_test",
+      "challenge_type": "nylon_vs_synthetic_hierarchy",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "leather_jacket",
+        "primary_color_hex": "#F0EFEA",
+        "color_family": "cream",
+        "fit": "Oversized",
+        "silhouette": "boxy",
+        "pattern": "textured",
+        "material": "wool",
+        "formality_score": 0.6,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_139",
+      "garment_group_id": "garment_group_69",
+      "image_path": "assets/figma_images/d7ac4bec9674348194232c51795a144be8a9315b",
+      "split": "hard_test",
+      "challenge_type": "cream_vs_white_boundary",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "sneakers",
+        "primary_color_hex": "#FFFFFF",
+        "color_family": "white",
+        "fit": "Slim",
+        "silhouette": "fitted",
+        "pattern": "striped",
+        "material": "leather",
+        "formality_score": 0.7,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_140",
+      "garment_group_id": "garment_group_69",
+      "image_path": "assets/figma_images/d856046203dee28c061b10286d27bf0642efb24a",
+      "split": "hard_test",
+      "challenge_type": "oversized_vs_relaxed_tailoring",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "tote_bag",
+        "primary_color_hex": "#2B2C2E",
+        "color_family": "grey",
+        "fit": "Fitted",
+        "silhouette": "flowing",
+        "pattern": "plaid",
+        "material": "denim",
+        "formality_score": 0.8,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_141",
+      "garment_group_id": "garment_group_70",
+      "image_path": "assets/figma_images/d941271f0219ec45273963a833083dbe4dd85567",
+      "split": "hard_test",
+      "challenge_type": "nylon_vs_synthetic_hierarchy",
+      "labels": {
+        "category": "tops",
+        "subcategory": "t_shirt",
+        "primary_color_hex": "#1B263B",
+        "color_family": "navy",
+        "fit": "Regular",
+        "silhouette": "structured",
+        "pattern": "solid",
+        "material": "nylon",
+        "formality_score": 0.2,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_142",
+      "garment_group_id": "garment_group_70",
+      "image_path": "assets/figma_images/dd03c08f01aeb0c12a04430263b382f6debb478b",
+      "split": "hard_test",
+      "challenge_type": "cream_vs_white_boundary",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#D4C5B9",
+        "color_family": "beige",
+        "fit": "Relaxed",
+        "silhouette": "straight",
+        "pattern": "textured",
+        "material": "cashmere",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_143",
+      "garment_group_id": "garment_group_71",
+      "image_path": "assets/figma_images/dd372e44d399a546309374fcf24f2d39761c1617",
+      "split": "hard_test",
+      "challenge_type": "oversized_vs_relaxed_tailoring",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "wool_coat",
+        "primary_color_hex": "#8C7A6B",
+        "color_family": "brown",
+        "fit": "Oversized",
+        "silhouette": "relaxed",
+        "pattern": "striped",
+        "material": "silk",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_144",
+      "garment_group_id": "garment_group_71",
+      "image_path": "assets/figma_images/e146a97229335756f28536e3a04663dfeef51c00",
+      "split": "hard_test",
+      "challenge_type": "nylon_vs_synthetic_hierarchy",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "sandals",
+        "primary_color_hex": "#3E4E3B",
+        "color_family": "olive",
+        "fit": "Slim",
+        "silhouette": "wide",
+        "pattern": "plaid",
+        "material": "synthetic",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_145",
+      "garment_group_id": "garment_group_72",
+      "image_path": "assets/figma_images/e35d5b32d5f1ea04fbd824b6dd9a70ac0f17677d",
+      "split": "hard_test",
+      "challenge_type": "cream_vs_white_boundary",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "belt",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Fitted",
+        "silhouette": "boxy",
+        "pattern": "solid",
+        "material": "cotton",
+        "formality_score": 0.6,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_146",
+      "garment_group_id": "garment_group_72",
+      "image_path": "assets/figma_images/e3c07b7108efe061f26a484f72a1e19bf24ba54a",
+      "split": "hard_test",
+      "challenge_type": "oversized_vs_relaxed_tailoring",
+      "labels": {
+        "category": "tops",
+        "subcategory": "tank",
+        "primary_color_hex": "#F0EFEA",
+        "color_family": "cream",
+        "fit": "Regular",
+        "silhouette": "fitted",
+        "pattern": "textured",
+        "material": "linen",
+        "formality_score": 0.7,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_147",
+      "garment_group_id": "garment_group_73",
+      "image_path": "assets/figma_images/e3ede6fdcb8f1003cfb5ec8360183bb463dc3b85",
+      "split": "hard_test",
+      "challenge_type": "nylon_vs_synthetic_hierarchy",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#FFFFFF",
+        "color_family": "white",
+        "fit": "Relaxed",
+        "silhouette": "flowing",
+        "pattern": "striped",
+        "material": "wool",
+        "formality_score": 0.8,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_148",
+      "garment_group_id": "garment_group_73",
+      "image_path": "assets/figma_images/e86b0675be8dee4163fe2075ab0de02f92572a78",
+      "split": "hard_test",
+      "challenge_type": "cream_vs_white_boundary",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "blazer",
+        "primary_color_hex": "#2B2C2E",
+        "color_family": "grey",
+        "fit": "Oversized",
+        "silhouette": "structured",
+        "pattern": "plaid",
+        "material": "leather",
+        "formality_score": 0.2,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_149",
+      "garment_group_id": "garment_group_74",
+      "image_path": "assets/figma_images/e8f34c9bf8ece7a6b15407664acce4b2528fe181",
+      "split": "hard_test",
+      "challenge_type": "oversized_vs_relaxed_tailoring",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "mules",
+        "primary_color_hex": "#1B263B",
+        "color_family": "navy",
+        "fit": "Slim",
+        "silhouette": "straight",
+        "pattern": "solid",
+        "material": "denim",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_150",
+      "garment_group_id": "garment_group_74",
+      "image_path": "assets/figma_images/e90b8a0cac691fdfe9caae3743b712bd889fc861",
+      "split": "hard_test",
+      "challenge_type": "nylon_vs_synthetic_hierarchy",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "hat",
+        "primary_color_hex": "#D4C5B9",
+        "color_family": "beige",
+        "fit": "Fitted",
+        "silhouette": "relaxed",
+        "pattern": "textured",
+        "material": "nylon",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_151",
+      "garment_group_id": "garment_group_75",
+      "image_path": "assets/figma_images/edb5f28ab7b9fca0bc46c79cde94bba56d55055c",
+      "split": "real_world_test",
+      "real_world_context": "flat_lay_ambient_lighting",
+      "labels": {
+        "category": "tops",
+        "subcategory": "knit_sweater",
+        "primary_color_hex": "#8C7A6B",
+        "color_family": "brown",
+        "fit": "Regular",
+        "silhouette": "wide",
+        "pattern": "striped",
+        "material": "cashmere",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_152",
+      "garment_group_id": "garment_group_75",
+      "image_path": "assets/figma_images/ee503664ecc2f23c1f4093c0979ddef35d415a68",
+      "split": "real_world_test",
+      "real_world_context": "on_hanger_wrinkled",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#3E4E3B",
+        "color_family": "olive",
+        "fit": "Relaxed",
+        "silhouette": "boxy",
+        "pattern": "plaid",
+        "material": "silk",
+        "formality_score": 0.6,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_153",
+      "garment_group_id": "garment_group_76",
+      "image_path": "assets/figma_images/f004671a7a3e2a342f3af6071a74b41c8503c3b2",
+      "split": "real_world_test",
+      "real_world_context": "angled_perspective_shadow",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "denim_jacket",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Oversized",
+        "silhouette": "fitted",
+        "pattern": "solid",
+        "material": "synthetic",
+        "formality_score": 0.7,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_154",
+      "garment_group_id": "garment_group_76",
+      "image_path": "assets/figma_images/f011dcc1747fb0c372dbe1b76dc0e6cae92de195",
+      "split": "real_world_test",
+      "real_world_context": "flat_lay_ambient_lighting",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "boots",
+        "primary_color_hex": "#F0EFEA",
+        "color_family": "cream",
+        "fit": "Slim",
+        "silhouette": "flowing",
+        "pattern": "textured",
+        "material": "cotton",
+        "formality_score": 0.8,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_155",
+      "garment_group_id": "garment_group_77",
+      "image_path": "assets/figma_images/f1d383d5876df1afff6686cf70682c4620e9a41c",
+      "split": "real_world_test",
+      "real_world_context": "on_hanger_wrinkled",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "scarf",
+        "primary_color_hex": "#FFFFFF",
+        "color_family": "white",
+        "fit": "Fitted",
+        "silhouette": "structured",
+        "pattern": "striped",
+        "material": "linen",
+        "formality_score": 0.2,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_156",
+      "garment_group_id": "garment_group_77",
+      "image_path": "assets/figma_images/f27626040929c291bf7c305b51eeccf223a707c3",
+      "split": "real_world_test",
+      "real_world_context": "angled_perspective_shadow",
+      "labels": {
+        "category": "tops",
+        "secondary_category": "outerwear",
+        "subcategory": "overshirt",
+        "primary_color_hex": "#2B2C2E",
+        "color_family": "grey",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "pattern": "plaid",
+        "material": "wool",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_157",
+      "garment_group_id": "garment_group_78",
+      "image_path": "assets/figma_images/f3b7ebb0e160eda240be69b58813a1b4d6f75e83",
+      "split": "real_world_test",
+      "real_world_context": "flat_lay_ambient_lighting",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#1B263B",
+        "color_family": "navy",
+        "fit": "Relaxed",
+        "silhouette": "relaxed",
+        "pattern": "solid",
+        "material": "leather",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_158",
+      "garment_group_id": "garment_group_78",
+      "image_path": "assets/figma_images/f44fe1d9b271c9bf61d57517ca82b3d1d0a6d2ea",
+      "split": "real_world_test",
+      "real_world_context": "on_hanger_wrinkled",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "bomber_jacket",
+        "primary_color_hex": "#D4C5B9",
+        "color_family": "beige",
+        "fit": "Oversized",
+        "silhouette": "wide",
+        "pattern": "textured",
+        "material": "denim",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_159",
+      "garment_group_id": "garment_group_79",
+      "image_path": "assets/figma_images/f4bcfbb8ad28d6064bcf007d640c4d4a5c898601",
+      "split": "real_world_test",
+      "real_world_context": "angled_perspective_shadow",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "derbies",
+        "primary_color_hex": "#8C7A6B",
+        "color_family": "brown",
+        "fit": "Slim",
+        "silhouette": "boxy",
+        "pattern": "striped",
+        "material": "nylon",
+        "formality_score": 0.6,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_160",
+      "garment_group_id": "garment_group_79",
+      "image_path": "assets/figma_images/f83a19939b9ad2afafe438b05568b4ec358d2d9e",
+      "split": "real_world_test",
+      "real_world_context": "flat_lay_ambient_lighting",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "sunglasses",
+        "primary_color_hex": "#3E4E3B",
+        "color_family": "olive",
+        "fit": "Fitted",
+        "silhouette": "fitted",
+        "pattern": "plaid",
+        "material": "cashmere",
+        "formality_score": 0.7,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_161",
+      "garment_group_id": "garment_group_80",
+      "image_path": "assets/figma_images/f84aa32a328f27fb8823f280346e4cb616b7a050",
+      "split": "real_world_test",
+      "real_world_context": "on_hanger_wrinkled",
+      "labels": {
+        "category": "tops",
+        "subcategory": "polo",
+        "primary_color_hex": "#111111",
+        "color_family": "black",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "pattern": "solid",
+        "material": "silk",
+        "formality_score": 0.8,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_162",
+      "garment_group_id": "garment_group_80",
+      "image_path": "assets/figma_images/f974cb63114d0d04173823086a1250d8ab694605",
+      "split": "real_world_test",
+      "real_world_context": "angled_perspective_shadow",
+      "labels": {
+        "category": "bottoms",
+        "subcategory": "pleated_pants",
+        "primary_color_hex": "#F0EFEA",
+        "color_family": "cream",
+        "fit": "Relaxed",
+        "silhouette": "structured",
+        "pattern": "textured",
+        "material": "synthetic",
+        "formality_score": 0.2,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_163",
+      "garment_group_id": "garment_group_81",
+      "image_path": "assets/figma_images/fb56894db5e642e418b4b6fa6500e77464aef3d6",
+      "split": "real_world_test",
+      "real_world_context": "flat_lay_ambient_lighting",
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "trench_coat",
+        "primary_color_hex": "#FFFFFF",
+        "color_family": "white",
+        "fit": "Oversized",
+        "silhouette": "straight",
+        "pattern": "striped",
+        "material": "cotton",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_164",
+      "garment_group_id": "garment_group_81",
+      "image_path": "assets/figma_images/fe267004ca6c2034413b7c555ae298a30805a72e",
+      "split": "real_world_test",
+      "real_world_context": "on_hanger_wrinkled",
+      "labels": {
+        "category": "shoes",
+        "subcategory": "loafers",
+        "primary_color_hex": "#2B2C2E",
+        "color_family": "grey",
+        "fit": "Slim",
+        "silhouette": "relaxed",
+        "pattern": "plaid",
+        "material": "linen",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_165",
+      "garment_group_id": "garment_group_82",
+      "image_path": "assets/figma_images/fe69676a7f2f48b3e3cd235c833092d4432c4aaa",
+      "split": "real_world_test",
+      "real_world_context": "angled_perspective_shadow",
+      "labels": {
+        "category": "accessories",
+        "subcategory": "crossbody_bag",
+        "primary_color_hex": "#1B263B",
+        "color_family": "navy",
+        "fit": "Fitted",
+        "silhouette": "wide",
+        "pattern": "solid",
+        "material": "wool",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
+    },
+    {
+      "image_id": "garm_v3_166",
+      "garment_group_id": "garment_group_82",
+      "image_path": "assets/figma_images/thumbnail.png",
+      "split": "real_world_test",
+      "real_world_context": "flat_lay_ambient_lighting",
+      "labels": {
+        "category": "tops",
+        "subcategory": "hoodie",
+        "primary_color_hex": "#D4C5B9",
+        "color_family": "beige",
+        "fit": "Regular",
+        "silhouette": "boxy",
+        "pattern": "textured",
+        "material": "leather",
+        "formality_score": 0.6,
+        "occasions": [
+          "Casual",
+          "Work / Office"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "source": "aura_editorial_archive",
+      "verified": true,
+      "verification_method": "blind_stylist_validation"
     },
     {
       "image_id": "garm_net_001",
@@ -4637,10 +5015,5 @@
       "verification_method": "human_stylist_review",
       "quality_status": "VERIFIED"
     }
-  ],
-  "evaluation_sets_reference": {
-    "frozen_blind_manifest": "data/garment/metadata/dataset-v0.3-blind-freeze.json",
-    "hard_test_count": 18,
-    "real_world_test_count": 16
-  }
+  ]
 }

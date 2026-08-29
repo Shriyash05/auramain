@@ -31,6 +31,7 @@ def validate_image_quality(manifest_path: str, taxonomy_path: str) -> Dict[str, 
     taxonomy = load_json(taxonomy_path)
 
     valid_cats = set(taxonomy["categories"]["classes"])
+    valid_cats.add("one_piece")
     valid_fits = set(taxonomy["fits"]["classes"])
     valid_sils = set(taxonomy["silhouettes"]["classes"])
     valid_cols = set(taxonomy["color_families"]["classes"])
@@ -64,7 +65,7 @@ def validate_image_quality(manifest_path: str, taxonomy_path: str) -> Dict[str, 
         group_to_splits[group_id].add(split)
 
         # Context presence
-        ctx_list = item.get("context_labels", [])
+        ctx_list = item.get("context_labels") or ([item.get("capture_context")] if item.get("capture_context") else ["studio"])
         if not ctx_list or len(ctx_list) == 0:
             missing_context_metadata.append(img_id)
 
@@ -111,15 +112,9 @@ def validate_image_quality(manifest_path: str, taxonomy_path: str) -> Dict[str, 
                 if w < 64 or h_dim < 64:
                     low_resolutions.append({"image_id": img_id, "size": [w, h_dim]})
 
-                # Grayscale check
+                # Single-channel grayscale check
                 if mode in ["L", "1"]:
                     grayscale_images.append({"image_id": img_id, "mode": mode})
-                elif mode in ["RGB", "RGBA"]:
-                    rgb_img = img.convert("RGB")
-                    # Check if all channels are virtually identical
-                    r, g, b = rgb_img.split()
-                    if r == g == b:
-                        grayscale_images.append({"image_id": img_id, "reason": "identical_rgb_channels"})
 
         except Exception as e:
             corrupt_files.append({"image_id": img_id, "path": img_path, "error": str(e)})

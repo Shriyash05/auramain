@@ -1,0 +1,53 @@
+{
+  "policy_version": "1.0.0",
+  "policy_name": "AURA Approved Open Garment Image Source Whitelist",
+  "updated_at": "2026-08-29T18:40:00Z",
+  "ownership_policy": "ZERO_COMMERCIAL_AI_APIS",
+  "allowed_licenses_for_production": [
+    "CC0",
+    "PUBLIC_DOMAIN",
+    "CC_BY",
+    "CC_BY_2.0",
+    "CC_BY_3.0",
+    "CC_BY_4.0",
+    "CC0_1.0"
+  ],
+  "prohibited_licenses_for_production": [
+    "CC_BY_NC",
+    "CC_BY_NC_2.0",
+    "CC_BY_NC_3.0",
+    "CC_BY_NC_4.0",
+    "CC_BY_NC_SA",
+    "CC_BY_NC_ND",
+    "UNKNOWN",
+    "ALL_RIGHTS_RESERVED"
+  ],
+  "sources": [
+    {
+      "source_id": "wikimedia_commons",
+      "name": "Wikimedia Commons",
+      "endpoint": "https://commons.wikimedia.org/w/api.php",
+      "enabled": true,
+      "purpose": "production_candidate_discovery",
+      "api_allowed": true,
+      "license_policy": [
+        "CC0",
+        "PUBLIC_DOMAIN",
+        "CC_BY",
+        "CC_BY_2.0",
+        "CC_BY_3.0",
+        "CC_BY_4.0"
+      ],
+      "requires_individual_file_license_check": true
+    },
+    {
+      "source_id": "openverse",
+      "name": "Openverse (WordPress Foundation)",
+      "endpoint": "https://api.openverse.org/v1/images/",
+      "enabled": true,
+      "purpose": "discovery_only",
+      "api_allowed": true,
+      "requires_original_license_verification": true
+    }
+  ]
+}

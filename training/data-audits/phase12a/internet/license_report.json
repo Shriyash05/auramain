@@ -1,0 +1,13 @@
+{
+  "total_evaluated_candidates": 18,
+  "license_distribution": {
+    "APPROVED_PUBLIC_DOMAIN_CC0": 4,
+    "APPROVED_WITH_ATTRIBUTION": 11,
+    "LEGAL_REVIEW_REQUIRED": 3
+  },
+  "prohibited_rejected_count": 0,
+  "legal_review_count": 3,
+  "approved_with_attribution_count": 11,
+  "approved_public_domain_count": 4,
+  "license_governance_pass": true
+}

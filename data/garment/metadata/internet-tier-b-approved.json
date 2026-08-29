@@ -1,0 +1,490 @@
+{
+  "manifest_name": "AURA-Garment-Internet-Tier-B-Approved",
+  "version": "1.0.0",
+  "updated_at": "2026-08-29T18:45:00Z",
+  "tier": "TIER_B",
+  "license_status": "APPROVED_WITH_ATTRIBUTION",
+  "production_eligible": true,
+  "total_approved_assets": 11,
+  "items": [
+    {
+      "image_id": "garm_net_001",
+      "garment_group_id": "garment_group_net_01",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_001.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "Public domain",
+      "license_url": "",
+      "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Clothes.jpg",
+      "attribution_text": "Photo 'File:Clothes.jpg' by Unknown author<span style=\"display: none;\">Unknown author</span>, licensed under Public domain via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Clothes.jpg)",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "flat_lay",
+      "context_labels": [
+        "flat_lay",
+        "clean",
+        "daylight"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "dungarees",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "cotton",
+        "pattern": "solid",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_002",
+      "garment_group_id": "garment_group_net_02",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_002.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "author": "<div class=\"fn value\">\nUnknown author<span style=\"display: none;\">Unknown author</span></div>",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Dress_(AM_13219-1).jpg",
+      "attribution_text": "Photo 'File:Dress (AM 13219-1).jpg' by <div class=\"fn value\">\nUnknown author<span style=\"display: none;\">Unknown author</span></div>, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dress_(AM_13219-1).jpg)",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "studio",
+      "context_labels": [
+        "studio",
+        "hanger",
+        "clean",
+        "indoor_neutral"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "color_family": "cream",
+        "material": "silk",
+        "pattern": "floral",
+        "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_003",
+      "garment_group_id": "garment_group_net_03",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_003.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:SuperRheaV&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:SuperRheaV (page does not exist)\">SuperRheaV</a>",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:KIM_MATA_HIPOL_(DRESS).jpg",
+      "attribution_text": "Photo 'File:KIM MATA HIPOL (DRESS).jpg' by <a href=\"//commons.wikimedia.org/w/index.php?title=User:SuperRheaV&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:SuperRheaV (page does not exist)\">SuperRheaV</a>, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:KIM_MATA_HIPOL_(DRESS).jpg)",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "on_body",
+      "context_labels": [
+        "on_body",
+        "smartphone",
+        "daylight",
+        "street"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Relaxed",
+        "silhouette": "relaxed",
+        "color_family": "white",
+        "material": "cotton",
+        "pattern": "solid",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_004",
+      "garment_group_id": "garment_group_net_04",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_004.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Challiyan\" title=\"User:Challiyan\">Challiyan</a>",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ladies_dresses_in_a_shop.jpg",
+      "attribution_text": "Photo 'File:Ladies dresses in a shop.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Challiyan\" title=\"User:Challiyan\">Challiyan</a>, licensed under CC BY-SA 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Ladies_dresses_in_a_shop.jpg)",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "hanger",
+      "context_labels": [
+        "hanger",
+        "cluttered",
+        "indoor_neutral",
+        "closet"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "color_family": "multi",
+        "material": "cotton",
+        "pattern": "floral",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_005",
+      "garment_group_id": "garment_group_net_05",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_005.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Tomascastelazo\" title=\"User:Tomascastelazo\">Tomascastelazo</a>",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Window_shopping_in_Mexico_City.jpg",
+      "attribution_text": "Photo 'File:Window shopping in Mexico City.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Tomascastelazo\" title=\"User:Tomascastelazo\">Tomascastelazo</a>, licensed under CC BY-SA 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Window_shopping_in_Mexico_City.jpg)",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "on_body",
+      "context_labels": [
+        "on_body",
+        "cluttered",
+        "warm_tungsten",
+        "street"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "fitted",
+        "color_family": "red",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.7,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_006",
+      "garment_group_id": "garment_group_net_06",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_006.png",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "Public domain",
+      "license_url": "",
+      "author": "Abby E. Underwood",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:The_Chinese_Summer_dress.png",
+      "attribution_text": "Photo 'File:The Chinese Summer dress.png' by Abby E. Underwood, licensed under Public domain via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:The_Chinese_Summer_dress.png)",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "flat_lay",
+      "context_labels": [
+        "flat_lay",
+        "clean",
+        "daylight"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "silk",
+        "pattern": "textured",
+        "formality_score": 0.7,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_007",
+      "garment_group_id": "garment_group_net_07",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_007.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Rhododendrites\" title=\"User:Rhododendrites\">Rhododendrites</a>",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Gaultier_pink_jumpsuit_(24158).jpg",
+      "attribution_text": "Photo 'File:Gaultier pink jumpsuit (24158).jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Rhododendrites\" title=\"User:Rhododendrites\">Rhododendrites</a>, licensed under CC BY-SA 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Gaultier_pink_jumpsuit_(24158).jpg)",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "studio",
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "jumpsuit",
+        "fit": "Fitted",
+        "silhouette": "fitted",
+        "color_family": "pink",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_008",
+      "garment_group_id": "garment_group_net_08",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_008.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "license_name": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Jumpsuit_with_pleated_legs_-_front.jpg",
+      "attribution_text": "Photo 'File:Jumpsuit with pleated legs - front.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>, licensed under CC BY-SA 3.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jumpsuit_with_pleated_legs_-_front.jpg)",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "hanger",
+      "context_labels": [
+        "hanger",
+        "clean",
+        "indoor_neutral"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "jumpsuit",
+        "fit": "Relaxed",
+        "silhouette": "wide",
+        "color_family": "black",
+        "material": "cotton",
+        "pattern": "solid",
+        "formality_score": 0.6,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_009",
+      "garment_group_id": "garment_group_net_09",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_009.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "license_name": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Lace_bodysuit_with_thong_back_under_a_jumpsuit_-_modelled_by_Anastasia_Voloshina.jpg",
+      "attribution_text": "Photo 'File:Lace bodysuit with thong back under a jumpsuit - modelled by Anastasia Voloshina.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>, licensed under CC BY-SA 3.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Lace_bodysuit_with_thong_back_under_a_jumpsuit_-_modelled_by_Anastasia_Voloshina.jpg)",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "on_body",
+      "context_labels": [
+        "on_body",
+        "smartphone",
+        "indoor_neutral",
+        "bedroom"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "jumpsuit",
+        "fit": "Fitted",
+        "silhouette": "fitted",
+        "color_family": "black",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.6,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_010",
+      "garment_group_id": "garment_group_net_10",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_010.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "author": "Darko  Mitev <a rel=\"nofollow\" class=\"external text\" href=\"https://unsplash.com/@darko_ar\">darko_ar</a>",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Turquoise_Jumpsuit_(Unsplash).jpg",
+      "attribution_text": "Photo 'File:Turquoise Jumpsuit (Unsplash).jpg' by Darko  Mitev <a rel=\"nofollow\" class=\"external text\" href=\"https://unsplash.com/@darko_ar\">darko_ar</a>, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Turquoise_Jumpsuit_(Unsplash).jpg)",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "on_body",
+      "context_labels": [
+        "on_body",
+        "daylight",
+        "street",
+        "smartphone"
+      ],
+      "labels": {
+        "category": "one_piece",
+        "subcategory": "jumpsuit",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "linen",
+        "pattern": "solid",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    },
+    {
+      "image_id": "garm_net_011",
+      "garment_group_id": "garment_group_net_11",
+      "image_path": "data/garment/internet_candidates/approved/garm_net_011.jpg",
+      "split": "train",
+      "tier": "TIER_B",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "author": "Unknown Author",
+      "source": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Jacket,_naval_(AM_1961.53-11).jpg",
+      "attribution_text": "Photo 'File:Jacket, naval (AM 1961.53-11).jpg' by Unknown Author, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jacket,_naval_(AM_1961.53-11).jpg)",
+      "production_eligible": true,
+      "training_eligible": true,
+      "difficulty": "normal",
+      "capture_context": "clean",
+      "context_labels": [
+        "clean",
+        "indoor_neutral",
+        "flat_lay"
+      ],
+      "labels": {
+        "category": "outerwear",
+        "subcategory": "jacket",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "navy",
+        "material": "wool",
+        "pattern": "solid",
+        "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "verified": true,
+      "verification_method": "human_stylist_review",
+      "quality_status": "VERIFIED"
+    }
+  ]
+}

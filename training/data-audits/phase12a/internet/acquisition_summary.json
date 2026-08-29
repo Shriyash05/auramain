@@ -1,0 +1,19 @@
+{
+  "phase": "Phase 12A.2",
+  "total_discovered": 30,
+  "total_downloaded": 15,
+  "license_verified": 23,
+  "quality_passed": 11,
+  "human_reviewed_approved": 11,
+  "baseline_production_pool": 112,
+  "new_production_pool": 123,
+  "new_category_breakdown": {
+    "one_piece": 10,
+    "outerwear": 1
+  },
+  "new_real_world_breakdown": {
+    "on_body": 4
+  },
+  "blind_integrity": "PASS",
+  "model_training": "NOT_RUN"
+}

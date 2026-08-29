@@ -1,0 +1,165 @@
+{
+  "total_candidates": 18,
+  "missing_provenance_records": 0,
+  "provenance_pass": true,
+  "sample_provenance_entries": [
+    {
+      "candidate_id": "cand_net_1788009130_001",
+      "image_id": "garm_net_001",
+      "garment_group_id": "group_net_001",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/96/Clothes.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Clothes.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+      "title": "File:Clothes.jpg",
+      "license_name": "Public domain",
+      "license_url": "",
+      "attribution_text": "Photo 'File:Clothes.jpg' by Unknown author<span style=\"display: none;\">Unknown author</span>, licensed under Public domain via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Clothes.jpg)",
+      "retrieved_at": "2026-08-29T13:12:12Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009130_001.jpg",
+      "sha256": "a90f93abbd11c274bdbde625e946bcaa468446ef9bc5aa940d0054e75a09ac05",
+      "original_dimensions": [
+        1566,
+        2460
+      ],
+      "file_format": "JPG",
+      "file_size": 1760867,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Verified dungaree one-piece outfit on flat-lay background.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_001.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dungarees",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "cotton",
+        "pattern": "solid",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "flat_lay",
+        "clean",
+        "daylight"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788009132_002",
+      "image_id": "garm_net_002",
+      "garment_group_id": "group_net_002",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Dress_%28AM_13219-1%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Dress_(AM_13219-1).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<div class=\"fn value\">\nUnknown author<span style=\"display: none;\">Unknown author</span></div>",
+      "title": "File:Dress (AM 13219-1).jpg",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution_text": "Photo 'File:Dress (AM 13219-1).jpg' by <div class=\"fn value\">\nUnknown author<span style=\"display: none;\">Unknown author</span></div>, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dress_(AM_13219-1).jpg)",
+      "retrieved_at": "2026-08-29T13:12:15Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009132_002.jpg",
+      "sha256": "ca60ba311d6ac28a4dafb3c21ca8a2028d977f22a56decd010484d2a87e86e7d",
+      "original_dimensions": [
+        1944,
+        2592
+      ],
+      "file_format": "JPG",
+      "file_size": 2379770,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Floral silk evening dress from museum archives.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_002.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "color_family": "cream",
+        "material": "silk",
+        "pattern": "floral",
+        "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "hanger",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788009135_003",
+      "image_id": "garm_net_003",
+      "garment_group_id": "group_net_003",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/KIM_MATA_HIPOL_%28DRESS%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:KIM_MATA_HIPOL_(DRESS).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:SuperRheaV&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:SuperRheaV (page does not exist)\">SuperRheaV</a>",
+      "title": "File:KIM MATA HIPOL (DRESS).jpg",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution_text": "Photo 'File:KIM MATA HIPOL (DRESS).jpg' by <a href=\"//commons.wikimedia.org/w/index.php?title=User:SuperRheaV&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:SuperRheaV (page does not exist)\">SuperRheaV</a>, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:KIM_MATA_HIPOL_(DRESS).jpg)",
+      "retrieved_at": "2026-08-29T13:12:17Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009135_003.jpg",
+      "sha256": "486057b8f6ffd247c91465c696fad995df66a497dc1b5c99763cd12754ae576f",
+      "original_dimensions": [
+        1280,
+        960
+      ],
+      "file_format": "JPG",
+      "file_size": 240155,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "On-body white summer dress captured outdoors.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_003.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Relaxed",
+        "silhouette": "relaxed",
+        "color_family": "white",
+        "material": "cotton",
+        "pattern": "solid",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "on_body",
+        "smartphone",
+        "daylight",
+        "street"
+      ]
+    }
+  ]
+}
