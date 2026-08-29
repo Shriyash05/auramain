@@ -471,9 +471,9 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(milestoneStatus.production_train_val_pool).toBe(141);
   });
 
-  it('verifies Phase 12A.5 Modern Fashion Discovery Layer, search themes, and inspiration-only segregation', () => {
+  it('verifies Phase 12A.5 Modern Fashion Discovery Layer, forensic provenance audit, and placeholder rejection', () => {
     const discoveryRegistryPath = path.resolve(__dirname, '../data/garment/metadata/modern-fashion-discovery-registry.json');
-    const auditDirModern = path.resolve(__dirname, '../training/data-audits/phase12a/modern_discovery');
+    const auditDirModern = path.resolve(__dirname, '../training/data-audits/modern-discovery');
 
     expect(fs.existsSync(discoveryRegistryPath)).toBe(true);
     expect(fs.existsSync(auditDirModern)).toBe(true);
@@ -483,16 +483,25 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(registry.platform_policy.scraping_policy).toBe('NO_SCRAPING_DISCOVERY_LAYER_ONLY');
     expect(registry.platform_policy.commercial_ai_api_policy).toBe('ZERO_COMMERCIAL_AI_APIS');
     expect(registry.search_themes.length).toBeGreaterThanOrEqual(20);
+    expect(registry.kaggle_datasets.length).toBeGreaterThanOrEqual(3);
 
-    const compliance = JSON.parse(fs.readFileSync(path.join(auditDirModern, 'governance_compliance.json'), 'utf8'));
-    expect(compliance.status).toBe('COMPLIANT');
-    expect(compliance.no_unauthorized_training_leakage).toBe(true);
+    // Verify rejection of placeholder domains from training eligibility
+    for (const ref of registry.references) {
+      if (ref.original_source_domain.includes('example.com') || ref.provenance_status === 'INVALID_PROVENANCE') {
+        expect(ref.training_eligible).toBe(false);
+      }
+    }
 
-    const summary = JSON.parse(fs.readFileSync(path.join(auditDirModern, 'discovery_summary.json'), 'utf8'));
-    expect(summary.pinterest_references_discovered).toBeGreaterThanOrEqual(5);
-    expect(summary.no_pinterest_scraping_violations).toBe(true);
+    const invalidSources = JSON.parse(fs.readFileSync(path.join(auditDirModern, 'invalid_sources.json'), 'utf8'));
+    expect(invalidSources.invalid_sources_count).toBeGreaterThan(0);
+
+    const summary = JSON.parse(fs.readFileSync(path.join(auditDirModern, 'audit_summary.json'), 'utf8'));
+    expect(summary.status).toBe('INVALID_DISCOVERY');
+    expect(summary.invalid_in_production_manifest).toBe(0);
+    expect(summary.no_pinterest_scraping).toBe(true);
     expect(summary.no_commercial_ai_api_usage).toBe(true);
-    expect(summary.blind_integrity).toBe('PASS');
+    expect(summary.blind_test_intact).toBe(true);
+    expect(summary.blind_test_checksum).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
   });
 });
 

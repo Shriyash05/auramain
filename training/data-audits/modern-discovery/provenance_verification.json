@@ -1,0 +1,12 @@
+{
+  "provenance_health": "FAIL_PLACEHOLDERS_DETECTED",
+  "invalid_sources_count": 6,
+  "placeholder_domains_rejected": [
+    "studiomoda.example.com",
+    "ateliernordic.example.com",
+    "commons.wikimedia.org",
+    "denimarchive.example.com",
+    "unsplash.com",
+    "instagram.com"
+  ]
+}

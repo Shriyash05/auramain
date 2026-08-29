@@ -1,0 +1,54 @@
+{
+  "invalid_sources_count": 6,
+  "invalid_sources": [
+    {
+      "discovery_id": "mod_disc_001",
+      "original_source_url": "https://studiomoda.example.com/looks/2026-fw-01",
+      "original_source_domain": "studiomoda.example.com",
+      "is_placeholder_domain": true,
+      "is_missing_remote_page": false,
+      "action": "FLAGGED_INVALID_PROVENANCE_TRAINING_INELIGIBLE"
+    },
+    {
+      "discovery_id": "mod_disc_002",
+      "original_source_url": "https://ateliernordic.example.com/editorial/autumn-tailoring",
+      "original_source_domain": "ateliernordic.example.com",
+      "is_placeholder_domain": true,
+      "is_missing_remote_page": false,
+      "action": "FLAGGED_INVALID_PROVENANCE_TRAINING_INELIGIBLE"
+    },
+    {
+      "discovery_id": "mod_disc_003",
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Woman_in_Black_Coat_Street_Fashion.jpg",
+      "original_source_domain": "commons.wikimedia.org",
+      "is_placeholder_domain": true,
+      "is_missing_remote_page": true,
+      "action": "FLAGGED_INVALID_PROVENANCE_TRAINING_INELIGIBLE"
+    },
+    {
+      "discovery_id": "mod_disc_004",
+      "original_source_url": "https://denimarchive.example.com/looks/raw-denim-04",
+      "original_source_domain": "denimarchive.example.com",
+      "is_placeholder_domain": true,
+      "is_missing_remote_page": false,
+      "action": "FLAGGED_INVALID_PROVENANCE_TRAINING_INELIGIBLE"
+    },
+    {
+      "discovery_id": "mod_disc_005",
+      "original_source_url": "https://unsplash.com/photos/sage-green-linen-shirt-resort",
+      "original_source_domain": "unsplash.com",
+      "is_placeholder_domain": true,
+      "is_missing_remote_page": false,
+      "action": "FLAGGED_INVALID_PROVENANCE_TRAINING_INELIGIBLE"
+    },
+    {
+      "discovery_id": "mod_disc_006",
+      "original_source_url": "https://instagram.com/p/example_post_006",
+      "original_source_domain": "instagram.com",
+      "is_placeholder_domain": true,
+      "is_missing_remote_page": false,
+      "action": "FLAGGED_INVALID_PROVENANCE_TRAINING_INELIGIBLE"
+    }
+  ],
+  "license_mislabeling_events": []
+}

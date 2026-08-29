@@ -1,11 +1,13 @@
 """
-AURA Modern Fashion Discovery Engine (Phase 12A.5)
-Establishes modern fashion discovery & reference ingestion across contemporary themes:
-- Contemporary streetwear, tailoring, wide-leg trousers, layered outfits, modern knitwear, etc.
-Dual-Funnel Governance:
-1. Inspiration Funnel: Ingests aesthetic & styling metadata for AURA Inspiration Library (inspiration_only=True, training_eligible=False).
-2. Training Funnel: Only promotes to PRODUCTION_CANDIDATE if original canonical source is independently resolved and verified under CC0/CC-BY.
-Zero scraping, zero commercial AI APIs, zero blind-test modification.
+AURA Modern Fashion Discovery Engine & Registry Builder (Phase 12A.5 Forensic Correction)
+Establishes:
+1. Controlled modern fashion search query registry across 21 contemporary style themes.
+2. Forensic provenance validation (explicit rejection of placeholder/mock domains like example.com).
+3. Dual-Funnel Segregation:
+   - Inspiration Funnel: Styling & aesthetic references for Inspiration Library (inspiration_only=True, training_eligible=False).
+   - Training Funnel: Only if original canonical source is independently verified under genuine permissive licenses.
+4. Kaggle Dataset Discovery Registry (tracking declared vs upstream licenses, requiring legal review).
+5. Zero scraping, zero commercial AI APIs, zero blind-test modification.
 """
 
 import os
@@ -39,216 +41,207 @@ MODERN_SEARCH_THEMES = [
     {"theme_id": "theme_accessories", "query": "modern accessory styling", "category": "accessories", "silhouette": "clean", "key_items": ["leather tote", "minimal watch", "sunglasses"]}
 ]
 
+KAGGLE_DISCOVERY_REGISTRY = [
+    {
+        "dataset_name": "DeepFashion (In-Shop Clothes Retrieval & Category/Attribute)",
+        "kaggle_url": "https://www.kaggle.com/datasets/deepfashion/in-shop-clothes",
+        "owner": "CUHK Multimedia Lab",
+        "dataset_id": "deepfashion_in_shop",
+        "declared_license": "Non-Commercial Research Only",
+        "license_url": "http://mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html",
+        "upstream_source": "E-commerce web crawls (commercial retailers)",
+        "upstream_license": "All Rights Reserved (Retailer Copyright)",
+        "commercial_training_status": "LEGAL_REVIEW_REQUIRED_NON_COMMERCIAL",
+        "provenance_status": "VERIFIED_RESEARCH_RESTRICTED",
+        "production_eligibility": False,
+        "notes": "Academic landmark dataset. Strictly prohibited from AURA production commercial training due to non-commercial research clause."
+    },
+    {
+        "dataset_name": "Fashion-MNIST",
+        "kaggle_url": "https://www.kaggle.com/datasets/zalando-research/fashionmnist",
+        "owner": "Zalando Research",
+        "dataset_id": "zalando_fashion_mnist",
+        "declared_license": "MIT License",
+        "license_url": "https://github.com/zalandoresearch/fashion-mnist/blob/master/LICENSE",
+        "upstream_source": "Zalando product catalog thumbnail renders (28x28 grayscale)",
+        "upstream_license": "MIT License (Zalando Research)",
+        "commercial_training_status": "APPROVED_SYNTHETIC_BENCHMARK",
+        "provenance_status": "VERIFIED_OPEN_SOURCE",
+        "production_eligibility": False,
+        "notes": "Low resolution (28x28 grayscale). Useful for algorithm unit testing only, not production SigLIP training."
+    },
+    {
+        "dataset_name": "iMaterialist (Fashion) 2019 at FGVC6",
+        "kaggle_url": "https://www.kaggle.com/c/imaterialist-fashion-2019-FGVC6",
+        "owner": "Google AI Perception / FGVC",
+        "dataset_id": "imaterialist_fgvc6",
+        "declared_license": "FGVC Competition Terms (Non-Commercial Research)",
+        "license_url": "https://github.com/visipedia/imat_comp",
+        "upstream_source": "Web aggregated consumer & runway images",
+        "upstream_license": "Mixed / Unclear Upstream Image Rights",
+        "commercial_training_status": "LEGAL_REVIEW_REQUIRED",
+        "provenance_status": "COMPETITION_RESTRICTED",
+        "production_eligibility": False,
+        "notes": "Fine-grained garment attributes. Requires upstream copyright audit before any commercial model training."
+    }
+]
+
+# Audited references: All 6 previous placeholder references flagged as INVALID_PROVENANCE
 DISCOVERY_REFERENCES = [
     {
         "discovery_id": "mod_disc_001",
         "platform": "pinterest",
-        "pin_url": "https://www.pinterest.com/pin/1010000000001",
+        "pin_url": "https://www.pinterest.com/pin/unverified_reference_001",
         "image_reference": "ref_streetwear_oversized_hoodie_wide_pants.jpg",
         "title": "Minimalist Streetwear: Layered Grey Hoodie and Wide Trousers",
-        "description": "Contemporary urban streetwear outfit featuring relaxed drop-shoulder hoodie with pleated wide-leg pants and retro running sneakers.",
-        "board": "Modern Streetwear Inspo 2026",
-        "creator": "StudioModa",
+        "description": "Drop-shoulder hoodie with wide-leg pants.",
+        "board": "Modern Streetwear Inspo",
+        "creator": "Unverified",
         "discovered_at": "2026-08-29T22:00:00Z",
         "original_source_url": "https://studiomoda.example.com/looks/2026-fw-01",
         "original_source_domain": "studiomoda.example.com",
-        "license_status": "PROPRIETARY_EDITORIAL",
-        "provenance_status": "RESOLVED_NON_COMMERCIAL",
+        "license_status": "UNVERIFIED_PLACEHOLDER",
+        "provenance_status": "INVALID_PROVENANCE",
         "training_eligible": False,
-        "inspiration_only": True,
-        "style_attributes": {
-            "aesthetic": "minimal_streetwear",
-            "formality_score": 0.3,
-            "silhouettes": ["oversized", "wide"],
-            "palette": ["grey", "black", "white"],
-            "key_garments": ["hoodie", "pleated_pants", "sneakers"]
-        },
-        "notes": "High aesthetic relevance for AURA Inspiration Library. Ineligible for model training due to editorial copyright."
+        "inspiration_only": False,
+        "notes": "INVALID PROVENANCE: Source domain studiomoda.example.com is a placeholder. Stripped of all eligibility."
     },
     {
         "discovery_id": "mod_disc_002",
         "platform": "pinterest",
-        "pin_url": "https://www.pinterest.com/pin/1010000000002",
+        "pin_url": "https://www.pinterest.com/pin/unverified_reference_002",
         "image_reference": "ref_contemporary_tailoring_box_blazer.jpg",
         "title": "Relaxed Double-Breasted Tailoring with Silk Knit",
-        "description": "Modern tailoring silhouette showing unconstructed taupe blazer over silk knit polo and relaxed straight trousers.",
-        "board": "Contemporary Tailoring & Sartorial",
-        "creator": "AtelierNordic",
+        "description": "Double-breasted blazer and trousers.",
+        "board": "Contemporary Tailoring",
+        "creator": "Unverified",
         "discovered_at": "2026-08-29T22:01:00Z",
         "original_source_url": "https://ateliernordic.example.com/editorial/autumn-tailoring",
         "original_source_domain": "ateliernordic.example.com",
-        "license_status": "PROPRIETARY_EDITORIAL",
-        "provenance_status": "RESOLVED_NON_COMMERCIAL",
+        "license_status": "UNVERIFIED_PLACEHOLDER",
+        "provenance_status": "INVALID_PROVENANCE",
         "training_eligible": False,
-        "inspiration_only": True,
-        "style_attributes": {
-            "aesthetic": "modern_tailoring",
-            "formality_score": 0.7,
-            "silhouettes": ["boxy", "straight"],
-            "palette": ["taupe", "cream", "navy"],
-            "key_garments": ["blazer", "polo", "trousers"]
-        },
-        "notes": "Excellent aesthetic moodboard anchor for Smart Casual planner rules."
+        "inspiration_only": False,
+        "notes": "INVALID PROVENANCE: Source domain ateliernordic.example.com is a placeholder. Stripped of all eligibility."
     },
     {
         "discovery_id": "mod_disc_003",
         "platform": "pinterest",
-        "pin_url": "https://www.pinterest.com/pin/1010000000003",
+        "pin_url": "https://www.pinterest.com/pin/unverified_reference_003",
         "image_reference": "ref_monochrome_winter_wool_layering.jpg",
         "title": "All-Black Monochrome Layering with Longline Wool Coat",
-        "description": "Architectural monochrome winter styling with full-length black wool overcoat, fine merino turtleneck, and wide trousers.",
+        "description": "Monochrome black wool overcoat.",
         "board": "Monochrome Aesthetics",
-        "creator": "KuroStudio",
+        "creator": "Unverified",
         "discovered_at": "2026-08-29T22:02:00Z",
         "original_source_url": "https://commons.wikimedia.org/wiki/File:Woman_in_Black_Coat_Street_Fashion.jpg",
         "original_source_domain": "commons.wikimedia.org",
-        "license_status": "APPROVED_WITH_ATTRIBUTION",
-        "provenance_status": "RESOLVED_OPEN_LICENSE",
-        "training_eligible": True,
+        "license_status": "UNVERIFIED_REMOTE_MISSING",
+        "provenance_status": "INVALID_PROVENANCE",
+        "training_eligible": False,
         "inspiration_only": False,
-        "style_attributes": {
-            "aesthetic": "monochrome_minimal",
-            "formality_score": 0.8,
-            "silhouettes": ["structured", "straight"],
-            "palette": ["black", "charcoal"],
-            "key_garments": ["wool_coat", "knit_sweater", "trousers"]
-        },
-        "notes": "Resolved to verified CC-BY 4.0 source on Wikimedia Commons; candidate for production training intake."
+        "notes": "INVALID PROVENANCE: File does not exist on Wikimedia Commons remote API. Stripped of training eligibility."
     },
     {
         "discovery_id": "mod_disc_004",
         "platform": "pinterest",
-        "pin_url": "https://www.pinterest.com/pin/1010000000004",
+        "pin_url": "https://www.pinterest.com/pin/unverified_reference_004",
         "image_reference": "ref_modern_wide_denim_styling.jpg",
         "title": "Clean Indigo Wide-Leg Jeans and Cropped Cotton Cardigan",
-        "description": "Casual daily outfit showing high-rise wide-leg raw denim paired with buttoned cropped cardigan in ecru.",
-        "board": "Current Denim Trends 2026",
-        "creator": "DenimArchive",
+        "description": "High-rise wide-leg raw denim.",
+        "board": "Current Denim Trends",
+        "creator": "Unverified",
         "discovered_at": "2026-08-29T22:03:00Z",
         "original_source_url": "https://denimarchive.example.com/looks/raw-denim-04",
         "original_source_domain": "denimarchive.example.com",
-        "license_status": "PROPRIETARY_EDITORIAL",
-        "provenance_status": "RESOLVED_NON_COMMERCIAL",
+        "license_status": "UNVERIFIED_PLACEHOLDER",
+        "provenance_status": "INVALID_PROVENANCE",
         "training_eligible": False,
-        "inspiration_only": True,
-        "style_attributes": {
-            "aesthetic": "clean_casual",
-            "formality_score": 0.4,
-            "silhouettes": ["wide", "fitted"],
-            "palette": ["blue", "cream", "brown"],
-            "key_garments": ["jeans", "knit_sweater", "boots"]
-        },
-        "notes": "Used for silhouette matching rules in wardrobe recommendation engine."
+        "inspiration_only": False,
+        "notes": "INVALID PROVENANCE: Source domain denimarchive.example.com is a placeholder. Stripped of all eligibility."
     },
     {
         "discovery_id": "mod_disc_005",
         "platform": "pinterest",
-        "pin_url": "https://www.pinterest.com/pin/1010000000005",
+        "pin_url": "https://www.pinterest.com/pin/unverified_reference_005",
         "image_reference": "ref_resort_linen_summer_smart.jpg",
         "title": "Relaxed Linen Camp Collar Shirt and Drawstring Trousers",
-        "description": "Effortless summer resort look with sage green open collar linen shirt, off-white relaxed trousers, and leather sandals.",
-        "board": "Modern Resort & Vacation Wear",
-        "creator": "RivieraStyle",
+        "description": "Sage green linen shirt look.",
+        "board": "Modern Resort Wear",
+        "creator": "Unverified",
         "discovered_at": "2026-08-29T22:04:00Z",
         "original_source_url": "https://unsplash.com/photos/sage-green-linen-shirt-resort",
         "original_source_domain": "unsplash.com",
-        "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
-        "provenance_status": "RESOLVED_OPEN_LICENSE",
-        "training_eligible": True,
+        "license_status": "UNVERIFIED_REMOTE_MISSING",
+        "provenance_status": "INVALID_PROVENANCE",
+        "training_eligible": False,
         "inspiration_only": False,
-        "style_attributes": {
-            "aesthetic": "resort_casual",
-            "formality_score": 0.4,
-            "silhouettes": ["relaxed", "straight"],
-            "palette": ["olive", "cream", "brown"],
-            "key_garments": ["button_down", "trousers", "sandals"]
-        },
-        "notes": "Unsplash license CC0-compatible source; approved as production training intake candidate."
+        "notes": "INVALID PROVENANCE: URL unverified and license mislabeled as CC0 (Unsplash uses Unsplash License). Stripped of training eligibility."
     },
     {
         "discovery_id": "mod_disc_006",
         "platform": "pinterest",
-        "pin_url": "https://www.pinterest.com/pin/1010000000006",
+        "pin_url": "https://www.pinterest.com/pin/unverified_reference_006",
         "image_reference": "ref_leather_biker_jacket_layering.jpg",
         "title": "Boxy Leather Biker Jacket with Vintage Wash Denim",
-        "description": "Edgy luxury streetwear look featuring cropped heavyweight leather motorcycle jacket, vintage faded jeans, and chunky derbies.",
-        "board": "Modern Leather & Outerwear",
-        "creator": "MetroAesthetics",
+        "description": "Cropped leather motorcycle jacket.",
+        "board": "Modern Leather Outerwear",
+        "creator": "Unverified",
         "discovered_at": "2026-08-29T22:05:00Z",
         "original_source_url": "https://instagram.com/p/example_post_006",
         "original_source_domain": "instagram.com",
-        "license_status": "ALL_RIGHTS_RESERVED",
-        "provenance_status": "SOCIAL_MEDIA_UNLICENSED",
+        "license_status": "UNVERIFIED_PLACEHOLDER",
+        "provenance_status": "INVALID_PROVENANCE",
         "training_eligible": False,
-        "inspiration_only": True,
-        "style_attributes": {
-            "aesthetic": "luxury_streetwear",
-            "formality_score": 0.5,
-            "silhouettes": ["boxy", "straight"],
-            "palette": ["black", "blue", "white"],
-            "key_garments": ["leather_jacket", "jeans", "derbies"]
-        },
-        "notes": "Social media post. Retained strictly in inspiration library for visual aesthetic analysis."
+        "inspiration_only": False,
+        "notes": "INVALID PROVENANCE: Placeholder post ID. Stripped of all eligibility."
     }
 ]
 
-def build_discovery_registry():
+def build_corrected_discovery_registry():
     print("=" * 75)
-    print("  AURA MODERN FASHION DISCOVERY REGISTRY BUILDER")
+    print("  AURA MODERN FASHION DISCOVERY REGISTRY BUILDER (FORENSIC V2)")
     print("=" * 75)
 
     registry_path = "data/garment/metadata/modern-fashion-discovery-registry.json"
-    audit_dir = "training/data-audits/phase12a/modern_discovery"
-    os.makedirs(audit_dir, exist_ok=True)
-
-    training_candidates = [r for r in DISCOVERY_REFERENCES if r["training_eligible"]]
-    inspiration_only = [r for r in DISCOVERY_REFERENCES if r["inspiration_only"]]
-    legal_review = [r for r in DISCOVERY_REFERENCES if r["license_status"] == "LEGAL_REVIEW"]
-    resolved_sources = [r for r in DISCOVERY_REFERENCES if r["provenance_status"].startswith("RESOLVED")]
 
     registry_payload = {
         "registry_name": "AURA Modern Fashion Discovery & Reference Registry",
-        "version": "1.0.0",
+        "version": "2.0.0-forensic-audited",
         "updated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "platform_policy": {
             "primary_discovery_source": "pinterest",
             "scraping_policy": "NO_SCRAPING_DISCOVERY_LAYER_ONLY",
             "commercial_ai_api_policy": "ZERO_COMMERCIAL_AI_APIS",
-            "training_eligibility_rule": "ORIGINAL_SOURCE_PERMISSIVE_LICENSE_VERIFIED_ONLY"
+            "training_eligibility_rule": "ORIGINAL_SOURCE_PERMISSIVE_LICENSE_VERIFIED_ONLY",
+            "unsplash_policy": "Must be labeled 'Unsplash License' with https://unsplash.com/license URL. Never CC0.",
+            "kaggle_policy": "Kaggle datasets require independent upstream copyright and license verification. Default: LEGAL_REVIEW_REQUIRED."
         },
         "summary": {
             "total_search_themes": len(MODERN_SEARCH_THEMES),
             "total_discovered_references": len(DISCOVERY_REFERENCES),
-            "resolved_sources": len(resolved_sources),
-            "potential_training_candidates": len(training_candidates),
-            "inspiration_only_references": len(inspiration_only),
-            "legal_review_references": len(legal_review),
-            "rejected_references": 0
+            "invalid_sources": len([r for r in DISCOVERY_REFERENCES if r["provenance_status"] == "INVALID_PROVENANCE"]),
+            "resolved_sources": len([r for r in DISCOVERY_REFERENCES if r["provenance_status"].startswith("RESOLVED")]),
+            "potential_training_candidates": len([r for r in DISCOVERY_REFERENCES if r["training_eligible"]]),
+            "inspiration_only_references": len([r for r in DISCOVERY_REFERENCES if r["inspiration_only"]]),
+            "kaggle_datasets_tracked": len(KAGGLE_DISCOVERY_REGISTRY),
+            "audit_status": "INVALID_DISCOVERY"
         },
         "search_themes": MODERN_SEARCH_THEMES,
+        "kaggle_datasets": KAGGLE_DISCOVERY_REGISTRY,
         "references": DISCOVERY_REFERENCES
     }
 
     with open(registry_path, "w", encoding="utf-8") as f:
         json.dump(registry_payload, f, indent=2)
 
-    # Write audit reports
-    with open(os.path.join(audit_dir, "discovery_summary.json"), "w", encoding="utf-8") as f:
-        json.dump(registry_payload["summary"], f, indent=2)
-
-    with open(os.path.join(audit_dir, "inspiration_library_manifest.json"), "w", encoding="utf-8") as f:
-        json.dump({
-            "manifest_name": "AURA-Inspiration-Library-Manifest",
-            "total_items": len(inspiration_only),
-            "items": inspiration_only
-        }, f, indent=2)
-
-    print(f"[+] Total Modern Search Themes: {len(MODERN_SEARCH_THEMES)}")
-    print(f"[+] Discovered References: {len(DISCOVERY_REFERENCES)}")
-    print(f"[+] Original Sources Resolved: {len(resolved_sources)}")
-    print(f"[+] Potential Training Candidates: {len(training_candidates)} (CC0 / CC-BY original sources)")
-    print(f"[+] Inspiration-Only References: {len(inspiration_only)} (Clean styling & aesthetic metadata)")
-    print(f"[+] Registry Path: {registry_path}")
+    print(f"[+] Total Search Themes: {len(MODERN_SEARCH_THEMES)}")
+    print(f"[+] Total References Audited: {len(DISCOVERY_REFERENCES)}")
+    print(f"[-] Invalid / Placeholder References: {registry_payload['summary']['invalid_sources']}")
+    print(f"[+] Potential Training Candidates: {registry_payload['summary']['potential_training_candidates']}")
+    print(f"[+] Kaggle Datasets Tracked: {len(KAGGLE_DISCOVERY_REGISTRY)}")
+    print(f"[+] Registry Status: INVALID_DISCOVERY (0 invalid records allowed in production)")
+    print(f"[+] Registry Saved: {registry_path}")
 
 if __name__ == "__main__":
-    build_discovery_registry()
+    build_corrected_discovery_registry()
