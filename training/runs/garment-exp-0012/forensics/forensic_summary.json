@@ -1,0 +1,35 @@
+{
+  "experiment_id": "garment-exp-0012",
+  "model_architecture": {
+    "backbone": "google/siglip-so400m-patch14-384",
+    "backbone_frozen": true,
+    "head_type": "lightweight",
+    "bottleneck_dim": 256,
+    "random_conv2d_baseline": false
+  },
+  "training_evidence": {
+    "initial_head_hash": "b4326ad7e5f0880186161f102b4cac7a8a9fa2a490a2c385fe740adff7d9cb48",
+    "final_head_hash": "1326a312b64eb291a3ebec9b594625c2073d0dd21dc5ec559b64dd402a4a29f8",
+    "weights_changed": true,
+    "total_optimizer_steps": 750,
+    "epochs_executed": 50,
+    "best_epoch": 1,
+    "duration_seconds": 35.25,
+    "peak_vram_mb": 4095.69
+  },
+  "dataset_integrity": {
+    "dataset_manifest": "data/garment/metadata/dataset-v0.4-250.json",
+    "manifest_sha256": "8bf14c5921ba25a2879d524172dde7f6a6ba91a706524b8fed039fc3664da062",
+    "manifest_intact": true,
+    "blind_checksum": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+    "blind_intact": true
+  },
+  "checkpoint_forensics": {
+    "checkpoint_path": "training/runs/garment-exp-0012\\checkpoint\\best_model.pt",
+    "checkpoint_sha256": "fcc8f51a5a58d89f961dc258ff08e4bad2ffb136aa0fe5d69b1dbfb2f037aa0f",
+    "checkpoint_size_bytes": 3752245,
+    "best_validation_macro_f1": 0.18333333333333335,
+    "best_validation_category_accuracy": 0.25
+  },
+  "status": "FORENSICALLY_VERIFIED"
+}

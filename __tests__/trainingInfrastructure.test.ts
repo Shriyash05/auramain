@@ -610,6 +610,49 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(freezeLock.approved_source_policy).toBe('controlled_expansion');
     expect(freezeLock.blind_holdout_sha256).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
   });
+
+  it('verifies Phase 12B Exp-0012 Frozen SigLIP Baseline on Dataset-v0.4-250', () => {
+    const configPath = path.resolve(__dirname, '../training/configs/siglip_so400m_garment_exp0012.yaml');
+    const runDir = path.resolve(__dirname, '../training/runs/garment-exp-0012');
+    const ckptPath = path.join(runDir, 'checkpoint', 'best_model.pt');
+    const envPath = path.join(runDir, 'environment.json');
+    const metricsPath = path.join(runDir, 'metrics.json');
+    const forensicsSummaryPath = path.join(runDir, 'forensics', 'forensic_summary.json');
+    const comparisonDocPath = path.resolve(__dirname, '../docs/garment-exp-0012-comparison.md');
+    const errorDocPath = path.resolve(__dirname, '../docs/garment-exp-0012-error-analysis.md');
+    const multiSplitSummaryPath = path.join(runDir, 'evaluations', 'multi_split_summary.json');
+
+    expect(fs.existsSync(configPath)).toBe(true);
+    expect(fs.existsSync(ckptPath)).toBe(true);
+    expect(fs.existsSync(envPath)).toBe(true);
+    expect(fs.existsSync(metricsPath)).toBe(true);
+    expect(fs.existsSync(forensicsSummaryPath)).toBe(true);
+    expect(fs.existsSync(comparisonDocPath)).toBe(true);
+    expect(fs.existsSync(errorDocPath)).toBe(true);
+    expect(fs.existsSync(multiSplitSummaryPath)).toBe(true);
+
+    const forensicSummary = JSON.parse(fs.readFileSync(forensicsSummaryPath, 'utf8'));
+    expect(forensicSummary.status).toBe('FORENSICALLY_VERIFIED');
+    expect(forensicSummary.model_architecture.backbone_frozen).toBe(true);
+    expect(forensicSummary.model_architecture.bottleneck_dim).toBe(256);
+    expect(forensicSummary.training_evidence.total_optimizer_steps).toBeGreaterThan(0);
+    expect(forensicSummary.training_evidence.weights_changed).toBe(true);
+    expect(forensicSummary.dataset_integrity.manifest_intact).toBe(true);
+    expect(forensicSummary.dataset_integrity.blind_intact).toBe(true);
+    expect(forensicSummary.dataset_integrity.blind_checksum).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
+
+    const multiSplit = JSON.parse(fs.readFileSync(multiSplitSummaryPath, 'utf8'));
+    expect(multiSplit.train).toBeDefined();
+    expect(multiSplit.validation).toBeDefined();
+    expect(multiSplit.blind_test).toBeDefined();
+    expect(multiSplit.hard_test).toBeDefined();
+    expect(multiSplit.real_world_test).toBeDefined();
+    expect(multiSplit.train.sample_size).toBe(230);
+    expect(multiSplit.validation.sample_size).toBe(20);
+    expect(multiSplit.blind_test.sample_size).toBe(20);
+    expect(multiSplit.hard_test.sample_size).toBe(18);
+    expect(multiSplit.real_world_test.sample_size).toBe(16);
+  });
 });
 
 
