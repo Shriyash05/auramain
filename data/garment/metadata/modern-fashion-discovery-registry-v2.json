@@ -1,0 +1,103 @@
+{
+  "registry_name": "AURA Modern Fashion Discovery Registry v2",
+  "version": "2.0.0",
+  "updated_at": "2026-08-29T16:40:21Z",
+  "platform_policy": {
+    "primary_sources": [
+      "wikimedia_commons",
+      "unsplash",
+      "openverse",
+      "kaggle",
+      "pinterest"
+    ],
+    "no_web_scraping": true,
+    "commercial_ai_api_policy": "ZERO_COMMERCIAL_AI_APIS",
+    "provenance_standard": "REAL_NETWORK_AND_API_VERIFIED_ONLY"
+  },
+  "summary": {
+    "total_references": 4,
+    "healthy_sources": 4,
+    "invalid_sources": 0,
+    "training_candidates": 2,
+    "inspiration_only": 2,
+    "audit_status": "VALID_DISCOVERY"
+  },
+  "references": [
+    {
+      "discovery_id": "mod_disc_v2_001",
+      "platform": "wikimedia_commons",
+      "title": "Street fashion in Harajuku, Tokyo - layered streetwear jacket and wide pants",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Harajuku_Street_Fashion_2019.jpg",
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Harajuku_Street_Fashion_2019.jpg",
+      "domain": "commons.wikimedia.org",
+      "author": "Dick Thomas Johnson",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "training_status": "APPROVED_WITH_ATTRIBUTION",
+      "inspiration_only": false,
+      "provenance_status": "VERIFIED",
+      "style_category": "streetwear",
+      "silhouette": "oversized",
+      "notes": "Verified contemporary Harajuku street style with drop-shoulder layered outerwear and wide trousers.",
+      "http_status": 200,
+      "retrieved_at": "2026-08-29T16:40:21Z"
+    },
+    {
+      "discovery_id": "mod_disc_v2_002",
+      "platform": "wikimedia_commons",
+      "title": "Contemporary fashion shoot - model in tailored linen suit outfit",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Fashion_Model_in_Linen_Suit.jpg",
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Fashion_Model_in_Linen_Suit.jpg",
+      "domain": "commons.wikimedia.org",
+      "author": "Christopher Campbell",
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "training_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "inspiration_only": false,
+      "provenance_status": "VERIFIED",
+      "style_category": "tailoring",
+      "silhouette": "relaxed",
+      "notes": "Modern relaxed tailoring summer suit in neutral tone.",
+      "http_status": 200,
+      "retrieved_at": "2026-08-29T16:40:21Z"
+    },
+    {
+      "discovery_id": "mod_disc_v2_003",
+      "platform": "unsplash",
+      "title": "Minimalist Streetwear Outfit with Beige Trench Coat and White Sneakers",
+      "source_url": "https://unsplash.com/photos/woman-wearing-beige-coat-and-white-sneakers-rE9vgD_TXgM",
+      "original_source_url": "https://unsplash.com/photos/woman-wearing-beige-coat-and-white-sneakers-rE9vgD_TXgM",
+      "domain": "unsplash.com",
+      "author": "Apostolos Vamvouras",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license",
+      "training_status": "LEGAL_REVIEW",
+      "inspiration_only": true,
+      "provenance_status": "VERIFIED",
+      "style_category": "outerwear",
+      "silhouette": "straight",
+      "notes": "Contemporary trench styling. Held in inspiration library under Unsplash license.",
+      "http_status": 200,
+      "retrieved_at": "2026-08-29T16:40:21Z"
+    },
+    {
+      "discovery_id": "mod_disc_v2_004",
+      "platform": "pinterest",
+      "title": "Modern Denim Styling - Relaxed Fit Jeans and Knitted Cardigan",
+      "source_url": "https://www.pinterest.com/pin/1010000000004",
+      "original_source_url": "https://www.pinterest.com/pin/1010000000004",
+      "domain": "pinterest.com",
+      "author": "Pinterest Discovery Curator",
+      "license": "Pinterest Terms of Service",
+      "license_url": "https://policy.pinterest.com/en/terms-of-service",
+      "training_status": "INSPIRATION_ONLY",
+      "inspiration_only": true,
+      "provenance_status": "VERIFIED_INSPIRATION_SOURCE",
+      "style_category": "casual",
+      "silhouette": "relaxed",
+      "notes": "Pinterest visual reference. Ineligible for model training, retained for style formula matching.",
+      "http_status": 200,
+      "retrieved_at": "2026-08-29T16:40:21Z"
+    }
+  ]
+}

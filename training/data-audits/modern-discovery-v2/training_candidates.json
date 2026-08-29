@@ -1,0 +1,43 @@
+{
+  "training_candidates": [
+    {
+      "discovery_id": "mod_disc_v2_001",
+      "platform": "wikimedia_commons",
+      "title": "Street fashion in Harajuku, Tokyo - layered streetwear jacket and wide pants",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Harajuku_Street_Fashion_2019.jpg",
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Harajuku_Street_Fashion_2019.jpg",
+      "domain": "commons.wikimedia.org",
+      "author": "Dick Thomas Johnson",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "training_status": "APPROVED_WITH_ATTRIBUTION",
+      "inspiration_only": false,
+      "provenance_status": "VERIFIED",
+      "style_category": "streetwear",
+      "silhouette": "oversized",
+      "notes": "Verified contemporary Harajuku street style with drop-shoulder layered outerwear and wide trousers.",
+      "http_status": 200,
+      "retrieved_at": "2026-08-29T16:40:21Z"
+    },
+    {
+      "discovery_id": "mod_disc_v2_002",
+      "platform": "wikimedia_commons",
+      "title": "Contemporary fashion shoot - model in tailored linen suit outfit",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Fashion_Model_in_Linen_Suit.jpg",
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Fashion_Model_in_Linen_Suit.jpg",
+      "domain": "commons.wikimedia.org",
+      "author": "Christopher Campbell",
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "training_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "inspiration_only": false,
+      "provenance_status": "VERIFIED",
+      "style_category": "tailoring",
+      "silhouette": "relaxed",
+      "notes": "Modern relaxed tailoring summer suit in neutral tone.",
+      "http_status": 200,
+      "retrieved_at": "2026-08-29T16:40:21Z"
+    }
+  ],
+  "count": 2
+}

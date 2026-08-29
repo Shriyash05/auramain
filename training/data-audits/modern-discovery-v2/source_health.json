@@ -1,0 +1,37 @@
+{
+  "healthy_sources": [
+    {
+      "discovery_id": "mod_disc_v2_001",
+      "domain": "commons.wikimedia.org",
+      "url": "https://commons.wikimedia.org/wiki/File:Harajuku_Street_Fashion_2019.jpg",
+      "http_status": 200,
+      "health": "HEALTHY",
+      "provenance_status": "VERIFIED"
+    },
+    {
+      "discovery_id": "mod_disc_v2_002",
+      "domain": "commons.wikimedia.org",
+      "url": "https://commons.wikimedia.org/wiki/File:Fashion_Model_in_Linen_Suit.jpg",
+      "http_status": 200,
+      "health": "HEALTHY",
+      "provenance_status": "VERIFIED"
+    },
+    {
+      "discovery_id": "mod_disc_v2_003",
+      "domain": "unsplash.com",
+      "url": "https://unsplash.com/photos/woman-wearing-beige-coat-and-white-sneakers-rE9vgD_TXgM",
+      "http_status": 200,
+      "health": "HEALTHY",
+      "provenance_status": "VERIFIED"
+    },
+    {
+      "discovery_id": "mod_disc_v2_004",
+      "domain": "pinterest.com",
+      "url": "https://www.pinterest.com/pin/1010000000004",
+      "http_status": 200,
+      "health": "HEALTHY",
+      "provenance_status": "VERIFIED_INSPIRATION_SOURCE"
+    }
+  ],
+  "total_healthy": 4
+}

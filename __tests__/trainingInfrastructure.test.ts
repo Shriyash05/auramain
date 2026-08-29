@@ -503,6 +503,47 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(summary.blind_test_intact).toBe(true);
     expect(summary.blind_test_checksum).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
   });
+
+  it('verifies Phase 12A.6 Real Source Discovery, Kaggle dataset shortlist, and modern discovery v2', () => {
+    const kaggleRegistryPath = path.resolve(__dirname, '../data/garment/metadata/kaggle-fashion-dataset-registry.json');
+    const discoveryRegistryV2Path = path.resolve(__dirname, '../data/garment/metadata/modern-fashion-discovery-registry-v2.json');
+    const auditDirModernV2 = path.resolve(__dirname, '../training/data-audits/modern-discovery-v2');
+
+    expect(fs.existsSync(kaggleRegistryPath)).toBe(true);
+    expect(fs.existsSync(discoveryRegistryV2Path)).toBe(true);
+    expect(fs.existsSync(auditDirModernV2)).toBe(true);
+
+    const kaggleReg = JSON.parse(fs.readFileSync(kaggleRegistryPath, 'utf8'));
+    expect(kaggleReg.summary.total_datasets_discovered).toBeGreaterThanOrEqual(5);
+    expect(kaggleReg.summary.shortlisted_datasets).toBeGreaterThanOrEqual(3);
+
+    // Verify Alexey Grigorev Clothing Dataset CC0 is approved
+    const alexeyDs = kaggleReg.datasets.find((d: any) => d.dataset_id === 'agrigorev_clothing_dataset');
+    expect(alexeyDs).toBeDefined();
+    expect(alexeyDs.commercial_training_status).toBe('APPROVED');
+    expect(alexeyDs.production_eligibility).toBe(true);
+
+    // Verify DeepFashion is research only
+    const deepfashion = kaggleReg.datasets.find((d: any) => d.dataset_id === 'deepfashion_in_shop');
+    expect(deepfashion.commercial_training_status).toBe('RESEARCH_ONLY');
+    expect(deepfashion.production_eligibility).toBe(false);
+
+    const discoveryV2 = JSON.parse(fs.readFileSync(discoveryRegistryV2Path, 'utf8'));
+    expect(discoveryV2.summary.invalid_sources).toBe(0);
+
+    for (const ref of discoveryV2.references) {
+      expect(ref.domain.includes('example.com')).toBe(false);
+      expect(ref.http_status).toBe(200);
+      if (ref.domain.includes('unsplash.com')) {
+        expect(ref.license).toBe('Unsplash License');
+      }
+    }
+
+    const auditSummary = JSON.parse(fs.readFileSync(path.join(auditDirModernV2, 'audit_summary.json'), 'utf8'));
+    expect(auditSummary.status).toBe('SOURCE_DISCOVERY_READY');
+    expect(auditSummary.blind_test_intact).toBe(true);
+    expect(auditSummary.blind_test_checksum).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
+  });
 });
 
 
