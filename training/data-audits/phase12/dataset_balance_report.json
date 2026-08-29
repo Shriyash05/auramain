@@ -1,8 +1,8 @@
 {
   "manifest_path": "data/garment/metadata/dataset-v0.4-candidates.json",
-  "total_assets": 177,
+  "total_assets": 190,
   "splits_distribution": {
-    "train": 103,
+    "train": 116,
     "validation": 20,
     "blind_test": 20,
     "hard_test": 18,
@@ -10,40 +10,40 @@
   },
   "tiers_distribution": {
     "TIER_A": 166,
-    "TIER_B": 11
+    "TIER_B": 24
   },
   "sources_distribution": {
     "aura_editorial_archive": 166,
-    "wikimedia_commons": 11
+    "wikimedia_commons": 24
   },
   "categories_distribution": {
     "tops": 34,
     "bottoms": 33,
-    "outerwear": 34,
+    "outerwear": 46,
     "shoes": 33,
     "accessories": 33,
-    "one_piece": 10
+    "one_piece": 11
   },
   "subcategories_distribution": {
     "t_shirt": 5,
     "pleated_pants": 33,
-    "wool_coat": 5,
+    "wool_coat": 8,
     "boots": 6,
     "scarf": 6,
     "tank": 5,
-    "blazer": 5,
+    "blazer": 6,
     "derbies": 6,
     "sunglasses": 6,
     "knit_sweater": 5,
-    "denim_jacket": 5,
+    "denim_jacket": 7,
     "loafers": 6,
     "crossbody_bag": 6,
     "overshirt": 5,
-    "bomber_jacket": 5,
+    "bomber_jacket": 8,
     "sneakers": 5,
     "tote_bag": 5,
     "polo": 5,
-    "trench_coat": 5,
+    "trench_coat": 8,
     "sandals": 5,
     "belt": 5,
     "hoodie": 5,
@@ -53,106 +53,100 @@
     "button_down": 4,
     "leather_jacket": 4,
     "dungarees": 1,
-    "dress": 5,
-    "jumpsuit": 4,
+    "dress": 8,
+    "jumpsuit": 2,
     "jacket": 1
   },
   "fits_distribution": {
-    "Regular": 39,
-    "Relaxed": 35,
-    "Oversized": 33,
-    "Slim": 33,
-    "Fitted": 37
+    "Regular": 46,
+    "Relaxed": 37,
+    "Oversized": 34,
+    "Slim": 35,
+    "Fitted": 38
   },
   "silhouettes_distribution": {
-    "structured": 24,
-    "straight": 28,
-    "relaxed": 24,
+    "structured": 29,
+    "straight": 33,
+    "relaxed": 26,
     "wide": 24,
-    "boxy": 24,
-    "fitted": 23,
-    "flowing": 23,
-    "a_line": 2,
-    "oversized": 1,
-    "hourglass": 3,
-    "wide_leg": 1
+    "boxy": 28,
+    "fitted": 24,
+    "flowing": 26
   },
   "color_families_distribution": {
-    "black": 23,
+    "black": 24,
     "cream": 22,
-    "white": 22,
-    "grey": 21,
+    "white": 23,
+    "grey": 23,
     "navy": 22,
-    "beige": 21,
-    "brown": 20,
+    "beige": 23,
+    "brown": 22,
     "olive": 20,
-    "blue": 3,
-    "multicolor": 1,
-    "red": 1,
-    "pink": 1
+    "blue": 6,
+    "red": 4,
+    "multi": 1
   },
   "materials_distribution": {
     "cotton": 23,
     "linen": 20,
-    "wool": 20,
-    "leather": 19,
-    "denim": 18,
-    "nylon": 18,
+    "wool": 23,
+    "leather": 20,
+    "denim": 20,
+    "nylon": 19,
     "cashmere": 18,
-    "silk": 20,
-    "synthetic": 21
+    "silk": 22,
+    "synthetic": 20,
+    "knit": 1,
+    "velvet": 1,
+    "jacquard": 1,
+    "tweed": 1,
+    "suede": 1
   },
   "patterns_distribution": {
-    "solid": 50,
-    "textured": 43,
+    "solid": 59,
+    "textured": 45,
     "striped": 41,
     "plaid": 41,
-    "floral": 2
+    "floral": 2,
+    "graphic": 1,
+    "printed": 1
   },
   "formality_distribution": {
-    "casual (0.0-0.3)": 49,
-    "smart_casual (0.4-0.6)": 77,
-    "formal (0.7-1.0)": 51
+    "casual (0.0-0.3)": 50,
+    "smart_casual (0.4-0.6)": 80,
+    "formal (0.7-1.0)": 60
   },
   "contexts_distribution": {
-    "studio": 168,
-    "flat_lay": 3,
-    "clean": 6,
-    "daylight": 4,
+    "studio": 175,
+    "flat_lay": 9,
+    "clean": 20,
+    "daylight": 6,
     "hanger": 3,
-    "indoor_neutral": 6,
-    "on_body": 4,
+    "indoor_neutral": 18,
+    "on_body": 5,
     "smartphone": 3,
-    "street": 3,
-    "cluttered": 2,
-    "closet": 1,
-    "warm_tungsten": 1,
-    "bedroom": 1
+    "street": 4
   },
   "lighting_distribution": {
-    "daylight": 4,
-    "indoor_neutral": 6,
-    "warm_tungsten": 1
+    "daylight": 6,
+    "indoor_neutral": 18
   },
   "backgrounds_distribution": {
-    "clean": 6,
-    "street": 3,
-    "cluttered": 2,
-    "closet": 1,
-    "bedroom": 1
+    "clean": 20,
+    "street": 4
   },
   "camera_views_distribution": {
     "smartphone": 3
   },
   "studio_vs_real_world": {
-    "studio_samples": 138,
+    "studio_samples": 151,
     "real_world_samples": 39,
-    "studio_to_real_world_ratio": 3.54
+    "studio_to_real_world_ratio": 3.87
   },
   "identified_gaps": [
     {
       "dimension": "photography_context",
-      "issue": "Studio to Real-World ratio is high (3.54:1)",
+      "issue": "Studio to Real-World ratio is high (3.87:1)",
       "recommendation": "Prioritize consumer photos: on-body selfies, bedroom mirror, wrinkled flat-lay, warm tungsten lighting."
     }
   ]

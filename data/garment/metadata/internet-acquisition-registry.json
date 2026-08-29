@@ -4,14 +4,14 @@
   "updated_at": "2026-08-29T18:40:00Z",
   "governance_policy": "AURA_DATASET_GOVERNANCE_V1",
   "summary": {
-    "total_discovered": 30,
-    "total_downloaded": 15,
-    "license_verified": 23,
-    "candidates_logged": 18,
-    "review_pending": 4,
+    "total_discovered": 60,
+    "total_downloaded": 30,
+    "license_verified": 32,
+    "candidates_logged": 68,
+    "review_pending": 16,
     "rejected": 0,
-    "legal_review_required": 3,
-    "approved": 11
+    "legal_review_required": 28,
+    "approved": 23
   },
   "candidates": [
     {
@@ -186,7 +186,7 @@
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
       "attribution_text": "Photo 'File:Ladies dresses in a shop.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Challiyan\" title=\"User:Challiyan\">Challiyan</a>, licensed under CC BY-SA 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Ladies_dresses_in_a_shop.jpg)",
       "retrieved_at": "2026-08-29T13:12:19Z",
-      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009137_004.jpg",
+      "download_path": "data/garment/internet_candidates/legal_review/garm_net_004.jpg",
       "sha256": "3c5734c978e42b9d4f2b76505a96c45b749c98bf29f8a998d2dddaebe5493b62",
       "original_dimensions": [
         3696,
@@ -195,11 +195,11 @@
       "file_format": "JPG",
       "file_size": 1213970,
       "provenance_status": "COMPLETE",
-      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
       "suggested_category": "one_piece",
       "review_status": "CORRECT",
-      "production_eligible": true,
-      "final_status": "APPROVED",
+      "production_eligible": false,
+      "final_status": "LEGAL_REVIEW_REQUIRED",
       "reviewer_notes": "Retail store rack display dresses on hangers.",
       "approved_image_path": "data/garment/internet_candidates/approved/garm_net_004.jpg",
       "taxonomy_labels": {
@@ -223,7 +223,8 @@
         "cluttered",
         "indoor_neutral",
         "closet"
-      ]
+      ],
+      "legal_review_rationale": "License 'CC BY-SA 4.0' contains ShareAlike/NoDerivatives terms; held for explicit legal assessment."
     },
     {
       "candidate_id": "cand_net_1788009139_005",
@@ -239,7 +240,7 @@
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
       "attribution_text": "Photo 'File:Window shopping in Mexico City.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Tomascastelazo\" title=\"User:Tomascastelazo\">Tomascastelazo</a>, licensed under CC BY-SA 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Window_shopping_in_Mexico_City.jpg)",
       "retrieved_at": "2026-08-29T13:12:23Z",
-      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009139_005.jpg",
+      "download_path": "data/garment/internet_candidates/legal_review/garm_net_005.jpg",
       "sha256": "68c913440107a26ca6ef551f5e6f1406435cce77f76d857672e39772bbb03964",
       "original_dimensions": [
         4414,
@@ -248,11 +249,11 @@
       "file_format": "JPG",
       "file_size": 8017996,
       "provenance_status": "COMPLETE",
-      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
       "suggested_category": "one_piece",
       "review_status": "CORRECT",
-      "production_eligible": true,
-      "final_status": "APPROVED",
+      "production_eligible": false,
+      "final_status": "LEGAL_REVIEW_REQUIRED",
       "reviewer_notes": "Window mannequin red party dress under warm lighting.",
       "approved_image_path": "data/garment/internet_candidates/approved/garm_net_005.jpg",
       "taxonomy_labels": {
@@ -276,7 +277,8 @@
         "cluttered",
         "warm_tungsten",
         "street"
-      ]
+      ],
+      "legal_review_rationale": "License 'CC BY-SA 4.0' contains ShareAlike/NoDerivatives terms; held for explicit legal assessment."
     },
     {
       "candidate_id": "cand_net_1788009143_006",
@@ -409,7 +411,7 @@
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
       "attribution_text": "Photo 'File:Gaultier pink jumpsuit (24158).jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Rhododendrites\" title=\"User:Rhododendrites\">Rhododendrites</a>, licensed under CC BY-SA 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Gaultier_pink_jumpsuit_(24158).jpg)",
       "retrieved_at": "2026-08-29T13:12:36Z",
-      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009153_011.jpg",
+      "download_path": "data/garment/internet_candidates/legal_review/garm_net_007.jpg",
       "sha256": "e1d6316b7ee5ea4af82f2d4db06d85f82a0762f790f0e942981918dff7b34f2c",
       "original_dimensions": [
         3218,
@@ -418,11 +420,11 @@
       "file_format": "JPG",
       "file_size": 7891064,
       "provenance_status": "COMPLETE",
-      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
       "suggested_category": "one_piece",
       "review_status": "CORRECT",
-      "production_eligible": true,
-      "final_status": "APPROVED",
+      "production_eligible": false,
+      "final_status": "LEGAL_REVIEW_REQUIRED",
       "reviewer_notes": "Pink designer jumpsuit.",
       "approved_image_path": "data/garment/internet_candidates/approved/garm_net_007.jpg",
       "taxonomy_labels": {
@@ -445,7 +447,8 @@
         "studio",
         "clean",
         "indoor_neutral"
-      ]
+      ],
+      "legal_review_rationale": "License 'CC BY-SA 4.0' contains ShareAlike/NoDerivatives terms; held for explicit legal assessment."
     },
     {
       "candidate_id": "cand_net_1788009156_012",
@@ -461,7 +464,7 @@
       "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
       "attribution_text": "Photo 'File:Jumpsuit with pleated legs - front.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>, licensed under CC BY-SA 3.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jumpsuit_with_pleated_legs_-_front.jpg)",
       "retrieved_at": "2026-08-29T13:12:39Z",
-      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009156_012.jpg",
+      "download_path": "data/garment/internet_candidates/legal_review/garm_net_008.jpg",
       "sha256": "66fe9b0ec79b3c5d4b3168ed8208c7e6b10211f9fe9c3d14091d0cf18d33632a",
       "original_dimensions": [
         2926,
@@ -470,11 +473,11 @@
       "file_format": "JPG",
       "file_size": 5282405,
       "provenance_status": "COMPLETE",
-      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
       "suggested_category": "one_piece",
       "review_status": "CORRECT",
-      "production_eligible": true,
-      "final_status": "APPROVED",
+      "production_eligible": false,
+      "final_status": "LEGAL_REVIEW_REQUIRED",
       "reviewer_notes": "Black jumpsuit with pleated wide legs on mannequin.",
       "approved_image_path": "data/garment/internet_candidates/approved/garm_net_008.jpg",
       "taxonomy_labels": {
@@ -497,7 +500,8 @@
         "hanger",
         "clean",
         "indoor_neutral"
-      ]
+      ],
+      "legal_review_rationale": "License 'CC BY-SA 3.0' contains ShareAlike/NoDerivatives terms; held for explicit legal assessment."
     },
     {
       "candidate_id": "cand_net_1788009159_013",
@@ -513,7 +517,7 @@
       "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
       "attribution_text": "Photo 'File:Lace bodysuit with thong back under a jumpsuit - modelled by Anastasia Voloshina.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>, licensed under CC BY-SA 3.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Lace_bodysuit_with_thong_back_under_a_jumpsuit_-_modelled_by_Anastasia_Voloshina.jpg)",
       "retrieved_at": "2026-08-29T13:12:43Z",
-      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788009159_013.jpg",
+      "download_path": "data/garment/internet_candidates/legal_review/garm_net_009.jpg",
       "sha256": "7f69651988bb13283491431a8cf74712d63a44cc9bc36714cb130c77275144ef",
       "original_dimensions": [
         3860,
@@ -522,11 +526,11 @@
       "file_format": "JPG",
       "file_size": 11019379,
       "provenance_status": "COMPLETE",
-      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
       "suggested_category": "one_piece",
       "review_status": "CORRECT",
-      "production_eligible": true,
-      "final_status": "APPROVED",
+      "production_eligible": false,
+      "final_status": "LEGAL_REVIEW_REQUIRED",
       "reviewer_notes": "On-body jumpsuit model in indoor setting.",
       "approved_image_path": "data/garment/internet_candidates/approved/garm_net_009.jpg",
       "taxonomy_labels": {
@@ -550,7 +554,8 @@
         "smartphone",
         "indoor_neutral",
         "bedroom"
-      ]
+      ],
+      "legal_review_rationale": "License 'CC BY-SA 3.0' contains ShareAlike/NoDerivatives terms; held for explicit legal assessment."
     },
     {
       "candidate_id": "cand_net_1788009163_014",
@@ -743,6 +748,1532 @@
       "review_status": "REVIEW_PENDING",
       "production_eligible": false,
       "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788020480_019",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/1968_evening_dress%2C_Marc_Bohan_for_Christian_Dior.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1968_evening_dress,_Marc_Bohan_for_Christian_Dior.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:1968 evening dress, Marc Bohan for Christian Dior.jpg",
+      "author": "Museum at FIT",
+      "license_name": "CC BY-SA 2.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020480_020",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Digitalis_evening_dress_by_Mary_Katrantzou_%2851441%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Digitalis_evening_dress_by_Mary_Katrantzou_(51441).jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Digitalis evening dress by Mary Katrantzou (51441).jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Rhododendrites\" title=\"User:Rhododendrites\">Rhododendrites</a>",
+      "license_name": "CC BY-SA 4.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020480_021",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/EsmoquinSombra.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:EsmoquinSombra.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:EsmoquinSombra.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Incal\" title=\"User:Incal\">Incal</a>",
+      "license_name": "CC BY-SA 3.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020480_022",
+      "image_id": "garm_net_022",
+      "garment_group_id": "group_net_022",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Marc_Bohan_evening_dress_and_cape%2C_1983.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Marc_Bohan_evening_dress_and_cape,_1983.jpeg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Regan Vercruysse",
+      "title": "File:Marc Bohan evening dress and cape, 1983.jpeg",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution_text": "Photo 'File:Marc Bohan evening dress and cape, 1983.jpeg' by Regan Vercruysse, licensed under CC BY 2.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Marc_Bohan_evening_dress_and_cape,_1983.jpeg)",
+      "retrieved_at": "2026-08-29T16:21:23Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020480_022.jpeg",
+      "sha256": "cabfc28496331518662cb517b6182a9496eb4a57b1711982af0054a21feae0ab",
+      "original_dimensions": [
+        1491,
+        3053
+      ],
+      "file_format": "JPEG",
+      "file_size": 2813994,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Marc Bohan evening dress and cape, 1983.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_012.jpeg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Regular",
+        "silhouette": "flowing",
+        "color_family": "black",
+        "material": "silk",
+        "pattern": "solid",
+        "formality_score": 0.9,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020483_023",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/1/17/New_Junon_evening_dress_%2851580%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:New_Junon_evening_dress_(51580).jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:New Junon evening dress (51580).jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Rhododendrites\" title=\"User:Rhododendrites\">Rhododendrites</a>",
+      "license_name": "CC BY-SA 4.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020483_024",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Strapless_evening_dresses_with_hoop_skirt_-_rear_view_with_lacing_in_the_back.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Strapless_evening_dresses_with_hoop_skirt_-_rear_view_with_lacing_in_the_back.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Strapless evening dresses with hoop skirt - rear view with lacing in the back.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>",
+      "license_name": "CC BY-SA 3.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020485_025",
+      "image_id": "garm_net_025",
+      "garment_group_id": "group_net_025",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Dress_%28AM_2015.27.1-1%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Dress_(AM_2015.27.1-1).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<div class=\"fn value\">\nMichael Mattar</div>",
+      "title": "File:Dress (AM 2015.27.1-1).jpg",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution_text": "Photo 'File:Dress (AM 2015.27.1-1).jpg' by <div class=\"fn value\">\nMichael Mattar</div>, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dress_(AM_2015.27.1-1).jpg)",
+      "retrieved_at": "2026-08-29T16:21:28Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020485_025.jpg",
+      "sha256": "b3e5136b5e02329047968f04b566af48a5c4c584a7a1e4fecd6740afb5e810b9",
+      "original_dimensions": [
+        1551,
+        2680
+      ],
+      "file_format": "JPG",
+      "file_size": 1366881,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Cocktail dress museum collection.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_013.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "flowing",
+        "color_family": "red",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.7,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "hanger",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020488_026",
+      "image_id": "garm_net_026",
+      "garment_group_id": "group_net_026",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Dress_%28AM_2015.27.1-2%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Dress_(AM_2015.27.1-2).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<div class=\"fn value\">\nMichael Mattar</div>",
+      "title": "File:Dress (AM 2015.27.1-2).jpg",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution_text": "Photo 'File:Dress (AM 2015.27.1-2).jpg' by <div class=\"fn value\">\nMichael Mattar</div>, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dress_(AM_2015.27.1-2).jpg)",
+      "retrieved_at": "2026-08-29T16:21:30Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020488_026.jpg",
+      "sha256": "fc784a79b70c322949e165f26917b59b228640a0578fbf928090811f61cce2cd",
+      "original_dimensions": [
+        1630,
+        2694
+      ],
+      "file_format": "JPG",
+      "file_size": 1262411,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788020490_027",
+      "image_id": "garm_net_027",
+      "garment_group_id": "group_net_027",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Dress_%28AM_2015.27.1-3%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Dress_(AM_2015.27.1-3).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<div class=\"fn value\">\nMichael Mattar</div>",
+      "title": "File:Dress (AM 2015.27.1-3).jpg",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution_text": "Photo 'File:Dress (AM 2015.27.1-3).jpg' by <div class=\"fn value\">\nMichael Mattar</div>, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dress_(AM_2015.27.1-3).jpg)",
+      "retrieved_at": "2026-08-29T16:21:33Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020490_027.jpg",
+      "sha256": "3bafcda8f192565da032afff18fba7b2dc7fd6599a84e80b874d192f3fbcf044",
+      "original_dimensions": [
+        1555,
+        2694
+      ],
+      "file_format": "JPG",
+      "file_size": 1392764,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788020493_028",
+      "image_id": "garm_net_028",
+      "garment_group_id": "group_net_028",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Dress_%28AM_2015.27.1-4%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Dress_(AM_2015.27.1-4).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<div class=\"fn value\">\nMichael Mattar</div>",
+      "title": "File:Dress (AM 2015.27.1-4).jpg",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution_text": "Photo 'File:Dress (AM 2015.27.1-4).jpg' by <div class=\"fn value\">\nMichael Mattar</div>, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dress_(AM_2015.27.1-4).jpg)",
+      "retrieved_at": "2026-08-29T16:21:36Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020493_028.jpg",
+      "sha256": "5708e6033ad809d3241522fa67bef13f7f07b1fadef91d4493893fe1373860b8",
+      "original_dimensions": [
+        1466,
+        2708
+      ],
+      "file_format": "JPG",
+      "file_size": 1169749,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788020496_029",
+      "image_id": "garm_net_029",
+      "garment_group_id": "group_net_029",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Dress_%28AM_2015.27.1-5%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Dress_(AM_2015.27.1-5).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<div class=\"fn value\">\nMichael Mattar</div>",
+      "title": "File:Dress (AM 2015.27.1-5).jpg",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution_text": "Photo 'File:Dress (AM 2015.27.1-5).jpg' by <div class=\"fn value\">\nMichael Mattar</div>, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dress_(AM_2015.27.1-5).jpg)",
+      "retrieved_at": "2026-08-29T16:21:38Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020496_029.jpg",
+      "sha256": "942e6a8be474449a3d4e98f49eefa58996e977500f16d5c237e88c200cb7610f",
+      "original_dimensions": [
+        1490,
+        2670
+      ],
+      "file_format": "JPG",
+      "file_size": 1328449,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788020498_030",
+      "image_id": "garm_net_030",
+      "garment_group_id": "group_net_030",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Dress_%28AM_2015.27.1-6%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Dress_(AM_2015.27.1-6).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<div class=\"fn value\">\nMichael Mattar</div>",
+      "title": "File:Dress (AM 2015.27.1-6).jpg",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution_text": "Photo 'File:Dress (AM 2015.27.1-6).jpg' by <div class=\"fn value\">\nMichael Mattar</div>, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dress_(AM_2015.27.1-6).jpg)",
+      "retrieved_at": "2026-08-29T16:21:40Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020498_030.jpg",
+      "sha256": "86f1184de2e734c2d2225eb340079c2619b8df0fe4fe31205176d2d73db81b67",
+      "original_dimensions": [
+        1396,
+        2592
+      ],
+      "file_format": "JPG",
+      "file_size": 1248748,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788020502_031",
+      "image_id": "garm_net_031",
+      "garment_group_id": "group_net_031",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/AP1555-bec-auer-privat-livemont-vintage-poster-1890s.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:AP1555-bec-auer-privat-livemont-vintage-poster-1890s.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Henri Privat-Livemont (1861-1936)",
+      "title": "File:AP1555-bec-auer-privat-livemont-vintage-poster-1890s.jpg",
+      "license_name": "Public domain",
+      "license_url": "",
+      "attribution_text": "Photo 'File:AP1555-bec-auer-privat-livemont-vintage-poster-1890s.jpg' by Henri Privat-Livemont (1861-1936), licensed under Public domain via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:AP1555-bec-auer-privat-livemont-vintage-poster-1890s.jpg)",
+      "retrieved_at": "2026-08-29T16:21:44Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020502_031.jpg",
+      "sha256": "c708724f995bf1c7dcaf3e9e95c87015fc51a0f52b25f378c5c549f321a7d683",
+      "original_dimensions": [
+        475,
+        635
+      ],
+      "file_format": "JPG",
+      "file_size": 307259,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "one_piece",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788020504_032",
+      "image_id": "garm_net_032",
+      "garment_group_id": "group_net_032",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Fabric_patterns_of_vintage_clothing_in_second-hand_shop.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Fabric_patterns_of_vintage_clothing_in_second-hand_shop.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:MAKY.OREL\" title=\"User:MAKY.OREL\">MAKY.OREL</a>",
+      "title": "File:Fabric patterns of vintage clothing in second-hand shop.jpg",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution_text": "Photo 'File:Fabric patterns of vintage clothing in second-hand shop.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:MAKY.OREL\" title=\"User:MAKY.OREL\">MAKY.OREL</a>, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Fabric_patterns_of_vintage_clothing_in_second-hand_shop.jpg)",
+      "retrieved_at": "2026-08-29T16:21:47Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020504_032.jpg",
+      "sha256": "af7a211ecd58d90a24cbc20c9c3a5952becf41754f7ceec2eb89dd4bef658ff7",
+      "original_dimensions": [
+        4000,
+        2250
+      ],
+      "file_format": "JPG",
+      "file_size": 2729170,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "one_piece",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788020507_033",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/96/Vintage_Betty_Barclay_dress.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Vintage_Betty_Barclay_dress.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Vintage Betty Barclay dress.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Smirkybec\" title=\"User:Smirkybec\">Smirkybec</a>",
+      "license_name": "CC BY-SA 4.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020507_034",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Vintage_Betty_Barclay_dress_label.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Vintage_Betty_Barclay_dress_label.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Vintage Betty Barclay dress label.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Smirkybec\" title=\"User:Smirkybec\">Smirkybec</a>",
+      "license_name": "CC BY-SA 4.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020507_035",
+      "image_id": "garm_net_035",
+      "garment_group_id": "group_net_035",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Vintage_Girl%27s_Dress_Drawing.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Vintage_Girl%27s_Dress_Drawing.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "none listed, editors were Sarah J. Hale and Louis A. Godey",
+      "title": "File:Vintage Girl's Dress Drawing.jpg",
+      "license_name": "Public domain",
+      "license_url": "",
+      "attribution_text": "Photo 'File:Vintage Girl's Dress Drawing.jpg' by none listed, editors were Sarah J. Hale and Louis A. Godey, licensed under Public domain via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Vintage_Girl%27s_Dress_Drawing.jpg)",
+      "retrieved_at": "2026-08-29T16:21:48Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020507_035.jpg",
+      "sha256": "990575f288827916c600fe9a72764710204be05024d751665c0738273b0d03e6",
+      "original_dimensions": [
+        246,
+        273
+      ],
+      "file_format": "JPG",
+      "file_size": 18305,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "one_piece",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788020508_036",
+      "image_id": "garm_net_036",
+      "garment_group_id": "group_net_036",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Vintage_red_Karl_Lagerfeld_dress_-_Back.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Vintage_red_Karl_Lagerfeld_dress_-_Back.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Maegan Tintari",
+      "title": "File:Vintage red Karl Lagerfeld dress - Back.jpg",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution_text": "Photo 'File:Vintage red Karl Lagerfeld dress - Back.jpg' by Maegan Tintari, licensed under CC BY 2.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Vintage_red_Karl_Lagerfeld_dress_-_Back.jpg)",
+      "retrieved_at": "2026-08-29T16:21:50Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020508_036.jpg",
+      "sha256": "babc4ea83e615441134388df97659fc61180722485fa8bdaa60f7785cd524002",
+      "original_dimensions": [
+        640,
+        1060
+      ],
+      "file_format": "JPG",
+      "file_size": 840559,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Vintage red Karl Lagerfeld designer dress.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_014.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "fitted",
+        "color_family": "red",
+        "material": "wool",
+        "pattern": "solid",
+        "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "hanger",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020512_037",
+      "image_id": "garm_net_037",
+      "garment_group_id": "group_net_037",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/1969_Bonnie_Cashin_jersey_jumpsuit_with_leather_accents_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1969_Bonnie_Cashin_jersey_jumpsuit_with_leather_accents_1.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Photographer for Rhode Island School of Design Museum of Art",
+      "title": "File:1969 Bonnie Cashin jersey jumpsuit with leather accents 1.jpg",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution_text": "Photo 'File:1969 Bonnie Cashin jersey jumpsuit with leather accents 1.jpg' by Photographer for Rhode Island School of Design Museum of Art, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:1969_Bonnie_Cashin_jersey_jumpsuit_with_leather_accents_1.jpg)",
+      "retrieved_at": "2026-08-29T16:21:53Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020512_037.jpg",
+      "sha256": "bedd964d3f99bf686adcfe85904a0b4cc826f2c74dadc2bded18b4404377a19d",
+      "original_dimensions": [
+        675,
+        900
+      ],
+      "file_format": "JPG",
+      "file_size": 48053,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "1969 Bonnie Cashin jersey jumpsuit.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_015.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "jumpsuit",
+        "fit": "Relaxed",
+        "silhouette": "straight",
+        "color_family": "grey",
+        "material": "knit",
+        "pattern": "solid",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020513_038",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Bruine_jumpsuit%2C_objectnr_68322.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Bruine_jumpsuit,_objectnr_68322.JPG",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Bruine jumpsuit, objectnr 68322.JPG",
+      "author": "verkoper: Witteveen",
+      "license_name": "CC BY-SA 3.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020513_039",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Jumpsuit_with_pleated_legs_-_leaning_against_a_wall_pose.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Jumpsuit_with_pleated_legs_-_leaning_against_a_wall_pose.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Jumpsuit with pleated legs - leaning against a wall pose.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>",
+      "license_name": "CC BY-SA 3.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020515_040",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Cheongsam_at_the_National_Museum_of_Singapore_-_20120406.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Cheongsam_at_the_National_Museum_of_Singapore_-_20120406.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Cheongsam at the National Museum of Singapore - 20120406.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Jacklee\" title=\"User:Jacklee\">Jacklee</a>.",
+      "license_name": "CC BY-SA 4.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020517_041",
+      "image_id": "garm_net_041",
+      "garment_group_id": "group_net_041",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Qipao_1960-70%2C_printed_velvet._V%26A_Museum.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Qipao_1960-70,_printed_velvet._V%26A_Museum.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Ismoon\" title=\"User:Ismoon\">Ismoon</a> (<a href=\"//commons.wikimedia.org/wiki/User_talk:Ismoon\" title=\"User talk:Ismoon\"><span class=\"signature-talk\">talk</span></a>) 16:47, 31 May 2012 (UTC)",
+      "title": "File:Qipao 1960-70, printed velvet. V&A Museum.jpg",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution_text": "Photo 'File:Qipao 1960-70, printed velvet. V&A Museum.jpg' by <a href=\"//commons.wikimedia.org/wiki/User:Ismoon\" title=\"User:Ismoon\">Ismoon</a> (<a href=\"//commons.wikimedia.org/wiki/User_talk:Ismoon\" title=\"User talk:Ismoon\"><span class=\"signature-talk\">talk</span></a>) 16:47, 31 May 2012 (UTC), licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Qipao_1960-70,_printed_velvet._V%26A_Museum.jpg)",
+      "retrieved_at": "2026-08-29T16:21:59Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020517_041.jpg",
+      "sha256": "7d0a7666e7b76e89996ee88d30147931813b031a7bca7646b086e0bb1fffeb45",
+      "original_dimensions": [
+        1223,
+        2003
+      ],
+      "file_format": "JPG",
+      "file_size": 1091148,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "1960s printed velvet qipao from V&A Museum.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_016.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "straight",
+        "color_family": "brown",
+        "material": "silk",
+        "pattern": "textured",
+        "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020519_042",
+      "image_id": "garm_net_042",
+      "garment_group_id": "group_net_042",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Qipao_woman.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Qipao_woman.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<a rel=\"nofollow\" class=\"external text\" href=\"http://my.nphoto.net/photobest/\">\u975e\u4e3b\u6d41\u5f71\u50cf\u6d3e</a>",
+      "title": "File:Qipao woman.jpg",
+      "license_name": "CC BY 2.5 cn",
+      "license_url": "https://creativecommons.org/licenses/by/2.5/cn/deed.en",
+      "attribution_text": "Photo 'File:Qipao woman.jpg' by <a rel=\"nofollow\" class=\"external text\" href=\"http://my.nphoto.net/photobest/\">\u975e\u4e3b\u6d41\u5f71\u50cf\u6d3e</a>, licensed under CC BY 2.5 cn via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Qipao_woman.jpg)",
+      "retrieved_at": "2026-08-29T16:22:00Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020519_042.jpg",
+      "sha256": "ee6183e3a0c57c5abb1132432e680958d28f9cc0e2ce6bcb0806fa0a36628c24",
+      "original_dimensions": [
+        432,
+        645
+      ],
+      "file_format": "JPG",
+      "file_size": 248581,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "one_piece",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Woman wearing silk floral qipao dress.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_017.jpg",
+      "taxonomy_labels": {
+        "category": "one_piece",
+        "subcategory": "dress",
+        "fit": "Fitted",
+        "silhouette": "straight",
+        "color_family": "multi",
+        "material": "silk",
+        "pattern": "floral",
+        "formality_score": 0.7,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "on_body",
+        "daylight",
+        "street"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020520_043",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Scottish_dress_and_cheongsam.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Scottish_dress_and_cheongsam.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Scottish dress and cheongsam.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Peachyeung316\" title=\"User:Peachyeung316\">Peachyeung316</a>",
+      "license_name": "CC BY-SA 4.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020520_044",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Woman_wearing_a_Chanel_cheongsam_with_oriental_robe_and_a_feather_hat_in1950s.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Woman_wearing_a_Chanel_cheongsam_with_oriental_robe_and_a_feather_hat_in1950s.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Woman wearing a Chanel cheongsam with oriental robe and a feather hat in1950s.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Chanmeiling214&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Chanmeiling214 (page does not exist)\">Chanmeiling214</a>",
+      "license_name": "CC BY-SA 4.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020522_045",
+      "image_id": "garm_net_045",
+      "garment_group_id": "group_net_045",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/1980s_blue_denim_jacket%2C_Finland_%E2%80%93_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1980s_blue_denim_jacket,_Finland_%E2%80%93_01.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<div class=\"fn value\">\nEtel\u00e4-Karjalan museo</div>",
+      "title": "File:1980s blue denim jacket, Finland \u2013 01.jpg",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution_text": "Photo 'File:1980s blue denim jacket, Finland \u2013 01.jpg' by <div class=\"fn value\">\nEtel\u00e4-Karjalan museo</div>, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:1980s_blue_denim_jacket,_Finland_%E2%80%93_01.jpg)",
+      "retrieved_at": "2026-08-29T16:22:04Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020522_045.jpg",
+      "sha256": "a7279590cd37a069a910e76f6e01d39f1f847b7243e0f6a0bf5513344c84ba2c",
+      "original_dimensions": [
+        757,
+        900
+      ],
+      "file_format": "JPG",
+      "file_size": 283690,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "outerwear",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "1980s vintage blue denim jacket.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_018.jpg",
+      "taxonomy_labels": {
+        "category": "outerwear",
+        "subcategory": "denim_jacket",
+        "fit": "Relaxed",
+        "silhouette": "boxy",
+        "color_family": "blue",
+        "material": "denim",
+        "pattern": "solid",
+        "formality_score": 0.3,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "flat_lay",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020524_046",
+      "image_id": "garm_net_046",
+      "garment_group_id": "group_net_046",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/1980s_blue_denim_jacket%2C_Finland_%E2%80%93_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1980s_blue_denim_jacket,_Finland_%E2%80%93_02.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<div class=\"fn value\">\nEtel\u00e4-Karjalan museo</div>",
+      "title": "File:1980s blue denim jacket, Finland \u2013 02.jpg",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution_text": "Photo 'File:1980s blue denim jacket, Finland \u2013 02.jpg' by <div class=\"fn value\">\nEtel\u00e4-Karjalan museo</div>, licensed under CC BY 4.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:1980s_blue_denim_jacket,_Finland_%E2%80%93_02.jpg)",
+      "retrieved_at": "2026-08-29T16:22:06Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020524_046.jpg",
+      "sha256": "05105bc3e98f031c93cacc4da126f27ecf90715a2ea521846587a5bc0dc127d3",
+      "original_dimensions": [
+        715,
+        900
+      ],
+      "file_format": "JPG",
+      "file_size": 270597,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "outerwear",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788020526_047",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/90/Denim_jacket_from_Dolce_%26_Gabbana_with_human_skull_on_back_made_from_Swarovski_glass_crystals.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Denim_jacket_from_Dolce_%26_Gabbana_with_human_skull_on_back_made_from_Swarovski_glass_crystals.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Denim jacket from Dolce & Gabbana with human skull on back made from Swarovski glass crystals.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Pittigrilli\" title=\"User:Pittigrilli\">Pittigrilli</a>",
+      "license_name": "CC BY-SA 4.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020526_048",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Denim_jacket_from_Dolce_%26_Gabbana_with_human_skull_on_back_made_from_Swarovski_glass_crystals_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Denim_jacket_from_Dolce_%26_Gabbana_with_human_skull_on_back_made_from_Swarovski_glass_crystals_(cropped).jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Denim jacket from Dolce & Gabbana with human skull on back made from Swarovski glass crystals (cropped).jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Pittigrilli\" title=\"User:Pittigrilli\">Pittigrilli</a>",
+      "license_name": "CC BY-SA 4.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020526_049",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Leather_jacket_with_quilted_details_-_worn_with_low_rise_denim_shorts_and_a_bodysuit_over_sheer_to_waist_tights_-_ModelTanja.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Leather_jacket_with_quilted_details_-_worn_with_low_rise_denim_shorts_and_a_bodysuit_over_sheer_to_waist_tights_-_ModelTanja.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Leather jacket with quilted details - worn with low rise denim shorts and a bodysuit over sheer to waist tights - ModelTanja.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Tobias_ToMar_Maier\" title=\"User:Tobias ToMar Maier\">Tobias ToMar Maier</a>",
+      "license_name": "CC BY-SA 3.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020526_050",
+      "image_id": "garm_net_050",
+      "garment_group_id": "group_net_050",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Ralph_Lauren_United_States_flag_denim_jacket.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ralph_Lauren_United_States_flag_denim_jacket.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Menswear Market",
+      "title": "File:Ralph Lauren United States flag denim jacket.jpg",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution_text": "Photo 'File:Ralph Lauren United States flag denim jacket.jpg' by Menswear Market, licensed under CC BY 2.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Ralph_Lauren_United_States_flag_denim_jacket.jpg)",
+      "retrieved_at": "2026-08-29T16:22:08Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020526_050.jpg",
+      "sha256": "77a6ea3440c604feb3819a08488f36a284caf99669a8b2a6b479346dd09e311c",
+      "original_dimensions": [
+        600,
+        600
+      ],
+      "file_format": "JPG",
+      "file_size": 195178,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "outerwear",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Polo Ralph Lauren US flag patch denim jacket.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_019.jpg",
+      "taxonomy_labels": {
+        "category": "outerwear",
+        "subcategory": "denim_jacket",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "blue",
+        "material": "denim",
+        "pattern": "graphic",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "flat_lay",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020534_051",
+      "image_id": "garm_net_051",
+      "garment_group_id": "group_net_051",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/2019_Acne_Studios_coat%2C_jacquard_woven_toile-de-Jouy_pattern_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:2019_Acne_Studios_coat,_jacquard_woven_toile-de-Jouy_pattern_02.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Staff photographer, Rhode Island School of Design Museum of Art",
+      "title": "File:2019 Acne Studios coat, jacquard woven toile-de-Jouy pattern 02.jpg",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution_text": "Photo 'File:2019 Acne Studios coat, jacquard woven toile-de-Jouy pattern 02.jpg' by Staff photographer, Rhode Island School of Design Museum of Art, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:2019_Acne_Studios_coat,_jacquard_woven_toile-de-Jouy_pattern_02.jpg)",
+      "retrieved_at": "2026-08-29T16:22:16Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020534_051.jpg",
+      "sha256": "4e85ac1b157a68f0a41fdd2b1966a27464835d6700ca6d738b21608c2c637bf3",
+      "original_dimensions": [
+        575,
+        900
+      ],
+      "file_format": "JPG",
+      "file_size": 63294,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "outerwear",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "2019 Acne Studios toile-de-jouy woven coat.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_020.jpg",
+      "taxonomy_labels": {
+        "category": "outerwear",
+        "subcategory": "wool_coat",
+        "fit": "Oversized",
+        "silhouette": "relaxed",
+        "color_family": "white",
+        "material": "cotton",
+        "pattern": "textured",
+        "formality_score": 0.7,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020536_052",
+      "image_id": "garm_net_052",
+      "garment_group_id": "group_net_052",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/2019_Acne_Studios_coat%2C_jacquard_woven_toile-de-Jouy_pattern_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:2019_Acne_Studios_coat,_jacquard_woven_toile-de-Jouy_pattern_04.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Staff photographer, Rhode Island School of Design Museum of Art",
+      "title": "File:2019 Acne Studios coat, jacquard woven toile-de-Jouy pattern 04.jpg",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution_text": "Photo 'File:2019 Acne Studios coat, jacquard woven toile-de-Jouy pattern 04.jpg' by Staff photographer, Rhode Island School of Design Museum of Art, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:2019_Acne_Studios_coat,_jacquard_woven_toile-de-Jouy_pattern_04.jpg)",
+      "retrieved_at": "2026-08-29T16:22:18Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020536_052.jpg",
+      "sha256": "2778dde2660ebaa9ae89e657fb0b3062c0db3bddf9c26de34cb12fa0693f4288",
+      "original_dimensions": [
+        675,
+        900
+      ],
+      "file_format": "JPG",
+      "file_size": 208656,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "outerwear",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788020538_053",
+      "image_id": "garm_net_053",
+      "garment_group_id": "group_net_053",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Leather-trench-coat.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Leather-trench-coat.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<a href=\"https://en.wikipedia.org/wiki/User:Lani12\" class=\"extiw\" title=\"wikipedia:User:Lani12\">Lani12</a> at <a href=\"https://en.wikipedia.org/wiki/\" class=\"extiw\" title=\"wikipedia:\">English Wikipedia</a>",
+      "title": "File:Leather-trench-coat.jpg",
+      "license_name": "Public domain",
+      "license_url": "",
+      "attribution_text": "Photo 'File:Leather-trench-coat.jpg' by <a href=\"https://en.wikipedia.org/wiki/User:Lani12\" class=\"extiw\" title=\"wikipedia:User:Lani12\">Lani12</a> at <a href=\"https://en.wikipedia.org/wiki/\" class=\"extiw\" title=\"wikipedia:\">English Wikipedia</a>, licensed under Public domain via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Leather-trench-coat.jpg)",
+      "retrieved_at": "2026-08-29T16:22:19Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020538_053.jpg",
+      "sha256": "8b5954b0f6dad7cd564ca01785686dc7f36e745d655246327d6f3887df039bcb",
+      "original_dimensions": [
+        560,
+        848
+      ],
+      "file_format": "JPG",
+      "file_size": 115339,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "outerwear",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Black leather belted trench coat.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_021.jpg",
+      "taxonomy_labels": {
+        "category": "outerwear",
+        "subcategory": "trench_coat",
+        "fit": "Regular",
+        "silhouette": "structured",
+        "color_family": "black",
+        "material": "leather",
+        "pattern": "solid",
+        "formality_score": 0.7,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "clean",
+        "indoor_neutral",
+        "flat_lay"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020541_054",
+      "image_id": "garm_net_054",
+      "garment_group_id": "group_net_054",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Trench_coat.tif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Trench_coat.tif",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<div class=\"fn value\">\nDavid Ring</div>",
+      "title": "File:Trench coat.tif",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution_text": "Photo 'File:Trench coat.tif' by <div class=\"fn value\">\nDavid Ring</div>, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Trench_coat.tif)",
+      "retrieved_at": "2026-08-29T16:22:24Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020541_054.jpg",
+      "sha256": "719438d8861e4f29ca8ec0254af238eb497293bf9ff8780003edb4f7357312f4",
+      "original_dimensions": [
+        1680,
+        2350
+      ],
+      "file_format": "JPG",
+      "file_size": 3953390,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "outerwear",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Classic beige double-breasted trench coat.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_022.jpg",
+      "taxonomy_labels": {
+        "category": "outerwear",
+        "subcategory": "trench_coat",
+        "fit": "Regular",
+        "silhouette": "structured",
+        "color_family": "beige",
+        "material": "cotton",
+        "pattern": "solid",
+        "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020544_055",
+      "image_id": "garm_net_055",
+      "garment_group_id": "group_net_055",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Woman_wearing_a_red_Scottevest_trench_coat_at_St_Katherine%27s_Docks_%28Tower_Bridge_behind%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Woman_wearing_a_red_Scottevest_trench_coat_at_St_Katherine%27s_Docks_(Tower_Bridge_behind).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/39709143@N00\">AboutLondon</a>",
+      "title": "File:Woman wearing a red Scottevest trench coat at St Katherine's Docks (Tower Bridge behind).jpg",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution_text": "Photo 'File:Woman wearing a red Scottevest trench coat at St Katherine's Docks (Tower Bridge behind).jpg' by <a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/39709143@N00\">AboutLondon</a>, licensed under CC BY 2.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Woman_wearing_a_red_Scottevest_trench_coat_at_St_Katherine%27s_Docks_(Tower_Bridge_behind).jpg)",
+      "retrieved_at": "2026-08-29T16:22:26Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020544_055.jpg",
+      "sha256": "cfd09a208893e141cc0df3db60066db43ad28e7683e5e43d5a7eaba9fc73d6a2",
+      "original_dimensions": [
+        2616,
+        3488
+      ],
+      "file_format": "JPG",
+      "file_size": 2631694,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "outerwear",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Woman wearing red Scottevest trench coat outdoor.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_023.jpg",
+      "taxonomy_labels": {
+        "category": "outerwear",
+        "subcategory": "trench_coat",
+        "fit": "Regular",
+        "silhouette": "straight",
+        "color_family": "red",
+        "material": "synthetic",
+        "pattern": "solid",
+        "formality_score": 0.6,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "on_body",
+        "daylight",
+        "street",
+        "smartphone"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020548_056",
+      "image_id": "garm_net_056",
+      "garment_group_id": "group_net_056",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/1968_Bonnie_Cashin_dress_and_coat_set%2C_blue_wool_tweed.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1968_Bonnie_Cashin_dress_and_coat_set,_blue_wool_tweed.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Photographer for Rhode Island School of Design Museum of Art",
+      "title": "File:1968 Bonnie Cashin dress and coat set, blue wool tweed.jpg",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution_text": "Photo 'File:1968 Bonnie Cashin dress and coat set, blue wool tweed.jpg' by Photographer for Rhode Island School of Design Museum of Art, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:1968_Bonnie_Cashin_dress_and_coat_set,_blue_wool_tweed.jpg)",
+      "retrieved_at": "2026-08-29T16:22:29Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020548_056.jpg",
+      "sha256": "8ee81ffcf799195d81223f5451777892572f78bae41b74ed96e77ced70f270f2",
+      "original_dimensions": [
+        582,
+        900
+      ],
+      "file_format": "JPG",
+      "file_size": 85282,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "outerwear",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "1968 Bonnie Cashin blue wool tweed coat.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_024.jpg",
+      "taxonomy_labels": {
+        "category": "outerwear",
+        "subcategory": "wool_coat",
+        "fit": "Regular",
+        "silhouette": "structured",
+        "color_family": "blue",
+        "material": "wool",
+        "pattern": "textured",
+        "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020549_057",
+      "image_id": "garm_net_057",
+      "garment_group_id": "group_net_057",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/7/71/2017_Thom_Browne_man%27s_coat%2C_wool_twill_with_multiple_buttons%2C_Fall-Winter_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:2017_Thom_Browne_man%27s_coat,_wool_twill_with_multiple_buttons,_Fall-Winter_04.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Staff photographer, Rhode Island School of Design Museum of Art",
+      "title": "File:2017 Thom Browne man's coat, wool twill with multiple buttons, Fall-Winter 04.jpg",
+      "license_name": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution_text": "Photo 'File:2017 Thom Browne man's coat, wool twill with multiple buttons, Fall-Winter 04.jpg' by Staff photographer, Rhode Island School of Design Museum of Art, licensed under CC0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:2017_Thom_Browne_man%27s_coat,_wool_twill_with_multiple_buttons,_Fall-Winter_04.jpg)",
+      "retrieved_at": "2026-08-29T16:22:32Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020549_057.jpg",
+      "sha256": "333eb6957bc062562a933589b726f9603de08326103958f325a3c640e8953b8a",
+      "original_dimensions": [
+        675,
+        900
+      ],
+      "file_format": "JPG",
+      "file_size": 200439,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_PUBLIC_DOMAIN_CC0",
+      "suggested_category": "outerwear",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "2017 Thom Browne tailored wool coat.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_025.jpg",
+      "taxonomy_labels": {
+        "category": "outerwear",
+        "subcategory": "wool_coat",
+        "fit": "Slim",
+        "silhouette": "structured",
+        "color_family": "grey",
+        "material": "wool",
+        "pattern": "solid",
+        "formality_score": 0.9,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "studio",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020552_058",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Red_Coat_in_Wool_designed_by_Sybil_Connolly_-_Full_Lenght_Back.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Red_Coat_in_Wool_designed_by_Sybil_Connolly_-_Full_Lenght_Back.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Red Coat in Wool designed by Sybil Connolly - Full Lenght Back.jpg",
+      "author": "<div class=\"fn value\">\nHunt Museum and In\u00e9s Rivilla L\u00f3pez</div>",
+      "license_name": "CC BY-SA 4.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020552_059",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Red_Coat_in_Wool_designed_by_Sybil_Connolly_-_Full_Lenght_Front.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Red_Coat_in_Wool_designed_by_Sybil_Connolly_-_Full_Lenght_Front.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Red Coat in Wool designed by Sybil Connolly - Full Lenght Front.jpg",
+      "author": "<div class=\"fn value\">\nHunt Museum and In\u00e9s Rivilla L\u00f3pez</div>",
+      "license_name": "CC BY-SA 4.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020552_060",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Red_Wool_Coat_of_Auguste_Chouteau.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Red_Wool_Coat_of_Auguste_Chouteau.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Red Wool Coat of Auguste Chouteau.jpg",
+      "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+      "license_name": "Attribution",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020552_061",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Woman%27s_wool_coat%2C_sold_by_J.S._Graham_in_Seattle_c._1890.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Woman%27s_wool_coat,_sold_by_J.S._Graham_in_Seattle_c._1890.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Woman's wool coat, sold by J.S. Graham in Seattle c. 1890.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Jmabel\" title=\"User:Jmabel\">Joe Mabel</a>",
+      "license_name": "CC BY-SA 4.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020553_062",
+      "image_id": "garm_net_062",
+      "garment_group_id": "group_net_062",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Polo_Ralph_Lauren_bomber_jacket%2C_stone_coloured.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Polo_Ralph_Lauren_bomber_jacket,_stone_coloured.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Menswear Market",
+      "title": "File:Polo Ralph Lauren bomber jacket, stone coloured.jpg",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution_text": "Photo 'File:Polo Ralph Lauren bomber jacket, stone coloured.jpg' by Menswear Market, licensed under CC BY 2.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Polo_Ralph_Lauren_bomber_jacket,_stone_coloured.jpg)",
+      "retrieved_at": "2026-08-29T16:22:35Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020553_062.jpg",
+      "sha256": "5b3ae619e031db31f20034f6af4031ce729e8da94e012125f6a594fa780e7198",
+      "original_dimensions": [
+        1600,
+        1600
+      ],
+      "file_format": "JPG",
+      "file_size": 450866,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "outerwear",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Polo Ralph Lauren stone colored bomber jacket.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_026.jpg",
+      "taxonomy_labels": {
+        "category": "outerwear",
+        "subcategory": "bomber_jacket",
+        "fit": "Regular",
+        "silhouette": "boxy",
+        "color_family": "beige",
+        "material": "cotton",
+        "pattern": "solid",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "flat_lay",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020555_063",
+      "image_id": "garm_net_063",
+      "garment_group_id": "group_net_063",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Red_vintage_Polo_Ralph_Lauren_bomber_jacket.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Red_vintage_Polo_Ralph_Lauren_bomber_jacket.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Menswear Market",
+      "title": "File:Red vintage Polo Ralph Lauren bomber jacket.jpg",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution_text": "Photo 'File:Red vintage Polo Ralph Lauren bomber jacket.jpg' by Menswear Market, licensed under CC BY 2.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Red_vintage_Polo_Ralph_Lauren_bomber_jacket.jpg)",
+      "retrieved_at": "2026-08-29T16:22:36Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020555_063.jpg",
+      "sha256": "7a9440e92d1b3dede0988156dece50b5c8645efb92cd3a07cebaed37f7c299be",
+      "original_dimensions": [
+        1600,
+        1600
+      ],
+      "file_format": "JPG",
+      "file_size": 490178,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "outerwear",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Red vintage Polo Ralph Lauren bomber jacket.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_027.jpg",
+      "taxonomy_labels": {
+        "category": "outerwear",
+        "subcategory": "bomber_jacket",
+        "fit": "Regular",
+        "silhouette": "boxy",
+        "color_family": "red",
+        "material": "nylon",
+        "pattern": "solid",
+        "formality_score": 0.4,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "flat_lay",
+        "clean",
+        "indoor_neutral"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020556_064",
+      "image_id": "garm_net_064",
+      "garment_group_id": "group_net_064",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Red_vintage_Polo_Ralph_Lauren_bomber_jacket_with_black_panels.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Red_vintage_Polo_Ralph_Lauren_bomber_jacket_with_black_panels.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Menswear Market",
+      "title": "File:Red vintage Polo Ralph Lauren bomber jacket with black panels.jpg",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution_text": "Photo 'File:Red vintage Polo Ralph Lauren bomber jacket with black panels.jpg' by Menswear Market, licensed under CC BY 2.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Red_vintage_Polo_Ralph_Lauren_bomber_jacket_with_black_panels.jpg)",
+      "retrieved_at": "2026-08-29T16:22:38Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020556_064.jpg",
+      "sha256": "64abfff132cad3a8a24f4e28f4edefe9001e2dccb7bd58e773e725f6850d5f87",
+      "original_dimensions": [
+        1600,
+        1600
+      ],
+      "file_format": "JPG",
+      "file_size": 423866,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "outerwear",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788020558_065",
+      "image_id": "garm_net_065",
+      "garment_group_id": "group_net_065",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Suede_Bomber_Jacket_%2851011161975%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Suede_Bomber_Jacket_(51011161975).jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/83136374@N05\">ajay_suresh</a>",
+      "title": "File:Suede Bomber Jacket (51011161975).jpg",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution_text": "Photo 'File:Suede Bomber Jacket (51011161975).jpg' by <a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/83136374@N05\">ajay_suresh</a>, licensed under CC BY 2.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Suede_Bomber_Jacket_(51011161975).jpg)",
+      "retrieved_at": "2026-08-29T16:22:42Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020558_065.jpg",
+      "sha256": "45366e59a6a3020074592737ba5903187b76ef81c5eb8ae13cf13b1f57925ad9",
+      "original_dimensions": [
+        4663,
+        3497
+      ],
+      "file_format": "JPG",
+      "file_size": 10370193,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "outerwear",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Brown suede zip bomber jacket.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_028.jpg",
+      "taxonomy_labels": {
+        "category": "outerwear",
+        "subcategory": "bomber_jacket",
+        "fit": "Relaxed",
+        "silhouette": "boxy",
+        "color_family": "brown",
+        "material": "suede",
+        "pattern": "solid",
+        "formality_score": 0.5,
+        "occasions": [
+          "Casual"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "clean",
+        "indoor_neutral",
+        "flat_lay"
+      ]
+    },
+    {
+      "candidate_id": "cand_net_1788020562_066",
+      "image_id": "garm_net_066",
+      "garment_group_id": "group_net_066",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Terracotta_Polo_Ralph_Lauren_bomber_jacket.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Terracotta_Polo_Ralph_Lauren_bomber_jacket.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Menswear Market",
+      "title": "File:Terracotta Polo Ralph Lauren bomber jacket.jpg",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution_text": "Photo 'File:Terracotta Polo Ralph Lauren bomber jacket.jpg' by Menswear Market, licensed under CC BY 2.0 via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Terracotta_Polo_Ralph_Lauren_bomber_jacket.jpg)",
+      "retrieved_at": "2026-08-29T16:22:44Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020562_066.jpg",
+      "sha256": "1e73d4a9261ef64036ac80d51cd8974d48231dc88d1753d3e0d89ce4848e79df",
+      "original_dimensions": [
+        1600,
+        1600
+      ],
+      "file_format": "JPG",
+      "file_size": 452519,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "outerwear",
+      "review_status": "REVIEW_PENDING",
+      "production_eligible": false,
+      "final_status": "REVIEW_PENDING"
+    },
+    {
+      "candidate_id": "cand_net_1788020564_067",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Women_Bomber_Jacket_Front.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Women_Bomber_Jacket_Front.jpg",
+      "source_platform": "wikimedia_commons",
+      "title": "File:Women Bomber Jacket Front.jpg",
+      "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Cici_water&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Cici water (page does not exist)\">Cici water</a>",
+      "license_name": "CC BY-SA 4.0",
+      "license_status": "LEGAL_REVIEW_REQUIRED",
+      "final_status": "LEGAL_REVIEW_REQUIRED",
+      "production_eligible": false
+    },
+    {
+      "candidate_id": "cand_net_1788020567_068",
+      "image_id": "garm_net_068",
+      "garment_group_id": "group_net_068",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Bente_Dahl.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Bente_Dahl.jpg",
+      "source_platform": "wikimedia_commons",
+      "source_dataset": "wikimedia_commons_fashion_open",
+      "author": "Photographer Henrik S\u00f8rensen",
+      "title": "File:Bente Dahl.jpg",
+      "license_name": "CC BY 2.5 dk",
+      "license_url": "https://creativecommons.org/licenses/by/2.5/dk/deed.en",
+      "attribution_text": "Photo 'File:Bente Dahl.jpg' by Photographer Henrik S\u00f8rensen, licensed under CC BY 2.5 dk via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Bente_Dahl.jpg)",
+      "retrieved_at": "2026-08-29T16:22:49Z",
+      "download_path": "data/garment/internet_candidates\\pending\\cand_net_1788020567_068.jpg",
+      "sha256": "7f0e51f33d0773e91d340739afa10415ba8e123c2a332d81da42bf800abdc3a7",
+      "original_dimensions": [
+        1772,
+        2362
+      ],
+      "file_format": "JPG",
+      "file_size": 980674,
+      "provenance_status": "COMPLETE",
+      "license_status": "APPROVED_WITH_ATTRIBUTION",
+      "suggested_category": "outerwear",
+      "review_status": "CORRECT",
+      "production_eligible": true,
+      "final_status": "APPROVED",
+      "reviewer_notes": "Woman wearing tailored black office blazer on-body.",
+      "approved_image_path": "data/garment/internet_candidates/approved/garm_net_029.jpg",
+      "taxonomy_labels": {
+        "category": "outerwear",
+        "subcategory": "blazer",
+        "fit": "Slim",
+        "silhouette": "structured",
+        "color_family": "black",
+        "material": "wool",
+        "pattern": "solid",
+        "formality_score": 0.8,
+        "occasions": [
+          "Formal"
+        ],
+        "seasons": [
+          "All Season"
+        ]
+      },
+      "context_labels": [
+        "on_body",
+        "indoor_neutral",
+        "clean"
+      ]
     }
   ]
 }

@@ -1,0 +1,20 @@
+{
+  "approved_categories": {
+    "one_piece": 11,
+    "outerwear": 12
+  },
+  "approved_subcategories": {
+    "dungarees": 1,
+    "dress": 8,
+    "jumpsuit": 2,
+    "jacket": 1,
+    "denim_jacket": 2,
+    "wool_coat": 3,
+    "trench_coat": 2,
+    "bomber_jacket": 3,
+    "blazer": 1
+  },
+  "one_piece_count": 11,
+  "outerwear_count": 12,
+  "taxonomy_pass": true
+}

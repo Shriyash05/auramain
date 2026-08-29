@@ -8,9 +8,22 @@
     "PUBLIC_DOMAIN",
     "CC_BY",
     "CC_BY_2.0",
+    "CC_BY_2.5",
     "CC_BY_3.0",
     "CC_BY_4.0",
     "CC0_1.0"
+  ],
+  "legal_review_licenses_for_production": [
+    "CC_BY_SA",
+    "CC_BY_SA_2.0",
+    "CC_BY_SA_3.0",
+    "CC_BY_SA_4.0",
+    "CC_BY_ND",
+    "CC_BY_ND_2.0",
+    "CC_BY_ND_3.0",
+    "CC_BY_ND_4.0",
+    "UNCLEAR",
+    "CUSTOM"
   ],
   "prohibited_licenses_for_production": [
     "CC_BY_NC",

@@ -28,10 +28,12 @@ APPROVED_LICENSES = {
 PROHIBITED_SUBSTRINGS = ["-nc", "nc", "non-commercial", "noncommercial", "by-nd", "-nd", "all rights reserved"]
 
 QUERY_GROUPS = [
-    {"category": "one_piece", "queries": ["dress on body clothing", "summer dress garment", "jumpsuit clothing", "romper outfit garment"]},
-    {"category": "outerwear", "queries": ["leather jacket on body", "blazer jacket clothing", "winter coat clothing", "cardigan sweater garment", "hoodie clothing"]},
-    {"category": "tops", "queries": ["t-shirt on body clothing", "knit sweater garment", "blouse clothing"]},
-    {"category": "bottoms", "queries": ["jeans trousers clothing", "pleated skirt clothing", "cargo pants clothing"]}
+    {"category": "one_piece", "queries": ["evening dress clothing", "cocktail dress garment", "vintage dress clothing", "jumpsuit fashion", "cheongsam dress"]},
+    {"category": "outerwear", "queries": ["denim jacket clothing", "trench coat fashion", "wool coat clothing", "bomber jacket clothing", "blazer clothing on body", "cardigan sweater fashion"]},
+    {"category": "tops", "queries": ["polo shirt clothing", "button down shirt clothing", "knit sweater clothing", "tank top garment", "hoodie clothing street"]},
+    {"category": "bottoms", "queries": ["trousers street fashion", "denim shorts clothing", "pleated skirt fashion", "sweatpants clothing", "jeans street clothing"]},
+    {"category": "shoes", "queries": ["leather boots footwear", "sneakers shoes footwear", "loafers shoes fashion", "sandals footwear"]},
+    {"category": "accessories", "queries": ["leather handbag fashion", "tote bag clothing", "scarf accessory clothing", "hat fashion clothing"]}
 ]
 
 def load_json(path: str) -> Dict[str, Any]:
@@ -52,6 +54,10 @@ def normalize_license(license_name: str) -> str:
     for prov in PROHIBITED_SUBSTRINGS:
         if prov in cleaned:
             return "PROHIBITED_NON_COMMERCIAL"
+    if any(sa in cleaned for sa in ["-sa", " sa", "sharealike", "share-alike"]):
+        return "LEGAL_REVIEW_REQUIRED"
+    if any(nd in cleaned for nd in ["-nd", " nd", "noderivatives", "no-derivatives"]):
+        return "LEGAL_REVIEW_REQUIRED"
     if any(app in cleaned for app in ["cc0", "public domain", "pdm"]):
         return "APPROVED_PUBLIC_DOMAIN_CC0"
     if any(app in cleaned for app in ["cc by", "cc-by"]):
