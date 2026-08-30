@@ -1,0 +1,14 @@
+{
+  "experiment_id": "garment-exp-0013",
+  "lora_rank": 8,
+  "lora_alpha": 16.0,
+  "lora_dropout": 0.05,
+  "lora_target_modules": [
+    "q_proj",
+    "v_proj"
+  ],
+  "trainable_lora_parameters": 995328,
+  "total_backbone_parameters": 429220928,
+  "lora_parameter_percentage": 0.2319,
+  "initial_lora_hash": "7546e29d14d055ee61843b2c20c093a73e180fb768bb2692d968050e1f30ed79"
+}

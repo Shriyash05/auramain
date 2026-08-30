@@ -50,12 +50,29 @@ def evaluate_split(
     # Load Checkpoint State
     saved_state = torch.load(checkpoint_path, map_location=device)
     actual_backbone_name = saved_state.get("backbone_model_name", backbone_name)
+    is_lora = saved_state.get("use_lora", False)
+    lora_rank = saved_state.get("lora_rank", 8)
+    lora_alpha = saved_state.get("lora_alpha", 16.0)
+    lora_dropout = saved_state.get("lora_dropout", 0.05)
+    lora_target_modules = saved_state.get("lora_target_modules", ["q_proj", "v_proj"])
+    unfreeze_n = saved_state.get("unfreeze_last_n_layers", 0)
 
     # Initialize Backbone and Heads
-    backbone = AuraSigLIPBackbone(model_name=actual_backbone_name).to(device)
+    backbone = AuraSigLIPBackbone(
+        model_name=actual_backbone_name,
+        unfreeze_last_n_layers=unfreeze_n,
+        use_lora=is_lora,
+        lora_rank=lora_rank,
+        lora_alpha=lora_alpha,
+        lora_dropout=lora_dropout,
+        lora_target_modules=lora_target_modules
+    ).to(device)
     if "backbone_state_dict" in saved_state:
         backbone.load_state_dict(saved_state["backbone_state_dict"])
-        print("[+] Loaded ADAPTED backbone weights from checkpoint.")
+        if is_lora:
+            print("[+] Loaded LoRA/PEFT adapted backbone weights from checkpoint.")
+        else:
+            print("[+] Loaded ADAPTED backbone weights from checkpoint.")
     backbone.eval()
 
     # Detect head architecture from checkpoint metadata

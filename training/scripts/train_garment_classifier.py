@@ -154,25 +154,70 @@ class AuraGarmentDataset(Dataset):
 # ============================================================
 # 2. PyTorch Multi-Task Model Architecture (SigLIP SO400M Pretrained)
 # ============================================================
+class LoRALinear(nn.Module):
+    """
+    Parameter-Efficient Fine-Tuning (LoRA) linear adapter.
+    Decomposes weight update into low-rank matrices A and B:
+    W = W_0 + (alpha / rank) * (B @ A)
+    """
+    def __init__(self, original_linear: nn.Linear, rank: int = 8, alpha: float = 16.0, dropout: float = 0.05):
+        super().__init__()
+        self.original_linear = original_linear
+        for p in self.original_linear.parameters():
+            p.requires_grad = False
+        self.in_features = original_linear.in_features
+        self.out_features = original_linear.out_features
+        self.rank = rank
+        self.scaling = alpha / rank
+        self.lora_dropout = nn.Dropout(p=dropout) if dropout > 0.0 else nn.Identity()
+        self.lora_A = nn.Parameter(torch.empty((rank, self.in_features)))
+        self.lora_B = nn.Parameter(torch.zeros((self.out_features, rank)))
+        nn.init.kaiming_uniform_(self.lora_A, a=5**0.5)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        base_out = self.original_linear(x)
+        lora_out = (self.lora_dropout(x) @ self.lora_A.t()) @ self.lora_B.t() * self.scaling
+        return base_out + lora_out
+
+
 class AuraSigLIPBackbone(nn.Module):
     """
     Genuine Pretrained SigLIP-SO400M Vision Transformer Backbone.
     Extracts 1152-dimensional fashion embeddings.
-    Supports frozen baseline or selective representation adaptation of final layers.
+    Supports frozen baseline, LoRA/PEFT adaptation, or selective layer unfreezing.
     """
-    def __init__(self, model_name: str = "google/siglip-so400m-patch14-384", unfreeze_last_n_layers: int = 0):
+    def __init__(
+        self,
+        model_name: str = "google/siglip-so400m-patch14-384",
+        unfreeze_last_n_layers: int = 0,
+        use_lora: bool = False,
+        lora_rank: int = 8,
+        lora_alpha: float = 16.0,
+        lora_dropout: float = 0.05,
+        lora_target_modules: Optional[List[str]] = None
+    ):
         super().__init__()
         self.model_name = model_name
         self.vision_model = SiglipVisionModel.from_pretrained(model_name)
         self.embedding_dim = self.vision_model.config.hidden_size
         self.unfreeze_last_n_layers = unfreeze_last_n_layers
+        self.use_lora = use_lora
+        self.lora_rank = lora_rank
+        self.lora_alpha = lora_alpha
+        self.lora_dropout = lora_dropout
+        self.lora_target_modules = lora_target_modules or ["q_proj", "v_proj"]
 
         # Freeze all parameters first
         for param in self.vision_model.parameters():
             param.requires_grad = False
 
-        # Unfreeze final n encoder layers and post layernorm if requested
-        if unfreeze_last_n_layers > 0:
+        if self.use_lora:
+            for layer in self.vision_model.encoder.layers:
+                if "q_proj" in self.lora_target_modules:
+                    layer.self_attn.q_proj = LoRALinear(layer.self_attn.q_proj, rank=lora_rank, alpha=lora_alpha, dropout=lora_dropout)
+                if "v_proj" in self.lora_target_modules:
+                    layer.self_attn.v_proj = LoRALinear(layer.self_attn.v_proj, rank=lora_rank, alpha=lora_alpha, dropout=lora_dropout)
+        elif unfreeze_last_n_layers > 0:
             for layer in self.vision_model.encoder.layers[-unfreeze_last_n_layers:]:
                 for param in layer.parameters():
                     param.requires_grad = True
@@ -489,14 +534,29 @@ def train_experiment(config_path: str):
 
     print(f"[+] Loaded Datasets: Train N={len(train_dataset)}, Val N={len(val_dataset)}")
 
-    # Check representation adaptation settings
+    # Check representation adaptation & LoRA settings
+    use_lora = bool(cfg.get("model", {}).get("use_lora", False))
+    lora_rank = int(cfg.get("model", {}).get("lora_rank", 8))
+    lora_alpha = float(cfg.get("model", {}).get("lora_alpha", 16.0))
+    lora_dropout = float(cfg.get("model", {}).get("lora_dropout", 0.05))
+    lora_target_modules = cfg.get("model", {}).get("lora_target_modules", ["q_proj", "v_proj"])
+    lora_lr = float(cfg.get("training", {}).get("lora_learning_rate", 0.0002))
+
     unfreeze_last_n_layers = int(cfg.get("model", {}).get("unfreeze_last_n_layers", 0))
     backbone_lr = float(cfg.get("training", {}).get("backbone_learning_rate", 1e-5))
     grad_accum_steps = int(cfg.get("training", {}).get("gradient_accumulation_steps", 1))
 
     # Initialize Pretrained SigLIP Backbone
-    print(f"\n[*] Loading Genuine Pretrained Vision Backbone: {backbone_name} (unfreeze_last_n_layers={unfreeze_last_n_layers})...")
-    backbone = AuraSigLIPBackbone(model_name=backbone_name, unfreeze_last_n_layers=unfreeze_last_n_layers).to(device)
+    print(f"\n[*] Loading Genuine Pretrained Vision Backbone: {backbone_name} (use_lora={use_lora}, unfreeze_last_n_layers={unfreeze_last_n_layers})...")
+    backbone = AuraSigLIPBackbone(
+        model_name=backbone_name,
+        unfreeze_last_n_layers=unfreeze_last_n_layers,
+        use_lora=use_lora,
+        lora_rank=lora_rank,
+        lora_alpha=lora_alpha,
+        lora_dropout=lora_dropout,
+        lora_target_modules=lora_target_modules
+    ).to(device)
     backbone_param_count = sum(p.numel() for p in backbone.parameters())
     backbone_param_hash = compute_model_parameter_hash(backbone, trainable_only=False)
     backbone_trainable_params = [p for p in backbone.parameters() if p.requires_grad]
@@ -528,11 +588,16 @@ def train_experiment(config_path: str):
     # Compute Initial Parameter Fingerprint
     initial_heads_hash = compute_model_parameter_hash(heads)
     initial_backbone_hash = compute_model_parameter_hash(backbone, trainable_only=False)
+    initial_trainable_backbone_hash = compute_model_parameter_hash(backbone, trainable_only=True) if backbone_trainable_count > 0 else "NONE"
     print(f"[+] Initial Heads Hash: {initial_heads_hash}")
+    print(f"[+] Initial Trainable Backbone Hash: {initial_trainable_backbone_hash}")
 
-    if unfreeze_last_n_layers > 0:
+    is_dynamic_backbone = use_lora or (unfreeze_last_n_layers > 0)
+
+    if is_dynamic_backbone:
+        b_lr = lora_lr if use_lora else backbone_lr
         param_groups = [
-            {"params": backbone_trainable_params, "lr": backbone_lr, "weight_decay": weight_decay},
+            {"params": backbone_trainable_params, "lr": b_lr, "weight_decay": weight_decay},
             {"params": head_trainable_params, "lr": lr, "weight_decay": weight_decay}
         ]
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, drop_last=False)
@@ -568,6 +633,10 @@ def train_experiment(config_path: str):
         "trainable_backbone_parameters": backbone_trainable_count,
         "backbone_weight_sha256": backbone_param_hash,
         "is_genuine_pretrained": True,
+        "use_lora": use_lora,
+        "lora_rank": lora_rank if use_lora else None,
+        "lora_alpha": lora_alpha if use_lora else None,
+        "lora_target_modules": lora_target_modules if use_lora else None,
         "unfreeze_last_n_layers": unfreeze_last_n_layers,
         "random_noise_baseline": False,
         "hidden_dimension": hidden_dim,
@@ -577,6 +646,21 @@ def train_experiment(config_path: str):
     }
     with open(os.path.join(forensics_dir, "pretrained_weight_verification.json"), "w", encoding="utf-8") as f:
         json.dump(pretrained_proof, f, indent=2)
+
+    if use_lora:
+        lora_meta = {
+            "experiment_id": exp_id,
+            "lora_rank": lora_rank,
+            "lora_alpha": lora_alpha,
+            "lora_dropout": lora_dropout,
+            "lora_target_modules": lora_target_modules,
+            "trainable_lora_parameters": backbone_trainable_count,
+            "total_backbone_parameters": backbone_param_count,
+            "lora_parameter_percentage": round(backbone_trainable_count / backbone_param_count * 100, 4),
+            "initial_lora_hash": initial_trainable_backbone_hash
+        }
+        with open(os.path.join(run_dir, "lora_config.json"), "w", encoding="utf-8") as f:
+            json.dump(lora_meta, f, indent=2)
 
     training_logs = []
     best_val_macro_f1 = -1.0
@@ -589,7 +673,7 @@ def train_experiment(config_path: str):
     print(f"\n[*] Starting Multi-Task Training Loop on {gpu_name} ({epochs} epochs)...")
 
     for epoch in range(1, epochs + 1):
-        if unfreeze_last_n_layers > 0:
+        if is_dynamic_backbone:
             backbone.train()
         heads.train()
         running_train_loss = 0.0
@@ -600,7 +684,7 @@ def train_experiment(config_path: str):
             targets = {k: v.to(device) for k, v in batch.items() if k not in ["image_id", "features", "pixel_values"]}
 
             with torch.amp.autocast('cuda', dtype=torch.float16):
-                if unfreeze_last_n_layers > 0:
+                if is_dynamic_backbone:
                     pixel_values = batch["pixel_values"].to(device)
                     features = backbone(pixel_values)
                 else:
@@ -644,7 +728,7 @@ def train_experiment(config_path: str):
                 targets = {k: v.to(device) for k, v in batch.items() if k not in ["image_id", "features", "pixel_values"]}
 
                 with torch.amp.autocast('cuda', dtype=torch.float16):
-                    if unfreeze_last_n_layers > 0:
+                    if is_dynamic_backbone:
                         pixel_values = batch["pixel_values"].to(device)
                         features = backbone(pixel_values)
                     else:
@@ -733,10 +817,15 @@ def train_experiment(config_path: str):
                 "bottleneck_dim": bottleneck_dim,
                 "head_type": "lightweight" if use_lightweight else "full",
                 "loss_weights": loss_weights_dict,
+                "use_lora": use_lora,
+                "lora_rank": lora_rank if use_lora else None,
+                "lora_alpha": lora_alpha if use_lora else None,
+                "lora_dropout": lora_dropout if use_lora else None,
+                "lora_target_modules": lora_target_modules if use_lora else None,
                 "unfreeze_last_n_layers": unfreeze_last_n_layers,
                 "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
             }
-            if unfreeze_last_n_layers > 0:
+            if is_dynamic_backbone:
                 ckpt_payload["backbone_state_dict"] = backbone.state_dict()
 
             torch.save(ckpt_payload, best_ckpt_path)
