@@ -1,0 +1,75 @@
+{
+  "analysis_timestamp": "2026-08-30T16:15:00Z",
+  "baseline_dataset": "dataset-v0.4-250.json",
+  "baseline_sample_count": 250,
+  "target_dataset": "dataset-v0.5-500.json",
+  "target_sample_count": 500,
+  "category_gap_analysis": {
+    "one_piece": {
+      "current_count": 39,
+      "current_percentage": 15.6,
+      "target_count_at_500": 85,
+      "target_percentage_at_500": 17.0,
+      "required_addition": 46
+    },
+    "outerwear": {
+      "current_count": 60,
+      "current_percentage": 24.0,
+      "target_count_at_500": 85,
+      "target_percentage_at_500": 17.0,
+      "required_addition": 25
+    },
+    "tops": {
+      "current_count": 45,
+      "current_percentage": 18.0,
+      "target_count_at_500": 85,
+      "target_percentage_at_500": 17.0,
+      "required_addition": 40
+    },
+    "bottoms": {
+      "current_count": 47,
+      "current_percentage": 18.8,
+      "target_count_at_500": 85,
+      "target_percentage_at_500": 17.0,
+      "required_addition": 38
+    },
+    "shoes": {
+      "current_count": 32,
+      "current_percentage": 12.8,
+      "target_count_at_500": 80,
+      "target_percentage_at_500": 16.0,
+      "required_addition": 48
+    },
+    "accessories": {
+      "current_count": 27,
+      "current_percentage": 10.8,
+      "target_count_at_500": 80,
+      "target_percentage_at_500": 16.0,
+      "required_addition": 53
+    }
+  },
+  "total_required_approved_additions": 250,
+  "diversity_baseline": {
+    "one_piece_count": 39,
+    "one_piece_percentage": 15.6,
+    "outerwear_count": 60,
+    "outerwear_percentage": 24.0,
+    "on_body_count": 115,
+    "on_body_percentage": 46.0,
+    "flat_lay_count": 121,
+    "flat_lay_percentage": 48.4,
+    "hanger_count": 3,
+    "hanger_percentage": 1.2,
+    "smartphone_count": 112,
+    "smartphone_percentage": 44.8
+  },
+  "diversity_targets_at_500": {
+    "one_piece_target": 85,
+    "outerwear_target": 85,
+    "on_body_target_min": 260,
+    "smartphone_target_min": 320,
+    "hanger_target_min": 25,
+    "warm_and_low_light_min": 40,
+    "clutter_and_consumer_bg_min": 60
+  }
+}

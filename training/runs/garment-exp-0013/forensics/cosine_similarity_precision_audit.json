@@ -1,0 +1,14 @@
+{
+  "num_probed_images": 50,
+  "mean_cosine_similarity": 0.9966202777598748,
+  "median_cosine_similarity": 0.997558261845075,
+  "std_cosine_similarity": 0.0032987175698327553,
+  "min_cosine_similarity": 0.9801256304336652,
+  "max_cosine_similarity": 0.9992451043315878,
+  "mean_l2_embedding_delta": 1.5437219647828477,
+  "min_l2_delta": 0.8326383627895801,
+  "max_l2_delta": 4.110558544472041,
+  "precision": "float64",
+  "representation_preserved": true,
+  "representation_collapse": false
+}

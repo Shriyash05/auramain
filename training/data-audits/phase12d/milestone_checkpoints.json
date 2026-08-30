@@ -1,0 +1,82 @@
+{
+  "checkpoint_300": {
+    "total_samples": 300,
+    "category_counts": {
+      "tops": 45,
+      "bottoms": 47,
+      "outerwear": 60,
+      "shoes": 32,
+      "accessories": 77,
+      "one_piece": 39
+    },
+    "on_body_count": 140,
+    "on_body_percentage": 46.67,
+    "smartphone_count": 162,
+    "smartphone_percentage": 54.0,
+    "verified_quality": true
+  },
+  "checkpoint_350": {
+    "total_samples": 350,
+    "category_counts": {
+      "tops": 45,
+      "bottoms": 47,
+      "outerwear": 60,
+      "shoes": 79,
+      "accessories": 80,
+      "one_piece": 39
+    },
+    "on_body_count": 166,
+    "on_body_percentage": 47.43,
+    "smartphone_count": 212,
+    "smartphone_percentage": 60.57,
+    "verified_quality": true
+  },
+  "checkpoint_400": {
+    "total_samples": 400,
+    "category_counts": {
+      "tops": 48,
+      "bottoms": 47,
+      "outerwear": 60,
+      "shoes": 80,
+      "accessories": 80,
+      "one_piece": 85
+    },
+    "on_body_count": 190,
+    "on_body_percentage": 47.5,
+    "smartphone_count": 262,
+    "smartphone_percentage": 65.5,
+    "verified_quality": true
+  },
+  "checkpoint_450": {
+    "total_samples": 450,
+    "category_counts": {
+      "tops": 85,
+      "bottoms": 60,
+      "outerwear": 60,
+      "shoes": 80,
+      "accessories": 80,
+      "one_piece": 85
+    },
+    "on_body_count": 215,
+    "on_body_percentage": 47.78,
+    "smartphone_count": 312,
+    "smartphone_percentage": 69.33,
+    "verified_quality": true
+  },
+  "checkpoint_500": {
+    "total_samples": 500,
+    "category_counts": {
+      "tops": 85,
+      "bottoms": 85,
+      "outerwear": 85,
+      "shoes": 80,
+      "accessories": 80,
+      "one_piece": 85
+    },
+    "on_body_count": 240,
+    "on_body_percentage": 48.0,
+    "smartphone_count": 362,
+    "smartphone_percentage": 72.4,
+    "verified_quality": true
+  }
+}

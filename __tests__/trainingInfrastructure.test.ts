@@ -700,6 +700,63 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(multiSplit.hard_test.sample_size).toBe(18);
     expect(multiSplit.real_world_test.sample_size).toBe(16);
   });
+
+  it('verifies Phase 12D Dataset Scale-Up from 250 to 500 Production Assets', () => {
+    const dataset500Path = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.5-500.json');
+    const freeze500Path = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.5-500-freeze.json');
+    const sha500Path = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.5-500-manifest.sha256');
+    const dataset250Path = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.4-250.json');
+    const sha250Path = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.4-250-manifest.sha256');
+    const blindFreezePath = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.3-blind-freeze.json');
+    const registryPath = path.resolve(__dirname, '../data/garment/metadata/phase12d-acquisition-registry.json');
+    const gapAnalysisDoc = path.resolve(__dirname, '../docs/phase-12d-target-gap-analysis.md');
+    const qualityAuditPath = path.resolve(__dirname, '../training/data-audits/phase12d/quality_audit.json');
+    const diversityAuditPath = path.resolve(__dirname, '../training/data-audits/phase12d/diversity_audit.json');
+    const cosineAuditPath = path.resolve(__dirname, '../training/runs/garment-exp-0013/forensics/cosine_similarity_precision_audit.json');
+
+    expect(fs.existsSync(dataset500Path)).toBe(true);
+    expect(fs.existsSync(freeze500Path)).toBe(true);
+    expect(fs.existsSync(sha500Path)).toBe(true);
+    expect(fs.existsSync(dataset250Path)).toBe(true);
+    expect(fs.existsSync(sha250Path)).toBe(true);
+    expect(fs.existsSync(blindFreezePath)).toBe(true);
+    expect(fs.existsSync(registryPath)).toBe(true);
+    expect(fs.existsSync(gapAnalysisDoc)).toBe(true);
+    expect(fs.existsSync(qualityAuditPath)).toBe(true);
+    expect(fs.existsSync(diversityAuditPath)).toBe(true);
+    expect(fs.existsSync(cosineAuditPath)).toBe(true);
+
+    // 1. Verify 500 Counts
+    const ds500 = JSON.parse(fs.readFileSync(dataset500Path, 'utf8'));
+    expect(ds500.total_production_training_validation_count).toBe(500);
+    expect(ds500.items.length).toBe(500);
+    expect(ds500.train_count).toBe(459);
+    expect(ds500.validation_count).toBe(41);
+
+    // 2. Verify 250 Immutability
+    const ds250Content = fs.readFileSync(dataset250Path);
+    const ds250Hash = crypto.createHash('sha256').update(ds250Content).digest('hex');
+    const expected250Hash = fs.readFileSync(sha250Path, 'utf8').trim();
+    expect(ds250Hash).toBe(expected250Hash);
+
+    // 3. Verify Frozen Blind Integrity
+    const blindContent = fs.readFileSync(blindFreezePath);
+    const blindHash = crypto.createHash('sha256').update(blindContent).digest('hex');
+    expect(blindHash).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
+
+    // 4. Verify Quality Audit Status
+    const qualityAudit = JSON.parse(fs.readFileSync(qualityAuditPath, 'utf8'));
+    expect(qualityAudit.status).toBe('APPROVED');
+    expect(qualityAudit.exact_duplicates).toBe(0);
+    expect(qualityAudit.corrupt_images).toBe(0);
+    expect(qualityAudit.missing_provenance_entries).toBe(0);
+
+    // 5. Verify Precision Cosine Audit for Exp-0013
+    const cosineAudit = JSON.parse(fs.readFileSync(cosineAuditPath, 'utf8'));
+    expect(cosineAudit.num_probed_images).toBe(50);
+    expect(cosineAudit.mean_cosine_similarity).toBeGreaterThan(0.99);
+    expect(cosineAudit.representation_collapse).toBe(false);
+  });
 });
 
 

@@ -1,0 +1,71 @@
+{
+  "total_count": 500,
+  "category_distribution": {
+    "tops": {
+      "count": 85,
+      "percentage": 17.0
+    },
+    "bottoms": {
+      "count": 85,
+      "percentage": 17.0
+    },
+    "outerwear": {
+      "count": 85,
+      "percentage": 17.0
+    },
+    "one_piece": {
+      "count": 85,
+      "percentage": 17.0
+    },
+    "shoes": {
+      "count": 80,
+      "percentage": 16.0
+    },
+    "accessories": {
+      "count": 80,
+      "percentage": 16.0
+    }
+  },
+  "diversity_metrics": {
+    "one_piece": {
+      "count": 85,
+      "percentage": 17.0
+    },
+    "outerwear": {
+      "count": 85,
+      "percentage": 17.0
+    },
+    "on_body": {
+      "count": 240,
+      "percentage": 48.0
+    },
+    "smartphone": {
+      "count": 362,
+      "percentage": 72.4
+    },
+    "flat_lay": {
+      "count": 184,
+      "percentage": 36.8
+    },
+    "hanger": {
+      "count": 65,
+      "percentage": 13.0
+    },
+    "warm_lighting": {
+      "count": 50,
+      "percentage": 10.0
+    },
+    "low_light": {
+      "count": 28,
+      "percentage": 5.6
+    },
+    "wrinkled": {
+      "count": 42,
+      "percentage": 8.4
+    },
+    "cluttered": {
+      "count": 22,
+      "percentage": 4.4
+    }
+  }
+}

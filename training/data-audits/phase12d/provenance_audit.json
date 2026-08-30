@@ -1,0 +1,21 @@
+{
+  "total_items": 500,
+  "license_distribution": {
+    "APPROVED_FOR_AURA_TRAINING": 112,
+    "Public domain": 3,
+    "CC BY 4.0": 4,
+    "CC0": 11,
+    "CC BY 2.0": 9,
+    "CC BY 2.5 cn": 1,
+    "CC BY 2.5 dk": 1,
+    "CC0 1.0 Universal": 359
+  },
+  "source_datasets": {
+    "original_aura_golden_train_val": 112,
+    "tier_b_internet_approved": 29,
+    "kaggle_clothing_dataset_pilot_approved": 109,
+    "kaggle_clothing_dataset_scaleup_approved": 250
+  },
+  "zero_commercial_api_data": true,
+  "provenance_status": "100% VERIFIED AND GOVERNED"
+}

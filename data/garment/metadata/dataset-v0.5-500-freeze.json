@@ -1,0 +1,9 @@
+{
+  "manifest_sha256": "85375f147608616762636106bd433a2378af902925161d260365e344f2a0fe1e",
+  "total_items": 500,
+  "train_items": 459,
+  "validation_items": 41,
+  "frozen_at": "2026-08-30T10:48:14Z",
+  "status": "FROZEN_FOR_PRODUCTION_TRAINING",
+  "blind_freeze_checksum_preserved": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd"
+}

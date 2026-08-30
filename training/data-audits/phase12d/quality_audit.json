@@ -1,0 +1,13 @@
+{
+  "dataset_name": "dataset-v0.5-500.json",
+  "manifest_sha256": "85375f147608616762636106bd433a2378af902925161d260365e344f2a0fe1e",
+  "total_items": 500,
+  "exact_duplicates": 0,
+  "near_duplicates": 0,
+  "corrupt_images": 0,
+  "invalid_taxonomy_entries": 0,
+  "missing_provenance_entries": 0,
+  "train_items": 459,
+  "validation_items": 41,
+  "status": "APPROVED"
+}
