@@ -1,0 +1,466 @@
+[
+  {
+    "image_id": "garm_v3_151",
+    "expected_category": "tops",
+    "expected_color": "brown",
+    "full_image": {
+      "predicted_category": "outerwear",
+      "category_confidence": 0.2639,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "brown",
+      "predicted_fit": "Relaxed",
+      "predicted_silhouette": "relaxed",
+      "predicted_material": "wool",
+      "predicted_pattern": "textured"
+    },
+    "oracle_crop": {
+      "predicted_category": "outerwear",
+      "category_confidence": 0.2822,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "brown",
+      "predicted_fit": "Relaxed",
+      "predicted_silhouette": "relaxed",
+      "predicted_material": "linen",
+      "predicted_pattern": "textured"
+    },
+    "category_improvement": "MAINTAINED_INCORRECT",
+    "confidence_delta": 0.0183
+  },
+  {
+    "image_id": "garm_v3_152",
+    "expected_category": "bottoms",
+    "expected_color": "olive",
+    "full_image": {
+      "predicted_category": "outerwear",
+      "category_confidence": 0.7744,
+      "category_correct": false,
+      "accepted": true,
+      "predicted_color": "black",
+      "predicted_fit": "Regular",
+      "predicted_silhouette": "straight",
+      "predicted_material": "cotton",
+      "predicted_pattern": "solid"
+    },
+    "oracle_crop": {
+      "predicted_category": "outerwear",
+      "category_confidence": 0.7925,
+      "category_correct": false,
+      "accepted": true,
+      "predicted_color": "black",
+      "predicted_fit": "Regular",
+      "predicted_silhouette": "straight",
+      "predicted_material": "cotton",
+      "predicted_pattern": "solid"
+    },
+    "category_improvement": "MAINTAINED_INCORRECT",
+    "confidence_delta": 0.0181
+  },
+  {
+    "image_id": "garm_v3_153",
+    "expected_category": "outerwear",
+    "expected_color": "black",
+    "full_image": {
+      "predicted_category": "bottoms",
+      "category_confidence": 0.3599,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "grey",
+      "predicted_fit": "Regular",
+      "predicted_silhouette": "straight",
+      "predicted_material": "cotton",
+      "predicted_pattern": "solid"
+    },
+    "oracle_crop": {
+      "predicted_category": "bottoms",
+      "category_confidence": 0.3411,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "grey",
+      "predicted_fit": "Regular",
+      "predicted_silhouette": "straight",
+      "predicted_material": "cotton",
+      "predicted_pattern": "solid"
+    },
+    "category_improvement": "MAINTAINED_INCORRECT",
+    "confidence_delta": -0.0188
+  },
+  {
+    "image_id": "garm_v3_154",
+    "expected_category": "shoes",
+    "expected_color": "cream",
+    "full_image": {
+      "predicted_category": "bottoms",
+      "category_confidence": 0.3203,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "grey",
+      "predicted_fit": "Slim",
+      "predicted_silhouette": "straight",
+      "predicted_material": "denim",
+      "predicted_pattern": "solid"
+    },
+    "oracle_crop": {
+      "predicted_category": "outerwear",
+      "category_confidence": 0.2683,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "grey",
+      "predicted_fit": "Slim",
+      "predicted_silhouette": "structured",
+      "predicted_material": "cotton",
+      "predicted_pattern": "solid"
+    },
+    "category_improvement": "MAINTAINED_INCORRECT",
+    "confidence_delta": -0.052
+  },
+  {
+    "image_id": "garm_v3_155",
+    "expected_category": "accessories",
+    "expected_color": "white",
+    "full_image": {
+      "predicted_category": "tops",
+      "category_confidence": 0.438,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "grey",
+      "predicted_fit": "Slim",
+      "predicted_silhouette": "straight",
+      "predicted_material": "cotton",
+      "predicted_pattern": "textured"
+    },
+    "oracle_crop": {
+      "predicted_category": "tops",
+      "category_confidence": 0.4971,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "black",
+      "predicted_fit": "Regular",
+      "predicted_silhouette": "straight",
+      "predicted_material": "cotton",
+      "predicted_pattern": "solid"
+    },
+    "category_improvement": "MAINTAINED_INCORRECT",
+    "confidence_delta": 0.0591
+  },
+  {
+    "image_id": "garm_v3_156",
+    "expected_category": "tops",
+    "expected_color": "grey",
+    "full_image": {
+      "predicted_category": "shoes",
+      "category_confidence": 0.2964,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "white",
+      "predicted_fit": "Regular",
+      "predicted_silhouette": "structured",
+      "predicted_material": "leather",
+      "predicted_pattern": "plaid"
+    },
+    "oracle_crop": {
+      "predicted_category": "shoes",
+      "category_confidence": 0.2832,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "white",
+      "predicted_fit": "Regular",
+      "predicted_silhouette": "structured",
+      "predicted_material": "leather",
+      "predicted_pattern": "plaid"
+    },
+    "category_improvement": "MAINTAINED_INCORRECT",
+    "confidence_delta": -0.0132
+  },
+  {
+    "image_id": "garm_v3_157",
+    "expected_category": "bottoms",
+    "expected_color": "navy",
+    "full_image": {
+      "predicted_category": "shoes",
+      "category_confidence": 0.3386,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "white",
+      "predicted_fit": "Slim",
+      "predicted_silhouette": "structured",
+      "predicted_material": "synthetic",
+      "predicted_pattern": "striped"
+    },
+    "oracle_crop": {
+      "predicted_category": "shoes",
+      "category_confidence": 0.3604,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "white",
+      "predicted_fit": "Slim",
+      "predicted_silhouette": "fitted",
+      "predicted_material": "synthetic",
+      "predicted_pattern": "striped"
+    },
+    "category_improvement": "MAINTAINED_INCORRECT",
+    "confidence_delta": 0.0217
+  },
+  {
+    "image_id": "garm_v3_158",
+    "expected_category": "outerwear",
+    "expected_color": "beige",
+    "full_image": {
+      "predicted_category": "outerwear",
+      "category_confidence": 0.5928,
+      "category_correct": true,
+      "accepted": false,
+      "predicted_color": "black",
+      "predicted_fit": "Slim",
+      "predicted_silhouette": "straight",
+      "predicted_material": "wool",
+      "predicted_pattern": "textured"
+    },
+    "oracle_crop": {
+      "predicted_category": "outerwear",
+      "category_confidence": 0.5723,
+      "category_correct": true,
+      "accepted": false,
+      "predicted_color": "black",
+      "predicted_fit": "Slim",
+      "predicted_silhouette": "straight",
+      "predicted_material": "denim",
+      "predicted_pattern": "solid"
+    },
+    "category_improvement": "MAINTAINED_CORRECT",
+    "confidence_delta": -0.0205
+  },
+  {
+    "image_id": "garm_v3_159",
+    "expected_category": "shoes",
+    "expected_color": "brown",
+    "full_image": {
+      "predicted_category": "outerwear",
+      "category_confidence": 0.4246,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "black",
+      "predicted_fit": "Slim",
+      "predicted_silhouette": "straight",
+      "predicted_material": "denim",
+      "predicted_pattern": "solid"
+    },
+    "oracle_crop": {
+      "predicted_category": "bottoms",
+      "category_confidence": 0.3491,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "black",
+      "predicted_fit": "Regular",
+      "predicted_silhouette": "straight",
+      "predicted_material": "denim",
+      "predicted_pattern": "solid"
+    },
+    "category_improvement": "MAINTAINED_INCORRECT",
+    "confidence_delta": -0.0754
+  },
+  {
+    "image_id": "garm_v3_160",
+    "expected_category": "accessories",
+    "expected_color": "olive",
+    "full_image": {
+      "predicted_category": "shoes",
+      "category_confidence": 0.2734,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "cream",
+      "predicted_fit": "Slim",
+      "predicted_silhouette": "fitted",
+      "predicted_material": "cashmere",
+      "predicted_pattern": "textured"
+    },
+    "oracle_crop": {
+      "predicted_category": "shoes",
+      "category_confidence": 0.2556,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "cream",
+      "predicted_fit": "Slim",
+      "predicted_silhouette": "fitted",
+      "predicted_material": "cashmere",
+      "predicted_pattern": "textured"
+    },
+    "category_improvement": "MAINTAINED_INCORRECT",
+    "confidence_delta": -0.0178
+  },
+  {
+    "image_id": "garm_v3_161",
+    "expected_category": "tops",
+    "expected_color": "black",
+    "full_image": {
+      "predicted_category": "outerwear",
+      "category_confidence": 0.2703,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "brown",
+      "predicted_fit": "Relaxed",
+      "predicted_silhouette": "relaxed",
+      "predicted_material": "wool",
+      "predicted_pattern": "textured"
+    },
+    "oracle_crop": {
+      "predicted_category": "outerwear",
+      "category_confidence": 0.2649,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "brown",
+      "predicted_fit": "Relaxed",
+      "predicted_silhouette": "relaxed",
+      "predicted_material": "linen",
+      "predicted_pattern": "textured"
+    },
+    "category_improvement": "MAINTAINED_INCORRECT",
+    "confidence_delta": -0.0054
+  },
+  {
+    "image_id": "garm_v3_162",
+    "expected_category": "bottoms",
+    "expected_color": "cream",
+    "full_image": {
+      "predicted_category": "tops",
+      "category_confidence": 0.3147,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "grey",
+      "predicted_fit": "Regular",
+      "predicted_silhouette": "flowing",
+      "predicted_material": "silk",
+      "predicted_pattern": "plaid"
+    },
+    "oracle_crop": {
+      "predicted_category": "shoes",
+      "category_confidence": 0.3347,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "grey",
+      "predicted_fit": "Relaxed",
+      "predicted_silhouette": "flowing",
+      "predicted_material": "silk",
+      "predicted_pattern": "textured"
+    },
+    "category_improvement": "MAINTAINED_INCORRECT",
+    "confidence_delta": 0.02
+  },
+  {
+    "image_id": "garm_v3_163",
+    "expected_category": "outerwear",
+    "expected_color": "white",
+    "full_image": {
+      "predicted_category": "shoes",
+      "category_confidence": 0.2423,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "brown",
+      "predicted_fit": "Slim",
+      "predicted_silhouette": "straight",
+      "predicted_material": "leather",
+      "predicted_pattern": "striped"
+    },
+    "oracle_crop": {
+      "predicted_category": "outerwear",
+      "category_confidence": 0.2494,
+      "category_correct": true,
+      "accepted": false,
+      "predicted_color": "brown",
+      "predicted_fit": "Slim",
+      "predicted_silhouette": "straight",
+      "predicted_material": "leather",
+      "predicted_pattern": "textured"
+    },
+    "category_improvement": "GAINED_CORRECT",
+    "confidence_delta": 0.0071
+  },
+  {
+    "image_id": "garm_v3_164",
+    "expected_category": "shoes",
+    "expected_color": "grey",
+    "full_image": {
+      "predicted_category": "shoes",
+      "category_confidence": 0.4187,
+      "category_correct": true,
+      "accepted": false,
+      "predicted_color": "cream",
+      "predicted_fit": "Oversized",
+      "predicted_silhouette": "straight",
+      "predicted_material": "leather",
+      "predicted_pattern": "textured"
+    },
+    "oracle_crop": {
+      "predicted_category": "shoes",
+      "category_confidence": 0.4336,
+      "category_correct": true,
+      "accepted": false,
+      "predicted_color": "grey",
+      "predicted_fit": "Relaxed",
+      "predicted_silhouette": "straight",
+      "predicted_material": "leather",
+      "predicted_pattern": "textured"
+    },
+    "category_improvement": "MAINTAINED_CORRECT",
+    "confidence_delta": 0.0149
+  },
+  {
+    "image_id": "garm_v3_165",
+    "expected_category": "accessories",
+    "expected_color": "navy",
+    "full_image": {
+      "predicted_category": "shoes",
+      "category_confidence": 0.281,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "white",
+      "predicted_fit": "Fitted",
+      "predicted_silhouette": "wide",
+      "predicted_material": "synthetic",
+      "predicted_pattern": "striped"
+    },
+    "oracle_crop": {
+      "predicted_category": "bottoms",
+      "category_confidence": 0.2864,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "white",
+      "predicted_fit": "Regular",
+      "predicted_silhouette": "straight",
+      "predicted_material": "cotton",
+      "predicted_pattern": "striped"
+    },
+    "category_improvement": "MAINTAINED_INCORRECT",
+    "confidence_delta": 0.0054
+  },
+  {
+    "image_id": "garm_v3_166",
+    "expected_category": "tops",
+    "expected_color": "beige",
+    "full_image": {
+      "predicted_category": "accessories",
+      "category_confidence": 0.2352,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "cream",
+      "predicted_fit": "Fitted",
+      "predicted_silhouette": "relaxed",
+      "predicted_material": "denim",
+      "predicted_pattern": "striped"
+    },
+    "oracle_crop": {
+      "predicted_category": "accessories",
+      "category_confidence": 0.2974,
+      "category_correct": false,
+      "accepted": false,
+      "predicted_color": "cream",
+      "predicted_fit": "Fitted",
+      "predicted_silhouette": "relaxed",
+      "predicted_material": "cashmere",
+      "predicted_pattern": "striped"
+    },
+    "category_improvement": "MAINTAINED_INCORRECT",
+    "confidence_delta": 0.0621
+  }
+]

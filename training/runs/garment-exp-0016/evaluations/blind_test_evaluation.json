@@ -1,0 +1,19 @@
+{
+  "split_name": "blind_test",
+  "sample_size": 20,
+  "input_mode": "full_image",
+  "metrics": {
+    "category_top1_accuracy": 0.25,
+    "color_accuracy": 0.1,
+    "fit_accuracy": 0.3,
+    "silhouette_accuracy": 0.2,
+    "material_accuracy": 0.15,
+    "pattern_accuracy": 0.25,
+    "macro_f1": 0.2083,
+    "mean_confidence": 0.3951,
+    "accepted_count": 2,
+    "refusal_rate": 0.9,
+    "false_confidence_count": 0,
+    "false_confidence_rate": 0.0
+  }
+}

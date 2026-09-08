@@ -1,0 +1,19 @@
+{
+  "split_name": "real_world_test_auto_crop",
+  "sample_size": 16,
+  "input_mode": "auto_crop",
+  "metrics": {
+    "category_top1_accuracy": 0.25,
+    "color_accuracy": 0.1875,
+    "fit_accuracy": 0.125,
+    "silhouette_accuracy": 0.125,
+    "material_accuracy": 0.0625,
+    "pattern_accuracy": 0.1875,
+    "macro_f1": 0.1562,
+    "mean_confidence": 0.4046,
+    "accepted_count": 2,
+    "refusal_rate": 0.875,
+    "false_confidence_count": 0,
+    "false_confidence_rate": 0.0
+  }
+}

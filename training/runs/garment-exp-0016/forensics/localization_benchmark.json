@@ -1,0 +1,11 @@
+{
+  "benchmark": "Phase 14 Garment Localization Evaluation",
+  "sample_size": 16,
+  "mean_iou": 0.6169,
+  "median_iou": 0.6554,
+  "min_iou": 0.2917,
+  "max_iou": 0.7273,
+  "recall_at_50": 0.875,
+  "coverage_at_30": 0.9375,
+  "precision_at_50": 0.2188
+}

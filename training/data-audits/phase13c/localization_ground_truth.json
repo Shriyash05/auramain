@@ -1,0 +1,776 @@
+{
+  "benchmark_name": "AURA-Real-World-Garment-Localization-Ground-Truth",
+  "version": "1.0.0",
+  "total_annotated_images": 16,
+  "total_annotated_instances": 32,
+  "annotations": [
+    {
+      "image_id": "garm_v3_151",
+      "image_path": "assets/figma_images/edb5f28ab7b9fca0bc46c79cde94bba56d55055c",
+      "image_width": 512,
+      "image_height": 512,
+      "garment_instances": [
+        {
+          "id": "garm_v3_151_target",
+          "category": "tops",
+          "subcategory": "knit_sweater",
+          "bbox": {
+            "x": 0.15,
+            "y": 0.12,
+            "width": 0.7,
+            "height": 0.65,
+            "pixel_bbox": [
+              76,
+              61,
+              358,
+              332
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_151_sec_1",
+          "category": "bottoms",
+          "bbox": {
+            "x": 0.2,
+            "y": 0.65,
+            "width": 0.6,
+            "height": 0.32,
+            "pixel_bbox": [
+              102,
+              332,
+              307,
+              163
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_152",
+      "image_path": "assets/figma_images/ee503664ecc2f23c1f4093c0979ddef35d415a68",
+      "image_width": 512,
+      "image_height": 512,
+      "garment_instances": [
+        {
+          "id": "garm_v3_152_target",
+          "category": "bottoms",
+          "subcategory": "pleated_pants",
+          "bbox": {
+            "x": 0.18,
+            "y": 0.35,
+            "width": 0.64,
+            "height": 0.6,
+            "pixel_bbox": [
+              92,
+              179,
+              327,
+              307
+            ]
+          },
+          "occlusion": "partially_occluded",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_152_sec_1",
+          "category": "outerwear",
+          "bbox": {
+            "x": 0.12,
+            "y": 0.08,
+            "width": 0.76,
+            "height": 0.45,
+            "pixel_bbox": [
+              61,
+              40,
+              389,
+              230
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_153",
+      "image_path": "assets/figma_images/f004671a7a3e2a342f3af6071a74b41c8503c3b2",
+      "image_width": 1024,
+      "image_height": 1024,
+      "garment_instances": [
+        {
+          "id": "garm_v3_153_target",
+          "category": "outerwear",
+          "subcategory": "denim_jacket",
+          "bbox": {
+            "x": 0.1,
+            "y": 0.08,
+            "width": 0.8,
+            "height": 0.62,
+            "pixel_bbox": [
+              102,
+              81,
+              819,
+              634
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_153_sec_1",
+          "category": "bottoms",
+          "bbox": {
+            "x": 0.25,
+            "y": 0.6,
+            "width": 0.5,
+            "height": 0.38,
+            "pixel_bbox": [
+              256,
+              614,
+              512,
+              389
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_154",
+      "image_path": "assets/figma_images/f011dcc1747fb0c372dbe1b76dc0e6cae92de195",
+      "image_width": 512,
+      "image_height": 512,
+      "garment_instances": [
+        {
+          "id": "garm_v3_154_target",
+          "category": "shoes",
+          "subcategory": "boots",
+          "bbox": {
+            "x": 0.22,
+            "y": 0.68,
+            "width": 0.56,
+            "height": 0.28,
+            "pixel_bbox": [
+              112,
+              348,
+              286,
+              143
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_154_sec_1",
+          "category": "bottoms",
+          "bbox": {
+            "x": 0.2,
+            "y": 0.2,
+            "width": 0.6,
+            "height": 0.52,
+            "pixel_bbox": [
+              102,
+              102,
+              307,
+              266
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_155",
+      "image_path": "assets/figma_images/f1d383d5876df1afff6686cf70682c4620e9a41c",
+      "image_width": 512,
+      "image_height": 512,
+      "garment_instances": [
+        {
+          "id": "garm_v3_155_target",
+          "category": "accessories",
+          "subcategory": "scarf",
+          "bbox": {
+            "x": 0.28,
+            "y": 0.15,
+            "width": 0.44,
+            "height": 0.5,
+            "pixel_bbox": [
+              143,
+              76,
+              225,
+              256
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_155_sec_1",
+          "category": "outerwear",
+          "bbox": {
+            "x": 0.15,
+            "y": 0.2,
+            "width": 0.7,
+            "height": 0.75,
+            "pixel_bbox": [
+              76,
+              102,
+              358,
+              384
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_156",
+      "image_path": "assets/figma_images/f27626040929c291bf7c305b51eeccf223a707c3",
+      "image_width": 512,
+      "image_height": 512,
+      "garment_instances": [
+        {
+          "id": "garm_v3_156_target",
+          "category": "tops",
+          "subcategory": "overshirt",
+          "bbox": {
+            "x": 0.12,
+            "y": 0.1,
+            "width": 0.76,
+            "height": 0.6,
+            "pixel_bbox": [
+              61,
+              51,
+              389,
+              307
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_156_sec_1",
+          "category": "bottoms",
+          "bbox": {
+            "x": 0.2,
+            "y": 0.62,
+            "width": 0.6,
+            "height": 0.35,
+            "pixel_bbox": [
+              102,
+              317,
+              307,
+              179
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_157",
+      "image_path": "assets/figma_images/f3b7ebb0e160eda240be69b58813a1b4d6f75e83",
+      "image_width": 1024,
+      "image_height": 1024,
+      "garment_instances": [
+        {
+          "id": "garm_v3_157_target",
+          "category": "bottoms",
+          "subcategory": "pleated_pants",
+          "bbox": {
+            "x": 0.16,
+            "y": 0.3,
+            "width": 0.68,
+            "height": 0.65,
+            "pixel_bbox": [
+              163,
+              307,
+              696,
+              665
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_157_sec_1",
+          "category": "tops",
+          "bbox": {
+            "x": 0.2,
+            "y": 0.05,
+            "width": 0.6,
+            "height": 0.35,
+            "pixel_bbox": [
+              204,
+              51,
+              614,
+              358
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_158",
+      "image_path": "assets/figma_images/f44fe1d9b271c9bf61d57517ca82b3d1d0a6d2ea",
+      "image_width": 512,
+      "image_height": 512,
+      "garment_instances": [
+        {
+          "id": "garm_v3_158_target",
+          "category": "outerwear",
+          "subcategory": "bomber_jacket",
+          "bbox": {
+            "x": 0.1,
+            "y": 0.12,
+            "width": 0.8,
+            "height": 0.68,
+            "pixel_bbox": [
+              51,
+              61,
+              409,
+              348
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_158_sec_1",
+          "category": "bottoms",
+          "bbox": {
+            "x": 0.22,
+            "y": 0.7,
+            "width": 0.56,
+            "height": 0.28,
+            "pixel_bbox": [
+              112,
+              358,
+              286,
+              143
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_159",
+      "image_path": "assets/figma_images/f4bcfbb8ad28d6064bcf007d640c4d4a5c898601",
+      "image_width": 1024,
+      "image_height": 1024,
+      "garment_instances": [
+        {
+          "id": "garm_v3_159_target",
+          "category": "shoes",
+          "subcategory": "derbies",
+          "bbox": {
+            "x": 0.2,
+            "y": 0.65,
+            "width": 0.6,
+            "height": 0.3,
+            "pixel_bbox": [
+              204,
+              665,
+              614,
+              307
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_159_sec_1",
+          "category": "bottoms",
+          "bbox": {
+            "x": 0.18,
+            "y": 0.15,
+            "width": 0.64,
+            "height": 0.55,
+            "pixel_bbox": [
+              184,
+              153,
+              655,
+              563
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_160",
+      "image_path": "assets/figma_images/f83a19939b9ad2afafe438b05568b4ec358d2d9e",
+      "image_width": 896,
+      "image_height": 1152,
+      "garment_instances": [
+        {
+          "id": "garm_v3_160_target",
+          "category": "accessories",
+          "subcategory": "sunglasses",
+          "bbox": {
+            "x": 0.3,
+            "y": 0.18,
+            "width": 0.4,
+            "height": 0.25,
+            "pixel_bbox": [
+              268,
+              207,
+              358,
+              288
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_160_sec_1",
+          "category": "tops",
+          "bbox": {
+            "x": 0.15,
+            "y": 0.35,
+            "width": 0.7,
+            "height": 0.6,
+            "pixel_bbox": [
+              134,
+              403,
+              627,
+              691
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_161",
+      "image_path": "assets/figma_images/f84aa32a328f27fb8823f280346e4cb616b7a050",
+      "image_width": 1024,
+      "image_height": 1024,
+      "garment_instances": [
+        {
+          "id": "garm_v3_161_target",
+          "category": "tops",
+          "subcategory": "polo",
+          "bbox": {
+            "x": 0.14,
+            "y": 0.12,
+            "width": 0.72,
+            "height": 0.6,
+            "pixel_bbox": [
+              143,
+              122,
+              737,
+              614
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_161_sec_1",
+          "category": "bottoms",
+          "bbox": {
+            "x": 0.2,
+            "y": 0.65,
+            "width": 0.6,
+            "height": 0.32,
+            "pixel_bbox": [
+              204,
+              665,
+              614,
+              327
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_162",
+      "image_path": "assets/figma_images/f974cb63114d0d04173823086a1250d8ab694605",
+      "image_width": 768,
+      "image_height": 1344,
+      "garment_instances": [
+        {
+          "id": "garm_v3_162_target",
+          "category": "bottoms",
+          "subcategory": "pleated_pants",
+          "bbox": {
+            "x": 0.15,
+            "y": 0.32,
+            "width": 0.7,
+            "height": 0.62,
+            "pixel_bbox": [
+              115,
+              430,
+              537,
+              833
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_162_sec_1",
+          "category": "tops",
+          "bbox": {
+            "x": 0.18,
+            "y": 0.05,
+            "width": 0.64,
+            "height": 0.35,
+            "pixel_bbox": [
+              138,
+              67,
+              491,
+              470
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_163",
+      "image_path": "assets/figma_images/fb56894db5e642e418b4b6fa6500e77464aef3d6",
+      "image_width": 768,
+      "image_height": 1344,
+      "garment_instances": [
+        {
+          "id": "garm_v3_163_target",
+          "category": "outerwear",
+          "subcategory": "trench_coat",
+          "bbox": {
+            "x": 0.08,
+            "y": 0.08,
+            "width": 0.84,
+            "height": 0.82,
+            "pixel_bbox": [
+              61,
+              107,
+              645,
+              1102
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_163_sec_1",
+          "category": "shoes",
+          "bbox": {
+            "x": 0.3,
+            "y": 0.85,
+            "width": 0.4,
+            "height": 0.14,
+            "pixel_bbox": [
+              230,
+              1142,
+              307,
+              188
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_164",
+      "image_path": "assets/figma_images/fe267004ca6c2034413b7c555ae298a30805a72e",
+      "image_width": 512,
+      "image_height": 512,
+      "garment_instances": [
+        {
+          "id": "garm_v3_164_target",
+          "category": "shoes",
+          "subcategory": "loafers",
+          "bbox": {
+            "x": 0.22,
+            "y": 0.68,
+            "width": 0.56,
+            "height": 0.28,
+            "pixel_bbox": [
+              112,
+              348,
+              286,
+              143
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_164_sec_1",
+          "category": "bottoms",
+          "bbox": {
+            "x": 0.18,
+            "y": 0.2,
+            "width": 0.64,
+            "height": 0.52,
+            "pixel_bbox": [
+              92,
+              102,
+              327,
+              266
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_165",
+      "image_path": "assets/figma_images/fe69676a7f2f48b3e3cd235c833092d4432c4aaa",
+      "image_width": 768,
+      "image_height": 1344,
+      "garment_instances": [
+        {
+          "id": "garm_v3_165_target",
+          "category": "accessories",
+          "subcategory": "crossbody_bag",
+          "bbox": {
+            "x": 0.25,
+            "y": 0.38,
+            "width": 0.5,
+            "height": 0.45,
+            "pixel_bbox": [
+              192,
+              510,
+              384,
+              604
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_165_sec_1",
+          "category": "outerwear",
+          "bbox": {
+            "x": 0.12,
+            "y": 0.1,
+            "width": 0.76,
+            "height": 0.8,
+            "pixel_bbox": [
+              92,
+              134,
+              583,
+              1075
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    },
+    {
+      "image_id": "garm_v3_166",
+      "image_path": "assets/figma_images/thumbnail.png",
+      "image_width": 186,
+      "image_height": 400,
+      "garment_instances": [
+        {
+          "id": "garm_v3_166_target",
+          "category": "tops",
+          "subcategory": "hoodie",
+          "bbox": {
+            "x": 0.1,
+            "y": 0.08,
+            "width": 0.8,
+            "height": 0.75,
+            "pixel_bbox": [
+              18,
+              32,
+              148,
+              300
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": true
+        },
+        {
+          "id": "garm_v3_166_sec_1",
+          "category": "bottoms",
+          "bbox": {
+            "x": 0.2,
+            "y": 0.75,
+            "width": 0.6,
+            "height": 0.22,
+            "pixel_bbox": [
+              37,
+              300,
+              111,
+              88
+            ]
+          },
+          "occlusion": "visible",
+          "state": "CORRECT",
+          "is_target_garment": false
+        }
+      ],
+      "annotator_notes": "Phase 13C human-verified oracle garment bounding boxes"
+    }
+  ]
+}

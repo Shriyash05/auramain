@@ -1,0 +1,87 @@
+{
+  "train": {
+    "split": "train",
+    "sample_size": 459,
+    "status": "REAL_MEASURED",
+    "checkpoint_sha256": "a9d5a95c393bd2622ec4709055916b3ef1b645baf5155cf25fac4740f8f4a39e",
+    "checkpoint_size_bytes": 3752309,
+    "metrics": {
+      "category_top1_accuracy": 0.8606,
+      "color_accuracy": 0.4749,
+      "fit_accuracy": 0.8562,
+      "silhouette_accuracy": 0.7952,
+      "material_accuracy": 0.6993,
+      "pattern_accuracy": 0.7603,
+      "macro_f1": 0.7411,
+      "unknown_refusal_rate": 0.5229
+    }
+  },
+  "validation": {
+    "split": "validation",
+    "sample_size": 41,
+    "status": "REAL_MEASURED",
+    "checkpoint_sha256": "a9d5a95c393bd2622ec4709055916b3ef1b645baf5155cf25fac4740f8f4a39e",
+    "checkpoint_size_bytes": 3752309,
+    "metrics": {
+      "category_top1_accuracy": 0.6341,
+      "color_accuracy": 0.3902,
+      "fit_accuracy": 0.561,
+      "silhouette_accuracy": 0.5122,
+      "material_accuracy": 0.561,
+      "pattern_accuracy": 0.122,
+      "macro_f1": 0.4634,
+      "unknown_refusal_rate": 0.6829
+    }
+  },
+  "blind_test": {
+    "split": "blind_test",
+    "sample_size": 20,
+    "status": "REAL_MEASURED",
+    "checkpoint_sha256": "a9d5a95c393bd2622ec4709055916b3ef1b645baf5155cf25fac4740f8f4a39e",
+    "checkpoint_size_bytes": 3752309,
+    "metrics": {
+      "category_top1_accuracy": 0.45,
+      "color_accuracy": 0.25,
+      "fit_accuracy": 0.4,
+      "silhouette_accuracy": 0.35,
+      "material_accuracy": 0.25,
+      "pattern_accuracy": 0.2,
+      "macro_f1": 0.3167,
+      "unknown_refusal_rate": 0.9
+    }
+  },
+  "hard_test": {
+    "split": "hard_test",
+    "sample_size": 18,
+    "status": "REAL_MEASURED",
+    "checkpoint_sha256": "a9d5a95c393bd2622ec4709055916b3ef1b645baf5155cf25fac4740f8f4a39e",
+    "checkpoint_size_bytes": 3752309,
+    "metrics": {
+      "category_top1_accuracy": 0.1667,
+      "color_accuracy": 0.0556,
+      "fit_accuracy": 0.2222,
+      "silhouette_accuracy": 0.0556,
+      "material_accuracy": 0.1111,
+      "pattern_accuracy": 0.2222,
+      "macro_f1": 0.1389,
+      "unknown_refusal_rate": 1.0
+    }
+  },
+  "real_world_test": {
+    "split": "real_world_test",
+    "sample_size": 16,
+    "status": "REAL_MEASURED",
+    "checkpoint_sha256": "a9d5a95c393bd2622ec4709055916b3ef1b645baf5155cf25fac4740f8f4a39e",
+    "checkpoint_size_bytes": 3752309,
+    "metrics": {
+      "category_top1_accuracy": 0.125,
+      "color_accuracy": 0.0625,
+      "fit_accuracy": 0.25,
+      "silhouette_accuracy": 0.1875,
+      "material_accuracy": 0.0625,
+      "pattern_accuracy": 0.25,
+      "macro_f1": 0.1562,
+      "unknown_refusal_rate": 0.9375
+    }
+  }
+}

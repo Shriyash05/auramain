@@ -1,0 +1,22 @@
+{
+  "real_world_full": {
+    "mean_confidence": 0.3872,
+    "accepted_count": 2,
+    "refusal_rate": 0.875
+  },
+  "real_world_oracle_crop": {
+    "mean_confidence": 0.3802,
+    "accepted_count": 2,
+    "refusal_rate": 0.875
+  },
+  "real_world_auto_crop": {
+    "mean_confidence": 0.4046,
+    "accepted_count": 2,
+    "refusal_rate": 0.875
+  },
+  "blind_test": {
+    "mean_confidence": 0.3951,
+    "accepted_count": 2,
+    "refusal_rate": 0.9
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "split": "hard_test",
+  "sample_size": 18,
+  "status": "REAL_MEASURED",
+  "checkpoint_sha256": "a9d5a95c393bd2622ec4709055916b3ef1b645baf5155cf25fac4740f8f4a39e",
+  "checkpoint_size_bytes": 3752309,
+  "metrics": {
+    "category_top1_accuracy": 0.1667,
+    "color_accuracy": 0.0556,
+    "fit_accuracy": 0.2222,
+    "silhouette_accuracy": 0.0556,
+    "material_accuracy": 0.1111,
+    "pattern_accuracy": 0.2222,
+    "macro_f1": 0.1389,
+    "unknown_refusal_rate": 1.0
+  }
+}

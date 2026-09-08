@@ -1,0 +1,58 @@
+# ============================================================
+# AURA-GARMENT-V1 REPRODUCIBLE TRAINING CONFIGURATION
+# Experiment: garment-exp-0014 (Phase 13A)
+# Model: Genuine Pretrained SigLIP-SO400M + Lightweight Regularized Heads (256-dim)
+# Hypothesis: Control baseline testing dataset scaling (N=500 vs N=250) on frozen 500 dataset
+# Hardware: NVIDIA GeForce GTX 1650 (4GB VRAM) / CUDA 12.6
+# ============================================================
+
+experiment:
+  id: "garment-exp-0014"
+  name: "aura-garment-v1-siglip-so400m-exp0014-dataset-v0.5-500"
+  seed: 42
+  description: "Control baseline experiment on frozen dataset-v0.5-500 (N=500) with frozen SigLIP-SO400M backbone, 256-dim bottleneck probe, equal 1.0 loss weights, and deterministic seed (identical to Exp-0012 control)."
+
+model:
+  base_architecture: "google/siglip-so400m-patch14-384"
+  canonical_taxonomy_path: "data/garment/metadata/canonical_taxonomy.json"
+  freeze_backbone: true
+  unfreeze_last_n_layers: 0
+  hidden_dim: 1152      # SigLIP-SO400M embedding dimension (frozen)
+  bottleneck_dim: 256    # 256-dim regularized bottleneck
+  head_dropout: 0.3      # Dropout for regularization
+  use_lora: false
+
+dataset:
+  manifest_path: "data/garment/metadata/dataset-v0.5-500.json"
+  canonical_taxonomy_path: "data/garment/metadata/canonical_taxonomy.json"
+  version: "0.5.0"
+  image_size: 384
+  num_workers: 2
+  allowed_splits: ["train", "validation"]
+  isolated_test_splits: ["blind_test", "hard_test", "real_world_test"]
+
+training:
+  device: "cuda"
+  mixed_precision: "fp16"
+  batch_size: 4          # Batch size 4 with grad accum 4 for 4GB VRAM
+  gradient_accumulation_steps: 4
+  epochs: 50             # 50 epochs
+  learning_rate: 0.0005  # Standard probe learning rate (same as Exp-0012)
+  weight_decay: 0.05     # L2 regularization (same as Exp-0012)
+  optimizer: "AdamW"
+  scheduler: "cosine"
+  early_stopping_patience: 25
+
+loss_weights:
+  category_loss: 1.0
+  fit_loss: 1.0
+  silhouette_loss: 1.0
+  color_loss: 1.0
+  pattern_loss: 1.0
+  material_loss: 1.0
+  formality_loss: 1.0
+
+output:
+  runs_dir: "training/runs"
+  save_best_only: false
+  export_onnx: false

@@ -1,0 +1,17 @@
+{
+  "num_probed_samples": 50,
+  "mean_cosine_similarity": 0.9953580260276794,
+  "median_cosine_similarity": 0.9955134093761444,
+  "std_cosine_similarity": 0.0016988759326926701,
+  "min_cosine_similarity": 0.9909231066703796,
+  "max_cosine_similarity": 0.9978340864181519,
+  "representation_collapse": false,
+  "real_world_full_vs_crop": {
+    "mean_cosine": 0.894483458250761,
+    "median_cosine": 0.91347536444664,
+    "min_cosine": 0.6501399278640747,
+    "max_cosine": 0.9800626635551453,
+    "std_cosine": 0.08335547307569814,
+    "interpretation": "Spatial cropping shifts global scene embeddings by ~11.5% towards garment-focused features"
+  }
+}

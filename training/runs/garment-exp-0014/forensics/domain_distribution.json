@@ -1,0 +1,175 @@
+{
+  "image_statistics": {
+    "train_500": {
+      "samples_measured": 30,
+      "mean_width": 704.7,
+      "mean_height": 783.1666666666666,
+      "mean_aspect_ratio": 0.9299333333333333,
+      "mean_brightness": 152.03733333333332,
+      "mean_contrast": 50.979000000000006,
+      "mean_saturation": 64.56766666666667
+    },
+    "val_500": {
+      "samples_measured": 30,
+      "mean_width": 620.4,
+      "mean_height": 647.7666666666667,
+      "mean_aspect_ratio": 1.0001,
+      "mean_brightness": 147.09233333333336,
+      "mean_contrast": 51.34766666666666,
+      "mean_saturation": 51.68100000000001
+    },
+    "blind_test": {
+      "samples_measured": 20,
+      "mean_width": 688.9,
+      "mean_height": 815.85,
+      "mean_aspect_ratio": 0.8950500000000001,
+      "mean_brightness": 141.74450000000002,
+      "mean_contrast": 51.810500000000005,
+      "mean_saturation": 69.703
+    },
+    "hard_test": {
+      "samples_measured": 18,
+      "mean_width": 784.1666666666666,
+      "mean_height": 851.5555555555555,
+      "mean_aspect_ratio": 0.9258888888888889,
+      "mean_brightness": 157.15944444444446,
+      "mean_contrast": 49.42666666666666,
+      "mean_saturation": 60.97944444444444
+    },
+    "real_world_test": {
+      "samples_measured": 16,
+      "mean_width": 691.625,
+      "mean_height": 829.0,
+      "mean_aspect_ratio": 0.87225,
+      "mean_brightness": 131.729375,
+      "mean_contrast": 50.021875,
+      "mean_saturation": 57.566875
+    }
+  },
+  "category_distributions": {
+    "train_500": {
+      "tops": {
+        "count": 78,
+        "pct": 17.0
+      },
+      "bottoms": {
+        "count": 78,
+        "pct": 17.0
+      },
+      "outerwear": {
+        "count": 79,
+        "pct": 17.2
+      },
+      "shoes": {
+        "count": 72,
+        "pct": 15.7
+      },
+      "accessories": {
+        "count": 71,
+        "pct": 15.5
+      },
+      "one_piece": {
+        "count": 81,
+        "pct": 17.6
+      }
+    },
+    "val_500": {
+      "tops": {
+        "count": 7,
+        "pct": 17.1
+      },
+      "bottoms": {
+        "count": 7,
+        "pct": 17.1
+      },
+      "outerwear": {
+        "count": 6,
+        "pct": 14.6
+      },
+      "shoes": {
+        "count": 8,
+        "pct": 19.5
+      },
+      "accessories": {
+        "count": 9,
+        "pct": 22.0
+      },
+      "one_piece": {
+        "count": 4,
+        "pct": 9.8
+      }
+    },
+    "blind_test": {
+      "tops": {
+        "count": 4,
+        "pct": 20.0
+      },
+      "bottoms": {
+        "count": 4,
+        "pct": 20.0
+      },
+      "outerwear": {
+        "count": 4,
+        "pct": 20.0
+      },
+      "shoes": {
+        "count": 4,
+        "pct": 20.0
+      },
+      "accessories": {
+        "count": 4,
+        "pct": 20.0
+      }
+    },
+    "hard_test": {
+      "tops": {
+        "count": 3,
+        "pct": 16.7
+      },
+      "bottoms": {
+        "count": 3,
+        "pct": 16.7
+      },
+      "outerwear": {
+        "count": 4,
+        "pct": 22.2
+      },
+      "shoes": {
+        "count": 4,
+        "pct": 22.2
+      },
+      "accessories": {
+        "count": 4,
+        "pct": 22.2
+      }
+    },
+    "real_world_test": {
+      "tops": {
+        "count": 4,
+        "pct": 25.0
+      },
+      "bottoms": {
+        "count": 3,
+        "pct": 18.8
+      },
+      "outerwear": {
+        "count": 3,
+        "pct": 18.8
+      },
+      "shoes": {
+        "count": 3,
+        "pct": 18.8
+      },
+      "accessories": {
+        "count": 3,
+        "pct": 18.8
+      }
+    }
+  },
+  "statistical_tests": {
+    "real_world_mcnemar_pvalue": 0.0625,
+    "sample_weight_pct": 6.25,
+    "discordant_loss_count": 5,
+    "discordant_gain_count": 0
+  }
+}

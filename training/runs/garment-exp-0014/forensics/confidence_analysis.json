@@ -1,0 +1,92 @@
+{
+  "blind_test": {
+    "exp0012": {
+      "sample_size": 20,
+      "mean_confidence": 0.28044499999999994,
+      "median_confidence": 0.26675000000000004,
+      "std_confidence": 0.042696890694756684,
+      "min_confidence": 0.2229,
+      "max_confidence": 0.3916,
+      "raw_accuracy": 0.25,
+      "accepted_count": 0,
+      "refused_count": 20,
+      "refusal_rate": 1.0,
+      "post_refusal_accuracy": 0.0,
+      "false_confidence_count": 0
+    },
+    "exp0014": {
+      "sample_size": 20,
+      "mean_confidence": 0.37624,
+      "median_confidence": 0.3325,
+      "std_confidence": 0.13267060111418807,
+      "min_confidence": 0.2404,
+      "max_confidence": 0.7266,
+      "raw_accuracy": 0.45,
+      "accepted_count": 2,
+      "refused_count": 18,
+      "refusal_rate": 0.9,
+      "post_refusal_accuracy": 0.5,
+      "false_confidence_count": 0
+    }
+  },
+  "real_world_test": {
+    "exp0012": {
+      "sample_size": 16,
+      "mean_confidence": 0.28996875,
+      "median_confidence": 0.28015,
+      "std_confidence": 0.04479338286440866,
+      "min_confidence": 0.2317,
+      "max_confidence": 0.3687,
+      "raw_accuracy": 0.4375,
+      "accepted_count": 0,
+      "refused_count": 16,
+      "refusal_rate": 1.0,
+      "post_refusal_accuracy": 0.0,
+      "false_confidence_count": 0
+    },
+    "exp0014": {
+      "sample_size": 16,
+      "mean_confidence": 0.36539374999999996,
+      "median_confidence": 0.31765,
+      "std_confidence": 0.13882673314580843,
+      "min_confidence": 0.2355,
+      "max_confidence": 0.7749,
+      "raw_accuracy": 0.125,
+      "accepted_count": 1,
+      "refused_count": 15,
+      "refusal_rate": 0.9375,
+      "post_refusal_accuracy": 0.0,
+      "false_confidence_count": 0
+    }
+  },
+  "hard_test": {
+    "exp0012": {
+      "sample_size": 18,
+      "mean_confidence": 0.2776611111111112,
+      "median_confidence": 0.27085000000000004,
+      "std_confidence": 0.038517054503872966,
+      "min_confidence": 0.2279,
+      "max_confidence": 0.3848,
+      "raw_accuracy": 0.1111111111111111,
+      "accepted_count": 0,
+      "refused_count": 18,
+      "refusal_rate": 1.0,
+      "post_refusal_accuracy": 0.0,
+      "false_confidence_count": 0
+    },
+    "exp0014": {
+      "sample_size": 18,
+      "mean_confidence": 0.31472777777777783,
+      "median_confidence": 0.28845,
+      "std_confidence": 0.06334692666013048,
+      "min_confidence": 0.2222,
+      "max_confidence": 0.4316,
+      "raw_accuracy": 0.16666666666666666,
+      "accepted_count": 0,
+      "refused_count": 18,
+      "refusal_rate": 1.0,
+      "post_refusal_accuracy": 0.0,
+      "false_confidence_count": 0
+    }
+  }
+}

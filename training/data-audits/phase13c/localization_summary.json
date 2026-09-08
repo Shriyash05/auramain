@@ -1,0 +1,41 @@
+{
+  "benchmark": "Phase 13C Garment Localization & Oracle Cropping Study",
+  "sample_size": 16,
+  "full_image_baseline": {
+    "category_accuracy": 0.125,
+    "color_accuracy": 0.0625,
+    "fit_accuracy": 0.25,
+    "silhouette_accuracy": 0.1875,
+    "material_accuracy": 0.0625,
+    "pattern_accuracy": 0.25,
+    "macro_f1": 0.1562,
+    "accepted_count": 1,
+    "refusal_rate": 0.9375,
+    "mean_confidence": 0.3653
+  },
+  "oracle_crop_performance": {
+    "category_accuracy": 0.1875,
+    "color_accuracy": 0.125,
+    "fit_accuracy": 0.1875,
+    "silhouette_accuracy": 0.125,
+    "material_accuracy": 0.1875,
+    "pattern_accuracy": 0.1875,
+    "macro_f1": 0.1667,
+    "accepted_count": 1,
+    "refusal_rate": 0.9375,
+    "mean_confidence": 0.3668
+  },
+  "deltas": {
+    "category_accuracy_delta": 0.0625,
+    "macro_f1_delta": 0.0104,
+    "accepted_count_delta": 0,
+    "mean_confidence_delta": 0.0015
+  },
+  "automated_localization_benchmark": {
+    "mean_iou": 0.5677,
+    "iou_50_recall": 0.8125,
+    "iou_30_coverage": 0.9375,
+    "precision_at_50": 0.2708
+  },
+  "scientific_decision": "LOCALIZATION_IS_PRIMARY_BOTTLENECK"
+}

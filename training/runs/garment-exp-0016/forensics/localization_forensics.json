@@ -1,0 +1,498 @@
+[
+  {
+    "image_id": "garm_v3_151",
+    "expected_category": "tops",
+    "target_bbox": [
+      0.15,
+      0.12,
+      0.7,
+      0.65
+    ],
+    "auto_proposal_bbox": [
+      0.1,
+      0.1,
+      0.8,
+      0.45
+    ],
+    "iou_vs_gt": 0.5856,
+    "crop_width": 358,
+    "crop_height": 332,
+    "full_image_prediction": "tops",
+    "oracle_crop_prediction": "tops",
+    "auto_crop_prediction": "tops",
+    "full_confidence": 0.3291,
+    "oracle_confidence": 0.3542,
+    "auto_confidence": 0.3384,
+    "full_accepted": false,
+    "oracle_accepted": false,
+    "auto_accepted": false,
+    "full_correct": true,
+    "oracle_correct": true,
+    "auto_correct": true
+  },
+  {
+    "image_id": "garm_v3_152",
+    "expected_category": "bottoms",
+    "target_bbox": [
+      0.18,
+      0.35,
+      0.64,
+      0.6
+    ],
+    "auto_proposal_bbox": [
+      0.15,
+      0.45,
+      0.7,
+      0.4
+    ],
+    "iou_vs_gt": 0.6275,
+    "crop_width": 327,
+    "crop_height": 307,
+    "full_image_prediction": "outerwear",
+    "oracle_crop_prediction": "outerwear",
+    "auto_crop_prediction": "outerwear",
+    "full_confidence": 0.731,
+    "oracle_confidence": 0.752,
+    "auto_confidence": 0.7451,
+    "full_accepted": true,
+    "oracle_accepted": true,
+    "auto_accepted": true,
+    "full_correct": false,
+    "oracle_correct": false,
+    "auto_correct": false
+  },
+  {
+    "image_id": "garm_v3_153",
+    "expected_category": "outerwear",
+    "target_bbox": [
+      0.1,
+      0.08,
+      0.8,
+      0.62
+    ],
+    "auto_proposal_bbox": [
+      0.1,
+      0.1,
+      0.8,
+      0.45
+    ],
+    "iou_vs_gt": 0.7258,
+    "crop_width": 819,
+    "crop_height": 634,
+    "full_image_prediction": "bottoms",
+    "oracle_crop_prediction": "bottoms",
+    "auto_crop_prediction": "bottoms",
+    "full_confidence": 0.3787,
+    "oracle_confidence": 0.3408,
+    "auto_confidence": 0.3369,
+    "full_accepted": false,
+    "oracle_accepted": false,
+    "auto_accepted": false,
+    "full_correct": false,
+    "oracle_correct": false,
+    "auto_correct": false
+  },
+  {
+    "image_id": "garm_v3_154",
+    "expected_category": "shoes",
+    "target_bbox": [
+      0.22,
+      0.68,
+      0.56,
+      0.28
+    ],
+    "auto_proposal_bbox": [
+      0.2,
+      0.8,
+      0.6,
+      0.18
+    ],
+    "iou_vs_gt": 0.5114,
+    "crop_width": 286,
+    "crop_height": 143,
+    "full_image_prediction": "bottoms",
+    "oracle_crop_prediction": "outerwear",
+    "auto_crop_prediction": "outerwear",
+    "full_confidence": 0.3342,
+    "oracle_confidence": 0.2749,
+    "auto_confidence": 0.3113,
+    "full_accepted": false,
+    "oracle_accepted": false,
+    "auto_accepted": false,
+    "full_correct": false,
+    "oracle_correct": false,
+    "auto_correct": false
+  },
+  {
+    "image_id": "garm_v3_155",
+    "expected_category": "accessories",
+    "target_bbox": [
+      0.28,
+      0.15,
+      0.44,
+      0.5
+    ],
+    "auto_proposal_bbox": [
+      0.1,
+      0.1,
+      0.8,
+      0.45
+    ],
+    "iou_vs_gt": 0.4356,
+    "crop_width": 225,
+    "crop_height": 256,
+    "full_image_prediction": "tops",
+    "oracle_crop_prediction": "tops",
+    "auto_crop_prediction": "tops",
+    "full_confidence": 0.6528,
+    "oracle_confidence": 0.7095,
+    "auto_confidence": 0.7109,
+    "full_accepted": true,
+    "oracle_accepted": true,
+    "auto_accepted": true,
+    "full_correct": false,
+    "oracle_correct": false,
+    "auto_correct": false
+  },
+  {
+    "image_id": "garm_v3_156",
+    "expected_category": "tops",
+    "target_bbox": [
+      0.12,
+      0.1,
+      0.76,
+      0.6
+    ],
+    "auto_proposal_bbox": [
+      0.1,
+      0.1,
+      0.8,
+      0.45
+    ],
+    "iou_vs_gt": 0.7215,
+    "crop_width": 389,
+    "crop_height": 307,
+    "full_image_prediction": "shoes",
+    "oracle_crop_prediction": "shoes",
+    "auto_crop_prediction": "shoes",
+    "full_confidence": 0.2625,
+    "oracle_confidence": 0.2422,
+    "auto_confidence": 0.2729,
+    "full_accepted": false,
+    "oracle_accepted": false,
+    "auto_accepted": false,
+    "full_correct": false,
+    "oracle_correct": false,
+    "auto_correct": false
+  },
+  {
+    "image_id": "garm_v3_157",
+    "expected_category": "bottoms",
+    "target_bbox": [
+      0.15,
+      0.15,
+      0.7,
+      0.78
+    ],
+    "auto_proposal_bbox": [
+      0.05,
+      0.05,
+      0.9,
+      0.9
+    ],
+    "iou_vs_gt": 0.6741,
+    "crop_width": 696,
+    "crop_height": 665,
+    "full_image_prediction": "tops",
+    "oracle_crop_prediction": "tops",
+    "auto_crop_prediction": "tops",
+    "full_confidence": 0.29,
+    "oracle_confidence": 0.312,
+    "auto_confidence": 0.3,
+    "full_accepted": false,
+    "oracle_accepted": false,
+    "auto_accepted": false,
+    "full_correct": false,
+    "oracle_correct": false,
+    "auto_correct": false
+  },
+  {
+    "image_id": "garm_v3_158",
+    "expected_category": "outerwear",
+    "target_bbox": [
+      0.1,
+      0.12,
+      0.8,
+      0.68
+    ],
+    "auto_proposal_bbox": [
+      0.05,
+      0.05,
+      0.9,
+      0.9
+    ],
+    "iou_vs_gt": 0.6716,
+    "crop_width": 409,
+    "crop_height": 348,
+    "full_image_prediction": "outerwear",
+    "oracle_crop_prediction": "outerwear",
+    "auto_crop_prediction": "outerwear",
+    "full_confidence": 0.5825,
+    "oracle_confidence": 0.5659,
+    "auto_confidence": 0.5752,
+    "full_accepted": false,
+    "oracle_accepted": false,
+    "auto_accepted": false,
+    "full_correct": true,
+    "oracle_correct": true,
+    "auto_correct": true
+  },
+  {
+    "image_id": "garm_v3_159",
+    "expected_category": "shoes",
+    "target_bbox": [
+      0.15,
+      0.4,
+      0.7,
+      0.55
+    ],
+    "auto_proposal_bbox": [
+      0.15,
+      0.45,
+      0.7,
+      0.4
+    ],
+    "iou_vs_gt": 0.7273,
+    "crop_width": 614,
+    "crop_height": 307,
+    "full_image_prediction": "outerwear",
+    "oracle_crop_prediction": "bottoms",
+    "auto_crop_prediction": "bottoms",
+    "full_confidence": 0.342,
+    "oracle_confidence": 0.4158,
+    "auto_confidence": 0.4077,
+    "full_accepted": false,
+    "oracle_accepted": false,
+    "auto_accepted": false,
+    "full_correct": false,
+    "oracle_correct": false,
+    "auto_correct": false
+  },
+  {
+    "image_id": "garm_v3_160",
+    "expected_category": "accessories",
+    "target_bbox": [
+      0.25,
+      0.75,
+      0.5,
+      0.22
+    ],
+    "auto_proposal_bbox": [
+      0.2,
+      0.8,
+      0.6,
+      0.18
+    ],
+    "iou_vs_gt": 0.6391,
+    "crop_width": 358,
+    "crop_height": 288,
+    "full_image_prediction": "tops",
+    "oracle_crop_prediction": "tops",
+    "auto_crop_prediction": "tops",
+    "full_confidence": 0.2732,
+    "oracle_confidence": 0.3235,
+    "auto_confidence": 0.4197,
+    "full_accepted": false,
+    "oracle_accepted": false,
+    "auto_accepted": false,
+    "full_correct": false,
+    "oracle_correct": false,
+    "auto_correct": false
+  },
+  {
+    "image_id": "garm_v3_161",
+    "expected_category": "tops",
+    "target_bbox": [
+      0.15,
+      0.1,
+      0.7,
+      0.58
+    ],
+    "auto_proposal_bbox": [
+      0.1,
+      0.1,
+      0.8,
+      0.45
+    ],
+    "iou_vs_gt": 0.6984,
+    "crop_width": 737,
+    "crop_height": 614,
+    "full_image_prediction": "tops",
+    "oracle_crop_prediction": "tops",
+    "auto_crop_prediction": "tops",
+    "full_confidence": 0.3369,
+    "oracle_confidence": 0.3413,
+    "auto_confidence": 0.2935,
+    "full_accepted": false,
+    "oracle_accepted": false,
+    "auto_accepted": false,
+    "full_correct": true,
+    "oracle_correct": true,
+    "auto_correct": true
+  },
+  {
+    "image_id": "garm_v3_162",
+    "expected_category": "bottoms",
+    "target_bbox": [
+      0.35,
+      0.15,
+      0.3,
+      0.35
+    ],
+    "auto_proposal_bbox": [
+      0.1,
+      0.1,
+      0.8,
+      0.45
+    ],
+    "iou_vs_gt": 0.2917,
+    "crop_width": 537,
+    "crop_height": 833,
+    "full_image_prediction": "tops",
+    "oracle_crop_prediction": "tops",
+    "auto_crop_prediction": "tops",
+    "full_confidence": 0.3865,
+    "oracle_confidence": 0.2749,
+    "auto_confidence": 0.4041,
+    "full_accepted": false,
+    "oracle_accepted": false,
+    "auto_accepted": false,
+    "full_correct": false,
+    "oracle_correct": false,
+    "auto_correct": false
+  },
+  {
+    "image_id": "garm_v3_163",
+    "expected_category": "outerwear",
+    "target_bbox": [
+      0.1,
+      0.1,
+      0.8,
+      0.65
+    ],
+    "auto_proposal_bbox": [
+      0.1,
+      0.1,
+      0.8,
+      0.45
+    ],
+    "iou_vs_gt": 0.6923,
+    "crop_width": 645,
+    "crop_height": 1102,
+    "full_image_prediction": "outerwear",
+    "oracle_crop_prediction": "outerwear",
+    "auto_crop_prediction": "outerwear",
+    "full_confidence": 0.2245,
+    "oracle_confidence": 0.2576,
+    "auto_confidence": 0.2683,
+    "full_accepted": false,
+    "oracle_accepted": false,
+    "auto_accepted": false,
+    "full_correct": true,
+    "oracle_correct": true,
+    "auto_correct": true
+  },
+  {
+    "image_id": "garm_v3_164",
+    "expected_category": "shoes",
+    "target_bbox": [
+      0.2,
+      0.72,
+      0.6,
+      0.24
+    ],
+    "auto_proposal_bbox": [
+      0.2,
+      0.8,
+      0.6,
+      0.18
+    ],
+    "iou_vs_gt": 0.6154,
+    "crop_width": 286,
+    "crop_height": 143,
+    "full_image_prediction": "shoes",
+    "oracle_crop_prediction": "shoes",
+    "auto_crop_prediction": "bottoms",
+    "full_confidence": 0.4202,
+    "oracle_confidence": 0.3892,
+    "auto_confidence": 0.3789,
+    "full_accepted": false,
+    "oracle_accepted": false,
+    "auto_accepted": false,
+    "full_correct": true,
+    "oracle_correct": true,
+    "auto_correct": false
+  },
+  {
+    "image_id": "garm_v3_165",
+    "expected_category": "accessories",
+    "target_bbox": [
+      0.15,
+      0.12,
+      0.7,
+      0.8
+    ],
+    "auto_proposal_bbox": [
+      0.05,
+      0.05,
+      0.9,
+      0.9
+    ],
+    "iou_vs_gt": 0.6914,
+    "crop_width": 384,
+    "crop_height": 604,
+    "full_image_prediction": "tops",
+    "oracle_crop_prediction": "bottoms",
+    "auto_crop_prediction": "tops",
+    "full_confidence": 0.3772,
+    "oracle_confidence": 0.2793,
+    "auto_confidence": 0.377,
+    "full_accepted": false,
+    "oracle_accepted": false,
+    "auto_accepted": false,
+    "full_correct": false,
+    "oracle_correct": false,
+    "auto_correct": false
+  },
+  {
+    "image_id": "garm_v3_166",
+    "expected_category": "tops",
+    "target_bbox": [
+      0.18,
+      0.15,
+      0.64,
+      0.55
+    ],
+    "auto_proposal_bbox": [
+      0.1,
+      0.1,
+      0.8,
+      0.45
+    ],
+    "iou_vs_gt": 0.5614,
+    "crop_width": 148,
+    "crop_height": 300,
+    "full_image_prediction": "tops",
+    "oracle_crop_prediction": "outerwear",
+    "auto_crop_prediction": "outerwear",
+    "full_confidence": 0.2734,
+    "oracle_confidence": 0.2496,
+    "auto_confidence": 0.3335,
+    "full_accepted": false,
+    "oracle_accepted": false,
+    "auto_accepted": false,
+    "full_correct": true,
+    "oracle_correct": false,
+    "auto_correct": false
+  }
+]

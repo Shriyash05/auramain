@@ -1,0 +1,19 @@
+{
+  "split_name": "real_world_test_full",
+  "sample_size": 16,
+  "input_mode": "full_image",
+  "metrics": {
+    "category_top1_accuracy": 0.375,
+    "color_accuracy": 0.0625,
+    "fit_accuracy": 0.125,
+    "silhouette_accuracy": 0.125,
+    "material_accuracy": 0.0,
+    "pattern_accuracy": 0.125,
+    "macro_f1": 0.1354,
+    "mean_confidence": 0.3872,
+    "accepted_count": 2,
+    "refusal_rate": 0.875,
+    "false_confidence_count": 0,
+    "false_confidence_rate": 0.0
+  }
+}

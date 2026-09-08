@@ -1,0 +1,14 @@
+{
+  "audit_phase": "Phase 13C Garment Localization & Cropping Domain-Adaptation Study",
+  "blind_freeze_checksum": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+  "blind_freeze_pass": true,
+  "checkpoint_checksum": "a9d5a95c393bd2622ec4709055916b3ef1b645baf5155cf25fac4740f8f4a39e",
+  "checkpoint_pass": true,
+  "ground_truth_images_annotated": 16,
+  "ground_truth_coordinates_valid": true,
+  "physical_crops_verified": true,
+  "oracle_results_stored": true,
+  "scientific_decision": "LOCALIZATION_IS_PRIMARY_BOTTLENECK",
+  "commercial_ai_calls": 0,
+  "status": "FORENSICALLY_VERIFIED"
+}

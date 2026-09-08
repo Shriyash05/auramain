@@ -1,0 +1,18 @@
+{
+  "experiment_id": "garment-exp-0014",
+  "backbone_model_name": "google/siglip-so400m-patch14-384",
+  "total_backbone_parameters": 428225600,
+  "trainable_backbone_parameters": 0,
+  "backbone_weight_sha256": "99ef82c091a1a34b20abe7c4b6fa3aff3a95b1e3f38183864fd1b5d1591d678d",
+  "is_genuine_pretrained": true,
+  "use_lora": false,
+  "lora_rank": null,
+  "lora_alpha": null,
+  "lora_target_modules": null,
+  "unfreeze_last_n_layers": 0,
+  "random_noise_baseline": false,
+  "hidden_dimension": 1152,
+  "processor": "SiglipImageProcessor",
+  "image_size": 384,
+  "verified_at": "2026-08-30T14:22:48.147701+00:00"
+}

@@ -1,0 +1,48 @@
+{
+  "dataset_250": {
+    "total_items": 250,
+    "sources": {
+      "aura-garment-golden-v0.3": {
+        "count": 112,
+        "percentage": 44.8
+      },
+      "wikimedia_commons_fashion_open": {
+        "count": 29,
+        "percentage": 11.6
+      },
+      "agrigorev/clothing-dataset-full": {
+        "count": 109,
+        "percentage": 43.6
+      }
+    },
+    "licenses": {
+      "unknown": {
+        "count": 250,
+        "percentage": 100.0
+      }
+    }
+  },
+  "dataset_500": {
+    "total_items": 500,
+    "sources": {
+      "aura-garment-golden-v0.3": {
+        "count": 112,
+        "percentage": 22.4
+      },
+      "wikimedia_commons_fashion_open": {
+        "count": 29,
+        "percentage": 5.8
+      },
+      "agrigorev/clothing-dataset-full": {
+        "count": 359,
+        "percentage": 71.8
+      }
+    },
+    "licenses": {
+      "unknown": {
+        "count": 500,
+        "percentage": 100.0
+      }
+    }
+  }
+}

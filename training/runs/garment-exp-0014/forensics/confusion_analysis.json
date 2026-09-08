@@ -1,0 +1,154 @@
+{
+  "blind_test": {
+    "exp0012": {
+      "tops": {
+        "tops": 2,
+        "bottoms": 0,
+        "outerwear": 1,
+        "shoes": 0,
+        "accessories": 1
+      },
+      "bottoms": {
+        "tops": 2,
+        "bottoms": 0,
+        "outerwear": 1,
+        "shoes": 0,
+        "accessories": 1
+      },
+      "outerwear": {
+        "tops": 1,
+        "bottoms": 0,
+        "outerwear": 3,
+        "shoes": 0,
+        "accessories": 0
+      },
+      "shoes": {
+        "tops": 1,
+        "bottoms": 1,
+        "outerwear": 1,
+        "shoes": 0,
+        "accessories": 1
+      },
+      "accessories": {
+        "tops": 3,
+        "bottoms": 0,
+        "outerwear": 1,
+        "shoes": 0,
+        "accessories": 0
+      }
+    },
+    "exp0014": {
+      "tops": {
+        "tops": 1,
+        "bottoms": 0,
+        "outerwear": 1,
+        "shoes": 1,
+        "accessories": 1
+      },
+      "bottoms": {
+        "tops": 0,
+        "bottoms": 2,
+        "outerwear": 1,
+        "shoes": 1,
+        "accessories": 0
+      },
+      "outerwear": {
+        "tops": 0,
+        "bottoms": 1,
+        "outerwear": 2,
+        "shoes": 1,
+        "accessories": 0
+      },
+      "shoes": {
+        "tops": 0,
+        "bottoms": 1,
+        "outerwear": 0,
+        "shoes": 2,
+        "accessories": 1
+      },
+      "accessories": {
+        "tops": 1,
+        "bottoms": 0,
+        "outerwear": 1,
+        "shoes": 0,
+        "accessories": 2
+      }
+    }
+  },
+  "real_world_test": {
+    "exp0012": {
+      "tops": {
+        "tops": 4,
+        "bottoms": 0,
+        "outerwear": 0,
+        "shoes": 0,
+        "accessories": 0
+      },
+      "bottoms": {
+        "tops": 2,
+        "bottoms": 0,
+        "outerwear": 1,
+        "shoes": 0,
+        "accessories": 0
+      },
+      "outerwear": {
+        "tops": 1,
+        "bottoms": 0,
+        "outerwear": 2,
+        "shoes": 0,
+        "accessories": 0
+      },
+      "shoes": {
+        "tops": 1,
+        "bottoms": 1,
+        "outerwear": 0,
+        "shoes": 1,
+        "accessories": 0
+      },
+      "accessories": {
+        "tops": 3,
+        "bottoms": 0,
+        "outerwear": 0,
+        "shoes": 0,
+        "accessories": 0
+      }
+    },
+    "exp0014": {
+      "tops": {
+        "tops": 0,
+        "bottoms": 0,
+        "outerwear": 2,
+        "shoes": 1,
+        "accessories": 1
+      },
+      "bottoms": {
+        "tops": 1,
+        "bottoms": 0,
+        "outerwear": 1,
+        "shoes": 1,
+        "accessories": 0
+      },
+      "outerwear": {
+        "tops": 0,
+        "bottoms": 1,
+        "outerwear": 1,
+        "shoes": 1,
+        "accessories": 0
+      },
+      "shoes": {
+        "tops": 0,
+        "bottoms": 1,
+        "outerwear": 1,
+        "shoes": 1,
+        "accessories": 0
+      },
+      "accessories": {
+        "tops": 1,
+        "bottoms": 0,
+        "outerwear": 0,
+        "shoes": 2,
+        "accessories": 0
+      }
+    }
+  }
+}

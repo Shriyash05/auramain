@@ -1,0 +1,32 @@
+{
+  "experiment_id": "garment-exp-0016",
+  "system_configuration": "Selective LoRA (Last 4) + Localized Cropping",
+  "real_world_comparison": {
+    "full_image": {
+      "category_accuracy": 0.375,
+      "macro_f1": 0.1354,
+      "accepted_count": 2
+    },
+    "oracle_crop": {
+      "category_accuracy": 0.3125,
+      "macro_f1": 0.1667,
+      "accepted_count": 2
+    },
+    "auto_crop": {
+      "category_accuracy": 0.25,
+      "macro_f1": 0.1562,
+      "accepted_count": 2
+    }
+  },
+  "localization": {
+    "benchmark": "Phase 14 Garment Localization Evaluation",
+    "sample_size": 16,
+    "mean_iou": 0.6169,
+    "median_iou": 0.6554,
+    "min_iou": 0.2917,
+    "max_iou": 0.7273,
+    "recall_at_50": 0.875,
+    "coverage_at_30": 0.9375,
+    "precision_at_50": 0.2188
+  }
+}

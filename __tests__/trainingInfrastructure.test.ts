@@ -1123,6 +1123,166 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(audit.checks.checkpoint.lora_tensors).toBe(16);
     expect(audit.checks.scientific_integrity.zero_commercial_apis).toBe(true);
   });
+
+  describe('Phase 14 — Garment Localization + Selective LoRA System Experiment (garment-exp-0016)', () => {
+    const exp16Dir = path.resolve(__dirname, '../training/runs/garment-exp-0016');
+    const ckptPath = path.join(exp16Dir, 'checkpoint', 'best_model.pt');
+    const envPath = path.join(exp16Dir, 'environment.json');
+    const cfgPath = path.join(exp16Dir, 'config.json');
+    const evalDir = path.join(exp16Dir, 'evaluations');
+    const evalSummaryPath = path.join(evalDir, 'multi_split_summary.json');
+    const forensicsDir = path.join(exp16Dir, 'forensics');
+    const auditPath = path.join(forensicsDir, 'forensic_verification_14.json');
+    const locForensicsPath = path.join(forensicsDir, 'localization_forensics.json');
+    const driftPath = path.join(forensicsDir, 'representation_drift.json');
+
+    it('validates invalid bbox handling and coordinate clamping in localization service', () => {
+      // 1. Negative out-of-bounds coordinates
+      const boxNegative = { x: -0.2, y: -0.5, width: 0.8, height: 0.8 };
+      const clampedNeg = garmentLocalizationService.clampBoundingBox(boxNegative);
+      expect(clampedNeg.x).toBe(0);
+      expect(clampedNeg.y).toBe(0);
+      expect(clampedNeg.width).toBeLessThanOrEqual(1.0);
+      expect(clampedNeg.height).toBeLessThanOrEqual(1.0);
+
+      // 2. Beyond unity coordinates
+      const boxExcess = { x: 0.8, y: 0.9, width: 0.5, height: 0.6 };
+      const clampedExcess = garmentLocalizationService.clampBoundingBox(boxExcess);
+      expect(clampedExcess.x).toBe(0.8);
+      expect(clampedExcess.y).toBe(0.9);
+      expect(clampedExcess.x + clampedExcess.width).toBeLessThanOrEqual(1.0001);
+      expect(clampedExcess.y + clampedExcess.height).toBeLessThanOrEqual(1.0001);
+
+      // 3. Minimum width/height guards
+      const boxZero = { x: 0.5, y: 0.5, width: -0.1, height: 0 };
+      const clampedZero = garmentLocalizationService.clampBoundingBox(boxZero);
+      expect(clampedZero.width).toBeGreaterThanOrEqual(0.01);
+      expect(clampedZero.height).toBeGreaterThanOrEqual(0.01);
+    });
+
+    it('proposes multiple candidate garments with category hints and IoU computation', async () => {
+      const proposals = await garmentLocalizationService.localizeGarments('file:///test_image.jpg', {
+        maxProposals: 4,
+        minConfidence: 0.5,
+      });
+      expect(proposals.length).toBeGreaterThanOrEqual(2);
+      expect(proposals.length).toBeLessThanOrEqual(4);
+
+      const hints = proposals.map((p) => p.category_hint);
+      expect(hints).toContain('tops_or_outerwear');
+      expect(hints).toContain('bottoms');
+
+      // IoU calculation sanity
+      const box1 = { x: 0.1, y: 0.1, width: 0.5, height: 0.5 };
+      const box2 = { x: 0.1, y: 0.1, width: 0.5, height: 0.5 };
+      expect(HeuristicGarmentLocalizationService.computeIoU(box1, box2)).toBeCloseTo(1.0, 4);
+
+      const boxDisjoint = { x: 0.7, y: 0.7, width: 0.2, height: 0.2 };
+      expect(HeuristicGarmentLocalizationService.computeIoU(box1, boxDisjoint)).toBe(0);
+    });
+
+    it('verifies selective LoRA layer targeting and parameter isolation', () => {
+      expect(fs.existsSync(cfgPath)).toBe(true);
+      expect(fs.existsSync(envPath)).toBe(true);
+
+      const cfg = JSON.parse(fs.readFileSync(cfgPath, 'utf8'));
+      const env = JSON.parse(fs.readFileSync(envPath, 'utf8'));
+
+      expect(cfg.model.lora_num_layers).toBe(4);
+      expect(cfg.model.lora_target_modules).toEqual(['q_proj', 'v_proj']);
+      expect(cfg.model.lora_rank).toBe(8);
+      expect(cfg.model.lora_alpha).toBe(16.0);
+
+      // Only last 4 layers trainable: 4 layers * 2 matrices * (1152*8 + 8*1152) = 147,456
+      expect(env.trainable_backbone_parameters).toBe(147456);
+      expect(env.trainable_head_parameters).toBe(310586);
+      expect(env.trainable_parameters).toBe(458042);
+      expect(env.total_optimizer_steps).toBe(232);
+    });
+
+    it('verifies adapter-only checkpoint serialization under 50 MB guard with 0 frozen parameters', () => {
+      expect(fs.existsSync(ckptPath)).toBe(true);
+      const stat = fs.statSync(ckptPath);
+      const sizeMb = stat.size / (1024 * 1024);
+
+      expect(sizeMb).toBeLessThan(50); // Hard enforcement < 50MB
+      expect(sizeMb).toBeGreaterThan(1); // Real weights saved (~5.28 MB)
+
+      const audit = JSON.parse(fs.readFileSync(auditPath, 'utf8'));
+      expect(audit.checks.checkpoint.zero_base_backbone_leaked).toBe(true);
+      expect(audit.checks.checkpoint.lora_tensors).toBe(16);
+      expect(audit.checks.checkpoint.heads_tensors).toBe(18);
+    });
+
+    it('verifies dataset immutability and blind test protection', () => {
+      const dataset500Path = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.5-500.json');
+      const blindPath = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.3-blind-freeze.json');
+
+      const hash500 = crypto.createHash('sha256').update(fs.readFileSync(dataset500Path)).digest('hex');
+      expect(hash500).toBe('85375f147608616762636106bd433a2378af902925161d260365e344f2a0fe1e');
+
+      const hashBlind = crypto.createHash('sha256').update(fs.readFileSync(blindPath)).digest('hex');
+      expect(hashBlind).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
+
+      const audit = JSON.parse(fs.readFileSync(auditPath, 'utf8'));
+      expect(audit.checks.dataset_immutability.dataset_500_verified).toBe(true);
+      expect(audit.checks.dataset_immutability.blind_freeze_verified).toBe(true);
+    });
+
+    it('verifies localized crop inference, four-cell comparison, and confidence accounting', () => {
+      expect(fs.existsSync(evalSummaryPath)).toBe(true);
+      expect(fs.existsSync(locForensicsPath)).toBe(true);
+      expect(fs.existsSync(driftPath)).toBe(true);
+
+      const summary = JSON.parse(fs.readFileSync(evalSummaryPath, 'utf8'));
+      const locForensics = JSON.parse(fs.readFileSync(locForensicsPath, 'utf8'));
+      const drift = JSON.parse(fs.readFileSync(driftPath, 'utf8'));
+
+      // Four-cell results verified
+      const oracle = summary.real_world_test_oracle_crop.metrics;
+      const autoCrop = summary.real_world_test_auto_crop.metrics;
+      const full = summary.real_world_test_full.metrics;
+
+      // Real-world category accuracy: oracle crop (31.25%), auto crop (25.00%), full (37.50%)
+      expect(oracle.category_top1_accuracy).toBe(0.3125);
+      expect(autoCrop.category_top1_accuracy).toBe(0.25);
+      expect(full.category_top1_accuracy).toBe(0.375);
+
+      // Fine-grained macro F1 recovery: Oracle Crop (16.67%) vs Full (13.54%)
+      expect(oracle.macro_f1).toBeCloseTo(0.1667, 4);
+      expect(full.macro_f1).toBeCloseTo(0.1354, 4);
+      expect(oracle.macro_f1).toBeGreaterThan(full.macro_f1);
+
+      // Confidence accounting
+      expect(oracle.accepted_count).toBe(2);
+      expect(oracle.refusal_rate).toBe(0.875);
+      expect(oracle.false_confidence_rate).toBe(0.0);
+
+      // Localization performance metrics
+      const audit = JSON.parse(fs.readFileSync(auditPath, 'utf8'));
+      expect(audit.checks.localization_benchmark.mean_iou).toBeGreaterThan(0.60);
+      expect(audit.checks.localization_benchmark.recall_at_50).toBeGreaterThanOrEqual(0.85);
+      expect(Array.isArray(locForensics)).toBe(true);
+      expect(locForensics.length).toBe(16);
+      expect(locForensics[0].image_id).toBe('garm_v3_151');
+      expect(locForensics[0].full_image_prediction).toBeDefined();
+      expect(locForensics[0].oracle_crop_prediction).toBeDefined();
+
+      // Representation drift
+      expect(drift.mean_cosine_similarity).toBeGreaterThan(0.99);
+      expect(drift.real_world_full_vs_crop.mean_cosine).toBeLessThan(0.95);
+      expect(drift.real_world_full_vs_crop.mean_cosine).toBeGreaterThan(0.85);
+    });
+
+    it('verifies forensic audit passes 100% of scientific and security checks', () => {
+      const audit = JSON.parse(fs.readFileSync(auditPath, 'utf8'));
+      expect(audit.status).toBe('PASS');
+      expect(audit.checks.scientific_integrity.zero_commercial_apis).toBe(true);
+      expect(audit.checks.heartbeat.all_fields_present).toBe(true);
+      expect(audit.checks.weight_delta.weight_delta_verified).toBe(true);
+      expect(audit.checks.localization_forensics.all_samples_present).toBe(true);
+    });
+  });
 });
 
 
