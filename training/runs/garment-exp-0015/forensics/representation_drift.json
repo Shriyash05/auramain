@@ -1,0 +1,10 @@
+{
+  "num_probed_samples": 50,
+  "mean_cosine_similarity": 0.9953580260276794,
+  "median_cosine_similarity": 0.9955134093761444,
+  "std_cosine_similarity": 0.0016988759326926701,
+  "min_cosine_similarity": 0.9909231066703796,
+  "max_cosine_similarity": 0.9978340864181519,
+  "representation_collapse": false,
+  "interpretation": "Stable domain adaptation without representation collapse"
+}

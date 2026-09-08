@@ -40,7 +40,7 @@ describe('PlannerService', () => {
 
     const event = await PlannerService.createEvent(userId, {
       title: 'Art Gallery Opening',
-      event_date: '2026-09-01',
+      event_date: new Date(Date.now() + 86400000).toISOString().split('T')[0],
       event_time: '20:00',
       occasion: 'Evening / Event',
       outfit_id: outfit.id,

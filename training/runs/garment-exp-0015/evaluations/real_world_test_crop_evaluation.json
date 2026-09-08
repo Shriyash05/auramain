@@ -1,0 +1,19 @@
+{
+  "split_name": "real_world_test_crop",
+  "sample_size": 16,
+  "input_type": "localized_crop",
+  "metrics": {
+    "category_top1_accuracy": 0.3125,
+    "color_accuracy": 0.0625,
+    "fit_accuracy": 0.1875,
+    "silhouette_accuracy": 0.125,
+    "material_accuracy": 0.0625,
+    "pattern_accuracy": 0.25,
+    "macro_f1": 0.1667,
+    "mean_confidence": 0.3802,
+    "accepted_count": 2,
+    "refusal_rate": 0.875,
+    "false_confidence_count": 0,
+    "false_confidence_rate": 0.0
+  }
+}

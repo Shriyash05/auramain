@@ -1,0 +1,42 @@
+[
+  {
+    "config_id": "CONFIG_A",
+    "name": "Last 4 Blocks (Layers 23-26)",
+    "samples_per_second": 0.3962,
+    "seconds_per_sample": 2.5242,
+    "speedup_vs_full_27": 1.86,
+    "estimated_epoch_minutes": 19.31,
+    "estimated_20_epoch_hours": 6.44,
+    "estimated_50_epoch_hours": 16.09
+  },
+  {
+    "config_id": "CONFIG_B",
+    "name": "Last 8 Blocks (Layers 19-26)",
+    "samples_per_second": 0.3458,
+    "seconds_per_sample": 2.8919,
+    "speedup_vs_full_27": 1.62,
+    "estimated_epoch_minutes": 22.12,
+    "estimated_20_epoch_hours": 7.37,
+    "estimated_50_epoch_hours": 18.44
+  },
+  {
+    "config_id": "CONFIG_C",
+    "name": "Last 12 Blocks (Layers 15-26)",
+    "samples_per_second": 0.3058,
+    "seconds_per_sample": 3.2698,
+    "speedup_vs_full_27": 1.44,
+    "estimated_epoch_minutes": 25.01,
+    "estimated_20_epoch_hours": 8.34,
+    "estimated_50_epoch_hours": 20.84
+  },
+  {
+    "config_id": "CONFIG_D",
+    "name": "All 27 Blocks (Layers 0-26)",
+    "samples_per_second": 0.2131,
+    "seconds_per_sample": 4.6935,
+    "speedup_vs_full_27": 1.0,
+    "estimated_epoch_minutes": 35.91,
+    "estimated_20_epoch_hours": 11.97,
+    "estimated_50_epoch_hours": 29.92
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "config_id": "CONFIG_A",
+    "name": "Last 4 Blocks (Layers 23-26)",
+    "peak_vram_mb": 1906.7,
+    "allocated_mb": 1659.41,
+    "reserved_mb": 2048.0,
+    "safe_for_gtx_1650_4gb": true
+  },
+  {
+    "config_id": "CONFIG_B",
+    "name": "Last 8 Blocks (Layers 19-26)",
+    "peak_vram_mb": 2130.93,
+    "allocated_mb": 1661.37,
+    "reserved_mb": 2218.0,
+    "safe_for_gtx_1650_4gb": true
+  },
+  {
+    "config_id": "CONFIG_C",
+    "name": "Last 12 Blocks (Layers 15-26)",
+    "peak_vram_mb": 2345.57,
+    "allocated_mb": 1662.59,
+    "reserved_mb": 2448.0,
+    "safe_for_gtx_1650_4gb": true
+  },
+  {
+    "config_id": "CONFIG_D",
+    "name": "All 27 Blocks (Layers 0-26)",
+    "peak_vram_mb": 3179.72,
+    "allocated_mb": 1668.65,
+    "reserved_mb": 3286.0,
+    "safe_for_gtx_1650_4gb": true
+  }
+]

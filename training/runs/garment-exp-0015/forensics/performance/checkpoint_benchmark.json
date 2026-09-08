@@ -1,0 +1,14 @@
+{
+  "checkpoint_path": "training/runs/garment-exp-0015/forensics/performance\\benchmark_checkpoint.pt",
+  "save_duration_sec": 0.0377,
+  "load_duration_sec": 0.0332,
+  "size_bytes": 5269431,
+  "size_mb": 5.03,
+  "size_under_50mb_guard": true,
+  "lora_tensors": 108,
+  "lora_parameters": 995328,
+  "heads_tensors": 18,
+  "heads_parameters": 310586,
+  "frozen_backbone_parameters_saved": 0,
+  "passed_checkpoint_guard": true
+}

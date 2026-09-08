@@ -1,0 +1,33 @@
+{
+  "experiment_id": "garment-exp-0015",
+  "run_status": "INTERRUPTED",
+  "validation_status": "NOT_VALIDATED",
+  "production_status": "NOT_PRODUCTION_ELIGIBLE",
+  "blind_test_checksum": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+  "blind_test_intact": true,
+  "checkpoint": {
+    "path": "training/runs/garment-exp-0015/checkpoint/best_model.pt",
+    "exists": true,
+    "size_bytes": 1728913801,
+    "size_mb": 1648.82,
+    "size_gb": 1.6102,
+    "sha256": "e2b3e2fd2cd69f234350ffdb54babd25ad4006c3884fa9c105656640686924b4",
+    "loadable": true,
+    "last_saved_epoch": 2,
+    "val_macro_f1": 0.4634146341463415,
+    "val_category_accuracy": 0.6097560975609756,
+    "heads_parameters": 310586,
+    "lora_parameters": 995328,
+    "frozen_backbone_parameters_leaked": 428225600,
+    "total_saved_parameters": 429531514,
+    "has_optimizer_state": true
+  },
+  "root_cause_diagnosis": "1. Checkpoint Bloat Root Cause: `train_garment_classifier.py` saved `backbone.state_dict()`, which dumped all 428,225,600 frozen SigLIP base parameters (448 tensors) into `backbone_state_dict`, causing the checkpoint to bloat to 1.73 GB instead of ~5.2 MB for pure LoRA adapter weights (1,305,914 params).\n2. Long Execution Root Cause: SigLIP-SO400M (428M params, 27 transformer layers, 729 visual tokens per sample) with batch_size=1 and full backpropagation through 27 layers on GTX 1650 (4GB VRAM, TU117 without tensor cores) requires ~2.2 seconds per sample. Across 459 training samples, each epoch requires ~17 minutes. 50 epochs require ~14.2 hours of GPU compute, which extended to ~29 hours due to disk I/O of saving 1.73 GB checkpoints and thermal/memory throttling without a progress heartbeat or --max-hours timeout guard.",
+  "fixes_implemented": {
+    "pure_lora_adapter_serialization": true,
+    "parameter_guard_enforced": true,
+    "checkpoint_size_sanity_guard_enforced": true,
+    "training_heartbeat_enabled": true,
+    "max_hours_execution_limit_enabled": true
+  }
+}

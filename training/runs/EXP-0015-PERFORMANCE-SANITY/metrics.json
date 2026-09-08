@@ -1,0 +1,36 @@
+{
+  "experiment_id": "EXP-0015-PERFORMANCE-SANITY",
+  "timestamp": "2026-09-08T13:39:22.082297+00:00",
+  "git_commit": "6ca949ed75b298abe32a25f661c91ea04683308d",
+  "status": "REAL_PRETRAINED_MODEL_TRAINING_VERIFIED",
+  "validation_metrics": {
+    "experiment_id": "EXP-0015-PERFORMANCE-SANITY",
+    "selection_criterion": "highest_validation_macro_f1",
+    "best_epoch": 2,
+    "best_validation_macro_f1": 0.1875,
+    "best_validation_category_accuracy": 0.1875,
+    "checkpoint_path": "training\\runs\\EXP-0015-PERFORMANCE-SANITY\\checkpoint\\best_model.pt",
+    "checkpoint_sha256": "ade11d8a6ec33409c1ea79daabddd2017350b0b979469741cc1dc09eea6d3bfe",
+    "reloaded_verified": true
+  },
+  "hardware": {
+    "gpu": "NVIDIA GeForce GTX 1650",
+    "vram_mb": 4095.69,
+    "cuda": "12.6"
+  },
+  "training_execution": {
+    "epochs": 2,
+    "optimizer_steps": 2,
+    "duration_seconds": 221.94,
+    "weight_delta_verified": true,
+    "loss_weights": {
+      "category": 1.0,
+      "fit": 1.0,
+      "silhouette": 1.0,
+      "color": 1.0,
+      "pattern": 1.0,
+      "material": 1.0,
+      "formality": 1.0
+    }
+  }
+}

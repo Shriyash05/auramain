@@ -1,0 +1,14 @@
+{
+  "experiment_id": "EXP-0015-PERFORMANCE-SANITY",
+  "lora_rank": 8,
+  "lora_alpha": 16.0,
+  "lora_dropout": 0.05,
+  "lora_target_modules": [
+    "q_proj",
+    "v_proj"
+  ],
+  "trainable_lora_parameters": 995328,
+  "total_backbone_parameters": 429220928,
+  "lora_parameter_percentage": 0.2319,
+  "initial_lora_hash": "ff09cf3ecb78411b821469cdd041e2d1df3e358ada3b7dcc0914c8530b57432b"
+}

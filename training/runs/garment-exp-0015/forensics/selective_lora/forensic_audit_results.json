@@ -1,0 +1,96 @@
+{
+  "status": "PASS",
+  "checks": {
+    "hash_dataset-v0.5-500.json": {
+      "path": "data/garment/metadata/dataset-v0.5-500.json",
+      "expected_sha256": "85375f147608616762636106bd433a2378af902925161d260365e344f2a0fe1e",
+      "actual_sha256": "85375f147608616762636106bd433a2378af902925161d260365e344f2a0fe1e",
+      "immutable_verified": true
+    },
+    "hash_dataset-v0.4-250.json": {
+      "path": "data/garment/metadata/dataset-v0.4-250.json",
+      "expected_sha256": "8bf14c5921ba25a2879d524172dde7f6a6ba91a706524b8fed039fc3664da062",
+      "actual_sha256": "8bf14c5921ba25a2879d524172dde7f6a6ba91a706524b8fed039fc3664da062",
+      "immutable_verified": true
+    },
+    "hash_dataset-v0.3-blind-freeze.json": {
+      "path": "data/garment/metadata/dataset-v0.3-blind-freeze.json",
+      "expected_sha256": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+      "actual_sha256": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+      "immutable_verified": true
+    },
+    "artifact_layer_benchmark.json": {
+      "path": "training/runs/garment-exp-0015/forensics/selective_lora\\layer_benchmark.json",
+      "present": true
+    },
+    "artifact_parameter_comparison.json": {
+      "path": "training/runs/garment-exp-0015/forensics/selective_lora\\parameter_comparison.json",
+      "present": true
+    },
+    "artifact_memory_comparison.json": {
+      "path": "training/runs/garment-exp-0015/forensics/selective_lora\\memory_comparison.json",
+      "present": true
+    },
+    "artifact_throughput_comparison.json": {
+      "path": "training/runs/garment-exp-0015/forensics/selective_lora\\throughput_comparison.json",
+      "present": true
+    },
+    "artifact_recommended_configuration.json": {
+      "path": "training/runs/garment-exp-0015/forensics/selective_lora\\recommended_configuration.json",
+      "present": true
+    },
+    "artifact_sanity_result.json": {
+      "path": "training/runs/garment-exp-0015/forensics/selective_lora\\sanity_result.json",
+      "present": true
+    },
+    "architecture": {
+      "total_transformer_blocks": 27,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "lora_rank": 8,
+      "lora_alpha": 16.0,
+      "params_per_layer": 36864,
+      "verified_config_A_lora_params": 147456,
+      "verified_config_B_lora_params": 294912,
+      "verified_config_C_lora_params": 442368,
+      "verified_config_D_lora_params": 995328
+    },
+    "sanity_checkpoint": {
+      "path": "training/runs/EXP-0015-SELECTIVE-LORA-SANITY\\checkpoint\\best_model.pt",
+      "size_bytes": 5541273,
+      "size_mb": 5.28,
+      "under_50mb_guard": true,
+      "has_lora_state_dict": true,
+      "has_heads_state_dict": true,
+      "zero_base_backbone_leaked": true,
+      "lora_tensor_count": 16,
+      "expected_lora_tensor_count": 16
+    },
+    "sanity_heartbeat": {
+      "path": "training/runs/EXP-0015-SELECTIVE-LORA-SANITY\\training_heartbeat.json",
+      "fields_present": true,
+      "missing_keys": [],
+      "last_epoch": 2,
+      "last_step": 2,
+      "loss": 12.7307,
+      "gpu_allocated_mb": 1658.2,
+      "gpu_reserved_mb": 2048.0
+    },
+    "zero_commercial_apis": {
+      "verified": true,
+      "openai_used": false,
+      "anthropic_used": false,
+      "google_cloud_vision_used": false,
+      "fashn_used": false,
+      "replicate_used": false
+    },
+    "zero_holdout_evaluation": {
+      "verified": true,
+      "blind_test_evaluated": false,
+      "hard_test_evaluated": false,
+      "real_world_test_evaluated": false
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "experiment_id": "garment-exp-0015",
+  "selection_criterion": "highest_validation_macro_f1",
+  "best_epoch": 2,
+  "best_validation_macro_f1": 0.47154471544715454,
+  "best_validation_category_accuracy": 0.6097560975609756,
+  "checkpoint_path": "training\\runs\\garment-exp-0015\\checkpoint\\best_model.pt",
+  "checkpoint_sha256": "2102078309399dc7dd7e3760cd70004a0a7b8bb8b48e163ab25736f55fda6d2e",
+  "reloaded_verified": true
+}

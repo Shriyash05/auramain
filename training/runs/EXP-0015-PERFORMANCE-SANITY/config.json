@@ -1,0 +1,63 @@
+{
+  "experiment": {
+    "id": "EXP-0015-PERFORMANCE-SANITY",
+    "name": "aura-garment-v1-siglip-so400m-exp0015-performance-sanity",
+    "seed": 42,
+    "description": "Micro 2-epoch sanity training on frozen dataset-v0.5-500 to verify throughput-optimized configuration, parameter guards, and checkpoint integrity."
+  },
+  "model": {
+    "base_architecture": "google/siglip-so400m-patch14-384",
+    "canonical_taxonomy_path": "data/garment/metadata/canonical_taxonomy.json",
+    "freeze_backbone": false,
+    "use_lora": true,
+    "lora_rank": 8,
+    "lora_alpha": 16.0,
+    "lora_dropout": 0.05,
+    "lora_target_modules": [
+      "q_proj",
+      "v_proj"
+    ],
+    "hidden_dim": 1152,
+    "bottleneck_dim": 256,
+    "head_dropout": 0.3,
+    "unfreeze_last_n_layers": 0
+  },
+  "dataset": {
+    "manifest_path": "data/garment/metadata/dataset-v0.5-500.json",
+    "canonical_taxonomy_path": "data/garment/metadata/canonical_taxonomy.json",
+    "version": "0.5.0",
+    "image_size": 384,
+    "num_workers": 0,
+    "allowed_splits": [
+      "train",
+      "validation"
+    ],
+    "isolated_test_splits": [
+      "blind_test",
+      "hard_test",
+      "real_world_test"
+    ]
+  },
+  "training": {
+    "device": "cuda",
+    "mixed_precision": "fp16",
+    "batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "epochs": 2,
+    "learning_rate": 0.0005,
+    "lora_learning_rate": 0.0002,
+    "weight_decay": 0.05,
+    "optimizer": "AdamW",
+    "scheduler": "cosine",
+    "max_hours": 1.0
+  },
+  "loss_weights": {
+    "category_loss": 1.0,
+    "fit_loss": 1.0,
+    "silhouette_loss": 1.0,
+    "color_loss": 1.0,
+    "pattern_loss": 1.0,
+    "material_loss": 1.0,
+    "formality_loss": 1.0
+  }
+}

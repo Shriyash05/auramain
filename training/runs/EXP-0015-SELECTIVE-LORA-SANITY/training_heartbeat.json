@@ -1,0 +1,17 @@
+{
+  "experiment_id": "EXP-0015-SELECTIVE-LORA-SANITY",
+  "epoch": 2,
+  "total_epochs": 2,
+  "step": 2,
+  "optimizer_steps_cumulative": 2,
+  "elapsed_seconds": 151.68,
+  "epoch_duration_seconds": 75.46,
+  "samples_per_second": 0.212,
+  "loss": 12.7307,
+  "train_loss": 12.7307,
+  "val_loss": 13.1366,
+  "val_macro_f1": 0.1875,
+  "gpu_allocated_mb": 1658.2,
+  "gpu_reserved_mb": 2048.0,
+  "timestamp": "2026-09-08T15:52:04.658796+00:00"
+}

@@ -10,6 +10,8 @@ import {
   AURA_MATERIALS,
 } from '../src/types/garmentTaxonomy';
 import { AuraGarmentModel } from '../src/services/garment-ai/auraGarmentModel';
+import { garmentLocalizationService, HeuristicGarmentLocalizationService } from '../src/services/garment-localization';
+import { LocalizationReviewTool } from '../tools/ai-benchmark/garment/localizationReviewTool';
 
 describe('AURA Phase 11A — Training Infrastructure Suite', () => {
   const configPath = path.resolve(__dirname, '../training/configs/siglip_so400m_garment_v1.yaml');
@@ -757,7 +759,375 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
     expect(cosineAudit.mean_cosine_similarity).toBeGreaterThan(0.99);
     expect(cosineAudit.representation_collapse).toBe(false);
   });
+
+  it('verifies experiment garment-exp-0014 Frozen SigLIP Control on Dataset-v0.5-500 (Phase 13A)', () => {
+    const expDir = path.resolve(__dirname, '../training/runs/garment-exp-0014');
+    expect(fs.existsSync(expDir)).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'environment.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'training_log.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'checkpoint', 'best_model.pt'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'metrics.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'forensics', 'forensic_summary.json'))).toBe(true);
+    expect(fs.existsSync(path.join(expDir, 'evaluations', 'multi_split_summary.json'))).toBe(true);
+
+    const docReport = path.resolve(__dirname, '../docs/garment-exp-0014-training-report.md');
+    const docComp = path.resolve(__dirname, '../docs/garment-exp-0014-comparison.md');
+    const docErr = path.resolve(__dirname, '../docs/garment-exp-0014-error-analysis.md');
+    expect(fs.existsSync(docReport)).toBe(true);
+    expect(fs.existsSync(docComp)).toBe(true);
+    expect(fs.existsSync(docErr)).toBe(true);
+
+    const env = JSON.parse(fs.readFileSync(path.join(expDir, 'environment.json'), 'utf8'));
+    expect(env.experiment_id).toBe('garment-exp-0014');
+    expect(env.backbone_model_name).toBe('google/siglip-so400m-patch14-384');
+    expect(env.trainable_backbone_parameters).toBe(0);
+    expect(env.trainable_head_parameters).toBe(310586);
+    expect(env.train_samples).toBe(459);
+    expect(env.validation_samples).toBe(41);
+    expect(env.initial_heads_hash).not.toBe(env.final_heads_hash);
+
+    const forensic = JSON.parse(fs.readFileSync(path.join(expDir, 'forensics', 'forensic_summary.json'), 'utf8'));
+    expect(forensic.status).toBe('FORENSICALLY_VERIFIED');
+    expect(forensic.dataset_integrity.blind_intact).toBe(true);
+    expect(forensic.dataset_integrity.manifest_intact).toBe(true);
+
+    const multiSplit = JSON.parse(fs.readFileSync(path.join(expDir, 'evaluations', 'multi_split_summary.json'), 'utf8'));
+    expect(multiSplit.train.sample_size).toBe(459);
+    expect(multiSplit.validation.sample_size).toBe(41);
+    expect(multiSplit.blind_test.sample_size).toBe(20);
+    expect(multiSplit.blind_test.metrics.macro_f1).toBeGreaterThan(0.30); // 31.67%
+    expect(multiSplit.blind_test.metrics.category_top1_accuracy).toBe(0.45); // 45.0%
+    expect(multiSplit.validation.metrics.category_top1_accuracy).toBeGreaterThan(0.60); // 63.41%
+  });
+
+  it('verifies Phase 13B Forensic Domain-Generalization Audit and Artifacts', () => {
+    const forensicsDir = path.resolve(__dirname, '../training/runs/garment-exp-0014/forensics');
+    const predDeltaPath = path.join(forensicsDir, 'prediction_delta.json');
+    const confAnalysisPath = path.join(forensicsDir, 'confidence_analysis.json');
+    const srcDistPath = path.join(forensicsDir, 'source_distribution.json');
+    const domainDistPath = path.join(forensicsDir, 'domain_distribution.json');
+    const confusionPath = path.join(forensicsDir, 'confusion_analysis.json');
+
+    const docAudit = path.resolve(__dirname, '../docs/phase-13b-exp0014-domain-audit.md');
+    const docPred = path.resolve(__dirname, '../docs/phase-13b-exp0014-prediction-analysis.md');
+    const docDist = path.resolve(__dirname, '../docs/phase-13b-exp0014-data-distribution-analysis.md');
+
+    expect(fs.existsSync(predDeltaPath)).toBe(true);
+    expect(fs.existsSync(confAnalysisPath)).toBe(true);
+    expect(fs.existsSync(srcDistPath)).toBe(true);
+    expect(fs.existsSync(domainDistPath)).toBe(true);
+    expect(fs.existsSync(confusionPath)).toBe(true);
+    expect(fs.existsSync(docAudit)).toBe(true);
+    expect(fs.existsSync(docPred)).toBe(true);
+    expect(fs.existsSync(docDist)).toBe(true);
+
+    const predDelta = JSON.parse(fs.readFileSync(predDeltaPath, 'utf8'));
+    expect(predDelta.blind_test.length).toBe(20);
+    expect(predDelta.real_world_test.length).toBe(16);
+
+    const confAnalysis = JSON.parse(fs.readFileSync(confAnalysisPath, 'utf8'));
+    expect(confAnalysis.real_world_test.exp0014.refusal_rate).toBeGreaterThan(0.9); // 93.75%
+    expect(confAnalysis.real_world_test.exp0012.refusal_rate).toBe(1.0); // 100%
+
+    const domainDist = JSON.parse(fs.readFileSync(domainDistPath, 'utf8'));
+    expect(domainDist.statistical_tests.real_world_mcnemar_pvalue).toBeGreaterThan(0.05); // p = 0.0625, not statistically significant
+  });
+
+  it('verifies Phase 13C Garment Localization, Review Tool, and Oracle Crop Study', async () => {
+    // 1. Verify Localization Service Proposal Output
+    const proposals = await garmentLocalizationService.localizeGarments('assets/test.jpg');
+    expect(proposals.length).toBeGreaterThan(0);
+    expect(proposals[0].bbox.x).toBeGreaterThanOrEqual(0);
+    expect(proposals[0].bbox.x).toBeLessThanOrEqual(1);
+    expect(proposals[0].bbox.width).toBeGreaterThan(0);
+
+    // 2. Verify IoU Calculation Logic
+    const iou = HeuristicGarmentLocalizationService.computeIoU(
+      { x: 0.1, y: 0.1, width: 0.5, height: 0.5 },
+      { x: 0.1, y: 0.1, width: 0.5, height: 0.5 }
+    );
+    expect(iou).toBe(1.0);
+
+    // 3. Verify Ground Truth Annotations File
+    const gtPath = path.resolve(__dirname, '../training/data-audits/phase13c/localization_ground_truth.json');
+    expect(fs.existsSync(gtPath)).toBe(true);
+    const gt = JSON.parse(fs.readFileSync(gtPath, 'utf8'));
+    expect(gt.total_annotated_images).toBe(16);
+    expect(gt.annotations.length).toBe(16);
+
+    // 4. Verify Oracle Crop Results
+    const oraclePath = path.resolve(__dirname, '../training/data-audits/phase13c/oracle_crop_results.json');
+    const summaryPath = path.resolve(__dirname, '../training/data-audits/phase13c/localization_summary.json');
+    const auditPath = path.resolve(__dirname, '../training/data-audits/phase13c/forensic_localization_audit.json');
+
+    expect(fs.existsSync(oraclePath)).toBe(true);
+    expect(fs.existsSync(summaryPath)).toBe(true);
+    expect(fs.existsSync(auditPath)).toBe(true);
+
+    const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+    expect(summary.sample_size).toBe(16);
+    expect(summary.oracle_crop_performance.category_accuracy).toBeGreaterThanOrEqual(summary.full_image_baseline.category_accuracy);
+
+    const audit = JSON.parse(fs.readFileSync(auditPath, 'utf8'));
+    expect(audit.status).toBe('FORENSICALLY_VERIFIED');
+    expect(audit.blind_freeze_pass).toBe(true);
+    expect(audit.checkpoint_pass).toBe(true);
+    expect(audit.ground_truth_coordinates_valid).toBe(true);
+    expect(audit.physical_crops_verified).toBe(true);
+  });
+
+  it('verifies Phase 13D Exp-0015 Emergency Forensic Recovery, Root-Cause Audit, and Checkpoint Guards', () => {
+    const recoveryDir = path.resolve(__dirname, '../training/runs/garment-exp-0015/forensics/recovery');
+    const recoverySummaryPath = path.join(recoveryDir, 'recovery_summary.json');
+    const recoveryCompPath = path.join(recoveryDir, 'checkpoint_forensic_comparison.json');
+    const docRecoveryPath = path.resolve(__dirname, '../docs/garment-exp-0015-forensic-recovery.md');
+
+    expect(fs.existsSync(recoverySummaryPath)).toBe(true);
+    expect(fs.existsSync(recoveryCompPath)).toBe(true);
+    expect(fs.existsSync(docRecoveryPath)).toBe(true);
+
+    const recovery = JSON.parse(fs.readFileSync(recoverySummaryPath, 'utf8'));
+    expect(recovery.experiment_id).toBe('garment-exp-0015');
+    expect(recovery.run_status).toBe('INTERRUPTED');
+    expect(recovery.validation_status).toBe('NOT_VALIDATED');
+    expect(recovery.production_status).toBe('NOT_PRODUCTION_ELIGIBLE');
+    expect(recovery.blind_test_intact).toBe(true);
+
+    // Verify Checkpoint Deconstruction
+    expect(recovery.checkpoint.lora_parameters).toBe(995328);
+    expect(recovery.checkpoint.heads_parameters).toBe(310586);
+    expect(recovery.checkpoint.frozen_backbone_parameters_leaked).toBe(428225600);
+
+    // Verify Safety Fixes in Training Codebase
+    expect(recovery.fixes_implemented.pure_lora_adapter_serialization).toBe(true);
+    expect(recovery.fixes_implemented.parameter_guard_enforced).toBe(true);
+    expect(recovery.fixes_implemented.checkpoint_size_sanity_guard_enforced).toBe(true);
+    expect(recovery.fixes_implemented.training_heartbeat_enabled).toBe(true);
+    expect(recovery.fixes_implemented.max_hours_execution_limit_enabled).toBe(true);
+  });
+
+  it('verifies Phase 13D.1 Training Performance Optimization, Batch Benchmark, and Checkpoint Guards', () => {
+    const perfDir = path.resolve(__dirname, '../training/runs/garment-exp-0015/forensics/performance');
+    const batchBenchPath = path.join(perfDir, 'batch_benchmark.json');
+    const dataloaderBenchPath = path.join(perfDir, 'dataloader_benchmark.json');
+    const prepBenchPath = path.join(perfDir, 'preprocessing_benchmark.json');
+    const ckptBenchPath = path.join(perfDir, 'checkpoint_benchmark.json');
+    const recCfgPath = path.join(perfDir, 'recommended_configuration.json');
+    const sanityDir = path.resolve(__dirname, '../training/runs/EXP-0015-PERFORMANCE-SANITY');
+    const sanityHeartbeatPath = path.join(sanityDir, 'training_heartbeat.json');
+    const sanityCkptPath = path.join(sanityDir, 'checkpoint/best_model.pt');
+
+    // 1. Benchmark artifacts existence
+    expect(fs.existsSync(batchBenchPath)).toBe(true);
+    expect(fs.existsSync(dataloaderBenchPath)).toBe(true);
+    expect(fs.existsSync(prepBenchPath)).toBe(true);
+    expect(fs.existsSync(ckptBenchPath)).toBe(true);
+    expect(fs.existsSync(recCfgPath)).toBe(true);
+
+    // 2. Batch Benchmark Validation & OOM/Paging Guard
+    const batchBench = JSON.parse(fs.readFileSync(batchBenchPath, 'utf8'));
+    expect(batchBench.length).toBe(4);
+    const b1 = batchBench.find((b: any) => b.batch_size === 1);
+    const b2 = batchBench.find((b: any) => b.batch_size === 2);
+    const b4 = batchBench.find((b: any) => b.batch_size === 4);
+    const b8 = batchBench.find((b: any) => b.batch_size === 8);
+
+    expect(b1).toBeDefined();
+    expect(b1.peak_gpu_memory_mb).toBeLessThan(3500); // Safely fits in 4096MB
+    expect(b1.oom).toBe(false);
+
+    expect(b4).toBeDefined();
+    expect(b4.peak_gpu_memory_mb).toBeGreaterThan(4096); // Verifies memory overflow detection into system RAM
+
+    // 3. Recommended Configuration Parsing
+    const recCfg = JSON.parse(fs.readFileSync(recCfgPath, 'utf8'));
+    expect(recCfg.recommended_batch_size).toBe(1);
+    expect(recCfg.recommended_gradient_accumulation_steps).toBe(16);
+    expect(recCfg.effective_batch_size).toBe(16);
+    expect(recCfg.recommended_num_workers).toBe(0); // Synchronous is fastest on Windows
+    expect(recCfg.use_preprocessing_cache).toBe(true);
+    expect(recCfg.fits_gtx_1650_4gb).toBe(true);
+
+    // 4. DataLoader Workers Benchmark Validation
+    const dlBench = JSON.parse(fs.readFileSync(dataloaderBenchPath, 'utf8'));
+    expect(dlBench.length).toBe(3);
+    const w0 = dlBench.find((w: any) => w.num_workers === 0);
+    const w2 = dlBench.find((w: any) => w.num_workers === 2);
+    const w4 = dlBench.find((w: any) => w.num_workers === 4);
+    expect(w0.total_time_sec).toBeLessThan(w2.total_time_sec);
+    expect(w0.total_time_sec).toBeLessThan(w4.total_time_sec);
+
+    // 5. Preprocessing Cache Benchmark Validation
+    const prepBench = JSON.parse(fs.readFileSync(prepBenchPath, 'utf8'));
+    expect(prepBench.is_gradient_cached).toBe(false);
+    expect(prepBench.is_embedding_cached).toBe(false);
+    expect(prepBench.is_model_output_cached).toBe(false);
+    expect(prepBench.cache_on_ms_per_sample).toBeLessThan(prepBench.cache_off_ms_per_sample);
+    expect(prepBench.preprocessing_speedup_factor).toBeGreaterThan(1.0);
+
+    // 6. Checkpoint Serialization & Parameter Guard
+    const ckptBench = JSON.parse(fs.readFileSync(ckptBenchPath, 'utf8'));
+    expect(ckptBench.size_mb).toBeLessThan(50);
+    expect(ckptBench.size_under_50mb_guard).toBe(true);
+    expect(ckptBench.lora_tensors).toBe(108);
+    expect(ckptBench.lora_parameters).toBe(995328);
+    expect(ckptBench.heads_tensors).toBe(18);
+    expect(ckptBench.heads_parameters).toBe(310586);
+    expect(ckptBench.frozen_backbone_parameters_saved).toBe(0);
+
+    // 7. Micro Sanity Training Telemetry & Heartbeat Validation
+    expect(fs.existsSync(sanityHeartbeatPath)).toBe(true);
+    expect(fs.existsSync(sanityCkptPath)).toBe(true);
+    const sanityHb = JSON.parse(fs.readFileSync(sanityHeartbeatPath, 'utf8'));
+    expect(sanityHb.experiment_id).toBe('EXP-0015-PERFORMANCE-SANITY');
+    expect(sanityHb.epoch).toBe(2);
+    expect(sanityHb.total_epochs).toBe(2);
+    expect(sanityHb.optimizer_steps_cumulative).toBe(2);
+    expect(sanityHb.epoch_duration_seconds).toBeGreaterThan(0);
+    expect(sanityHb.samples_per_second).toBeGreaterThan(0);
+    expect(sanityHb.gpu_allocated_mb).toBeLessThan(2000);
+
+    // Sanity checkpoint size guard
+    const sanityStats = fs.statSync(sanityCkptPath);
+    const sanitySizeMb = sanityStats.size / (1024 * 1024);
+    expect(sanitySizeMb).toBeLessThan(50);
+  });
+
+  it('verifies Phase 13D.2 Selective-Layer LoRA Performance, Parameter Scaling, and Checkpoint Guards', () => {
+    const forensicsDir = path.resolve(__dirname, '../training/runs/garment-exp-0015/forensics/selective_lora');
+    const layerBenchPath = path.join(forensicsDir, 'layer_benchmark.json');
+    const paramCompPath = path.join(forensicsDir, 'parameter_comparison.json');
+    const memCompPath = path.join(forensicsDir, 'memory_comparison.json');
+    const thruCompPath = path.join(forensicsDir, 'throughput_comparison.json');
+    const recCfgPath = path.join(forensicsDir, 'recommended_configuration.json');
+
+    // 1. Artifacts existence
+    expect(fs.existsSync(layerBenchPath)).toBe(true);
+    expect(fs.existsSync(paramCompPath)).toBe(true);
+    expect(fs.existsSync(memCompPath)).toBe(true);
+    expect(fs.existsSync(thruCompPath)).toBe(true);
+    expect(fs.existsSync(recCfgPath)).toBe(true);
+
+    // 2. Exact Parameter Counts & Scaling
+    const paramList = JSON.parse(fs.readFileSync(paramCompPath, 'utf8'));
+    const paramComp = Object.fromEntries(paramList.map((x: any) => [x.config_id, x]));
+    // SigLIP SO400M has 27 layers (0 to 26), 1152 hidden dim.
+    // LoRA rank 8 on q_proj and v_proj: 2 * (1152*8 + 8*1152) = 36,864 params/layer.
+    expect(paramComp.CONFIG_A.adapted_layers).toBe(4);
+    expect(paramComp.CONFIG_A.lora_parameters).toBe(147456);
+    expect(paramComp.CONFIG_A.head_parameters).toBe(310586);
+    expect(paramComp.CONFIG_A.total_trainable_parameters).toBe(458042);
+    expect(paramComp.CONFIG_A.trainable_percentage).toBeCloseTo(0.1066, 3);
+
+    expect(paramComp.CONFIG_B.adapted_layers).toBe(8);
+    expect(paramComp.CONFIG_B.lora_parameters).toBe(294912);
+    expect(paramComp.CONFIG_B.total_trainable_parameters).toBe(605498);
+
+    expect(paramComp.CONFIG_C.adapted_layers).toBe(12);
+    expect(paramComp.CONFIG_C.lora_parameters).toBe(442368);
+    expect(paramComp.CONFIG_C.total_trainable_parameters).toBe(752954);
+
+    expect(paramComp.CONFIG_D.adapted_layers).toBe(27);
+    expect(paramComp.CONFIG_D.lora_parameters).toBe(995328);
+    expect(paramComp.CONFIG_D.total_trainable_parameters).toBe(1305914);
+
+    // 3. Layer Targeting & Excluded Layers Frozen
+    expect(paramComp.CONFIG_A.layer_indices).toEqual([23, 24, 25, 26]);
+    expect(paramComp.CONFIG_B.layer_indices).toEqual([19, 20, 21, 22, 23, 24, 25, 26]);
+    expect(paramComp.CONFIG_C.layer_indices).toEqual([15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]);
+    expect(paramComp.CONFIG_D.layer_indices.length).toBe(27);
+
+    // 4. Measured Throughput & Speedup
+    const thruList = JSON.parse(fs.readFileSync(thruCompPath, 'utf8'));
+    const thruComp = Object.fromEntries(thruList.map((x: any) => [x.config_id, x]));
+    expect(thruComp.CONFIG_A.samples_per_second).toBeGreaterThan(thruComp.CONFIG_D.samples_per_second);
+    expect(thruComp.CONFIG_A.speedup_vs_full_27).toBeGreaterThan(1.5);
+
+    // 5. Memory Safety & Paging Guard
+    const memList = JSON.parse(fs.readFileSync(memCompPath, 'utf8'));
+    const memComp = Object.fromEntries(memList.map((x: any) => [x.config_id, x]));
+    expect(memComp.CONFIG_A.peak_vram_mb).toBeLessThan(2500);
+    expect(memComp.CONFIG_A.safe_for_gtx_1650_4gb).toBe(true);
+
+    // 6. Recommended Decision
+    const recCfg = JSON.parse(fs.readFileSync(recCfgPath, 'utf8'));
+    expect(recCfg.decision).toBe('SELECTIVE_LORA_4');
+    expect(recCfg.num_layers).toBe(4);
+    expect(recCfg.estimated_50_epoch_hours).toBeLessThan(20.0);
+
+    // 7. Sanity Run Verification & Heartbeat / Checkpoint Guard
+    const sanityResultPath = path.join(forensicsDir, 'sanity_result.json');
+    expect(fs.existsSync(sanityResultPath)).toBe(true);
+    const sanityResult = JSON.parse(fs.readFileSync(sanityResultPath, 'utf8'));
+    expect(sanityResult.status).toBe('PASS');
+    expect(sanityResult.training_execution.epochs_completed).toBe(2);
+    expect(sanityResult.training_execution.optimizer_steps).toBe(2);
+    expect(sanityResult.training_execution.weight_delta_verified).toBe(true);
+    expect(sanityResult.checkpoint_verification.size_under_50mb_guard).toBe(true);
+    expect(sanityResult.checkpoint_verification.checkpoint_size_mb).toBeLessThan(10);
+    expect(sanityResult.checkpoint_verification.lora_tensors_saved).toBe(16);
+    expect(sanityResult.checkpoint_verification.frozen_backbone_parameters_saved).toBe(0);
+    expect(sanityResult.heartbeat_verification.all_fields_present).toBe(true);
+  });
+
+  it('verifies Phase 13D.3 Exp-0015 Selective LoRA Production Training, Evaluation, and Forensics', () => {
+    const runDir = path.resolve(__dirname, '../training/runs/garment-exp-0015');
+    const forensicsDir = path.join(runDir, 'forensics');
+    const evalDir = path.join(runDir, 'evaluations');
+    const ckptPath = path.join(runDir, 'checkpoint/best_model.pt');
+    const envPath = path.join(runDir, 'environment.json');
+    const heartbeatPath = path.join(runDir, 'training_heartbeat.json');
+    const driftPath = path.join(forensicsDir, 'representation_drift.json');
+    const evalSummaryPath = path.join(evalDir, 'multi_split_summary.json');
+    const forensicAuditPath = path.join(forensicsDir, 'forensic_verification_13d_selective.json');
+
+    // 1. Production Artifacts Existence
+    expect(fs.existsSync(ckptPath)).toBe(true);
+    expect(fs.existsSync(envPath)).toBe(true);
+    expect(fs.existsSync(heartbeatPath)).toBe(true);
+    expect(fs.existsSync(driftPath)).toBe(true);
+    expect(fs.existsSync(evalSummaryPath)).toBe(true);
+    expect(fs.existsSync(forensicAuditPath)).toBe(true);
+
+    // 2. Checkpoint Hardening Guard
+    const stats = fs.statSync(ckptPath);
+    const sizeMb = stats.size / (1024 * 1024);
+    expect(sizeMb).toBeLessThan(50); // Under 50MB guard
+    expect(sizeMb).toBeGreaterThan(1); // Real weights saved
+
+    // 3. Environment & Optimizer Accumulation Math
+    const env = JSON.parse(fs.readFileSync(envPath, 'utf8'));
+    expect(env.trainable_backbone_parameters).toBe(147456); // 4 layers * 36,864
+    expect(env.trainable_head_parameters).toBe(310586);
+    expect(env.trainable_parameters).toBe(458042);
+    expect(env.total_optimizer_steps).toBe(232); // 8 epochs * 29 steps/epoch
+    expect(env.best_epoch).toBe(2);
+    expect(env.best_validation_macro_f1).toBeGreaterThan(0.47);
+
+    // 4. Representation Drift Stability
+    const drift = JSON.parse(fs.readFileSync(driftPath, 'utf8'));
+    expect(drift.mean_cosine_similarity).toBeGreaterThan(0.99);
+    expect(drift.representation_collapse).toBe(false);
+
+    // 5. Multi-Split Evaluation Metrics
+    const evalSummary = JSON.parse(fs.readFileSync(evalSummaryPath, 'utf8'));
+    expect(evalSummary.real_world_test_full.metrics.category_top1_accuracy).toBe(0.375); // 37.5% (+25% gain over Exp-0014)
+    expect(evalSummary.real_world_test_full.metrics.false_confidence_rate).toBe(0.0);
+    expect(evalSummary.blind_test.metrics.category_top1_accuracy).toBe(0.25);
+    expect(evalSummary.train.metrics.macro_f1).toBeGreaterThan(0.70);
+
+    // 6. Forensic Verification Status
+    const audit = JSON.parse(fs.readFileSync(forensicAuditPath, 'utf8'));
+    expect(audit.status).toBe('PASS');
+    expect(audit.checks.checkpoint.zero_base_backbone_leaked).toBe(true);
+    expect(audit.checks.checkpoint.lora_tensors).toBe(16);
+    expect(audit.checks.scientific_integrity.zero_commercial_apis).toBe(true);
+  });
 });
+
+
+
+
 
 
 

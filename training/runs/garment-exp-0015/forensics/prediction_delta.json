@@ -1,0 +1,178 @@
+[
+  {
+    "image_id": "garm_v3_151",
+    "expected_category": "tops",
+    "full_prediction": "tops",
+    "crop_prediction": "tops",
+    "full_confidence": 0.3291,
+    "crop_confidence": 0.3542,
+    "full_correct": true,
+    "crop_correct": true,
+    "transition": "MAINTAINED_CORRECT"
+  },
+  {
+    "image_id": "garm_v3_152",
+    "expected_category": "bottoms",
+    "full_prediction": "outerwear",
+    "crop_prediction": "outerwear",
+    "full_confidence": 0.731,
+    "crop_confidence": 0.752,
+    "full_correct": false,
+    "crop_correct": false,
+    "transition": "MAINTAINED_INCORRECT"
+  },
+  {
+    "image_id": "garm_v3_153",
+    "expected_category": "outerwear",
+    "full_prediction": "bottoms",
+    "crop_prediction": "bottoms",
+    "full_confidence": 0.3787,
+    "crop_confidence": 0.3408,
+    "full_correct": false,
+    "crop_correct": false,
+    "transition": "MAINTAINED_INCORRECT"
+  },
+  {
+    "image_id": "garm_v3_154",
+    "expected_category": "shoes",
+    "full_prediction": "bottoms",
+    "crop_prediction": "outerwear",
+    "full_confidence": 0.3342,
+    "crop_confidence": 0.2749,
+    "full_correct": false,
+    "crop_correct": false,
+    "transition": "MAINTAINED_INCORRECT"
+  },
+  {
+    "image_id": "garm_v3_155",
+    "expected_category": "accessories",
+    "full_prediction": "tops",
+    "crop_prediction": "tops",
+    "full_confidence": 0.6528,
+    "crop_confidence": 0.7095,
+    "full_correct": false,
+    "crop_correct": false,
+    "transition": "MAINTAINED_INCORRECT"
+  },
+  {
+    "image_id": "garm_v3_156",
+    "expected_category": "tops",
+    "full_prediction": "shoes",
+    "crop_prediction": "shoes",
+    "full_confidence": 0.2625,
+    "crop_confidence": 0.2422,
+    "full_correct": false,
+    "crop_correct": false,
+    "transition": "MAINTAINED_INCORRECT"
+  },
+  {
+    "image_id": "garm_v3_157",
+    "expected_category": "bottoms",
+    "full_prediction": "tops",
+    "crop_prediction": "tops",
+    "full_confidence": 0.29,
+    "crop_confidence": 0.312,
+    "full_correct": false,
+    "crop_correct": false,
+    "transition": "MAINTAINED_INCORRECT"
+  },
+  {
+    "image_id": "garm_v3_158",
+    "expected_category": "outerwear",
+    "full_prediction": "outerwear",
+    "crop_prediction": "outerwear",
+    "full_confidence": 0.5825,
+    "crop_confidence": 0.5659,
+    "full_correct": true,
+    "crop_correct": true,
+    "transition": "MAINTAINED_CORRECT"
+  },
+  {
+    "image_id": "garm_v3_159",
+    "expected_category": "shoes",
+    "full_prediction": "outerwear",
+    "crop_prediction": "bottoms",
+    "full_confidence": 0.342,
+    "crop_confidence": 0.4158,
+    "full_correct": false,
+    "crop_correct": false,
+    "transition": "MAINTAINED_INCORRECT"
+  },
+  {
+    "image_id": "garm_v3_160",
+    "expected_category": "accessories",
+    "full_prediction": "tops",
+    "crop_prediction": "tops",
+    "full_confidence": 0.2732,
+    "crop_confidence": 0.3235,
+    "full_correct": false,
+    "crop_correct": false,
+    "transition": "MAINTAINED_INCORRECT"
+  },
+  {
+    "image_id": "garm_v3_161",
+    "expected_category": "tops",
+    "full_prediction": "tops",
+    "crop_prediction": "tops",
+    "full_confidence": 0.3369,
+    "crop_confidence": 0.3413,
+    "full_correct": true,
+    "crop_correct": true,
+    "transition": "MAINTAINED_CORRECT"
+  },
+  {
+    "image_id": "garm_v3_162",
+    "expected_category": "bottoms",
+    "full_prediction": "tops",
+    "crop_prediction": "tops",
+    "full_confidence": 0.3865,
+    "crop_confidence": 0.2749,
+    "full_correct": false,
+    "crop_correct": false,
+    "transition": "MAINTAINED_INCORRECT"
+  },
+  {
+    "image_id": "garm_v3_163",
+    "expected_category": "outerwear",
+    "full_prediction": "outerwear",
+    "crop_prediction": "outerwear",
+    "full_confidence": 0.2245,
+    "crop_confidence": 0.2576,
+    "full_correct": true,
+    "crop_correct": true,
+    "transition": "MAINTAINED_CORRECT"
+  },
+  {
+    "image_id": "garm_v3_164",
+    "expected_category": "shoes",
+    "full_prediction": "shoes",
+    "crop_prediction": "shoes",
+    "full_confidence": 0.4202,
+    "crop_confidence": 0.3892,
+    "full_correct": true,
+    "crop_correct": true,
+    "transition": "MAINTAINED_CORRECT"
+  },
+  {
+    "image_id": "garm_v3_165",
+    "expected_category": "accessories",
+    "full_prediction": "tops",
+    "crop_prediction": "bottoms",
+    "full_confidence": 0.3772,
+    "crop_confidence": 0.2793,
+    "full_correct": false,
+    "crop_correct": false,
+    "transition": "MAINTAINED_INCORRECT"
+  },
+  {
+    "image_id": "garm_v3_166",
+    "expected_category": "tops",
+    "full_prediction": "tops",
+    "crop_prediction": "outerwear",
+    "full_confidence": 0.2734,
+    "crop_confidence": 0.2496,
+    "full_correct": true,
+    "crop_correct": false,
+    "transition": "LOST_CORRECT"
+  }
+]

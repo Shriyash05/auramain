@@ -1,0 +1,119 @@
+{
+  "experiment_id": "garment-exp-0015",
+  "model_architecture": "SigLIP-SO400M + LoRA (r=8, a=16) + 256-dim Probe",
+  "dataset": "dataset-v0.5-500.json",
+  "train": {
+    "split_name": "train",
+    "sample_size": 459,
+    "input_type": "full_image",
+    "metrics": {
+      "category_top1_accuracy": 0.6841,
+      "color_accuracy": 0.488,
+      "fit_accuracy": 0.8584,
+      "silhouette_accuracy": 0.7974,
+      "material_accuracy": 0.695,
+      "pattern_accuracy": 0.7669,
+      "macro_f1": 0.715,
+      "mean_confidence": 0.6642,
+      "accepted_count": 271,
+      "refusal_rate": 0.4096,
+      "false_confidence_count": 55,
+      "false_confidence_rate": 0.1198
+    }
+  },
+  "validation": {
+    "split_name": "validation",
+    "sample_size": 41,
+    "input_type": "full_image",
+    "metrics": {
+      "category_top1_accuracy": 0.5122,
+      "color_accuracy": 0.4146,
+      "fit_accuracy": 0.561,
+      "silhouette_accuracy": 0.561,
+      "material_accuracy": 0.561,
+      "pattern_accuracy": 0.122,
+      "macro_f1": 0.4553,
+      "mean_confidence": 0.5577,
+      "accepted_count": 16,
+      "refusal_rate": 0.6098,
+      "false_confidence_count": 3,
+      "false_confidence_rate": 0.0732
+    }
+  },
+  "blind_test": {
+    "split_name": "blind_test",
+    "sample_size": 20,
+    "input_type": "full_image",
+    "metrics": {
+      "category_top1_accuracy": 0.25,
+      "color_accuracy": 0.1,
+      "fit_accuracy": 0.3,
+      "silhouette_accuracy": 0.2,
+      "material_accuracy": 0.15,
+      "pattern_accuracy": 0.25,
+      "macro_f1": 0.2083,
+      "mean_confidence": 0.3951,
+      "accepted_count": 2,
+      "refusal_rate": 0.9,
+      "false_confidence_count": 0,
+      "false_confidence_rate": 0.0
+    }
+  },
+  "hard_test": {
+    "split_name": "hard_test",
+    "sample_size": 18,
+    "input_type": "full_image",
+    "metrics": {
+      "category_top1_accuracy": 0.1667,
+      "color_accuracy": 0.1667,
+      "fit_accuracy": 0.2778,
+      "silhouette_accuracy": 0.1111,
+      "material_accuracy": 0.0556,
+      "pattern_accuracy": 0.2778,
+      "macro_f1": 0.1759,
+      "mean_confidence": 0.3436,
+      "accepted_count": 0,
+      "refusal_rate": 1.0,
+      "false_confidence_count": 0,
+      "false_confidence_rate": 0.0
+    }
+  },
+  "real_world_test_full": {
+    "split_name": "real_world_test_full",
+    "sample_size": 16,
+    "input_type": "full_image",
+    "metrics": {
+      "category_top1_accuracy": 0.375,
+      "color_accuracy": 0.0625,
+      "fit_accuracy": 0.125,
+      "silhouette_accuracy": 0.125,
+      "material_accuracy": 0.0,
+      "pattern_accuracy": 0.125,
+      "macro_f1": 0.1354,
+      "mean_confidence": 0.3872,
+      "accepted_count": 2,
+      "refusal_rate": 0.875,
+      "false_confidence_count": 0,
+      "false_confidence_rate": 0.0
+    }
+  },
+  "real_world_test_crop": {
+    "split_name": "real_world_test_crop",
+    "sample_size": 16,
+    "input_type": "localized_crop",
+    "metrics": {
+      "category_top1_accuracy": 0.3125,
+      "color_accuracy": 0.0625,
+      "fit_accuracy": 0.1875,
+      "silhouette_accuracy": 0.125,
+      "material_accuracy": 0.0625,
+      "pattern_accuracy": 0.25,
+      "macro_f1": 0.1667,
+      "mean_confidence": 0.3802,
+      "accepted_count": 2,
+      "refusal_rate": 0.875,
+      "false_confidence_count": 0,
+      "false_confidence_rate": 0.0
+    }
+  }
+}

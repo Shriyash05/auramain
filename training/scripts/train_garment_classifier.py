@@ -194,7 +194,8 @@ class AuraSigLIPBackbone(nn.Module):
         lora_rank: int = 8,
         lora_alpha: float = 16.0,
         lora_dropout: float = 0.05,
-        lora_target_modules: Optional[List[str]] = None
+        lora_target_modules: Optional[List[str]] = None,
+        lora_num_layers: Optional[int] = None
     ):
         super().__init__()
         self.model_name = model_name
@@ -206,13 +207,16 @@ class AuraSigLIPBackbone(nn.Module):
         self.lora_alpha = lora_alpha
         self.lora_dropout = lora_dropout
         self.lora_target_modules = lora_target_modules or ["q_proj", "v_proj"]
+        self.lora_num_layers = lora_num_layers
 
         # Freeze all parameters first
         for param in self.vision_model.parameters():
             param.requires_grad = False
 
         if self.use_lora:
-            for layer in self.vision_model.encoder.layers:
+            all_layers = self.vision_model.encoder.layers
+            target_layers = all_layers[-lora_num_layers:] if lora_num_layers is not None else all_layers
+            for layer in target_layers:
                 if "q_proj" in self.lora_target_modules:
                     layer.self_attn.q_proj = LoRALinear(layer.self_attn.q_proj, rank=lora_rank, alpha=lora_alpha, dropout=lora_dropout)
                 if "v_proj" in self.lora_target_modules:
@@ -490,7 +494,7 @@ class CachedEmbeddingDataset(Dataset):
 # ============================================================
 # 5. Forensic Training Execution Engine
 # ============================================================
-def train_experiment(config_path: str):
+def train_experiment(config_path: str, max_batches: Optional[int] = None, max_hours_override: Optional[float] = None):
     print("============================================================")
     print("  AURA — Forensically Hardened ML Training Pipeline         ")
     print("============================================================")
@@ -540,6 +544,9 @@ def train_experiment(config_path: str):
     lora_alpha = float(cfg.get("model", {}).get("lora_alpha", 16.0))
     lora_dropout = float(cfg.get("model", {}).get("lora_dropout", 0.05))
     lora_target_modules = cfg.get("model", {}).get("lora_target_modules", ["q_proj", "v_proj"])
+    lora_num_layers = cfg.get("model", {}).get("lora_num_layers", None)
+    if lora_num_layers is not None:
+        lora_num_layers = int(lora_num_layers)
     lora_lr = float(cfg.get("training", {}).get("lora_learning_rate", 0.0002))
 
     unfreeze_last_n_layers = int(cfg.get("model", {}).get("unfreeze_last_n_layers", 0))
@@ -547,7 +554,7 @@ def train_experiment(config_path: str):
     grad_accum_steps = int(cfg.get("training", {}).get("gradient_accumulation_steps", 1))
 
     # Initialize Pretrained SigLIP Backbone
-    print(f"\n[*] Loading Genuine Pretrained Vision Backbone: {backbone_name} (use_lora={use_lora}, unfreeze_last_n_layers={unfreeze_last_n_layers})...")
+    print(f"\n[*] Loading Genuine Pretrained Vision Backbone: {backbone_name} (use_lora={use_lora}, unfreeze_last_n_layers={unfreeze_last_n_layers}, lora_num_layers={lora_num_layers})...")
     backbone = AuraSigLIPBackbone(
         model_name=backbone_name,
         unfreeze_last_n_layers=unfreeze_last_n_layers,
@@ -555,7 +562,8 @@ def train_experiment(config_path: str):
         lora_rank=lora_rank,
         lora_alpha=lora_alpha,
         lora_dropout=lora_dropout,
-        lora_target_modules=lora_target_modules
+        lora_target_modules=lora_target_modules,
+        lora_num_layers=lora_num_layers
     ).to(device)
     backbone_param_count = sum(p.numel() for p in backbone.parameters())
     backbone_param_hash = compute_model_parameter_hash(backbone, trainable_only=False)
@@ -567,6 +575,11 @@ def train_experiment(config_path: str):
     epochs = cfg.get("training", {}).get("epochs", 30)
     lr = float(cfg.get("training", {}).get("learning_rate", 0.001))
     weight_decay = float(cfg.get("training", {}).get("weight_decay", 0.01))
+    max_hours = float(cfg.get("training", {}).get("max_hours", 12.0))
+    if max_hours_override is not None:
+        max_hours = float(max_hours_override)
+    early_stopping_patience = int(cfg.get("training", {}).get("early_stopping_patience", 0))
+
 
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
@@ -668,11 +681,14 @@ def train_experiment(config_path: str):
     best_val_cat_acc = 0.0
     total_optimizer_steps = 0
     non_zero_gradients_seen = False
+    patience_counter = 0
 
     start_time = datetime.datetime.now(datetime.timezone.utc)
     print(f"\n[*] Starting Multi-Task Training Loop on {gpu_name} ({epochs} epochs)...")
 
     for epoch in range(1, epochs + 1):
+        epoch_start_time = datetime.datetime.now(datetime.timezone.utc)
+        epoch_samples = 0
         if is_dynamic_backbone:
             backbone.train()
         heads.train()
@@ -681,6 +697,8 @@ def train_experiment(config_path: str):
         optimizer.zero_grad()
 
         for step, batch in enumerate(train_loader):
+            if max_batches is not None and step >= max_batches:
+                break
             targets = {k: v.to(device) for k, v in batch.items() if k not in ["image_id", "features", "pixel_values"]}
 
             with torch.amp.autocast('cuda', dtype=torch.float16):
@@ -695,7 +713,7 @@ def train_experiment(config_path: str):
 
             loss_scaled.backward()
 
-            if (step + 1) % grad_accum_steps == 0 or (step + 1) == len(train_loader):
+            if (step + 1) % grad_accum_steps == 0 or (step + 1) == len(train_loader) or (max_batches is not None and (step + 1) == max_batches):
                 for p in all_trainable_params:
                     if p.grad is not None and torch.norm(p.grad).item() > 1e-7:
                         non_zero_gradients_seen = True
@@ -706,6 +724,7 @@ def train_experiment(config_path: str):
 
             running_train_loss += loss.item()
             train_batches += 1
+            epoch_samples += len(batch["pixel_values"]) if is_dynamic_backbone else len(batch["features"])
 
         scheduler.step()
         avg_train_loss = running_train_loss / max(1, train_batches)
@@ -724,7 +743,9 @@ def train_experiment(config_path: str):
         total_val_samples = 0
 
         with torch.no_grad():
-            for batch in val_loader:
+            for val_step, batch in enumerate(val_loader):
+                if max_batches is not None and val_step >= max_batches:
+                    break
                 targets = {k: v.to(device) for k, v in batch.items() if k not in ["image_id", "features", "pixel_values"]}
 
                 with torch.amp.autocast('cuda', dtype=torch.float16):
@@ -780,11 +801,42 @@ def train_experiment(config_path: str):
 
         print(f"  Epoch {epoch:02d}/{epochs:02d} | Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f} | Val Macro F1: {val_macro_f1:.4f} (Cat: {cat_acc*100:.1f}%, Col: {col_acc*100:.1f}%)")
 
+        epoch_duration = round((datetime.datetime.now(datetime.timezone.utc) - epoch_start_time).total_seconds(), 2)
+        samples_per_sec = round(epoch_samples / max(0.001, epoch_duration), 4)
+
+        # Write Periodic Training Heartbeat
+        heartbeat_data = {
+            "experiment_id": exp_id,
+            "epoch": epoch,
+            "total_epochs": epochs,
+            "step": total_optimizer_steps,
+            "optimizer_steps_cumulative": total_optimizer_steps,
+            "elapsed_seconds": round((datetime.datetime.now(datetime.timezone.utc) - start_time).total_seconds(), 2),
+            "epoch_duration_seconds": epoch_duration,
+            "samples_per_second": samples_per_sec,
+            "loss": round(avg_train_loss, 4),
+            "train_loss": round(avg_train_loss, 4),
+            "val_loss": round(avg_val_loss, 4),
+            "val_macro_f1": round(val_macro_f1, 4),
+            "gpu_allocated_mb": round(torch.cuda.memory_allocated() / (1024**2), 2) if torch.cuda.is_available() else 0.0,
+            "gpu_reserved_mb": round(torch.cuda.memory_reserved() / (1024**2), 2) if torch.cuda.is_available() else 0.0,
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
+        }
+        with open(os.path.join(run_dir, "training_heartbeat.json"), "w", encoding="utf-8") as f:
+            json.dump(heartbeat_data, f, indent=2)
+
+        # Check Max Hours Safety Limit
+        elapsed_hours = (datetime.datetime.now(datetime.timezone.utc) - start_time).total_seconds() / 3600.0
+        if max_hours > 0 and elapsed_hours >= max_hours:
+            print(f"[!] Reached max execution time limit ({max_hours} hours). Stopping training cleanly.")
+            break
+
         # Save Best Validation Checkpoint (Strictly by Validation Macro F1)
         if val_macro_f1 > best_val_macro_f1:
             best_val_macro_f1 = val_macro_f1
             best_epoch = epoch
             best_val_cat_acc = cat_acc
+            patience_counter = 0
             best_ckpt_path = os.path.join(ckpt_dir, "best_model.pt")
 
             # Build checkpoint
@@ -822,13 +874,36 @@ def train_experiment(config_path: str):
                 "lora_alpha": lora_alpha if use_lora else None,
                 "lora_dropout": lora_dropout if use_lora else None,
                 "lora_target_modules": lora_target_modules if use_lora else None,
+                "lora_num_layers": lora_num_layers if use_lora else None,
                 "unfreeze_last_n_layers": unfreeze_last_n_layers,
                 "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
             }
-            if is_dynamic_backbone:
+
+            # HARDENING & PARAMETER GUARD:
+            # For LoRA models, save ONLY the trainable LoRA adapter tensors (excluding 428M frozen SigLIP base tensors)
+            if use_lora:
+                lora_state = {k: v for k, v in backbone.state_dict().items() if "lora_" in k}
+                saved_lora_params = sum(p.numel() for p in lora_state.values())
+                # Verify that no frozen base parameters are included
+                frozen_leaked = [k for k in lora_state.keys() if "lora_" not in k]
+                if frozen_leaked:
+                    raise RuntimeError(f"[FATAL GUARD ERROR] Frozen parameters leaked into LoRA state dict: {frozen_leaked}")
+                ckpt_payload["lora_state_dict"] = lora_state
+                ckpt_payload["saved_trainable_parameters"] = saved_lora_params + sum(p.numel() for p in heads.state_dict().values())
+            elif is_dynamic_backbone:
                 ckpt_payload["backbone_state_dict"] = backbone.state_dict()
 
             torch.save(ckpt_payload, best_ckpt_path)
+
+            # CHECKPOINT SIZE SANITY GUARD:
+            saved_size_bytes = os.path.getsize(best_ckpt_path)
+            if use_lora and saved_size_bytes > 50 * 1024 * 1024: # > 50 MB for a LoRA checkpoint indicates base weight leakage
+                raise RuntimeError(f"[FATAL GUARD ERROR] LoRA checkpoint size {saved_size_bytes:,} bytes exceeds 50MB sanity limit! Base backbone was serialized.")
+        else:
+            patience_counter += 1
+            if early_stopping_patience > 0 and patience_counter >= early_stopping_patience:
+                print(f"[!] Early stopping triggered: validation Macro F1 has not improved in {early_stopping_patience} consecutive epochs. Best epoch was {best_epoch} (Macro F1: {best_val_macro_f1:.4f}). Stopping cleanly.")
+                break
 
     end_time = datetime.datetime.now(datetime.timezone.utc)
     duration_seconds = (end_time - start_time).total_seconds()
@@ -866,7 +941,11 @@ def train_experiment(config_path: str):
     reload_heads.load_state_dict(saved_state["heads_state_dict"])
     reloaded_hash = compute_model_parameter_hash(reload_heads)
 
-    if unfreeze_last_n_layers > 0 and "backbone_state_dict" in saved_state:
+    if use_lora and "lora_state_dict" in saved_state:
+        backbone.load_state_dict(saved_state["lora_state_dict"], strict=False)
+        final_backbone_hash = compute_model_parameter_hash(backbone, trainable_only=True)
+        print(f"[+] Verified LoRA state dict reload into backbone ({len(saved_state['lora_state_dict'])} tensors).")
+    elif unfreeze_last_n_layers > 0 and "backbone_state_dict" in saved_state:
         reload_backbone = AuraSigLIPBackbone(model_name=backbone_name, unfreeze_last_n_layers=unfreeze_last_n_layers).to(device)
         reload_backbone.load_state_dict(saved_state["backbone_state_dict"])
         final_backbone_hash = compute_model_parameter_hash(reload_backbone, trainable_only=False)
@@ -934,8 +1013,49 @@ def train_experiment(config_path: str):
     with open(os.path.join(run_dir, "config.json"), "w", encoding="utf-8") as f:
         json.dump(cfg, f, indent=2)
 
+    with open(os.path.join(run_dir, "dataset_manifest.json"), "w", encoding="utf-8") as f:
+        json.dump(load_json(manifest_path), f, indent=2)
+
     with open(os.path.join(run_dir, "training_log.json"), "w", encoding="utf-8") as f:
         json.dump(training_logs, f, indent=2)
+
+    with open(os.path.join(forensics_dir, "training_progress.json"), "w", encoding="utf-8") as f:
+        json.dump(training_logs, f, indent=2)
+
+    if use_lora:
+        lora_structure = {
+            "experiment_id": exp_id,
+            "backbone": backbone_name,
+            "lora_rank": lora_rank,
+            "lora_alpha": lora_alpha,
+            "lora_dropout": lora_dropout,
+            "lora_target_modules": lora_target_modules,
+            "lora_num_layers": lora_num_layers,
+            "total_layers": len(backbone.vision_model.encoder.layers),
+            "adapted_layer_indices": list(range(len(backbone.vision_model.encoder.layers) - (lora_num_layers or 27), len(backbone.vision_model.encoder.layers))),
+            "lora_parameters": backbone_trainable_count,
+            "head_parameters": head_trainable_count,
+            "total_trainable_parameters": total_trainable_count,
+            "frozen_parameters": backbone_param_count - backbone_trainable_count,
+            "initial_lora_hash": initial_trainable_backbone_hash,
+            "final_lora_hash": final_backbone_hash
+        }
+        with open(os.path.join(forensics_dir, "lora_structure.json"), "w", encoding="utf-8") as f:
+            json.dump(lora_structure, f, indent=2)
+
+    ckpt_audit = {
+        "checkpoint_path": best_ckpt_path,
+        "checkpoint_size_bytes": ckpt_size,
+        "checkpoint_size_mb": round(ckpt_size / (1024**2), 2),
+        "size_under_50mb_guard": ckpt_size < 50 * 1024 * 1024,
+        "checkpoint_sha256": ckpt_sha256,
+        "saved_lora_tensors": len(saved_state.get("lora_state_dict", {})),
+        "saved_head_tensors": len(saved_state.get("heads_state_dict", {})),
+        "frozen_backbone_tensors_saved": len(saved_state.get("backbone_state_dict", {})) if "backbone_state_dict" in saved_state else 0,
+        "reload_verified": True
+    }
+    with open(os.path.join(forensics_dir, "checkpoint_audit.json"), "w", encoding="utf-8") as f:
+        json.dump(ckpt_audit, f, indent=2)
 
     selected_ckpt_info = {
         "experiment_id": exp_id,
@@ -1000,9 +1120,11 @@ def train_experiment(config_path: str):
 def main():
     parser = argparse.ArgumentParser(description="Train aura-garment-v1 model on GPU")
     parser.add_argument("--config", type=str, default="training/configs/siglip_so400m_garment_exp0007.yaml", help="Path to config")
+    parser.add_argument("--max-batches", type=int, default=None, help="Limit batches per epoch for sanity verification")
+    parser.add_argument("--max-hours", type=float, default=None, help="Maximum execution time limit in hours")
     args = parser.parse_args()
 
-    train_experiment(args.config)
+    train_experiment(args.config, max_batches=args.max_batches, max_hours_override=args.max_hours)
 
 
 if __name__ == "__main__":

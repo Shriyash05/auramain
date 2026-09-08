@@ -1,0 +1,10 @@
+{
+  "experiment_id": "EXP-0015-SELECTIVE-LORA-SANITY",
+  "selection_criterion": "highest_validation_macro_f1",
+  "best_epoch": 1,
+  "best_validation_macro_f1": 0.1875,
+  "best_validation_category_accuracy": 0.1875,
+  "checkpoint_path": "training\\runs\\EXP-0015-SELECTIVE-LORA-SANITY\\checkpoint\\best_model.pt",
+  "checkpoint_sha256": "fbd0a538e0e764dc37e3792c7e76f522833b04f6459cc0fe78fa1c7626203a04",
+  "reloaded_verified": true
+}

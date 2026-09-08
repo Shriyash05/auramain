@@ -1,0 +1,19 @@
+{
+  "split_name": "hard_test",
+  "sample_size": 18,
+  "input_type": "full_image",
+  "metrics": {
+    "category_top1_accuracy": 0.1667,
+    "color_accuracy": 0.1667,
+    "fit_accuracy": 0.2778,
+    "silhouette_accuracy": 0.1111,
+    "material_accuracy": 0.0556,
+    "pattern_accuracy": 0.2778,
+    "macro_f1": 0.1759,
+    "mean_confidence": 0.3436,
+    "accepted_count": 0,
+    "refusal_rate": 1.0,
+    "false_confidence_count": 0,
+    "false_confidence_rate": 0.0
+  }
+}

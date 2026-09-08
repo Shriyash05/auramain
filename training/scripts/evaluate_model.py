@@ -67,8 +67,11 @@ def evaluate_split(
         lora_dropout=lora_dropout,
         lora_target_modules=lora_target_modules
     ).to(device)
-    if "backbone_state_dict" in saved_state:
-        backbone.load_state_dict(saved_state["backbone_state_dict"])
+    if "lora_state_dict" in saved_state:
+        backbone.load_state_dict(saved_state["lora_state_dict"], strict=False)
+        print("[+] Loaded pure LoRA adapter weights from checkpoint.")
+    elif "backbone_state_dict" in saved_state:
+        backbone.load_state_dict(saved_state["backbone_state_dict"], strict=False)
         if is_lora:
             print("[+] Loaded LoRA/PEFT adapted backbone weights from checkpoint.")
         else:

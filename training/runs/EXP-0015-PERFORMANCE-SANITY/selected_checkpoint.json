@@ -1,0 +1,10 @@
+{
+  "experiment_id": "EXP-0015-PERFORMANCE-SANITY",
+  "selection_criterion": "highest_validation_macro_f1",
+  "best_epoch": 2,
+  "best_validation_macro_f1": 0.1875,
+  "best_validation_category_accuracy": 0.1875,
+  "checkpoint_path": "training\\runs\\EXP-0015-PERFORMANCE-SANITY\\checkpoint\\best_model.pt",
+  "checkpoint_sha256": "ade11d8a6ec33409c1ea79daabddd2017350b0b979469741cc1dc09eea6d3bfe",
+  "reloaded_verified": true
+}

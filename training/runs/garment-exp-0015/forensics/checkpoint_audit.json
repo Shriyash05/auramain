@@ -1,0 +1,11 @@
+{
+  "checkpoint_path": "training\\runs\\garment-exp-0015\\checkpoint\\best_model.pt",
+  "checkpoint_size_bytes": 5541273,
+  "checkpoint_size_mb": 5.28,
+  "size_under_50mb_guard": true,
+  "checkpoint_sha256": "2102078309399dc7dd7e3760cd70004a0a7b8bb8b48e163ab25736f55fda6d2e",
+  "saved_lora_tensors": 16,
+  "saved_head_tensors": 18,
+  "frozen_backbone_tensors_saved": 0,
+  "reload_verified": true
+}

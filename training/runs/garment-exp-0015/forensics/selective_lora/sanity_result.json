@@ -1,0 +1,52 @@
+{
+  "experiment_id": "EXP-0015-SELECTIVE-LORA-SANITY",
+  "status": "PASS",
+  "configuration": {
+    "config_id": "CONFIG_A",
+    "name": "Last 4 Blocks (Layers 23-26)",
+    "num_layers": 4,
+    "layer_indices": [23, 24, 25, 26],
+    "target_modules": ["q_proj", "v_proj"],
+    "lora_rank": 8,
+    "lora_alpha": 16.0,
+    "lora_dropout": 0.05,
+    "epochs": 2
+  },
+  "training_execution": {
+    "epochs_completed": 2,
+    "optimizer_steps": 2,
+    "elapsed_seconds": 151.68,
+    "forward_verified": true,
+    "backward_verified": true,
+    "non_zero_gradients_verified": true,
+    "optimizer_update_verified": true,
+    "initial_heads_hash": "b4326ad7e5f0880186161f102b4cac7a8a9fa2a490a2c385fe740adff7d9cb48",
+    "final_heads_hash": "53e69c77b2314a99ce5fc8b1f9385beebc6e05edd8ca4800d79d065f2e265337",
+    "weight_delta_verified": true,
+    "initial_lora_hash": "b59a6e1c3143cc0a8268536209ff00de822902ab832488b0e9a2b591cfdd0cdb"
+  },
+  "checkpoint_verification": {
+    "checkpoint_path": "training/runs/EXP-0015-SELECTIVE-LORA-SANITY/checkpoint/best_model.pt",
+    "checkpoint_size_bytes": 5541273,
+    "checkpoint_size_mb": 5.28,
+    "size_under_50mb_guard": true,
+    "lora_tensors_saved": 16,
+    "lora_parameters_saved": 147456,
+    "heads_tensors_saved": 18,
+    "heads_parameters_saved": 310586,
+    "frozen_backbone_parameters_saved": 0,
+    "checkpoint_sha256": "fbd0a538e0e764dc37e3792c7e76f522833b04f6459cc0fe78fa1c7626203a04",
+    "checkpoint_reload_verified": true
+  },
+  "heartbeat_verification": {
+    "heartbeat_path": "training/runs/EXP-0015-SELECTIVE-LORA-SANITY/training_heartbeat.json",
+    "all_fields_present": true,
+    "epoch": 2,
+    "step": 2,
+    "loss": 12.7307,
+    "val_loss": 13.1366,
+    "val_macro_f1": 0.1875,
+    "gpu_allocated_mb": 1658.2,
+    "gpu_reserved_mb": 2048.0
+  }
+}

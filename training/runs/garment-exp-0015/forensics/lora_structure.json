@@ -1,0 +1,25 @@
+{
+  "experiment_id": "garment-exp-0015",
+  "backbone": "google/siglip-so400m-patch14-384",
+  "lora_rank": 8,
+  "lora_alpha": 16.0,
+  "lora_dropout": 0.05,
+  "lora_target_modules": [
+    "q_proj",
+    "v_proj"
+  ],
+  "lora_num_layers": 4,
+  "total_layers": 27,
+  "adapted_layer_indices": [
+    23,
+    24,
+    25,
+    26
+  ],
+  "lora_parameters": 147456,
+  "head_parameters": 310586,
+  "total_trainable_parameters": 458042,
+  "frozen_parameters": 428225600,
+  "initial_lora_hash": "0896da91a378cc6b6f045e3df2c791fcb518acbb861545b43642e1efe5878467",
+  "final_lora_hash": "cdcc7080e0529b72d2bac0a3992dcab2e68bde27645d1374544510885aadb5f2"
+}

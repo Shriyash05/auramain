@@ -1,0 +1,22 @@
+{
+  "recommended_config_id": "CONFIG_A",
+  "recommended_name": "Last 4 Blocks (Layers 23-26)",
+  "num_layers": 4,
+  "layer_indices": [
+    23,
+    24,
+    25,
+    26
+  ],
+  "lora_parameters": 147456,
+  "head_parameters": 310586,
+  "total_trainable_parameters": 458042,
+  "samples_per_second": 0.3962,
+  "seconds_per_sample": 2.5242,
+  "speedup_factor": 1.86,
+  "peak_vram_mb": 1906.7,
+  "estimated_epoch_minutes": 19.31,
+  "estimated_20_epoch_hours": 6.44,
+  "estimated_50_epoch_hours": 16.09,
+  "decision": "SELECTIVE_LORA_4"
+}

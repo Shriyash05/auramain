@@ -1,0 +1,66 @@
+# ============================================================
+# AURA-GARMENT-V1 REPRODUCIBLE TRAINING CONFIGURATION
+# Experiment: garment-exp-0015
+# Model: Genuine Pretrained SigLIP-SO400M + LoRA / PEFT Adaptation + 256-dim Head
+# Dataset: Frozen dataset-v0.5-500.json (N=500, Train=459, Val=41)
+# Hypothesis: Parameter-Efficient Fine-Tuning of SigLIP vision attention on 500-sample corpus combined with localization-aware input resolves real-world wardrobe recognition
+# Hardware: NVIDIA GeForce GTX 1650 (4GB VRAM) / CUDA 12.6
+# ============================================================
+
+experiment:
+  id: "garment-exp-0015"
+  name: "aura-garment-v1-siglip-so400m-exp0015-lora-500"
+  seed: 42
+  description: "LoRA / PEFT adaptation experiment on frozen dataset-v0.5-500 (N=500) targeting SigLIP-SO400M attention query/value projections (r=8, alpha=16, dropout=0.05) with 256-dim bottleneck head, equal 1.0 loss weights, and deterministic seed."
+
+model:
+  base_architecture: "google/siglip-so400m-patch14-384"
+  canonical_taxonomy_path: "data/garment/metadata/canonical_taxonomy.json"
+  freeze_backbone: false
+  use_lora: true
+  lora_num_layers: 4
+  lora_rank: 8
+  lora_alpha: 16.0
+  lora_dropout: 0.05
+  lora_target_modules: ["q_proj", "v_proj"]
+  hidden_dim: 1152      # SigLIP-SO400M embedding dimension
+  bottleneck_dim: 256    # 256-dim regularized bottleneck probe
+  head_dropout: 0.3      # Head dropout
+  unfreeze_last_n_layers: 0
+
+dataset:
+  manifest_path: "data/garment/metadata/dataset-v0.5-500.json"
+  canonical_taxonomy_path: "data/garment/metadata/canonical_taxonomy.json"
+  version: "0.5.0"
+  image_size: 384
+  num_workers: 0
+  allowed_splits: ["train", "validation"]
+  isolated_test_splits: ["blind_test", "hard_test", "real_world_test"]
+
+training:
+  device: "cuda"
+  mixed_precision: "fp16"
+  batch_size: 1          # Batch size 1 with grad accum 16 for safe 4GB VRAM execution
+  gradient_accumulation_steps: 16
+  epochs: 20             # 20 epochs (~6.44h expected runtime)
+  max_hours: 8.0         # Hard safety limit
+  learning_rate: 0.0005  # Probe head learning rate
+  lora_learning_rate: 0.0002 # LoRA backbone adapter learning rate
+  weight_decay: 0.05     # L2 regularization
+  optimizer: "AdamW"
+  scheduler: "cosine"
+  early_stopping_patience: 6
+
+loss_weights:
+  category_loss: 1.0
+  fit_loss: 1.0
+  silhouette_loss: 1.0
+  color_loss: 1.0
+  pattern_loss: 1.0
+  material_loss: 1.0
+  formality_loss: 1.0
+
+output:
+  runs_dir: "training/runs"
+  save_best_only: false
+  export_onnx: false

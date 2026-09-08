@@ -1,0 +1,17 @@
+{
+  "recommended_batch_size": 1,
+  "recommended_gradient_accumulation_steps": 16,
+  "effective_batch_size": 16,
+  "recommended_num_workers": 0,
+  "use_preprocessing_cache": true,
+  "cache_dir": "training/cache/preprocessed",
+  "measured_throughput_samples_per_sec": 0.2113,
+  "measured_seconds_per_sample": 4.733,
+  "projected_epoch_seconds": 2172.27,
+  "projected_epoch_minutes": 36.2,
+  "projected_50_epoch_hours": 30.17,
+  "baseline_previous_50_epoch_hours": 31.23,
+  "throughput_improvement_factor": 1.04,
+  "fits_gtx_1650_4gb": true,
+  "peak_gpu_memory_mb": 3171.68
+}

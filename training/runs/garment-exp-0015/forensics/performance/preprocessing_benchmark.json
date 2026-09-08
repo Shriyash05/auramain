@@ -1,0 +1,12 @@
+{
+  "samples_tested": 32,
+  "cache_off_total_sec": 0.9488,
+  "cache_off_ms_per_sample": 29.65,
+  "cache_on_total_sec": 0.5146,
+  "cache_on_ms_per_sample": 16.08,
+  "preprocessing_speedup_factor": 1.84,
+  "cache_directory": "training/cache/preprocessed",
+  "is_gradient_cached": false,
+  "is_embedding_cached": false,
+  "is_model_output_cached": false
+}

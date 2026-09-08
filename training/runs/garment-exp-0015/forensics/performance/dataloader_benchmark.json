@@ -1,0 +1,32 @@
+[
+  {
+    "num_workers": 0,
+    "batch_size": 1,
+    "samples_processed": 32,
+    "data_wait_time_sec": 0.7602,
+    "compute_time_sec": 151.1119,
+    "total_time_sec": 151.872,
+    "samples_per_sec": 0.2107,
+    "error": null
+  },
+  {
+    "num_workers": 2,
+    "batch_size": 1,
+    "samples_processed": 32,
+    "data_wait_time_sec": 17.9693,
+    "compute_time_sec": 151.3287,
+    "total_time_sec": 169.298,
+    "samples_per_sec": 0.189,
+    "error": null
+  },
+  {
+    "num_workers": 4,
+    "batch_size": 1,
+    "samples_processed": 32,
+    "data_wait_time_sec": 33.2325,
+    "compute_time_sec": 151.4482,
+    "total_time_sec": 184.6807,
+    "samples_per_sec": 0.1733,
+    "error": null
+  }
+]

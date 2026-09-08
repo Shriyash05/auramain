@@ -1,0 +1,14 @@
+{
+  "experiment_id": "EXP-0015-SELECTIVE-LORA-SANITY",
+  "lora_rank": 8,
+  "lora_alpha": 16.0,
+  "lora_dropout": 0.05,
+  "lora_target_modules": [
+    "q_proj",
+    "v_proj"
+  ],
+  "trainable_lora_parameters": 147456,
+  "total_backbone_parameters": 428373056,
+  "lora_parameter_percentage": 0.0344,
+  "initial_lora_hash": "b59a6e1c3143cc0a8268536209ff00de822902ab832488b0e9a2b591cfdd0cdb"
+}

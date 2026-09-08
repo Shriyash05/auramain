@@ -1,0 +1,17 @@
+{
+  "experiment_id": "garment-exp-0015",
+  "epoch": 8,
+  "total_epochs": 20,
+  "step": 232,
+  "optimizer_steps_cumulative": 232,
+  "elapsed_seconds": 10056.85,
+  "epoch_duration_seconds": 1244.82,
+  "samples_per_second": 0.3687,
+  "loss": 2.2725,
+  "train_loss": 2.2725,
+  "val_loss": 9.164,
+  "val_macro_f1": 0.4512,
+  "gpu_allocated_mb": 1658.2,
+  "gpu_reserved_mb": 2048.0,
+  "timestamp": "2026-09-08T19:08:35.487949+00:00"
+}

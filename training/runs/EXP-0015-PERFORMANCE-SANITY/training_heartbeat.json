@@ -1,0 +1,14 @@
+{
+  "experiment_id": "EXP-0015-PERFORMANCE-SANITY",
+  "epoch": 2,
+  "total_epochs": 2,
+  "optimizer_steps_cumulative": 2,
+  "elapsed_seconds": 221.85,
+  "epoch_duration_seconds": 110.39,
+  "samples_per_second": 0.1449,
+  "train_loss": 12.634,
+  "val_loss": 13.1247,
+  "val_macro_f1": 0.1875,
+  "gpu_allocated_mb": 1667.9,
+  "timestamp": "2026-09-08T13:39:21.699365+00:00"
+}

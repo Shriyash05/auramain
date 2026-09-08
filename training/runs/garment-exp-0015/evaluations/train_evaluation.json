@@ -1,0 +1,19 @@
+{
+  "split_name": "train",
+  "sample_size": 459,
+  "input_type": "full_image",
+  "metrics": {
+    "category_top1_accuracy": 0.6841,
+    "color_accuracy": 0.488,
+    "fit_accuracy": 0.8584,
+    "silhouette_accuracy": 0.7974,
+    "material_accuracy": 0.695,
+    "pattern_accuracy": 0.7669,
+    "macro_f1": 0.715,
+    "mean_confidence": 0.6642,
+    "accepted_count": 271,
+    "refusal_rate": 0.4096,
+    "false_confidence_count": 55,
+    "false_confidence_rate": 0.1198
+  }
+}
