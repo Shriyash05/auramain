@@ -13,7 +13,12 @@ import { ArrowLeft, Check, Sparkles } from 'lucide-react-native';
 
 export default function GarmentConfirmScreen() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ imageUri: string; category: GarmentCategory }>();
+  const params = useLocalSearchParams<{
+    imageUri: string;
+    category?: GarmentCategory;
+    inferredAttributes?: string;
+    selectionMeta?: string;
+  }>();
   const { addGarment } = useGarments();
 
   const [isProcessing, setIsProcessing] = useState(true);
@@ -28,6 +33,28 @@ export default function GarmentConfirmScreen() {
     async function process() {
       try {
         setIsProcessing(true);
+
+        // Check if verified inferred attributes were passed from Target Garment Selection flow
+        if (params.inferredAttributes) {
+          const parsed = JSON.parse(params.inferredAttributes);
+          if (parsed.category && parsed.category !== 'unknown') {
+            setCategory(parsed.category as GarmentCategory);
+          }
+          if (parsed.fit && parsed.fit !== 'unknown') {
+            setFit(parsed.fit);
+          }
+          if (parsed.primary_color_hex) {
+            setPrimaryColor(parsed.primary_color_hex);
+          }
+          const materialPrefix = parsed.material && parsed.material !== 'unknown' ? `${parsed.material} ` : '';
+          const categoryName = parsed.category && parsed.category !== 'unknown' ? parsed.category : 'Piece';
+          setName(`${materialPrefix}${categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}`);
+          if (parsed.occasions && Array.isArray(parsed.occasions)) {
+            setSelectedOccasions(parsed.occasions as Occasion[]);
+          }
+          return;
+        }
+
         if (params.imageUri) {
           const result = await imageProcessingService.processGarmentImage(
             params.imageUri,
@@ -48,7 +75,7 @@ export default function GarmentConfirmScreen() {
       }
     }
     process();
-  }, [params.imageUri, params.category]);
+  }, [params.imageUri, params.category, params.inferredAttributes]);
 
   const toggleOccasion = (occ: Occasion) => {
     if (selectedOccasions.includes(occ)) {

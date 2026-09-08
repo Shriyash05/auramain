@@ -1,0 +1,15 @@
+{
+  "heuristic_proposal_generation_ms": 0.032,
+  "siglip_lora_inference_per_crop_gpu_ms": 460.12,
+  "pipeline_latencies_ms": {
+    "full_image_single_forward": 460.12,
+    "oracle_crop_single_forward": 460.12,
+    "automated_k1": 460.15,
+    "automated_k3_reranked": 1380.39
+  },
+  "hardware": {
+    "device": "cuda",
+    "gpu_name": "NVIDIA GeForce GTX 1650",
+    "vram_allocated_mb": 3365.38
+  }
+}

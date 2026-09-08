@@ -1,0 +1,46 @@
+{
+  "phase": "phase-15",
+  "timestamp": "2026-09-08T21:15:00Z",
+  "status": "PASS",
+  "checks": {
+    "dataset_immutability": {
+      "blind_freeze_sha256": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+      "blind_freeze_verified": true,
+      "dataset_500_sha256": "85375f147608616762636106bd433a2378af902925161d260365e344f2a0fe1e",
+      "dataset_500_verified": true,
+      "status": "PASS"
+    },
+    "contract_source_files": {
+      "files": {
+        "types.ts": true,
+        "cropService.ts": true,
+        "garmentSelectionService.ts": true,
+        "GarmentRegionSelector.tsx": true
+      },
+      "status": "PASS"
+    },
+    "inference_contract": {
+      "model_version": "aura-garment-v1-exp0015",
+      "experimental_guard": true,
+      "confidence_threshold": 0.65,
+      "refusal_state_enforced": true,
+      "suggestion_override_protected": true,
+      "status": "PASS"
+    },
+    "crop_safety": {
+      "clamping_implemented": true,
+      "validation_implemented": true,
+      "padding_implemented": true,
+      "default_padding_pct": 0.05,
+      "status": "PASS"
+    },
+    "scientific_integrity": {
+      "zero_commercial_apis": true,
+      "openai_used": false,
+      "anthropic_used": false,
+      "replicate_used": false,
+      "fashn_used": false,
+      "status": "PASS"
+    }
+  }
+}

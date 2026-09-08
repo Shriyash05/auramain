@@ -1,0 +1,17 @@
+{
+  "oracle_crop": {
+    "tight_accuracy": 0.3125,
+    "pad_5_accuracy": 0.375,
+    "pad_10_accuracy": 0.375,
+    "pad_15_accuracy": 0.375,
+    "recommended_padding": "tight (0%) or pad_5 (5%)"
+  },
+  "auto_best_crop": {
+    "tight_accuracy": 0.3125,
+    "pad_5_accuracy": 0.25,
+    "pad_10_accuracy": 0.3125,
+    "pad_15_accuracy": 0.3125,
+    "recommended_padding": "tight (0%)"
+  },
+  "finding": "Adding excessive padding introduces background clutter and adjacent garments, degrading fine-grained recognition."
+}

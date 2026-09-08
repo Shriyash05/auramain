@@ -1,0 +1,37 @@
+{
+  "phase": "phase-15a",
+  "timestamp": "2026-09-08T21:40:00Z",
+  "status": "PASS",
+  "checks": {
+    "dataset_immutability": {
+      "blind_freeze_sha256": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+      "blind_freeze_verified": true,
+      "dataset_500_sha256": "85375f147608616762636106bd433a2378af902925161d260365e344f2a0fe1e",
+      "dataset_500_verified": true,
+      "status": "PASS"
+    },
+    "add_screen_integration": {
+      "add_screen_exists": true,
+      "region_selector_imported": true,
+      "selection_service_used": true,
+      "fsm_states_handled": true,
+      "confidence_refusal_ui": true,
+      "experimental_badge_displayed": true,
+      "status": "PASS"
+    },
+    "model_governance": {
+      "model_version": "aura-garment-v1-exp0015",
+      "governance_status": "EXPERIMENTAL",
+      "has_explicit_model_version": true,
+      "status": "PASS"
+    },
+    "scientific_integrity": {
+      "zero_commercial_apis": true,
+      "openai_used": false,
+      "anthropic_used": false,
+      "replicate_used": false,
+      "fashn_used": false,
+      "status": "PASS"
+    }
+  }
+}

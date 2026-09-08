@@ -1,0 +1,62 @@
+{
+  "experiment_id": "phase-14a-localization-attribution",
+  "status": "PASS",
+  "checks": {
+    "dataset_immutability": {
+      "blind_freeze_sha256": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+      "blind_freeze_verified": true,
+      "dataset_500_sha256": "85375f147608616762636106bd433a2378af902925161d260365e344f2a0fe1e",
+      "dataset_500_verified": true,
+      "status": "PASS"
+    },
+    "checkpoint_integrity": {
+      "checkpoint_sha256": "2102078309399dc7dd7e3760cd70004a0a7b8bb8b48e163ab25736f55fda6d2e",
+      "checkpoint_verified": true,
+      "status": "PASS"
+    },
+    "annotation_separation": {
+      "ground_truth_path": "D:\\Personal projects\\aura\\training\\data-audits\\phase13c\\localization_ground_truth.json",
+      "exists": true,
+      "status": "PASS"
+    },
+    "audit_artifacts": {
+      "directory": "D:\\Personal projects\\aura\\training\\data-audits\\phase14a",
+      "artifacts": {
+        "proposal_attribution.json": {
+          "exists": true,
+          "size_bytes": 121522
+        },
+        "topk_coverage.json": {
+          "exists": true,
+          "size_bytes": 1439
+        },
+        "crop_padding_analysis.json": {
+          "exists": true,
+          "size_bytes": 532
+        },
+        "reranking_results.json": {
+          "exists": true,
+          "size_bytes": 733
+        },
+        "local_model_options.json": {
+          "exists": true,
+          "size_bytes": 2376
+        },
+        "latency_benchmark.json": {
+          "exists": true,
+          "size_bytes": 413
+        }
+      },
+      "all_present": true
+    },
+    "scientific_integrity": {
+      "zero_commercial_apis": true,
+      "openai_used": false,
+      "anthropic_used": false,
+      "replicate_used": false,
+      "fashn_used": false,
+      "zero_hardcoded_metrics": true,
+      "status": "PASS"
+    }
+  }
+}

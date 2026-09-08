@@ -1,0 +1,28 @@
+{
+  "K_1": {
+    "category_accuracy": 0.3125,
+    "correct_count": 5,
+    "total_samples": 16,
+    "description": "Deterministic Top-1 Heuristic Proposal Crop"
+  },
+  "K_2": {
+    "category_accuracy": 0.3125,
+    "correct_count": 5,
+    "total_samples": 16,
+    "description": "Classifier-as-Reranker on Top-2 Proposals (Tops + Bottoms)"
+  },
+  "K_3": {
+    "category_accuracy": 0.25,
+    "correct_count": 4,
+    "total_samples": 16,
+    "description": "Classifier-as-Reranker on Top-3 Proposals (Tops + Bottoms + Shoes)"
+  },
+  "full_image_baseline": {
+    "category_accuracy": 0.375,
+    "correct_count": 6
+  },
+  "oracle_crop_upper_bound": {
+    "category_accuracy": 0.3125,
+    "correct_count": 5
+  }
+}

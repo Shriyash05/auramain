@@ -1283,6 +1283,147 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
       expect(audit.checks.localization_forensics.all_samples_present).toBe(true);
     });
   });
+
+  describe('Phase 14A — Localization Proposal Quality & Error Attribution Study', () => {
+    const audit14aDir = path.resolve(__dirname, '../training/data-audits/phase14a');
+    const attributionPath = path.join(audit14aDir, 'proposal_attribution.json');
+    const topkPath = path.join(audit14aDir, 'topk_coverage.json');
+    const paddingPath = path.join(audit14aDir, 'crop_padding_analysis.json');
+    const rerankPath = path.join(audit14aDir, 'reranking_results.json');
+    const latencyPath = path.join(audit14aDir, 'latency_benchmark.json');
+    const modelOptionsPath = path.join(audit14aDir, 'local_model_options.json');
+    const forensic14aPath = path.join(audit14aDir, 'forensic_verification_14a.json');
+    const blindFreezePath = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.3-blind-freeze.json');
+
+    it('validates multi-proposal output generation and confidence filtering', async () => {
+      const proposalsAll = await garmentLocalizationService.localizeGarments('file:///dummy.jpg', {
+        maxProposals: 4,
+        minConfidence: 0.5,
+      });
+      expect(proposalsAll.length).toBe(4);
+
+      const hints = proposalsAll.map((p) => p.category_hint);
+      expect(hints).toContain('tops_or_outerwear');
+      expect(hints).toContain('bottoms');
+      expect(hints).toContain('shoes');
+      expect(hints).toContain('one_piece_or_full_outfit');
+
+      // Filter with higher threshold
+      const filtered = await garmentLocalizationService.localizeGarments('file:///dummy.jpg', {
+        maxProposals: 2,
+        minConfidence: 0.82,
+      });
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].category_hint).toBe('tops_or_outerwear');
+    });
+
+    it('validates bounding box validity, invalid region protection, and proportional padding', () => {
+      // 1. Invalid / Out of bounds clamping
+      const badBox = { x: -0.5, y: 1.5, width: 0.9, height: 0.8 };
+      const clamped = garmentLocalizationService.clampBoundingBox(badBox);
+      expect(clamped.x).toBe(0);
+      expect(clamped.y).toBe(1.0);
+      expect(clamped.width).toBeLessThanOrEqual(1.0);
+      expect(clamped.height).toBeGreaterThanOrEqual(0.01);
+
+      // 2. Degenerate zero-area box protection
+      const zeroBox = { x: 0.2, y: 0.2, width: 0, height: -0.1 };
+      const clampedZero = garmentLocalizationService.clampBoundingBox(zeroBox);
+      expect(clampedZero.width).toBeGreaterThanOrEqual(0.01);
+      expect(clampedZero.height).toBeGreaterThanOrEqual(0.01);
+
+      // 3. Proportional padding
+      const origBox = { x: 0.2, y: 0.2, width: 0.4, height: 0.4 };
+      const padded5 = garmentLocalizationService.applyPadding(origBox, 0.05);
+      expect(padded5.width).toBeCloseTo(0.44, 4); // 0.4 + 2 * (0.4 * 0.05) = 0.44
+      expect(padded5.height).toBeCloseTo(0.44, 4);
+      expect(padded5.x).toBeCloseTo(0.18, 4); // 0.2 - 0.02 = 0.18
+      expect(padded5.y).toBeCloseTo(0.18, 4);
+
+      // 4. Boundary clamping with padding
+      const borderBox = { x: 0.02, y: 0.02, width: 0.98, height: 0.98 };
+      const paddedBorder = garmentLocalizationService.applyPadding(borderBox, 0.10);
+      expect(paddedBorder.x).toBe(0);
+      expect(paddedBorder.y).toBe(0);
+      expect(paddedBorder.x + paddedBorder.width).toBeLessThanOrEqual(1.0001);
+      expect(paddedBorder.y + paddedBorder.height).toBeLessThanOrEqual(1.0001);
+    });
+
+    it('verifies Top-K coverage progression and rank distribution across multi-garment outfits', () => {
+      expect(fs.existsSync(topkPath)).toBe(true);
+      const topk = JSON.parse(fs.readFileSync(topkPath, 'utf8'));
+
+      expect(topk.coverage_by_k.top_1.coverage_iou_gte_0_50).toBe(0.4375);
+      expect(topk.coverage_by_k.top_2.coverage_iou_gte_0_50).toBe(0.6875);
+      expect(topk.coverage_by_k.top_3.coverage_iou_gte_0_50).toBe(0.8125);
+      expect(topk.coverage_by_k.top_4.coverage_iou_gte_0_50).toBe(0.8125);
+
+      // Best proposal distribution across ranks
+      expect(topk.best_proposal_rank_distribution.rank_1).toBe(6);
+      expect(topk.best_proposal_rank_distribution.rank_2).toBe(4);
+      expect(topk.best_proposal_rank_distribution.rank_3).toBe(3);
+      expect(topk.best_proposal_rank_distribution.rank_4).toBe(3);
+    });
+
+    it('verifies classifier-as-reranker results and crop padding findings', () => {
+      expect(fs.existsSync(rerankPath)).toBe(true);
+      expect(fs.existsSync(paddingPath)).toBe(true);
+
+      const rerank = JSON.parse(fs.readFileSync(rerankPath, 'utf8'));
+      const padding = JSON.parse(fs.readFileSync(paddingPath, 'utf8'));
+
+      // Full image baseline remains superior to reranked crops
+      expect(rerank.full_image_baseline.category_accuracy).toBe(0.375);
+      expect(rerank.oracle_crop_upper_bound.category_accuracy).toBe(0.3125);
+      expect(rerank.K_1.category_accuracy).toBe(0.3125);
+      expect(rerank.K_2.category_accuracy).toBe(0.3125);
+      expect(rerank.K_3.category_accuracy).toBe(0.25); // Reranking without detection awareness degrades accuracy
+
+      // Padding findings
+      expect(padding.oracle_crop.tight_accuracy).toBe(0.3125);
+      expect(padding.auto_best_crop.tight_accuracy).toBe(0.3125);
+    });
+
+    it('verifies sample-level attribution metadata, error categories, and local model options', () => {
+      expect(fs.existsSync(attributionPath)).toBe(true);
+      expect(fs.existsSync(latencyPath)).toBe(true);
+      expect(fs.existsSync(modelOptionsPath)).toBe(true);
+
+      const attr = JSON.parse(fs.readFileSync(attributionPath, 'utf8'));
+      const latency = JSON.parse(fs.readFileSync(latencyPath, 'utf8'));
+      const models = JSON.parse(fs.readFileSync(modelOptionsPath, 'utf8'));
+
+      expect(attr.total_samples).toBe(16);
+      expect(attr.error_distribution.WRONG_GARMENT).toBe(5); // Dominant failure mode
+      expect(attr.error_distribution.CORRECT_CROP_CLASSIFIER_FAILURE).toBe(3);
+      expect(attr.error_distribution.LOCALIZATION_WRONG).toBe(1);
+
+      // Latency benchmark
+      expect(latency.heuristic_proposal_generation_ms).toBeLessThan(1.0);
+      expect(latency.pipeline_latencies_ms.automated_k3_reranked).toBeGreaterThan(1000.0);
+
+      // Permissive local detector options (RT-DETR, SegFormer-B0)
+      const rtDetr = models.find((m: any) => m.model_name.includes('RT-DETR'));
+      expect(rtDetr).toBeDefined();
+      expect(rtDetr.license).toContain('Apache-2.0');
+      expect(rtDetr.commercial_use_status).toBe('PERMISSIVE_COMMERCIAL_APPROVED');
+    });
+
+    it('verifies forensic audit 14A and strict frozen blind test immutability', () => {
+      expect(fs.existsSync(forensic14aPath)).toBe(true);
+      const forensic = JSON.parse(fs.readFileSync(forensic14aPath, 'utf8'));
+
+      expect(forensic.status).toBe('PASS');
+      expect(forensic.checks.dataset_immutability.blind_freeze_verified).toBe(true);
+      expect(forensic.checks.dataset_immutability.dataset_500_verified).toBe(true);
+      expect(forensic.checks.checkpoint_integrity.checkpoint_verified).toBe(true);
+      expect(forensic.checks.scientific_integrity.zero_commercial_apis).toBe(true);
+
+      // Verify blind hash directly
+      const hashBlind = crypto.createHash('sha256').update(fs.readFileSync(blindFreezePath)).digest('hex');
+      expect(hashBlind).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
+    });
+  });
 });
 
 

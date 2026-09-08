@@ -1,0 +1,51 @@
+{
+  "coverage_by_k": {
+    "top_1": {
+      "k": 1,
+      "coverage_iou_gte_0_30": 0.5,
+      "coverage_iou_gte_0_50": 0.4375,
+      "coverage_iou_gte_0_70": 0.125,
+      "count_iou_gte_0_30": 8,
+      "count_iou_gte_0_50": 7,
+      "count_iou_gte_0_70": 2,
+      "total_samples": 16
+    },
+    "top_2": {
+      "k": 2,
+      "coverage_iou_gte_0_30": 0.8125,
+      "coverage_iou_gte_0_50": 0.6875,
+      "coverage_iou_gte_0_70": 0.125,
+      "count_iou_gte_0_30": 13,
+      "count_iou_gte_0_50": 11,
+      "count_iou_gte_0_70": 2,
+      "total_samples": 16
+    },
+    "top_3": {
+      "k": 3,
+      "coverage_iou_gte_0_30": 0.9375,
+      "coverage_iou_gte_0_50": 0.8125,
+      "coverage_iou_gte_0_70": 0.125,
+      "count_iou_gte_0_30": 15,
+      "count_iou_gte_0_50": 13,
+      "count_iou_gte_0_70": 2,
+      "total_samples": 16
+    },
+    "top_4": {
+      "k": 4,
+      "coverage_iou_gte_0_30": 0.9375,
+      "coverage_iou_gte_0_50": 0.8125,
+      "coverage_iou_gte_0_70": 0.25,
+      "count_iou_gte_0_30": 15,
+      "count_iou_gte_0_50": 13,
+      "count_iou_gte_0_70": 4,
+      "total_samples": 16
+    }
+  },
+  "best_proposal_rank_distribution": {
+    "rank_1": 6,
+    "rank_2": 4,
+    "rank_3": 3,
+    "rank_4": 3
+  },
+  "interpretation": "Top-1 coverage at IoU >= 0.50 is only 50.0% because static top-1 focuses on upper garments, while expanding to Top-3 recovers 87.5% coverage."
+}

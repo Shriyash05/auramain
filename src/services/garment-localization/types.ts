@@ -52,4 +52,5 @@ export interface IGarmentLocalizationService {
     imageUri: string,
     options?: { maxProposals?: number; minConfidence?: number }
   ): Promise<GarmentRegionProposal[]>;
+  applyPadding?(box: BoundingBox, paddingPercentage: number): BoundingBox;
 }

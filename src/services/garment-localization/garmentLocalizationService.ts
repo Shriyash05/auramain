@@ -81,6 +81,21 @@ export class HeuristicGarmentLocalizationService implements IGarmentLocalization
   }
 
   /**
+   * Applies proportional padding to a bounding box and clamps to [0, 1].
+   */
+  public applyPadding(box: BoundingBox, paddingPercentage: number): BoundingBox {
+    const padW = box.width * paddingPercentage;
+    const padH = box.height * paddingPercentage;
+    return this.clampBoundingBox({
+      x: box.x - padW,
+      y: box.y - padH,
+      width: box.width + 2 * padW,
+      height: box.height + 2 * padH,
+      pixel_bbox: box.pixel_bbox,
+    });
+  }
+
+  /**
    * Computes Intersection over Union (IoU) between two bounding boxes.
    */
   public static computeIoU(boxA: BoundingBox, boxB: BoundingBox): number {

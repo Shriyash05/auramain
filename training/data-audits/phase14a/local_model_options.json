@@ -1,0 +1,66 @@
+[
+  {
+    "model_name": "YOLOv8-clothing / YOLOv8m-seg",
+    "architecture": "YOLO Anchor-Free Decoupled Head + C2f",
+    "license": "AGPL-3.0 (Commercial license required for proprietary SaaS)",
+    "parameter_count": 27200000,
+    "input_size": [
+      640,
+      640
+    ],
+    "estimated_vram_mb": 950.0,
+    "estimated_gpu_latency_ms": 18.5,
+    "commercial_use_status": "RESTRICTED_AGPL3",
+    "source_url": "https://github.com/ultralytics/ultralytics",
+    "local_availability": "Ready via PyTorch / ONNX",
+    "suitability_score": "MODERATE_DUE_TO_LICENSE"
+  },
+  {
+    "model_name": "RT-DETR-R18 / RT-DETR-R50",
+    "architecture": "Real-Time Detection Transformer with Efficient Hybrid Encoder",
+    "license": "Apache-2.0 (100% Permissive Commercial Use)",
+    "parameter_count": 20000000,
+    "input_size": [
+      640,
+      640
+    ],
+    "estimated_vram_mb": 1150.0,
+    "estimated_gpu_latency_ms": 22.0,
+    "commercial_use_status": "PERMISSIVE_COMMERCIAL_APPROVED",
+    "source_url": "https://github.com/lyuwenyu/RT-DETR",
+    "local_availability": "Hugging Face / PyTorch",
+    "suitability_score": "HIGH_RECOMMENDED"
+  },
+  {
+    "model_name": "SegFormer-B0 (Fashion-Parsing)",
+    "architecture": "Hierarchical Mix Transformer Encoder + MLP Decoder",
+    "license": "Apache-2.0 (100% Permissive Commercial Use)",
+    "parameter_count": 3710000,
+    "input_size": [
+      512,
+      512
+    ],
+    "estimated_vram_mb": 480.0,
+    "estimated_gpu_latency_ms": 14.0,
+    "commercial_use_status": "PERMISSIVE_COMMERCIAL_APPROVED",
+    "source_url": "https://huggingface.co/nvidia/segformer-b0-finetuned-ade-512-512",
+    "local_availability": "Hugging Face Transformers / PyTorch",
+    "suitability_score": "HIGH_RECOMMENDED_FOR_PARSING"
+  },
+  {
+    "model_name": "DeepFashion2 Faster R-CNN",
+    "architecture": "ResNet-50-FPN + Two-Stage R-CNN",
+    "license": "DeepFashion2 Non-Commercial Research License",
+    "parameter_count": 41500000,
+    "input_size": [
+      800,
+      800
+    ],
+    "estimated_vram_mb": 2400.0,
+    "estimated_gpu_latency_ms": 65.0,
+    "commercial_use_status": "NON_COMMERCIAL_ONLY",
+    "source_url": "https://github.com/switchablenorms/DeepFashion2",
+    "local_availability": "MMDetection / PyTorch",
+    "suitability_score": "DISQUALIFIED_NON_COMMERCIAL"
+  }
+]
