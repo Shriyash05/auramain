@@ -155,6 +155,7 @@ export default function CreateScreen() {
             <TouchableOpacity
               activeOpacity={0.75}
               onPress={handleDislike}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               style={styles.feedbackIconBtn}
             >
               <ThumbsDown size={15} color={colors.textSecondary} />
@@ -163,6 +164,7 @@ export default function CreateScreen() {
             <TouchableOpacity
               activeOpacity={0.75}
               onPress={handleLike}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               style={styles.feedbackIconBtn}
             >
               <Heart size={15} color={colors.like} />
@@ -395,7 +397,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: spacing.xs,
     alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: radii.pill,
+    minHeight: 36,
   },
   candidatePillActive: {
     backgroundColor: colors.text,

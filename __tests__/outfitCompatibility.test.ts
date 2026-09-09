@@ -335,4 +335,109 @@ describe('Phase 16 — OutfitCompatibilityService', () => {
       expect(result.rationale).toContain('Uncertain Garment');
     });
   });
+
+  describe('8. Physical Device Usability Scenarios (A through G)', () => {
+    const wardrobeInterchangeable: Garment[] = [
+      sampleTop, // White oversized linen shirt
+      { ...sampleTop, id: 'top-2', name: 'Navy Cotton Polo', fit: 'Regular', primary_color: '#2C3E50', occasions: ['Casual', 'Work / Office'] },
+      { ...sampleTop, id: 'top-3', name: 'Silk Black Camisole', fit: 'Slim', primary_color: '#111111', occasions: ['Date Night', 'Evening / Event'] },
+      sampleBottom, // Tailored wool trousers (Black)
+      { ...sampleBottom, id: 'bot-2', name: 'Pleated Chino Shorts', fit: 'Relaxed', primary_color: '#D2B48C', occasions: ['Casual', 'Vacation'] },
+      sampleShoes, // Derby shoes (Charcoal)
+      { ...sampleShoes, id: 'shoe-2', name: 'White Leather Sneakers', fit: 'Regular', primary_color: '#FFFFFF', occasions: ['Casual', 'Streetwear'] },
+      sampleOuterwear, // Trench coat
+      sampleAccessory, // Leather woven belt
+    ];
+
+    it('Scenario A: Casual daytime proposal and rationale', () => {
+      const context: StylingContext = { occasion: 'Casual', timeOfDay: 'morning' };
+      const candidates = OutfitCompatibilityService.generateLookCandidates(wardrobeInterchangeable, context);
+      expect(candidates.length).toBeGreaterThan(0);
+      const look = candidates[0];
+      expect(look.archetypeLabel).toBe('Editorial Minimal');
+      expect(look.rationale).toContain(look.garments.top.name);
+      expect(look.rationale).toContain(look.garments.bottom.name);
+    });
+
+    it('Scenario B: Smart casual office alignment', () => {
+      const context: StylingContext = { occasion: 'Work / Office', timeOfDay: 'afternoon' };
+      const candidates = OutfitCompatibilityService.generateLookCandidates(wardrobeInterchangeable, context);
+      expect(candidates.length).toBeGreaterThan(0);
+      const look = candidates[0];
+      expect(look.garments.bottom.name).toBe('Tailored Wool Trousers');
+      expect(look.highlightedAttributes).toBeDefined();
+    });
+
+    it('Scenario C: Date night look with elevated pieces', () => {
+      const context: StylingContext = { occasion: 'Date Night', timeOfDay: 'evening' };
+      const candidates = OutfitCompatibilityService.generateLookCandidates(wardrobeInterchangeable, context);
+      expect(candidates.length).toBeGreaterThan(0);
+      const layeredLook = candidates.find((c) => c.garments.outerwear || c.garments.accessory) || candidates[0];
+      expect(layeredLook.rationale).toBeTruthy();
+    });
+
+    it('Scenario D: Hot-weather summer without heavy outerwear', () => {
+      const summerContext: StylingContext = {
+        occasion: 'Vacation',
+        weather: { tempF: 86, condition: 'warm' },
+      };
+      const evalResult = OutfitCompatibilityService.evaluateWeather(
+        [sampleTop, sampleBottom, sampleShoes],
+        summerContext.weather
+      );
+      expect(evalResult.suitable).toBe(true);
+      expect(evalResult.reason).toContain('warm');
+    });
+
+    it('Scenario E: Cooler-weather outfit with outerwear layer', () => {
+      const coolContext: StylingContext = {
+        occasion: 'Casual',
+        weather: { tempF: 48, condition: 'cold' },
+      };
+      const evalResult = OutfitCompatibilityService.evaluateWeather(
+        [sampleTop, sampleBottom, sampleShoes, sampleOuterwear],
+        coolContext.weather
+      );
+      expect(evalResult.suitable).toBe(true);
+      expect(evalResult.reason).toContain('Outerwear layer');
+    });
+
+    it('Scenario F: Sparse wardrobe honest guidance', () => {
+      const sparseWardrobe = [sampleTop, sampleBottom]; // Missing shoes
+      const sufficiency = OutfitCompatibilityService.checkWardrobeSufficiency(sparseWardrobe);
+      expect(sufficiency.isSufficient).toBe(false);
+      expect(sufficiency.missingCategory).toBe('shoes');
+      expect(sufficiency.guidanceMessage).toContain('Add a pair of shoes');
+    });
+
+    it('Scenario G: Multiple interchangeable pieces with immediate swap & rationale update', () => {
+      const context: StylingContext = { occasion: 'Casual' };
+      const initialSlots: OutfitSlots = {
+        top: sampleTop,
+        bottom: sampleBottom,
+        shoes: sampleShoes,
+      };
+      const initialEval = OutfitCompatibilityService.evaluateOutfit(initialSlots, context);
+      expect(initialEval.rationale).toContain('Relaxed Linen Shirt');
+
+      // Swap top to Navy Cotton Polo
+      const swappedTop = wardrobeInterchangeable[1];
+      const swappedSlots: OutfitSlots = {
+        ...initialSlots,
+        top: swappedTop,
+      };
+      const updatedEval = OutfitCompatibilityService.evaluateOutfit(swappedSlots, context);
+      expect(updatedEval.rationale).toContain('Navy Cotton Polo');
+      expect(updatedEval.rationale).not.toContain('Relaxed Linen Shirt');
+
+      // Swap shoes to White Sneakers
+      const swappedShoes = wardrobeInterchangeable[6];
+      const doubleSwappedSlots: OutfitSlots = {
+        ...swappedSlots,
+        shoes: swappedShoes,
+      };
+      const finalEval = OutfitCompatibilityService.evaluateOutfit(doubleSwappedSlots, context);
+      expect(finalEval.rationale).toContain('White Leather Sneakers');
+    });
+  });
 });

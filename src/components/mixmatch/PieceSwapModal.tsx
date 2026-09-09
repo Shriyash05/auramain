@@ -61,7 +61,12 @@ export const PieceSwapModal: React.FC<PieceSwapModalProps> = ({
               </Typography>
             </View>
 
-            <TouchableOpacity activeOpacity={0.7} onPress={onClose} style={styles.closeBtn}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={onClose}
+              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+              style={styles.closeBtn}
+            >
               <X size={18} color={colors.text} />
             </TouchableOpacity>
           </View>
@@ -120,6 +125,15 @@ export const PieceSwapModal: React.FC<PieceSwapModalProps> = ({
                 </TouchableOpacity>
               );
             })}
+
+            {/* Single Item Wardrobe Guidance */}
+            {availableGarments.length <= 1 && (
+              <View style={styles.sparseHintBox}>
+                <Typography variant="caption" color={colors.textSecondary} style={styles.sparseHintText}>
+                  You're currently wearing your only {categoryLabel.toLowerCase()}. Upload another piece to expand your styling alternatives.
+                </Typography>
+              </View>
+            )}
 
             {/* Add New Garment Option */}
             <TouchableOpacity
@@ -256,6 +270,18 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 12,
     paddingHorizontal: spacing.xs,
+  },
+  sparseHintBox: {
+    backgroundColor: colors.surfaceMuted,
+    borderRadius: radii.md,
+    padding: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    marginTop: spacing.xs,
+  },
+  sparseHintText: {
+    lineHeight: 18,
+    fontSize: 12,
   },
   addOptionCard: {
     flexDirection: 'row',

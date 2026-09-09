@@ -20,6 +20,14 @@ export const LookFlatLay: React.FC<LookFlatLayProps> = ({
   onRemovePress,
   onAddPress,
 }) => {
+  const handleSlotAction = (category: GarmentCategory) => {
+    if (onAddPress) {
+      onAddPress(category);
+    } else {
+      onSwapPress(category);
+    }
+  };
+
   const renderGarmentCard = (
     garment: Garment | undefined,
     category: GarmentCategory,
@@ -32,7 +40,7 @@ export const LookFlatLay: React.FC<LookFlatLayProps> = ({
           <TouchableOpacity
             key={category}
             activeOpacity={0.8}
-            onPress={() => onAddPress ? onAddPress(category) : onSwapPress(category)}
+            onPress={() => handleSlotAction(category)}
             style={[styles.garmentCard, styles.emptyCard]}
           >
             <View style={styles.emptyIconCircle}>
@@ -51,8 +59,12 @@ export const LookFlatLay: React.FC<LookFlatLayProps> = ({
 
     return (
       <View key={category} style={styles.garmentCard}>
-        {/* Image Container */}
-        <View style={styles.imageWrapper}>
+        {/* Tappable Image Container */}
+        <TouchableOpacity
+          activeOpacity={0.9}
+          onPress={() => onSwapPress(category)}
+          style={styles.imageWrapper}
+        >
           {imageUri ? (
             <Image source={{ uri: imageUri }} style={styles.garmentImage} resizeMode="cover" />
           ) : (
@@ -73,27 +85,33 @@ export const LookFlatLay: React.FC<LookFlatLayProps> = ({
             <TouchableOpacity
               activeOpacity={0.75}
               onPress={() => onRemovePress(category)}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
               style={styles.removeBtn}
             >
               <X size={12} color={colors.textSecondary} />
             </TouchableOpacity>
           )}
-        </View>
+        </TouchableOpacity>
 
         {/* Garment Details & Swap Action */}
         <View style={styles.cardInfoRow}>
-          <View style={styles.textDetails}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => onSwapPress(category)}
+            style={styles.textDetails}
+          >
             <Typography variant="body" style={styles.garmentName} numberOfLines={1}>
               {garment.name}
             </Typography>
             <Typography variant="caption" color={colors.textSecondary} numberOfLines={1}>
               {garment.fit || 'Regular'} • {garment.primary_color}
             </Typography>
-          </View>
+          </TouchableOpacity>
 
           <TouchableOpacity
             activeOpacity={0.75}
             onPress={() => onSwapPress(category)}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             style={styles.swapBtn}
           >
             <ArrowLeftRight size={13} color={colors.text} />
@@ -126,13 +144,27 @@ export const LookFlatLay: React.FC<LookFlatLayProps> = ({
         <View style={styles.col}>
           {renderGarmentCard(slots.shoes, 'shoes', 'Footwear')}
         </View>
-        {slots.accessories ? (
-          <View style={styles.col}>
-            {renderGarmentCard(slots.accessories, 'accessories', 'Accessory', true)}
-          </View>
-        ) : (
-          <View style={styles.colPlaceholder} />
-        )}
+        <View style={styles.col}>
+          {slots.accessories ? (
+            renderGarmentCard(slots.accessories, 'accessories', 'Accessory', true)
+          ) : (
+            <TouchableOpacity
+              activeOpacity={0.75}
+              onPress={() => handleSlotAction('accessories')}
+              style={[styles.garmentCard, styles.optionalSlotCard]}
+            >
+              <View style={styles.optionalIconCircle}>
+                <Plus size={16} color={colors.textMuted} />
+              </View>
+              <Typography variant="caption" color={colors.textSecondary} style={styles.optionalLabel}>
+                Add Accessory
+              </Typography>
+              <Typography variant="caption" color={colors.textMuted} style={styles.optionalSub}>
+                Optional
+              </Typography>
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
     </View>
   );
@@ -147,9 +179,6 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
   },
   col: {
-    flex: 1,
-  },
-  colPlaceholder: {
     flex: 1,
   },
   garmentCard: {
@@ -182,6 +211,36 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 12,
   },
+  optionalSlotCard: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderStyle: 'dashed',
+    borderColor: colors.border,
+    backgroundColor: colors.surfaceMuted,
+    minHeight: 180,
+    paddingVertical: spacing.md,
+  },
+  optionalIconCircle: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: colors.surface,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 6,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  optionalLabel: {
+    fontWeight: '600',
+    fontSize: 12,
+    marginBottom: 2,
+  },
+  optionalSub: {
+    fontSize: 10,
+    letterSpacing: 0.4,
+  },
   imageWrapper: {
     width: '100%',
     aspectRatio: 1.15,
@@ -203,7 +262,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: spacing.xs,
     left: spacing.xs,
-    backgroundColor: 'rgba(255, 255, 255, 0.92)',
+    backgroundColor: 'rgba(255, 255, 255, 0.94)',
     paddingHorizontal: spacing.xs,
     paddingVertical: 2,
     borderRadius: radii.pill,
@@ -219,10 +278,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: spacing.xs,
     right: spacing.xs,
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: 'rgba(255, 255, 255, 0.92)',
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255, 255, 255, 0.94)',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -250,8 +309,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 4,
     backgroundColor: colors.surfaceMuted,
-    paddingVertical: 4,
-    paddingHorizontal: spacing.xs + 2,
+    paddingVertical: 5,
+    paddingHorizontal: spacing.xs + 3,
     borderRadius: radii.pill,
     borderWidth: 1,
     borderColor: colors.border,
