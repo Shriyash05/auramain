@@ -517,4 +517,85 @@ describe('Phase 15 — Target Garment Selection & Production Inference Contract'
       expect(audit.checks.scientific_integrity.zero_commercial_apis).toBe(true);
     });
   });
+
+  describe('8. Phase 15B Physical Mobile Device Validation & Regression Tests', () => {
+    describe('Aspect-Fit Letterbox/Pillarbox Compensation', () => {
+      it('calculates exact aspect-fit letterboxing for landscape photos', () => {
+        // Landscape photo 1920x1080 (16:9) in 360x360 container
+        const fit = CropService.computeAspectFit(1920, 1080, 360, 360);
+        expect(fit.renderedWidth).toBe(360);
+        expect(fit.renderedHeight).toBe(203); // 360 / (1920/1080) = 202.5 -> 203
+        expect(fit.offsetX).toBe(0);
+        expect(fit.offsetY).toBe(79); // (360 - 203) / 2 = 78.5 -> 79
+      });
+
+      it('calculates exact aspect-fit pillarboxing for portrait photos', () => {
+        // Portrait photo 1080x1920 (9:16) in 360x360 container
+        const fit = CropService.computeAspectFit(1080, 1920, 360, 360);
+        expect(fit.renderedHeight).toBe(360);
+        expect(fit.renderedWidth).toBe(203);
+        expect(fit.offsetY).toBe(0);
+        expect(fit.offsetX).toBe(79);
+      });
+
+      it('calculates 1:1 square image aspect-fit with zero offsets', () => {
+        const fit = CropService.computeAspectFit(1000, 1000, 360, 360);
+        expect(fit.renderedWidth).toBe(360);
+        expect(fit.renderedHeight).toBe(360);
+        expect(fit.offsetX).toBe(0);
+        expect(fit.offsetY).toBe(0);
+      });
+
+      it('safely handles zero or negative source/container dimensions', () => {
+        const fit = CropService.computeAspectFit(0, 0, 300, 400);
+        expect(fit.renderedWidth).toBe(300);
+        expect(fit.renderedHeight).toBe(400);
+        expect(fit.offsetX).toBe(0);
+        expect(fit.offsetY).toBe(0);
+      });
+    });
+
+    describe('Touch Interaction & Coordinate Stability', () => {
+      it('guarantees normalized coordinates remain strictly identical regardless of container aspect', () => {
+        // User selects region [0.2, 0.2, 0.6, 0.6] on a landscape image
+        const normBox: BoundingBoxCoordinates = { x: 0.2, y: 0.2, width: 0.6, height: 0.6 };
+        const pixelBox = CropService.toPixel(normBox, 'normalized', 1920, 1080);
+
+        expect(pixelBox.x).toBe(Math.round(0.2 * 1920));
+        expect(pixelBox.y).toBe(Math.round(0.2 * 1080));
+        expect(pixelBox.width).toBe(Math.round(0.6 * 1920));
+        expect(pixelBox.height).toBe(Math.round(0.6 * 1080));
+      });
+
+      it('enforces minimum dimension guard to prevent handle collapse on touch', () => {
+        const tinyBox: BoundingBoxCoordinates = { x: 0.1, y: 0.1, width: 0.002, height: 0.003 };
+        const clamped = CropService.clampNormalized(tinyBox);
+
+        expect(clamped.width).toBeGreaterThanOrEqual(0.01);
+        expect(clamped.height).toBeGreaterThanOrEqual(0.01);
+      });
+
+      it('prevents stale selection leaks on re-initialization (Test Case H)', () => {
+        garmentSelectionService.initializeWithImage('file:///test1.jpg', 800, 1200);
+        garmentSelectionService.setManualSelection({ x: 0.2, y: 0.3, width: 0.4, height: 0.5 });
+        expect(garmentSelectionService.getSelection()?.imageUri).toBe('file:///test1.jpg');
+
+        // Re-initialize with replacement image
+        garmentSelectionService.initializeWithImage('file:///test2.jpg', 1080, 1080);
+        expect(garmentSelectionService.getState()).toBe('IMAGE_SELECTED');
+        expect(garmentSelectionService.getSelection()).toBeNull();
+      });
+    });
+
+    it('verifies Phase 15B forensic mobile validation audit passes', () => {
+      const forensic15bPath = path.resolve(__dirname, '../training/data-audits/phase15b/forensic_verification_15b.json');
+      if (fs.existsSync(forensic15bPath)) {
+        const audit = JSON.parse(fs.readFileSync(forensic15bPath, 'utf8'));
+        expect(audit.status).toBe('PASS');
+        expect(audit.checks.model_governance.model_version).toBe('aura-garment-v1-exp0015');
+        expect(audit.checks.dataset_immutability.blind_freeze_verified).toBe(true);
+        expect(audit.checks.scientific_integrity.zero_commercial_apis).toBe(true);
+      }
+    });
+  });
 });

@@ -92,6 +92,7 @@ export default function AddGarmentScreen() {
     setSelectedImageUri(uri);
     setImageDimensions({ width: w, height: h });
     setInferenceResult(null);
+    setSuggestedRegions([]);
 
     // Initialize Selection Service FSM
     garmentSelectionService.initializeWithImage(uri, w, h);
@@ -199,6 +200,7 @@ export default function AddGarmentScreen() {
     garmentSelectionService.cancel();
     setSelectedImageUri(null);
     setInferenceResult(null);
+    setSuggestedRegions([]);
     setCurrentState('IDLE');
   };
 

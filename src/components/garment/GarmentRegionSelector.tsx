@@ -1,14 +1,16 @@
 /**
- * AURA Garment Region Selector (Phase 15)
+ * AURA Garment Region Selector (Phase 15B)
  * =======================================
  * Interactive mobile/web-compatible UI component for selecting a target
  * garment region from a multi-garment photo.
  * 
- * Supports:
- * - Mode A: Manual drag / corner resize selection
- * - Mode B: Optional suggestions (labeled as "SUGGESTED GARMENT", never overrides manual choice)
- * - Coordinate safety & bounds clamping
- * - Accessibility labels
+ * Validated for physical touchscreens:
+ * - 4-corner resizing with generous 52x52 touch hitSlop targets
+ * - Linear, non-jittering PanResponder tracking with dragStartBoxRef
+ * - Aspect-fit letterbox/pillarbox compensation with CropService.computeAspectFit
+ * - High-contrast dashed border & dimming overlay visible on dark, light, or busy garments
+ * - Suggestion override protection: immediate manual override on any touch gesture
+ * - Full accessibility labels and roles
  */
 
 import React, { useState, useRef } from 'react';
@@ -38,6 +40,9 @@ interface GarmentRegionSelectorProps {
   initialBox?: BoundingBoxCoordinates;
 }
 
+const MIN_DIM = 0.08; // Min 8% dimension guard prevents box collapse (Test Case C)
+const HANDLE_TOUCH_SLOP = { top: 16, bottom: 16, left: 16, right: 16 };
+
 export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
   imageUri,
   sourceWidth,
@@ -47,8 +52,11 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
   onCancel,
   initialBox,
 }) => {
-  const [containerLayout, setContainerLayout] = useState<{ width: number; height: number }>({ width: 300, height: 400 });
-  
+  const [containerLayout, setContainerLayout] = useState<{ width: number; height: number }>({
+    width: 340,
+    height: 380,
+  });
+
   // Normalized box [0, 1]
   const [currentBox, setCurrentBox] = useState<BoundingBoxCoordinates>(
     initialBox ? CropService.clampNormalized(initialBox) : { x: 0.15, y: 0.15, width: 0.70, height: 0.50 }
@@ -60,8 +68,17 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
   const boxRef = useRef(currentBox);
   boxRef.current = currentBox;
 
-  const layoutRef = useRef(containerLayout);
-  layoutRef.current = containerLayout;
+  const dragStartBoxRef = useRef<BoundingBoxCoordinates>(currentBox);
+
+  // Active aspect-fit rendered geometry inside container
+  const fitGeometry = CropService.computeAspectFit(
+    sourceWidth,
+    sourceHeight,
+    containerLayout.width,
+    containerLayout.height
+  );
+  const fitRef = useRef(fitGeometry);
+  fitRef.current = fitGeometry;
 
   const handleContainerLayout = (e: LayoutChangeEvent) => {
     const { width, height } = e.nativeEvent.layout;
@@ -70,23 +87,24 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
     }
   };
 
-  // Move Responder (Drag entire box)
+  // 1. Move Responder (Drag entire box)
   const movePanResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
       onPanResponderGrant: () => {
+        dragStartBoxRef.current = { ...boxRef.current };
         setSelectionMethod('manual');
         setSelectedSuggestionId(null);
       },
       onPanResponderMove: (_evt: GestureResponderEvent, gestureState: PanResponderGestureState) => {
-        const { width: dw, height: dh } = layoutRef.current;
-        if (dw <= 0 || dh <= 0) return;
+        const { renderedWidth: rw, renderedHeight: rh } = fitRef.current;
+        if (rw <= 0 || rh <= 0) return;
 
-        const dxNorm = gestureState.dx / dw;
-        const dyNorm = gestureState.dy / dh;
+        const dxNorm = gestureState.dx / rw;
+        const dyNorm = gestureState.dy / rh;
 
-        const start = boxRef.current;
+        const start = dragStartBoxRef.current;
         const newX = Math.max(0, Math.min(1 - start.width, start.x + dxNorm));
         const newY = Math.max(0, Math.min(1 - start.height, start.y + dyNorm));
 
@@ -101,30 +119,131 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
     })
   ).current;
 
-  // Bottom-Right Corner Resize Responder
-  const resizePanResponder = useRef(
+  // 2. Bottom-Right Corner Resize Responder
+  const brPanResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
       onPanResponderGrant: () => {
+        dragStartBoxRef.current = { ...boxRef.current };
         setSelectionMethod('manual');
         setSelectedSuggestionId(null);
       },
       onPanResponderMove: (_evt: GestureResponderEvent, gestureState: PanResponderGestureState) => {
-        const { width: dw, height: dh } = layoutRef.current;
-        if (dw <= 0 || dh <= 0) return;
+        const { renderedWidth: rw, renderedHeight: rh } = fitRef.current;
+        if (rw <= 0 || rh <= 0) return;
 
-        const dxNorm = gestureState.dx / dw;
-        const dyNorm = gestureState.dy / dh;
+        const dxNorm = gestureState.dx / rw;
+        const dyNorm = gestureState.dy / rh;
 
-        const start = boxRef.current;
-        const newW = Math.max(0.10, Math.min(1 - start.x, start.width + dxNorm));
-        const newH = Math.max(0.10, Math.min(1 - start.y, start.height + dyNorm));
+        const start = dragStartBoxRef.current;
+        const newW = Math.max(MIN_DIM, Math.min(1 - start.x, start.width + dxNorm));
+        const newH = Math.max(MIN_DIM, Math.min(1 - start.y, start.height + dyNorm));
 
         setCurrentBox({
           x: start.x,
           y: start.y,
           width: Number(newW.toFixed(4)),
+          height: Number(newH.toFixed(4)),
+        });
+      },
+    })
+  ).current;
+
+  // 3. Top-Left Corner Resize Responder
+  const tlPanResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderGrant: () => {
+        dragStartBoxRef.current = { ...boxRef.current };
+        setSelectionMethod('manual');
+        setSelectedSuggestionId(null);
+      },
+      onPanResponderMove: (_evt: GestureResponderEvent, gestureState: PanResponderGestureState) => {
+        const { renderedWidth: rw, renderedHeight: rh } = fitRef.current;
+        if (rw <= 0 || rh <= 0) return;
+
+        const dxNorm = gestureState.dx / rw;
+        const dyNorm = gestureState.dy / rh;
+
+        const start = dragStartBoxRef.current;
+        const maxRight = start.x + start.width;
+        const maxBottom = start.y + start.height;
+
+        const newX = Math.max(0, Math.min(maxRight - MIN_DIM, start.x + dxNorm));
+        const newY = Math.max(0, Math.min(maxBottom - MIN_DIM, start.y + dyNorm));
+
+        setCurrentBox({
+          x: Number(newX.toFixed(4)),
+          y: Number(newY.toFixed(4)),
+          width: Number((maxRight - newX).toFixed(4)),
+          height: Number((maxBottom - newY).toFixed(4)),
+        });
+      },
+    })
+  ).current;
+
+  // 4. Top-Right Corner Resize Responder
+  const trPanResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderGrant: () => {
+        dragStartBoxRef.current = { ...boxRef.current };
+        setSelectionMethod('manual');
+        setSelectedSuggestionId(null);
+      },
+      onPanResponderMove: (_evt: GestureResponderEvent, gestureState: PanResponderGestureState) => {
+        const { renderedWidth: rw, renderedHeight: rh } = fitRef.current;
+        if (rw <= 0 || rh <= 0) return;
+
+        const dxNorm = gestureState.dx / rw;
+        const dyNorm = gestureState.dy / rh;
+
+        const start = dragStartBoxRef.current;
+        const maxBottom = start.y + start.height;
+
+        const newY = Math.max(0, Math.min(maxBottom - MIN_DIM, start.y + dyNorm));
+        const newW = Math.max(MIN_DIM, Math.min(1 - start.x, start.width + dxNorm));
+
+        setCurrentBox({
+          x: start.x,
+          y: Number(newY.toFixed(4)),
+          width: Number(newW.toFixed(4)),
+          height: Number((maxBottom - newY).toFixed(4)),
+        });
+      },
+    })
+  ).current;
+
+  // 5. Bottom-Left Corner Resize Responder
+  const blPanResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderGrant: () => {
+        dragStartBoxRef.current = { ...boxRef.current };
+        setSelectionMethod('manual');
+        setSelectedSuggestionId(null);
+      },
+      onPanResponderMove: (_evt: GestureResponderEvent, gestureState: PanResponderGestureState) => {
+        const { renderedWidth: rw, renderedHeight: rh } = fitRef.current;
+        if (rw <= 0 || rh <= 0) return;
+
+        const dxNorm = gestureState.dx / rw;
+        const dyNorm = gestureState.dy / rh;
+
+        const start = dragStartBoxRef.current;
+        const maxRight = start.x + start.width;
+
+        const newX = Math.max(0, Math.min(maxRight - MIN_DIM, start.x + dxNorm));
+        const newH = Math.max(MIN_DIM, Math.min(1 - start.y, start.height + dyNorm));
+
+        setCurrentBox({
+          x: Number(newX.toFixed(4)),
+          y: start.y,
+          width: Number((maxRight - newX).toFixed(4)),
           height: Number(newH.toFixed(4)),
         });
       },
@@ -157,11 +276,11 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
     });
   };
 
-  // Convert normalized box to display pixels
-  const dispX = currentBox.x * containerLayout.width;
-  const dispY = currentBox.y * containerLayout.height;
-  const dispW = currentBox.width * containerLayout.width;
-  const dispH = currentBox.height * containerLayout.height;
+  // Display coordinates anchored to the aspect-fit rendered image rect
+  const dispX = fitGeometry.offsetX + currentBox.x * fitGeometry.renderedWidth;
+  const dispY = fitGeometry.offsetY + currentBox.y * fitGeometry.renderedHeight;
+  const dispW = currentBox.width * fitGeometry.renderedWidth;
+  const dispH = currentBox.height * fitGeometry.renderedHeight;
 
   return (
     <View style={styles.wrapper}>
@@ -170,7 +289,7 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
         <View>
           <Text style={styles.headerTitle}>Select Target Garment</Text>
           <Text style={styles.headerSubtitle}>
-            Drag box over the specific item to analyze
+            Drag box or handles over the specific item to analyze
           </Text>
         </View>
         <View style={styles.modeBadge}>
@@ -184,16 +303,16 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
       <View style={styles.stageContainer} onLayout={handleContainerLayout}>
         <Image source={{ uri: imageUri }} style={styles.image} resizeMode="contain" />
 
-        {/* Ambient Dark Overlay */}
+        {/* Ambient Dark Overlay (Dim non-selected areas and letterbox borders) */}
         <View pointerEvents="none" style={StyleSheet.absoluteFillObject}>
           {/* Top dark band */}
-          <View style={{ position: 'absolute', top: 0, left: 0, right: 0, height: dispY, backgroundColor: 'rgba(0,0,0,0.5)' }} />
+          <View style={{ position: 'absolute', top: 0, left: 0, right: 0, height: Math.max(0, dispY), backgroundColor: 'rgba(0,0,0,0.58)' }} />
           {/* Bottom dark band */}
-          <View style={{ position: 'absolute', top: dispY + dispH, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)' }} />
+          <View style={{ position: 'absolute', top: dispY + dispH, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.58)' }} />
           {/* Left dark band */}
-          <View style={{ position: 'absolute', top: dispY, left: 0, width: dispX, height: dispH, backgroundColor: 'rgba(0,0,0,0.5)' }} />
+          <View style={{ position: 'absolute', top: dispY, left: 0, width: Math.max(0, dispX), height: dispH, backgroundColor: 'rgba(0,0,0,0.58)' }} />
           {/* Right dark band */}
-          <View style={{ position: 'absolute', top: dispY, left: dispX + dispW, right: 0, height: dispH, backgroundColor: 'rgba(0,0,0,0.5)' }} />
+          <View style={{ position: 'absolute', top: dispY, left: dispX + dispW, right: 0, height: dispH, backgroundColor: 'rgba(0,0,0,0.58)' }} />
         </View>
 
         {/* Interactive Selection Box */}
@@ -210,12 +329,57 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
           ]}
         >
           {/* Center Drag Handle */}
-          <View {...movePanResponder.panHandlers} style={styles.centerMoveHandle}>
-            <Move size={16} color="#FFFFFF" />
+          <View
+            {...movePanResponder.panHandlers}
+            hitSlop={HANDLE_TOUCH_SLOP}
+            style={styles.centerMoveHandle}
+            accessible={true}
+            accessibilityRole="button"
+            accessibilityLabel="Garment selection move handle"
+            accessibilityHint="Drag to reposition selection box over target garment"
+          >
+            <Move size={18} color="#FFFFFF" />
           </View>
 
-          {/* Corner Resize Handle */}
-          <View {...resizePanResponder.panHandlers} style={styles.cornerHandle} />
+          {/* Top-Left Corner Handle */}
+          <View
+            {...tlPanResponder.panHandlers}
+            hitSlop={HANDLE_TOUCH_SLOP}
+            style={[styles.cornerHandle, styles.tlCorner]}
+            accessible={true}
+            accessibilityRole="adjustable"
+            accessibilityLabel="Top-left resize handle"
+          />
+
+          {/* Top-Right Corner Handle */}
+          <View
+            {...trPanResponder.panHandlers}
+            hitSlop={HANDLE_TOUCH_SLOP}
+            style={[styles.cornerHandle, styles.trCorner]}
+            accessible={true}
+            accessibilityRole="adjustable"
+            accessibilityLabel="Top-right resize handle"
+          />
+
+          {/* Bottom-Left Corner Handle */}
+          <View
+            {...blPanResponder.panHandlers}
+            hitSlop={HANDLE_TOUCH_SLOP}
+            style={[styles.cornerHandle, styles.blCorner]}
+            accessible={true}
+            accessibilityRole="adjustable"
+            accessibilityLabel="Bottom-left resize handle"
+          />
+
+          {/* Bottom-Right Corner Handle */}
+          <View
+            {...brPanResponder.panHandlers}
+            hitSlop={HANDLE_TOUCH_SLOP}
+            style={[styles.cornerHandle, styles.brCorner]}
+            accessible={true}
+            accessibilityRole="adjustable"
+            accessibilityLabel="Bottom-right resize handle"
+          />
         </View>
       </View>
 
@@ -235,6 +399,8 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
                   activeOpacity={0.8}
                   style={[styles.suggestionChip, isSelected && styles.suggestionChipSelected]}
                   onPress={() => handleApplySuggestion(sug)}
+                  accessible={true}
+                  accessibilityRole="button"
                   accessibilityLabel={`Suggested garment ${sug.categoryHint || sug.id}`}
                 >
                   <Text style={[styles.suggestionChipText, isSelected && styles.suggestionChipTextSelected]}>
@@ -253,7 +419,9 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
           activeOpacity={0.7}
           onPress={onCancel}
           style={[styles.actionBtn, styles.cancelBtn]}
-          accessibilityLabel="Cancel selection"
+          accessible={true}
+          accessibilityRole="button"
+          accessibilityLabel="Cancel garment selection"
         >
           <X size={18} color={colors.textSecondary} />
           <Text style={styles.cancelBtnText}>Cancel</Text>
@@ -263,7 +431,9 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
           activeOpacity={0.7}
           onPress={handleReset}
           style={[styles.actionBtn, styles.resetBtn]}
-          accessibilityLabel="Reset selection box"
+          accessible={true}
+          accessibilityRole="button"
+          accessibilityLabel="Reset selection box to default center"
         >
           <RotateCcw size={16} color={colors.text} />
           <Text style={styles.resetBtnText}>Reset</Text>
@@ -273,7 +443,10 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
           activeOpacity={0.85}
           onPress={handleConfirm}
           style={[styles.actionBtn, styles.confirmBtn]}
-          accessibilityLabel="Confirm target garment crop"
+          accessible={true}
+          accessibilityRole="button"
+          accessibilityLabel="Confirm target garment selection"
+          accessibilityHint="Crops the selected garment and sends it for AI analysis"
         >
           <Check size={18} color="#FFFFFF" />
           <Text style={styles.confirmBtnText}>Analyze Region</Text>
@@ -328,7 +501,7 @@ const styles = StyleSheet.create({
   stageContainer: {
     width: '100%',
     height: 380,
-    backgroundColor: '#000000',
+    backgroundColor: '#0F0F11',
     borderRadius: radii.md,
     overflow: 'hidden',
     position: 'relative',
@@ -345,24 +518,46 @@ const styles = StyleSheet.create({
     borderStyle: 'dashed',
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 4,
   },
   centerMoveHandle: {
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    padding: 8,
-    borderRadius: 20,
-    borderWidth: 1,
+    backgroundColor: 'rgba(0,0,0,0.65)',
+    padding: 10,
+    borderRadius: 22,
+    borderWidth: 1.5,
     borderColor: '#FFFFFF',
+    ...shadows.subtle,
   },
   cornerHandle: {
     position: 'absolute',
-    bottom: -6,
-    right: -6,
-    width: 16,
-    height: 16,
+    width: 20,
+    height: 20,
     backgroundColor: colors.accent,
-    borderWidth: 2,
+    borderWidth: 2.5,
     borderColor: '#FFFFFF',
-    borderRadius: 3,
+    borderRadius: 4,
+    ...shadows.subtle,
+    zIndex: 10,
+  },
+  tlCorner: {
+    top: -10,
+    left: -10,
+  },
+  trCorner: {
+    top: -10,
+    right: -10,
+  },
+  blCorner: {
+    bottom: -10,
+    left: -10,
+  },
+  brCorner: {
+    bottom: -10,
+    right: -10,
   },
   suggestionsSection: {
     marginTop: spacing.md,

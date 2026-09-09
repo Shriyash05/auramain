@@ -83,6 +83,55 @@ export class CropService {
   }
 
   /**
+   * Computes the rendered dimensions and letterbox/pillarbox offsets of an image
+   * displayed with resizeMode="contain" inside a container.
+   */
+  public static computeAspectFit(
+    sourceWidth: number,
+    sourceHeight: number,
+    containerWidth: number,
+    containerHeight: number
+  ): { renderedWidth: number; renderedHeight: number; offsetX: number; offsetY: number } {
+    if (sourceWidth <= 0 || sourceHeight <= 0 || containerWidth <= 0 || containerHeight <= 0) {
+      return {
+        renderedWidth: Math.max(0, containerWidth),
+        renderedHeight: Math.max(0, containerHeight),
+        offsetX: 0,
+        offsetY: 0,
+      };
+    }
+
+    const imageAspect = sourceWidth / sourceHeight;
+    const containerAspect = containerWidth / containerHeight;
+
+    let renderedWidth = containerWidth;
+    let renderedHeight = containerHeight;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    if (imageAspect > containerAspect) {
+      // Image wider than container: letterboxed top & bottom
+      renderedWidth = containerWidth;
+      renderedHeight = containerWidth / imageAspect;
+      offsetX = 0;
+      offsetY = (containerHeight - renderedHeight) / 2;
+    } else {
+      // Image taller than container: pillarboxed left & right
+      renderedHeight = containerHeight;
+      renderedWidth = containerHeight * imageAspect;
+      offsetY = 0;
+      offsetX = (containerWidth - renderedWidth) / 2;
+    }
+
+    return {
+      renderedWidth: Math.round(renderedWidth),
+      renderedHeight: Math.round(renderedHeight),
+      offsetX: Math.round(offsetX),
+      offsetY: Math.round(offsetY),
+    };
+  }
+
+  /**
    * Validates bounding box against coordinate bounds.
    */
   public static validateBoundingBox(
