@@ -1424,6 +1424,30 @@ describe('AURA Phase 11A — Training Infrastructure Suite', () => {
       expect(hashBlind).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
     });
   });
+
+  describe('AURA Phase 16 — Design System & Mix & Match Experience Verification', () => {
+    const forensic16Path = path.resolve(__dirname, '../training/data-audits/phase16/forensic_verification_phase16.json');
+    const blindFreezePath = path.resolve(__dirname, '../data/garment/metadata/dataset-v0.3-blind-freeze.json');
+
+    it('verifies forensic audit 16 report exists and passes all checks', () => {
+      expect(fs.existsSync(forensic16Path)).toBe(true);
+      const forensic = JSON.parse(fs.readFileSync(forensic16Path, 'utf8'));
+
+      expect(forensic.status).toBe('PASS');
+      expect(forensic.checks.dataset_immutability.blind_freeze_verified).toBe(true);
+      expect(forensic.checks.dataset_immutability.dataset_500_verified).toBe(true);
+      expect(forensic.checks.no_training_execution.status).toBe('PASS');
+      expect(forensic.checks.model_governance.version_verified).toBe(true);
+      expect(forensic.checks.model_governance.governance_verified).toBe(true);
+      expect(forensic.checks.scientific_integrity.zero_commercial_apis).toBe(true);
+      expect(forensic.checks.wardrobe_primacy.zero_fabricated_garments).toBe(true);
+      expect(forensic.checks.deterministic_compatibility.grounded_rationale).toBe(true);
+
+      // Verify blind hash directly
+      const hashBlind = crypto.createHash('sha256').update(fs.readFileSync(blindFreezePath)).digest('hex');
+      expect(hashBlind).toBe('5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd');
+    });
+  });
 });
 
 
