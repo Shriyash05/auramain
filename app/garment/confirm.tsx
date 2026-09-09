@@ -10,6 +10,7 @@ import { Chip } from '../../src/components/ui/Chip';
 import { Button } from '../../src/components/ui/Button';
 import { colors, spacing, radii, shadows } from '../../src/constants/theme';
 import { ArrowLeft, Check, Sparkles } from 'lucide-react-native';
+import { garmentTelemetryService } from '../../src/services/telemetry';
 
 export default function GarmentConfirmScreen() {
   const router = useRouter();
@@ -108,6 +109,9 @@ export default function GarmentConfirmScreen() {
         favorite: false,
         user_verified: true,
       });
+
+      // Telemetry
+      await garmentTelemetryService.trackSaveSuccess(!!params.inferredAttributes);
 
       // Return to Closet tab
       router.replace('/(tabs)/closet');

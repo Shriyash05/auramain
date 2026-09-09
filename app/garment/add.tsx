@@ -42,7 +42,11 @@ import {
   RotateCcw,
   Sparkles,
   ArrowRight,
+  ThumbsUp,
+  ThumbsDown,
+  HelpCircle,
 } from 'lucide-react-native';
+import { garmentTelemetryService } from '../../src/services/telemetry';
 
 export default function AddGarmentScreen() {
   const router = useRouter();
@@ -59,6 +63,7 @@ export default function AddGarmentScreen() {
   const [suggestedRegions, setSuggestedRegions] = useState<SuggestedGarmentRegion[]>([]);
   const [inferenceResult, setInferenceResult] = useState<GarmentInferenceResult | null>(null);
   const [isClassifying, setIsClassifying] = useState(false);
+  const [userFeedback, setUserFeedback] = useState<'CORRECT' | 'INCORRECT' | 'NOT_SURE' | null>(null);
 
   // Permissions
   const requestCameraPermission = async () => {
@@ -93,6 +98,11 @@ export default function AddGarmentScreen() {
     setImageDimensions({ width: w, height: h });
     setInferenceResult(null);
     setSuggestedRegions([]);
+    setUserFeedback(null);
+
+    // Telemetry: track image selected and selection started
+    garmentTelemetryService.trackImageSelected(w, h);
+    garmentTelemetryService.trackSelectionStarted(w, h);
 
     // Initialize Selection Service FSM
     garmentSelectionService.initializeWithImage(uri, w, h);
@@ -102,6 +112,9 @@ export default function AddGarmentScreen() {
     try {
       const suggestions = await garmentSelectionService.loadAutomaticSuggestions({ minConfidence: 0.5 });
       setSuggestedRegions(suggestions);
+      if (suggestions.length > 0) {
+        garmentTelemetryService.trackSuggestionsShown(suggestions.length);
+      }
     } catch (e) {
       console.warn('[AddGarment] Failed to load suggestions:', e);
       setSuggestedRegions([]);
@@ -143,6 +156,18 @@ export default function AddGarmentScreen() {
   const handleConfirmSelection = async (selection: GarmentSelection) => {
     setCurrentState('PROCESSING');
     setIsClassifying(true);
+    setUserFeedback(null);
+
+    const cropW = Math.round(selection.bbox.width * selection.sourceWidth);
+    const cropH = Math.round(selection.bbox.height * selection.sourceHeight);
+
+    // Telemetry
+    garmentTelemetryService.trackSelectionConfirmed(selection.selectionMethod as any, cropW, cropH);
+    garmentTelemetryService.trackCropCreated(cropW, cropH);
+    garmentTelemetryService.trackInferenceStarted(
+      selection.selectionMethod === 'suggested' ? 'suggested_crop' : 'manual_crop',
+      selection.selectionMethod as any
+    );
 
     try {
       // Execute inference via Exp-0015 LoRA adapter & confidence gate
@@ -155,9 +180,31 @@ export default function AddGarmentScreen() {
 
       setInferenceResult(result);
       setCurrentState(result.status);
+
+      if (result.status === 'SUCCESS') {
+        garmentTelemetryService.trackInferenceSuccess({
+          confidence: result.confidence,
+          latencyMs: result.latency.total_ms,
+          cropWidth: cropW,
+          cropHeight: cropH,
+          selectionMethod: selection.selectionMethod as any,
+          category: result.category,
+        });
+      } else if (result.status === 'REFUSED') {
+        garmentTelemetryService.trackInferenceRefused({
+          confidence: result.confidence,
+          latencyMs: result.latency.total_ms,
+          cropWidth: cropW,
+          cropHeight: cropH,
+          selectionMethod: selection.selectionMethod as any,
+        });
+      } else {
+        garmentTelemetryService.trackInferenceError('INFERENCE_ERROR', result.latency.total_ms);
+      }
     } catch (err) {
       console.error('[AddGarment] Inference execution failed:', err);
       setCurrentState('ERROR');
+      garmentTelemetryService.trackInferenceError('INFERENCE_ERROR');
     } finally {
       setIsClassifying(false);
     }
@@ -193,7 +240,9 @@ export default function AddGarmentScreen() {
   const handleResetToSelection = () => {
     garmentSelectionService.resetSelection();
     setInferenceResult(null);
+    setUserFeedback(null);
     setCurrentState('SELECTING_REGION');
+    garmentTelemetryService.trackSelectionReset();
   };
 
   const handleRetakePhoto = () => {
@@ -201,7 +250,16 @@ export default function AddGarmentScreen() {
     setSelectedImageUri(null);
     setInferenceResult(null);
     setSuggestedRegions([]);
+    setUserFeedback(null);
     setCurrentState('IDLE');
+    garmentTelemetryService.trackSelectionCanceled('user_retake');
+  };
+
+  const handleProvideFeedback = (fb: 'CORRECT' | 'INCORRECT' | 'NOT_SURE') => {
+    setUserFeedback(fb);
+    if (inferenceResult) {
+      garmentTelemetryService.trackPredictionFeedback(fb, inferenceResult.category);
+    }
   };
 
   return (
@@ -374,6 +432,48 @@ export default function AddGarmentScreen() {
                 <Typography variant="caption" color={colors.textMuted}>SILHOUETTE</Typography>
                 <Typography variant="body" color={colors.text}>{inferenceResult.attributes.silhouette || 'Straight'}</Typography>
               </View>
+            </View>
+
+            {/* Model Prediction Feedback Bar (Section 22) */}
+            <View style={styles.feedbackSection}>
+              <Typography variant="caption" color={colors.textSecondary}>
+                Is this classification accurate?
+              </Typography>
+              {userFeedback ? (
+                <Typography variant="caption" color={colors.success} style={{ marginTop: 4 }}>
+                  Thanks for your feedback ({userFeedback.toLowerCase()})
+                </Typography>
+              ) : (
+                <View style={styles.feedbackButtonsRow}>
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    onPress={() => handleProvideFeedback('CORRECT')}
+                    style={styles.feedbackChip}
+                    accessibilityLabel="Feedback: correct prediction"
+                  >
+                    <ThumbsUp size={13} color={colors.textSecondary} />
+                    <Typography variant="caption" color={colors.text}>Correct</Typography>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    onPress={() => handleProvideFeedback('INCORRECT')}
+                    style={styles.feedbackChip}
+                    accessibilityLabel="Feedback: incorrect prediction"
+                  >
+                    <ThumbsDown size={13} color={colors.textSecondary} />
+                    <Typography variant="caption" color={colors.text}>Incorrect</Typography>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    onPress={() => handleProvideFeedback('NOT_SURE')}
+                    style={styles.feedbackChip}
+                    accessibilityLabel="Feedback: not sure"
+                  >
+                    <HelpCircle size={13} color={colors.textSecondary} />
+                    <Typography variant="caption" color={colors.text}>Not Sure</Typography>
+                  </TouchableOpacity>
+                </View>
+              )}
             </View>
 
             <View style={styles.resultActions}>
@@ -683,5 +783,28 @@ const styles = StyleSheet.create({
   tertiaryBtn: {
     alignItems: 'center',
     paddingVertical: spacing.xs,
+  },
+  feedbackSection: {
+    backgroundColor: colors.surfaceMuted,
+    padding: spacing.sm,
+    borderRadius: radii.md,
+    marginBottom: spacing.md,
+    alignItems: 'center',
+  },
+  feedbackButtonsRow: {
+    flexDirection: 'row',
+    gap: spacing.xs,
+    marginTop: spacing.xs,
+  },
+  feedbackChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 5,
+    borderRadius: radii.pill,
   },
 });
