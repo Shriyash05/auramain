@@ -304,7 +304,7 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
         <Image source={{ uri: imageUri }} style={styles.image} resizeMode="contain" />
 
         {/* Ambient Dark Overlay (Dim non-selected areas and letterbox borders) */}
-        <View pointerEvents="none" style={StyleSheet.absoluteFillObject}>
+        <View pointerEvents="none" style={StyleSheet.absoluteFill}>
           {/* Top dark band */}
           <View style={{ position: 'absolute', top: 0, left: 0, right: 0, height: Math.max(0, dispY), backgroundColor: 'rgba(0,0,0,0.58)' }} />
           {/* Bottom dark band */}

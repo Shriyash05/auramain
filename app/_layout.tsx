@@ -40,7 +40,7 @@ function RootNavigationLayout() {
 
   return (
     <>
-      <StatusBar style="dark" backgroundColor={colors.background} />
+      <StatusBar style="dark" />
       {!splashFinished && (
         <AnimatedSplash onFinish={() => setSplashFinished(true)} />
       )}
