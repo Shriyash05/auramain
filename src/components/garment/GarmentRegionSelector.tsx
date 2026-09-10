@@ -37,6 +37,8 @@ interface GarmentRegionSelectorProps {
   suggestedRegions?: SuggestedGarmentRegion[];
   onConfirmSelection: (selection: GarmentSelection) => void;
   onCancel: () => void;
+  onInteractionStart?: () => void;
+  onInteractionEnd?: () => void;
   initialBox?: BoundingBoxCoordinates;
 }
 
@@ -50,6 +52,8 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
   suggestedRegions = [],
   onConfirmSelection,
   onCancel,
+  onInteractionStart,
+  onInteractionEnd,
   initialBox,
 }) => {
   const [containerLayout, setContainerLayout] = useState<{ width: number; height: number }>({
@@ -91,8 +95,13 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
   const movePanResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponderCapture: () => true,
       onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponderCapture: () => true,
+      onPanResponderTerminationRequest: () => false,
+      onShouldBlockNativeResponder: () => true,
       onPanResponderGrant: () => {
+        onInteractionStart?.();
         dragStartBoxRef.current = { ...boxRef.current };
         setSelectionMethod('manual');
         setSelectedSuggestionId(null);
@@ -115,7 +124,12 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
           height: start.height,
         });
       },
-      onPanResponderRelease: () => {},
+      onPanResponderRelease: () => {
+        onInteractionEnd?.();
+      },
+      onPanResponderTerminate: () => {
+        onInteractionEnd?.();
+      },
     })
   ).current;
 
@@ -123,8 +137,13 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
   const brPanResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponderCapture: () => true,
       onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponderCapture: () => true,
+      onPanResponderTerminationRequest: () => false,
+      onShouldBlockNativeResponder: () => true,
       onPanResponderGrant: () => {
+        onInteractionStart?.();
         dragStartBoxRef.current = { ...boxRef.current };
         setSelectionMethod('manual');
         setSelectedSuggestionId(null);
@@ -146,6 +165,12 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
           width: Number(newW.toFixed(4)),
           height: Number(newH.toFixed(4)),
         });
+      },
+      onPanResponderRelease: () => {
+        onInteractionEnd?.();
+      },
+      onPanResponderTerminate: () => {
+        onInteractionEnd?.();
       },
     })
   ).current;
@@ -154,8 +179,13 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
   const tlPanResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponderCapture: () => true,
       onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponderCapture: () => true,
+      onPanResponderTerminationRequest: () => false,
+      onShouldBlockNativeResponder: () => true,
       onPanResponderGrant: () => {
+        onInteractionStart?.();
         dragStartBoxRef.current = { ...boxRef.current };
         setSelectionMethod('manual');
         setSelectedSuggestionId(null);
@@ -181,6 +211,12 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
           height: Number((maxBottom - newY).toFixed(4)),
         });
       },
+      onPanResponderRelease: () => {
+        onInteractionEnd?.();
+      },
+      onPanResponderTerminate: () => {
+        onInteractionEnd?.();
+      },
     })
   ).current;
 
@@ -188,8 +224,13 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
   const trPanResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponderCapture: () => true,
       onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponderCapture: () => true,
+      onPanResponderTerminationRequest: () => false,
+      onShouldBlockNativeResponder: () => true,
       onPanResponderGrant: () => {
+        onInteractionStart?.();
         dragStartBoxRef.current = { ...boxRef.current };
         setSelectionMethod('manual');
         setSelectedSuggestionId(null);
@@ -214,6 +255,12 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
           height: Number((maxBottom - newY).toFixed(4)),
         });
       },
+      onPanResponderRelease: () => {
+        onInteractionEnd?.();
+      },
+      onPanResponderTerminate: () => {
+        onInteractionEnd?.();
+      },
     })
   ).current;
 
@@ -221,8 +268,13 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
   const blPanResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponderCapture: () => true,
       onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponderCapture: () => true,
+      onPanResponderTerminationRequest: () => false,
+      onShouldBlockNativeResponder: () => true,
       onPanResponderGrant: () => {
+        onInteractionStart?.();
         dragStartBoxRef.current = { ...boxRef.current };
         setSelectionMethod('manual');
         setSelectedSuggestionId(null);
@@ -246,6 +298,174 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
           width: Number((maxRight - newX).toFixed(4)),
           height: Number(newH.toFixed(4)),
         });
+      },
+      onPanResponderRelease: () => {
+        onInteractionEnd?.();
+      },
+      onPanResponderTerminate: () => {
+        onInteractionEnd?.();
+      },
+    })
+  ).current;
+
+  // 6. Top Edge Resize Responder (Vertical resize from top)
+  const tPanResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponderCapture: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponderCapture: () => true,
+      onPanResponderTerminationRequest: () => false,
+      onShouldBlockNativeResponder: () => true,
+      onPanResponderGrant: () => {
+        onInteractionStart?.();
+        dragStartBoxRef.current = { ...boxRef.current };
+        setSelectionMethod('manual');
+        setSelectedSuggestionId(null);
+      },
+      onPanResponderMove: (_evt: GestureResponderEvent, gestureState: PanResponderGestureState) => {
+        const { renderedHeight: rh } = fitRef.current;
+        if (rh <= 0) return;
+
+        const dyNorm = gestureState.dy / rh;
+        const start = dragStartBoxRef.current;
+        const maxBottom = start.y + start.height;
+
+        const newY = Math.max(0, Math.min(maxBottom - MIN_DIM, start.y + dyNorm));
+
+        setCurrentBox({
+          x: start.x,
+          y: Number(newY.toFixed(4)),
+          width: start.width,
+          height: Number((maxBottom - newY).toFixed(4)),
+        });
+      },
+      onPanResponderRelease: () => {
+        onInteractionEnd?.();
+      },
+      onPanResponderTerminate: () => {
+        onInteractionEnd?.();
+      },
+    })
+  ).current;
+
+  // 7. Bottom Edge Resize Responder (Vertical resize from bottom)
+  const bPanResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponderCapture: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponderCapture: () => true,
+      onPanResponderTerminationRequest: () => false,
+      onShouldBlockNativeResponder: () => true,
+      onPanResponderGrant: () => {
+        onInteractionStart?.();
+        dragStartBoxRef.current = { ...boxRef.current };
+        setSelectionMethod('manual');
+        setSelectedSuggestionId(null);
+      },
+      onPanResponderMove: (_evt: GestureResponderEvent, gestureState: PanResponderGestureState) => {
+        const { renderedHeight: rh } = fitRef.current;
+        if (rh <= 0) return;
+
+        const dyNorm = gestureState.dy / rh;
+        const start = dragStartBoxRef.current;
+
+        const newH = Math.max(MIN_DIM, Math.min(1 - start.y, start.height + dyNorm));
+
+        setCurrentBox({
+          x: start.x,
+          y: start.y,
+          width: start.width,
+          height: Number(newH.toFixed(4)),
+        });
+      },
+      onPanResponderRelease: () => {
+        onInteractionEnd?.();
+      },
+      onPanResponderTerminate: () => {
+        onInteractionEnd?.();
+      },
+    })
+  ).current;
+
+  // 8. Left Edge Resize Responder (Horizontal resize from left)
+  const lPanResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponderCapture: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponderCapture: () => true,
+      onPanResponderTerminationRequest: () => false,
+      onShouldBlockNativeResponder: () => true,
+      onPanResponderGrant: () => {
+        onInteractionStart?.();
+        dragStartBoxRef.current = { ...boxRef.current };
+        setSelectionMethod('manual');
+        setSelectedSuggestionId(null);
+      },
+      onPanResponderMove: (_evt: GestureResponderEvent, gestureState: PanResponderGestureState) => {
+        const { renderedWidth: rw } = fitRef.current;
+        if (rw <= 0) return;
+
+        const dxNorm = gestureState.dx / rw;
+        const start = dragStartBoxRef.current;
+        const maxRight = start.x + start.width;
+
+        const newX = Math.max(0, Math.min(maxRight - MIN_DIM, start.x + dxNorm));
+
+        setCurrentBox({
+          x: Number(newX.toFixed(4)),
+          y: start.y,
+          width: Number((maxRight - newX).toFixed(4)),
+          height: start.height,
+        });
+      },
+      onPanResponderRelease: () => {
+        onInteractionEnd?.();
+      },
+      onPanResponderTerminate: () => {
+        onInteractionEnd?.();
+      },
+    })
+  ).current;
+
+  // 9. Right Edge Resize Responder (Horizontal resize from right)
+  const rPanResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponderCapture: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponderCapture: () => true,
+      onPanResponderTerminationRequest: () => false,
+      onShouldBlockNativeResponder: () => true,
+      onPanResponderGrant: () => {
+        onInteractionStart?.();
+        dragStartBoxRef.current = { ...boxRef.current };
+        setSelectionMethod('manual');
+        setSelectedSuggestionId(null);
+      },
+      onPanResponderMove: (_evt: GestureResponderEvent, gestureState: PanResponderGestureState) => {
+        const { renderedWidth: rw } = fitRef.current;
+        if (rw <= 0) return;
+
+        const dxNorm = gestureState.dx / rw;
+        const start = dragStartBoxRef.current;
+
+        const newW = Math.max(MIN_DIM, Math.min(1 - start.x, start.width + dxNorm));
+
+        setCurrentBox({
+          x: start.x,
+          y: start.y,
+          width: Number(newW.toFixed(4)),
+          height: start.height,
+        });
+      },
+      onPanResponderRelease: () => {
+        onInteractionEnd?.();
+      },
+      onPanResponderTerminate: () => {
+        onInteractionEnd?.();
       },
     })
   ).current;
@@ -379,6 +599,46 @@ export const GarmentRegionSelector: React.FC<GarmentRegionSelectorProps> = ({
             accessible={true}
             accessibilityRole="adjustable"
             accessibilityLabel="Bottom-right resize handle"
+          />
+
+          {/* Top Edge Handle */}
+          <View
+            {...tPanResponder.panHandlers}
+            hitSlop={HANDLE_TOUCH_SLOP}
+            style={[styles.edgeHandle, styles.tEdge]}
+            accessible={true}
+            accessibilityRole="adjustable"
+            accessibilityLabel="Top resize handle"
+          />
+
+          {/* Bottom Edge Handle */}
+          <View
+            {...bPanResponder.panHandlers}
+            hitSlop={HANDLE_TOUCH_SLOP}
+            style={[styles.edgeHandle, styles.bEdge]}
+            accessible={true}
+            accessibilityRole="adjustable"
+            accessibilityLabel="Bottom resize handle"
+          />
+
+          {/* Left Edge Handle */}
+          <View
+            {...lPanResponder.panHandlers}
+            hitSlop={HANDLE_TOUCH_SLOP}
+            style={[styles.edgeHandle, styles.lEdge]}
+            accessible={true}
+            accessibilityRole="adjustable"
+            accessibilityLabel="Left resize handle"
+          />
+
+          {/* Right Edge Handle */}
+          <View
+            {...rPanResponder.panHandlers}
+            hitSlop={HANDLE_TOUCH_SLOP}
+            style={[styles.edgeHandle, styles.rEdge]}
+            accessible={true}
+            accessibilityRole="adjustable"
+            accessibilityLabel="Right resize handle"
           />
         </View>
       </View>
@@ -558,6 +818,43 @@ const styles = StyleSheet.create({
   brCorner: {
     bottom: -10,
     right: -10,
+  },
+  edgeHandle: {
+    position: 'absolute',
+    backgroundColor: colors.accent,
+    borderWidth: 2,
+    borderColor: '#FFFFFF',
+    borderRadius: 4,
+    ...shadows.subtle,
+    zIndex: 10,
+  },
+  tEdge: {
+    top: -6,
+    left: '50%',
+    marginLeft: -16,
+    width: 32,
+    height: 12,
+  },
+  bEdge: {
+    bottom: -6,
+    left: '50%',
+    marginLeft: -16,
+    width: 32,
+    height: 12,
+  },
+  lEdge: {
+    left: -6,
+    top: '50%',
+    marginTop: -16,
+    width: 12,
+    height: 32,
+  },
+  rEdge: {
+    right: -6,
+    top: '50%',
+    marginTop: -16,
+    width: 12,
+    height: 32,
   },
   suggestionsSection: {
     marginTop: spacing.md,

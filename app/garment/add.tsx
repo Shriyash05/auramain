@@ -64,6 +64,7 @@ export default function AddGarmentScreen() {
   const [inferenceResult, setInferenceResult] = useState<GarmentInferenceResult | null>(null);
   const [isClassifying, setIsClassifying] = useState(false);
   const [userFeedback, setUserFeedback] = useState<'CORRECT' | 'INCORRECT' | 'NOT_SURE' | null>(null);
+  const [isParentScrollEnabled, setIsParentScrollEnabled] = useState(true);
 
   // Permissions
   const requestCameraPermission = async () => {
@@ -264,7 +265,11 @@ export default function AddGarmentScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+        scrollEnabled={isParentScrollEnabled}
+      >
         {/* Header */}
         <View style={styles.header}>
           <TouchableOpacity
@@ -371,6 +376,8 @@ export default function AddGarmentScreen() {
               suggestedRegions={suggestedRegions}
               onConfirmSelection={handleConfirmSelection}
               onCancel={handleRetakePhoto}
+              onInteractionStart={() => setIsParentScrollEnabled(false)}
+              onInteractionEnd={() => setIsParentScrollEnabled(true)}
             />
           </View>
         )}

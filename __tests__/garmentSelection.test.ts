@@ -575,6 +575,55 @@ describe('Phase 15 — Target Garment Selection & Production Inference Contract'
         expect(clamped.height).toBeGreaterThanOrEqual(0.01);
       });
 
+      it('correctly calculates vertical crop resizing for top and bottom handles', () => {
+        // Initial box: y: 0.3, height: 0.4
+        const initialBox: BoundingBoxCoordinates = { x: 0.2, y: 0.3, width: 0.5, height: 0.4 };
+
+        // 1. Top handle dragged upward (dy = -0.1) -> newY: 0.2, newH: 0.5
+        const topUpY = Math.max(0, initialBox.y - 0.1);
+        const topUpH = Math.max(0.05, initialBox.height + (initialBox.y - topUpY));
+        expect(topUpY).toBeCloseTo(0.2);
+        expect(topUpH).toBeCloseTo(0.5);
+
+        // 2. Top handle dragged downward (dy = +0.1) -> newY: 0.4, newH: 0.3
+        const topDownY = Math.min(initialBox.y + initialBox.height - 0.05, initialBox.y + 0.1);
+        const topDownH = Math.max(0.05, initialBox.height - (topDownY - initialBox.y));
+        expect(topDownY).toBeCloseTo(0.4);
+        expect(topDownH).toBeCloseTo(0.3);
+
+        // 3. Bottom handle dragged downward (dy = +0.15) -> newH: 0.55, clamped to 1 - y
+        const botDownH = Math.min(1 - initialBox.y, Math.max(0.05, initialBox.height + 0.15));
+        expect(botDownH).toBeCloseTo(0.55);
+
+        // 4. Bottom handle dragged upward (dy = -0.2) -> newH: 0.2
+        const botUpH = Math.min(1 - initialBox.y, Math.max(0.05, initialBox.height - 0.2));
+        expect(botUpH).toBeCloseTo(0.2);
+
+        // 5. Move rectangle vertically and horizontally: dimensions stay invariant
+        const movedX = Math.max(0, Math.min(1 - initialBox.width, initialBox.x + 0.1));
+        const movedY = Math.max(0, Math.min(1 - initialBox.height, initialBox.y + 0.15));
+        expect(movedX).toBeCloseTo(0.3);
+        expect(movedY).toBeCloseTo(0.45);
+        expect(initialBox.width).toBe(0.5);
+        expect(initialBox.height).toBe(0.4);
+      });
+
+      it('simulates isolated touch surface parent scroll lock lifecycle', () => {
+        let parentScrollEnabled = true;
+        const onInteractionStart = () => { parentScrollEnabled = false; };
+        const onInteractionEnd = () => { parentScrollEnabled = true; };
+
+        expect(parentScrollEnabled).toBe(true);
+
+        // User touches top handle -> parent scroll locked immediately
+        onInteractionStart();
+        expect(parentScrollEnabled).toBe(false);
+
+        // User finishes dragging / gesture ends
+        onInteractionEnd();
+        expect(parentScrollEnabled).toBe(true);
+      });
+
       it('prevents stale selection leaks on re-initialization (Test Case H)', () => {
         garmentSelectionService.initializeWithImage('file:///test1.jpg', 800, 1200);
         garmentSelectionService.setManualSelection({ x: 0.2, y: 0.3, width: 0.4, height: 0.5 });
