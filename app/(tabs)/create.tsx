@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   View,
   StyleSheet,
@@ -15,6 +15,9 @@ import { Typography } from '../../src/components/ui/Typography';
 import { Button } from '../../src/components/ui/Button';
 import { EditorialOutfitCanvas } from '../../src/components/mixmatch/EditorialOutfitCanvas';
 import { WardrobeSwapSheet } from '../../src/components/mixmatch/WardrobeSwapSheet';
+import { StudioGarmentSwiper } from '../../src/components/studio/StudioGarmentSwiper';
+import { VirtualTryOnSheet } from '../../src/components/studio/VirtualTryOnSheet';
+import { liveStyleIntelligenceService, LiveStyleInsight } from '../../src/services/stylist/liveStyleIntelligenceService';
 import { colors, spacing, radii, shadows } from '../../src/constants/theme';
 import {
   Sparkles,
@@ -24,12 +27,15 @@ import {
   Sun,
   Moon,
   Plus,
-  ArrowRight,
   SlidersHorizontal,
-  RefreshCw,
+  Layers,
+  Wand2,
+  Palette,
 } from 'lucide-react-native';
 
-export default function CreateScreen() {
+export type StudioMode = 'BUILD' | 'AURA';
+
+export default function StudioScreen() {
   const router = useRouter();
   const {
     selectedSlots,
@@ -43,17 +49,44 @@ export default function CreateScreen() {
     activeCandidate,
     activeCandidateIndex,
     setActiveCandidateIndex,
-    evaluation,
     wardrobeSufficiency,
     categorizedGarments,
   } = useMixMatch();
 
-  // Swap modal state
+  // Studio Mode: BUILD (manual garment swipe) vs AURA (complete look proposals)
+  const [studioMode, setStudioMode] = useState<StudioMode>('BUILD');
+
+  // Modals
   const [isSwapSheetOpen, setIsSwapSheetOpen] = useState(false);
   const [swapCategory, setSwapCategory] = useState<GarmentCategory | null>(null);
+  const [isVtoSheetOpen, setIsVtoSheetOpen] = useState(false);
   const [savedSuccess, setSavedSuccess] = useState<boolean>(false);
 
   const isNight = context.timeOfDay === 'evening' || context.timeOfDay === 'night';
+
+  // Live Style & Color Intelligence evaluated instantaneously on every swipe
+  const liveInsight: LiveStyleInsight = useMemo(() => {
+    return liveStyleIntelligenceService.evaluateLiveOutfit(
+      {
+        top: selectedSlots.tops,
+        bottom: selectedSlots.bottoms,
+        shoes: selectedSlots.shoes,
+        outerwear: selectedSlots.outerwear,
+        accessory: selectedSlots.accessories,
+      },
+      context
+    );
+  }, [selectedSlots, context]);
+
+  const activeGarmentsList = useMemo(() => {
+    return [
+      selectedSlots.tops,
+      selectedSlots.bottoms,
+      selectedSlots.shoes,
+      selectedSlots.outerwear,
+      selectedSlots.accessories,
+    ].filter(Boolean) as any[];
+  }, [selectedSlots]);
 
   const handleSave = async () => {
     const saved = await saveCurrentOutfit();
@@ -86,17 +119,17 @@ export default function CreateScreen() {
     setSwapCategory(null);
   };
 
-  // 1. Loading State (Honest & concise)
+  // 1. Loading State
   if (isGenerating) {
     return (
       <SafeAreaView style={styles.safe}>
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={colors.text} />
           <Typography variant="title" style={styles.loadingTitle}>
-            AURA is styling your look...
+            AURA Studio Opening...
           </Typography>
           <Typography variant="body" color={colors.textSecondary} style={styles.loadingSubtitle}>
-            Composing a complete outfit from your personal wardrobe.
+            Loading your personal wardrobe and styling intelligence.
           </Typography>
         </View>
       </SafeAreaView>
@@ -131,12 +164,12 @@ export default function CreateScreen() {
   }
 
   const lookNumber = `LOOK 0${activeCandidateIndex + 1}`;
-  const lookArchetype = (activeCandidate?.archetypeLabel || 'Signature Look').toUpperCase();
+  const lookArchetype = (activeCandidate?.archetypeLabel || 'Studio Minimal').toUpperCase();
 
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
-        {/* 1. Header & Context */}
+        {/* 1. Header & Context Indicator */}
         <View style={styles.header}>
           <View>
             <View style={styles.contextBadge}>
@@ -151,7 +184,7 @@ export default function CreateScreen() {
               </Typography>
             </View>
             <Typography variant="hero" style={styles.title}>
-              Mix & Match
+              Studio
             </Typography>
           </View>
 
@@ -179,18 +212,53 @@ export default function CreateScreen() {
           </View>
         </View>
 
-        {/* 2. Look Header: LOOK 01 • ARCHETYPE */}
-        <View style={styles.lookTitleSection}>
+        {/* 2. Studio Mode Switcher: BUILD vs AURA */}
+        <View style={styles.modeSwitcherContainer}>
+          <TouchableOpacity
+            activeOpacity={0.85}
+            onPress={() => setStudioMode('BUILD')}
+            style={[styles.modeTab, studioMode === 'BUILD' && styles.modeTabActive]}
+            accessibilityLabel="Switch to Build mode: swipe garments manually"
+          >
+            <Layers size={13} color={studioMode === 'BUILD' ? colors.textInverse : colors.textSecondary} />
+            <Typography
+              variant="caption"
+              color={studioMode === 'BUILD' ? colors.textInverse : colors.textSecondary}
+              style={styles.modeTabText}
+            >
+              BUILD
+            </Typography>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.85}
+            onPress={() => setStudioMode('AURA')}
+            style={[styles.modeTab, studioMode === 'AURA' && styles.modeTabActive]}
+            accessibilityLabel="Switch to AURA mode: complete recommended looks"
+          >
+            <Wand2 size={13} color={studioMode === 'AURA' ? colors.textInverse : colors.textSecondary} />
+            <Typography
+              variant="caption"
+              color={studioMode === 'AURA' ? colors.textInverse : colors.textSecondary}
+              style={styles.modeTabText}
+            >
+              AURA
+            </Typography>
+          </TouchableOpacity>
+        </View>
+
+        {/* 3. Look Meta Label */}
+        <View style={styles.lookMetaRow}>
           <Typography variant="label" style={styles.lookNumberLabel}>
-            {lookNumber} • {lookArchetype}
+            {studioMode === 'BUILD' ? 'CUSTOM STUDIO COMPOSITION' : `${lookNumber} • ${lookArchetype}`}
           </Typography>
           <Typography variant="title" style={styles.lookName}>
-            {activeCandidate?.name || 'Curated Outfit'}
+            {studioMode === 'BUILD' ? 'Personal Mix' : activeCandidate?.name || 'Curated Look'}
           </Typography>
         </View>
 
-        {/* 3. Hero Centerpiece: Complete Editorial Flat-Lay */}
-        <View style={styles.heroOutfitSection}>
+        {/* 4. Complete Outfit Hero Flat-Lay Canvas */}
+        <View style={styles.heroCanvasSection}>
           <EditorialOutfitCanvas
             slots={selectedSlots}
             onPiecePress={(category) => handleOpenSwap(category)}
@@ -198,39 +266,69 @@ export default function CreateScreen() {
           />
         </View>
 
-        {/* 4. Qualitative "WHY THIS WORKS" Rationale */}
-        <View style={styles.rationaleBox}>
-          <View style={styles.rationaleHeaderRow}>
-            <Typography variant="label" style={styles.rationaleTitle}>
-              WHY THIS WORKS
-            </Typography>
-            <View style={styles.highlightTagsRow}>
-              {evaluation.highlights.slice(0, 2).map((h, i) => (
-                <View key={i} style={styles.tagBadge}>
-                  <Typography variant="caption" color={colors.textSecondary} style={styles.tagText}>
-                    {h}
-                  </Typography>
-                </View>
-              ))}
-            </View>
-          </View>
-          <Typography variant="body" style={styles.rationaleText}>
-            {evaluation.rationale}
+        {/* 5. Live AURA Style & Colour Insight Box */}
+        <View style={styles.liveInsightCard}>
+          <Typography variant="label" style={styles.rationaleTag}>
+            WHY THIS WORKS • LIVE STYLE INSIGHT
           </Typography>
+          <View style={styles.insightHeaderRow}>
+            <View style={styles.headlineGroup}>
+              <Typography variant="title" style={styles.insightHeadline}>
+                {liveInsight.headline}
+              </Typography>
+              <Typography variant="caption" color={colors.textMuted} style={styles.palettePill}>
+                {liveInsight.palette.dominantColorFamily} • {liveInsight.palette.contrastLevel.replace('_', ' ')}
+              </Typography>
+            </View>
+
+            {liveInsight.status === 'consider_alternative' ? (
+              <View style={styles.badgeWarning}>
+                <Typography variant="caption" color={colors.warning} style={styles.badgeStatusText}>
+                  TRY ANOTHER
+                </Typography>
+              </View>
+            ) : (
+              <View style={styles.badgeSuccess}>
+                <Typography variant="caption" color={colors.success} style={styles.badgeStatusText}>
+                  HARMONIOUS
+                </Typography>
+              </View>
+            )}
+          </View>
+
+          <Typography variant="body" style={styles.insightExplanation}>
+            {liveInsight.explanation}
+          </Typography>
+
+          {/* Attribute Pills */}
+          <View style={styles.pillsRow}>
+            {liveInsight.attributePills.map((pill, idx) => (
+              <View key={idx} style={styles.attributePill}>
+                <Typography variant="caption" color={colors.textSecondary} style={styles.pillText}>
+                  {pill}
+                </Typography>
+              </View>
+            ))}
+          </View>
+
+          {/* Constructive Guidance if weak combination */}
+          {liveInsight.suggestedAction && (
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => handleOpenSwap(liveInsight.suggestedAction?.category)}
+              style={styles.suggestionBanner}
+            >
+              <Typography variant="caption" color={colors.text} style={styles.suggestionText}>
+                💡 {liveInsight.suggestedAction.message}
+              </Typography>
+            </TouchableOpacity>
+          )}
         </View>
 
-        {/* 5. Primary Action Pair: [Swap a piece] & [Save Look] */}
-        <View style={styles.actionSection}>
+        {/* 6. Primary Action Pair: [Save Look] & [Try It On] */}
+        <View style={styles.actionRow}>
           <Button
-            label="Swap a piece"
-            variant="outline"
-            onPress={() => handleOpenSwap()}
-            icon={<RefreshCw size={16} color={colors.text} />}
-            size="lg"
-            style={styles.swapActionBtn}
-          />
-          <Button
-            label={savedSuccess ? 'Saved to Wardrobe' : 'Save Look'}
+            label={savedSuccess ? 'Saved to Closet' : 'Save Look'}
             variant="primary"
             onPress={handleSave}
             loading={isSaving}
@@ -238,18 +336,76 @@ export default function CreateScreen() {
             size="lg"
             style={styles.primaryActionBtn}
           />
+          <Button
+            label="Try It On"
+            variant="outline"
+            onPress={() => setIsVtoSheetOpen(true)}
+            icon={<Sparkles size={16} color={colors.text} />}
+            size="lg"
+            style={styles.vtoActionBtn}
+          />
         </View>
 
-        {/* 6. Try Another Look (Alternative Complete Looks) */}
-        {candidates.length > 1 && (
-          <View style={styles.alternativeLooksSection}>
-            <Typography variant="label" style={styles.alternativeSectionTitle}>
-              TRY ANOTHER LOOK
+        {/* 7. Mode-Specific Browsing Deck */}
+        {studioMode === 'BUILD' ? (
+          /* BUILD MODE: Interactive Horizontal Swiper Tracks for Tops, Bottoms, Shoes */
+          <View style={styles.swipersDeckSection}>
+            <Typography variant="label" style={styles.deckSectionTitle}>
+              SWIPE TO BROWSE WARDROBE
+            </Typography>
+
+            {/* Tops Track */}
+            <StudioGarmentSwiper
+              category="tops"
+              categoryLabel="Tops"
+              garments={categorizedGarments.tops || []}
+              selectedGarment={selectedSlots.tops}
+              onSelectGarment={(g) => swapGarment('tops', g)}
+              onAddNewPress={() => router.push('/garment/add')}
+            />
+
+            {/* Bottoms Track */}
+            <StudioGarmentSwiper
+              category="bottoms"
+              categoryLabel="Bottoms"
+              garments={categorizedGarments.bottoms || []}
+              selectedGarment={selectedSlots.bottoms}
+              onSelectGarment={(g) => swapGarment('bottoms', g)}
+              onAddNewPress={() => router.push('/garment/add')}
+            />
+
+            {/* Shoes Track */}
+            <StudioGarmentSwiper
+              category="shoes"
+              categoryLabel="Footwear"
+              garments={categorizedGarments.shoes || []}
+              selectedGarment={selectedSlots.shoes}
+              onSelectGarment={(g) => swapGarment('shoes', g)}
+              onAddNewPress={() => router.push('/garment/add')}
+            />
+
+            {/* Optional Outerwear Track (if user has outerwear) */}
+            {(categorizedGarments.outerwear || []).length > 0 && (
+              <StudioGarmentSwiper
+                category="outerwear"
+                categoryLabel="Outerwear Layer"
+                garments={categorizedGarments.outerwear || []}
+                selectedGarment={selectedSlots.outerwear}
+                onSelectGarment={(g) => swapGarment('outerwear', g)}
+                onAddNewPress={() => router.push('/garment/add')}
+              />
+            )}
+          </View>
+        ) : (
+          /* AURA MODE: Complete Recommended Look Candidates */
+          <View style={styles.auraLooksSection}>
+            <Typography variant="label" style={styles.deckSectionTitle}>
+              AURA PROPOSED COMPLETE LOOKS
             </Typography>
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.alternateLooksRow}
+              contentContainerStyle={styles.auraLooksRow}
             >
               {candidates.map((cand, idx) => {
                 const isCurrent = activeCandidateIndex === idx;
@@ -274,9 +430,7 @@ export default function CreateScreen() {
                       >
                         {label}
                       </Typography>
-                      {isCurrent && (
-                        <View style={styles.activeDot} />
-                      )}
+                      {isCurrent && <View style={styles.activeDot} />}
                     </View>
                     <Typography
                       variant="body"
@@ -300,33 +454,18 @@ export default function CreateScreen() {
             </ScrollView>
           </View>
         )}
-
-        {/* 7. Secondary Feature: Virtual Try-On */}
-        <View style={styles.studioSection}>
-          <TouchableOpacity
-            activeOpacity={0.85}
-            onPress={() => router.push('/mirror')}
-            style={styles.studioCard}
-          >
-            <View style={styles.studioLeft}>
-              <View style={styles.sparkleCircle}>
-                <Sparkles size={16} color={colors.text} />
-              </View>
-              <View>
-                <Typography variant="body" style={styles.studioTitle}>
-                  Style in Studio
-                </Typography>
-                <Typography variant="caption" color={colors.textSecondary}>
-                  Preview complete look on personal avatar
-                </Typography>
-              </View>
-            </View>
-            <ArrowRight size={18} color={colors.textSecondary} />
-          </TouchableOpacity>
-        </View>
       </ScrollView>
 
-      {/* Image-First Wardrobe Closet Swap Sheet */}
+      {/* Virtual Try-On Entry Sheet */}
+      <VirtualTryOnSheet
+        visible={isVtoSheetOpen}
+        outfitName={activeCandidate?.name || 'Studio Look'}
+        garments={activeGarmentsList}
+        onClose={() => setIsVtoSheetOpen(false)}
+        onSaveOutfit={handleSave}
+      />
+
+      {/* Wardrobe Swap Sheet (Closet Drawer) */}
       <WardrobeSwapSheet
         visible={isSwapSheetOpen}
         initialCategory={swapCategory}
@@ -346,7 +485,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   container: {
-    paddingHorizontal: spacing.lg,
     paddingTop: spacing.md,
     paddingBottom: spacing.xxxl,
   },
@@ -354,7 +492,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
-    marginBottom: spacing.md,
+    paddingHorizontal: spacing.lg,
+    marginBottom: spacing.xs,
   },
   contextBadge: {
     flexDirection: 'row',
@@ -385,23 +524,53 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  lookTitleSection: {
-    marginBottom: spacing.sm,
+  modeSwitcherContainer: {
+    flexDirection: 'row',
+    backgroundColor: colors.surfaceMuted,
+    borderRadius: radii.pill,
+    padding: 3,
+    marginHorizontal: spacing.lg,
+    marginVertical: spacing.sm,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  modeTab: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    paddingVertical: 8,
+    borderRadius: radii.pill,
+  },
+  modeTabActive: {
+    backgroundColor: colors.text,
+  },
+  modeTabText: {
+    fontWeight: '700',
+    fontSize: 11,
+    letterSpacing: 0.8,
+  },
+  lookMetaRow: {
+    paddingHorizontal: spacing.lg,
+    marginBottom: spacing.xs,
   },
   lookNumberLabel: {
     color: colors.textMuted,
     letterSpacing: 1.2,
-    fontSize: 11,
+    fontSize: 10,
     marginBottom: 2,
   },
   lookName: {
-    fontSize: 20,
+    fontSize: 18,
     color: colors.text,
   },
-  heroOutfitSection: {
-    marginBottom: spacing.md,
+  heroCanvasSection: {
+    paddingHorizontal: spacing.lg,
+    marginBottom: spacing.sm,
   },
-  rationaleBox: {
+  liveInsightCard: {
+    marginHorizontal: spacing.lg,
     backgroundColor: colors.surface,
     borderRadius: radii.lg,
     padding: spacing.md,
@@ -410,22 +579,61 @@ const styles = StyleSheet.create({
     marginBottom: spacing.md,
     ...shadows.subtle,
   },
-  rationaleHeaderRow: {
+  rationaleTag: {
+    fontSize: 10,
+    letterSpacing: 1,
+    color: colors.textMuted,
+    marginBottom: 4,
+  },
+  insightHeaderRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginBottom: spacing.xs,
   },
-  rationaleTitle: {
-    color: colors.textMuted,
-    letterSpacing: 1,
+  headlineGroup: {
+    flex: 1,
+  },
+  insightHeadline: {
+    fontSize: 16,
+    color: colors.text,
+    marginBottom: 2,
+  },
+  palettePill: {
     fontSize: 11,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
-  highlightTagsRow: {
+  badgeSuccess: {
+    backgroundColor: '#DCFCE7',
+    paddingHorizontal: spacing.xs + 2,
+    paddingVertical: 2,
+    borderRadius: radii.xs,
+  },
+  badgeWarning: {
+    backgroundColor: '#FEF3C7',
+    paddingHorizontal: spacing.xs + 2,
+    paddingVertical: 2,
+    borderRadius: radii.xs,
+  },
+  badgeStatusText: {
+    fontSize: 10,
+    fontWeight: '700',
+    letterSpacing: 0.5,
+  },
+  insightExplanation: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    lineHeight: 19,
+    marginBottom: spacing.xs,
+  },
+  pillsRow: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: 6,
+    marginTop: 4,
   },
-  tagBadge: {
+  attributePill: {
     backgroundColor: colors.surfaceMuted,
     paddingHorizontal: spacing.xs + 2,
     paddingVertical: 2,
@@ -433,39 +641,51 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
   },
-  tagText: {
+  pillText: {
     fontSize: 10,
     fontWeight: '500',
   },
-  rationaleText: {
-    color: colors.textSecondary,
-    lineHeight: 20,
-    fontSize: 13,
+  suggestionBanner: {
+    marginTop: spacing.sm,
+    backgroundColor: colors.surfaceMuted,
+    padding: spacing.xs + 2,
+    borderRadius: radii.sm,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
-  actionSection: {
+  suggestionText: {
+    fontSize: 11,
+  },
+  actionRow: {
     flexDirection: 'row',
     gap: spacing.sm,
-    marginBottom: spacing.lg,
-  },
-  swapActionBtn: {
-    flex: 1,
-    borderColor: colors.border,
+    paddingHorizontal: spacing.lg,
+    marginBottom: spacing.md,
   },
   primaryActionBtn: {
     flex: 1.2,
   },
-  alternativeLooksSection: {
-    marginBottom: spacing.lg,
+  vtoActionBtn: {
+    flex: 1,
+    borderColor: colors.border,
   },
-  alternativeSectionTitle: {
+  swipersDeckSection: {
+    paddingTop: spacing.xs,
+  },
+  deckSectionTitle: {
     color: colors.textMuted,
-    letterSpacing: 1,
-    fontSize: 11,
+    letterSpacing: 1.2,
+    fontSize: 10,
+    paddingHorizontal: spacing.lg,
     marginBottom: spacing.xs,
   },
-  alternateLooksRow: {
+  auraLooksSection: {
+    paddingTop: spacing.xs,
+    marginBottom: spacing.lg,
+  },
+  auraLooksRow: {
+    paddingHorizontal: spacing.lg,
     gap: spacing.sm,
-    paddingRight: spacing.lg,
   },
   alternateLookCard: {
     width: 140,
@@ -504,39 +724,6 @@ const styles = StyleSheet.create({
   alternateCardArchetype: {
     fontSize: 10,
     marginTop: 2,
-  },
-  studioSection: {
-    marginBottom: spacing.md,
-  },
-  studioCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: colors.surface,
-    padding: spacing.md,
-    borderRadius: radii.lg,
-    borderWidth: 1,
-    borderColor: colors.border,
-    ...shadows.subtle,
-  },
-  studioLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.sm,
-  },
-  sparkleCircle: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: colors.surfaceMuted,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  studioTitle: {
-    fontWeight: '600',
-    fontSize: 14,
   },
   loadingContainer: {
     flex: 1,

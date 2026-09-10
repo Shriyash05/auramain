@@ -45,7 +45,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="create"
         options={{
-          title: 'Create',
+          title: 'Studio',
           tabBarIcon: ({ color, size }) => <Wand2 size={20} color={color} />,
         }}
       />
