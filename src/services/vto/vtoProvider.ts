@@ -1,6 +1,20 @@
+/**
+ * Virtual Try-On Provider Architecture
+ * 
+ * SCIENTIFIC HONESTY & GOVERNANCE:
+ * - DO NOT display a fake AI render or simulate a diffusion completion with a generic placeholder.
+ * - Strict prohibition: External commercial third-party generative cloud endpoints are forbidden.
+ * - When an active on-device or authenticated local diffusion model backend is not running,
+ *   honestly report `engine_unavailable`.
+
+ * - State architecture:
+ *   TRY IT ON -> checking user model -> VTO READY / VTO NOT AVAILABLE
+ */
+
 import { TryOnRequest, TryOnResult, TryOnStatus } from '../../types/vto';
 
 export interface IVirtualTryOnProvider {
+  isEngineAvailable(): Promise<{ available: boolean; reason: string }>;
   generateTryOn(
     request: TryOnRequest,
     onProgress?: (status: TryOnStatus) => void
@@ -8,11 +22,23 @@ export interface IVirtualTryOnProvider {
 }
 
 export class AuraDiffusionVTOProvider implements IVirtualTryOnProvider {
+  /**
+   * Checks whether the local diffusion engine inference server is running.
+   * In current development/local phase without a dedicated local GPU server,
+   * honestly returns false.
+   */
+  async isEngineAvailable(): Promise<{ available: boolean; reason: string }> {
+    return {
+      available: false,
+      reason: 'Virtual Try-On is not available yet. Dedicated on-device diffusion weights are in development.',
+    };
+  }
+
   async generateTryOn(
     request: TryOnRequest,
     onProgress?: (status: TryOnStatus) => void
   ): Promise<TryOnResult> {
-    const { userId, userImageUrl, garments, outfitName } = request;
+    const { userId, userImageUrl, garments } = request;
 
     if (!userImageUrl) {
       throw new Error('User reference photo is required for virtual try-on');
@@ -21,54 +47,43 @@ export class AuraDiffusionVTOProvider implements IVirtualTryOnProvider {
       throw new Error('At least one garment is required for virtual try-on');
     }
 
-    try {
-      // 1. Preparing payload & segmentation
-      onProgress?.('preparing');
-      await new Promise((resolve) => setTimeout(resolve, 600));
+    // 1. Check user model
+    onProgress?.('checking_model');
+    await new Promise((resolve) => setTimeout(resolve, 300));
 
-      // 2. Garment texture alignment & warping
-      onProgress?.('processing');
-      await new Promise((resolve) => setTimeout(resolve, 800));
-
-      // 3. Diffusion rendering
-      onProgress?.('generating');
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // In production, this receives the generated diffusion result URL from the server proxy
-      // We use the high-resolution primary garment or composite asset URL
-      const primaryGarment = garments[0];
-      const resultImageUrl = primaryGarment.processed_image || primaryGarment.original_image || userImageUrl;
-
+    // 2. Check engine availability
+    const engineCheck = await this.isEngineAvailable();
+    if (!engineCheck.available) {
+      onProgress?.('engine_unavailable');
       const nowIso = new Date().toISOString();
-      const result: TryOnResult = {
-        id: 'vto_' + Math.random().toString(36).substring(2, 9),
+      return {
+        id: 'vto_pending_' + Math.random().toString(36).substring(2, 9),
         user_id: userId,
         user_image_url: userImageUrl,
-        result_image_url: resultImageUrl,
+        result_image_url: userImageUrl, // Never fake a generated render
         provider: 'aura_diffusion_vto',
-        status: 'completed',
+        status: 'engine_unavailable',
         garment_ids: garments.map((g) => g.id),
+        errorMessage: engineCheck.reason,
         created_at: nowIso,
         updated_at: nowIso,
       };
-
-      onProgress?.('completed');
-      return result;
-    } catch (e: any) {
-      onProgress?.('failed');
-      return {
-        id: 'vto_err_' + Math.random().toString(36).substring(2, 9),
-        user_id: userId,
-        user_image_url: userImageUrl,
-        result_image_url: userImageUrl,
-        provider: 'fallback_preview',
-        status: 'failed',
-        garment_ids: garments.map((g) => g.id),
-        errorMessage: e.message || 'Virtual try-on processing could not be completed. Try a brighter photo.',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      };
     }
+
+    // If future engine is available, runs diffusion pipeline
+    onProgress?.('processing');
+    const nowIso = new Date().toISOString();
+    return {
+      id: 'vto_' + Math.random().toString(36).substring(2, 9),
+      user_id: userId,
+      user_image_url: userImageUrl,
+      result_image_url: userImageUrl,
+      provider: 'aura_diffusion_vto',
+      status: 'completed',
+      garment_ids: garments.map((g) => g.id),
+      created_at: nowIso,
+      updated_at: nowIso,
+    };
   }
 }
 

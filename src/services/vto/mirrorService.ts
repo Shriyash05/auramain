@@ -7,20 +7,55 @@ import { vtoProvider } from './vtoProvider';
 import { Outfit } from '../../types/outfit';
 
 const USER_PHOTO_KEY_PREFIX = 'aura_user_model_photo_';
+const USER_MODEL_DATA_KEY_PREFIX = 'aura_user_model_data_';
 const TRYON_RESULTS_KEY_PREFIX = 'aura_tryon_results_';
+
+export interface AuraUserModel {
+  userId: string;
+  primaryPhotoUri: string;
+  poses?: Array<{ id: string; name: string; photoUri: string }>;
+  angles?: Array<{ id: string; name: string; photoUri: string }>;
+  createdAt: string;
+  updatedAt: string;
+}
 
 export const MirrorService = {
   async getUserModelPhoto(userId: string): Promise<string | null> {
-    return LocalStorage.getItem<string>(`${USER_PHOTO_KEY_PREFIX}${userId}`);
+    const direct = await LocalStorage.getItem<string>(`${USER_PHOTO_KEY_PREFIX}${userId}`);
+    if (direct) return direct;
+    const model = await this.getUserModel(userId);
+    return model?.primaryPhotoUri || null;
+  },
+
+  async hasUserModel(userId: string): Promise<boolean> {
+    const photo = await this.getUserModelPhoto(userId);
+    return Boolean(photo && photo.trim().length > 0);
+  },
+
+  async getUserModel(userId: string): Promise<AuraUserModel | null> {
+    return LocalStorage.getItem<AuraUserModel>(`${USER_MODEL_DATA_KEY_PREFIX}${userId}`);
   },
 
   async saveUserModelPhoto(userId: string, photoUri: string): Promise<void> {
+    const now = new Date().toISOString();
     await LocalStorage.setItem(`${USER_PHOTO_KEY_PREFIX}${userId}`, photoUri);
+    const existing = await this.getUserModel(userId);
+    const model: AuraUserModel = {
+      userId,
+      primaryPhotoUri: photoUri,
+      poses: existing?.poses || [{ id: 'front_standing', name: 'Front Standing', photoUri }],
+      angles: existing?.angles || [{ id: 'front', name: 'Front', photoUri }],
+      createdAt: existing?.createdAt || now,
+      updatedAt: now,
+    };
+    await LocalStorage.setItem(`${USER_MODEL_DATA_KEY_PREFIX}${userId}`, model);
   },
 
   async deleteUserModelPhoto(userId: string): Promise<void> {
     await LocalStorage.removeItem(`${USER_PHOTO_KEY_PREFIX}${userId}`);
+    await LocalStorage.removeItem(`${USER_MODEL_DATA_KEY_PREFIX}${userId}`);
   },
+
 
   async getRecentTryOnResults(userId: string): Promise<TryOnResult[]> {
     const list = await LocalStorage.getItem<TryOnResult[]>(`${TRYON_RESULTS_KEY_PREFIX}${userId}`);

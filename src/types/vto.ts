@@ -1,7 +1,16 @@
 import { Garment } from './garment';
 import { Outfit } from './outfit';
 
-export type TryOnStatus = 'idle' | 'preparing' | 'processing' | 'generating' | 'completed' | 'failed';
+export type TryOnStatus = 
+  | 'idle' 
+  | 'checking_model' 
+  | 'preparing' 
+  | 'processing' 
+  | 'generating' 
+  | 'completed' 
+  | 'failed' 
+  | 'engine_unavailable';
+
 
 export interface TryOnRequest {
   userId: string;

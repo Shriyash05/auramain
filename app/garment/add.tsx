@@ -36,6 +36,7 @@ import {
 import {
   Camera,
   Image as ImageIcon,
+  Link2,
   X,
   CheckCircle2,
   AlertCircle,
@@ -46,6 +47,7 @@ import {
   ThumbsDown,
   HelpCircle,
 } from 'lucide-react-native';
+
 import { garmentTelemetryService } from '../../src/services/telemetry';
 
 export default function AddGarmentScreen() {
@@ -346,8 +348,26 @@ export default function AddGarmentScreen() {
                     Select image from your library
                   </Typography>
                 </TouchableOpacity>
+
+                <TouchableOpacity
+                  activeOpacity={0.85}
+                  onPress={() => router.push('/mirror')}
+                  style={styles.uploadOptionCard}
+                  accessibilityLabel="Import from product link"
+                >
+                  <View style={styles.iconCircle}>
+                    <Link2 size={24} color={colors.text} />
+                  </View>
+                  <Typography variant="body" color={colors.text} style={styles.optionTitle}>
+                    From Link
+                  </Typography>
+                  <Typography variant="caption" color={colors.textMuted}>
+                    Add from any product link or shopping screenshot
+                  </Typography>
+                </TouchableOpacity>
               </View>
             </View>
+
           </>
         )}
 

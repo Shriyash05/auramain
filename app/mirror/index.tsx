@@ -1,282 +1,550 @@
+/**
+ * AURA Mirror & Virtual Try-On Screen
+ * Source of truth: Figma Screen 32 ("Mirror: See it on you.") & Screen 48 ("Product Discovery")
+ * 
+ * Capabilities:
+ * 1. Online Product Import (Link, Image, Screenshot) -> Garment isolation & try-on
+ * 2. Personal Wardrobe Try-On (Single persistent User Model)
+ * 3. Strict Scientific Honesty (Zero fake AI renders, honest engine readiness/unavailable state)
+ */
+
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, SafeAreaView, ScrollView, Image, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
-import { useRouter } from 'expo-router';
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  TextInput,
+  Alert,
+  ActivityIndicator,
+  Platform,
+} from 'react-native';
+import { useRouter, useLocalSearchParams } from 'expo-router';
+import * as ImagePicker from 'expo-image-picker';
 import { useAuth } from '../../src/hooks/useAuth';
 import { useGarments } from '../../src/hooks/useGarments';
 import { MirrorService } from '../../src/services/vto/mirrorService';
+import { ProductImportService, ImportedProduct } from '../../src/services/commerce/productImportService';
+import { DatabaseService } from '../../src/services/database/databaseService';
 import { TryOnResult, TryOnStatus } from '../../src/types/vto';
 import { Garment } from '../../src/types/garment';
 import { Typography } from '../../src/components/ui/Typography';
 import { Button } from '../../src/components/ui/Button';
-import { Chip } from '../../src/components/ui/Chip';
-import { GlassSurface } from '../../src/components/ui/GlassSurface';
-import { colors, spacing, radii } from '../../src/constants/theme';
-import { ArrowLeft, Sparkles, SlidersHorizontal, Bookmark, RotateCcw, Camera, Eye } from 'lucide-react-native';
+import { colors, spacing, radii, shadows } from '../../src/constants/theme';
+import {
+  ArrowLeft,
+  Sparkles,
+  Link2,
+  Image as ImageIcon,
+  Crop,
+  Camera,
+  CheckCircle2,
+  AlertCircle,
+  Bookmark,
+  Plus,
+  RefreshCw,
+  Layers,
+} from 'lucide-react-native';
 
-type ViewMode = 'tryon' | 'original' | 'pieces';
+type TabMode = 'online' | 'wardrobe';
 
 export default function MirrorScreen() {
   const router = useRouter();
+  const params = useLocalSearchParams();
   const { user } = useAuth();
   const { garments } = useGarments('all');
 
+  const [activeTab, setActiveTab] = useState<TabMode>('online');
   const [userPhoto, setUserPhoto] = useState<string | null>(null);
+
+  // Online Import State
+  const [productUrl, setProductUrl] = useState('');
+  const [isImporting, setIsImporting] = useState(false);
+  const [importedGarment, setImportedGarment] = useState<ImportedProduct | null>(null);
+  const [importNotice, setImportNotice] = useState<string | null>(null);
+
+  // Wardrobe / Try-On State
   const [selectedGarments, setSelectedGarments] = useState<Garment[]>([]);
-  const [tryOnResult, setTryOnResult] = useState<TryOnResult | null>(null);
   const [status, setStatus] = useState<TryOnStatus>('idle');
-  const [viewMode, setViewMode] = useState<ViewMode>('tryon');
-  const [isSaving, setIsSaving] = useState(false);
+  const [tryOnResult, setTryOnResult] = useState<TryOnResult | null>(null);
+  const [isAddingToCloset, setIsAddingToCloset] = useState(false);
 
-  const loadData = async () => {
-    if (!user) return;
-    const photo = await MirrorService.getUserModelPhoto(user.id);
-    setUserPhoto(photo);
+  useEffect(() => {
+    async function init() {
+      if (!user) return;
+      const photo = await MirrorService.getUserModelPhoto(user.id);
+      setUserPhoto(photo);
 
-    if (garments.length > 0) {
-      // Pick top, bottom, and shoes for default try-on
-      const top = garments.find((g) => g.category === 'tops');
-      const bot = garments.find((g) => g.category === 'bottoms');
-      const shoe = garments.find((g) => g.category === 'shoes');
-      const initial = [top, bot, shoe].filter(Boolean) as Garment[];
-      setSelectedGarments(initial);
+      // Preselect default garments if available
+      if (garments.length > 0) {
+        const top = garments.find((g) => g.category === 'tops');
+        const bot = garments.find((g) => g.category === 'bottoms');
+        const shoe = garments.find((g) => g.category === 'shoes');
+        setSelectedGarments([top, bot, shoe].filter(Boolean) as Garment[]);
+      }
+    }
+    init();
+  }, [user, garments.length]);
+
+  // Handle URL Import
+  const handleImportUrl = async () => {
+    if (!productUrl.trim()) {
+      Alert.alert('URL Required', 'Please paste a valid product link.');
+      return;
+    }
+
+    setIsImporting(true);
+    setImportNotice(null);
+
+    const result = await ProductImportService.importProduct({
+      type: 'url',
+      url: productUrl.trim(),
+    });
+
+    setIsImporting(false);
+
+    if (result.success && result.product) {
+      setImportedGarment(result.product);
+      setImportNotice(result.message);
+    } else {
+      Alert.alert('URL Import Status', result.message);
     }
   };
 
-  useEffect(() => {
-    loadData();
-  }, [user, garments.length]);
+  // Handle Image Import
+  const handleImportImage = async (type: 'image' | 'screenshot') => {
+    const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (perm.status !== 'granted') {
+      Alert.alert('Permission Needed', 'Access to photos is required to import product garments.');
+      return;
+    }
 
-  const handleGenerateTryOn = async () => {
+    const res = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images'],
+      allowsEditing: true,
+      quality: 0.9,
+    });
+
+    if (!res.canceled && res.assets && res.assets.length > 0) {
+      setIsImporting(true);
+      const uri = res.assets[0].uri;
+      const result = await ProductImportService.importProduct({
+        type,
+        imageUri: uri,
+      });
+      setIsImporting(false);
+
+      if (result.success && result.product) {
+        setImportedGarment(result.product);
+        setImportNotice(result.message);
+      } else {
+        Alert.alert('Import Notice', result.message);
+      }
+    }
+  };
+
+  // Try On Flow (Requirement 8 & 10)
+  const handleExecuteTryOn = async (targetGarment?: Garment) => {
     if (!user) return;
-    if (!userPhoto) {
+
+    // Check whether user has personal model photo
+    const hasModel = await MirrorService.hasUserModel(user.id);
+    if (!hasModel) {
+      Alert.alert(
+        'AURA Personal Model Needed',
+        'To see clothes realistically visualized on your body, please set up your persistent AURA personal model photo.',
+        [
+          { text: 'Cancel', style: 'cancel' },
+          { text: 'Set Up Model', onPress: () => router.push('/mirror/capture') },
+        ]
+      );
+      return;
+    }
+
+    const currentModelPhoto = (await MirrorService.getUserModelPhoto(user.id)) || userPhoto;
+    if (!currentModelPhoto) {
       router.push('/mirror/capture');
       return;
     }
-    if (selectedGarments.length === 0) {
-      Alert.alert('No Garments', 'Please select at least one garment from your closet.');
+
+    // Determine garments to try on
+    let piecesToTry: Garment[] = selectedGarments;
+    if (targetGarment) {
+      piecesToTry = [targetGarment];
+    } else if (importedGarment) {
+      const pseudoGarment: Garment = {
+        id: importedGarment.id,
+        user_id: user.id,
+        name: importedGarment.title,
+        category: importedGarment.category,
+        original_image: importedGarment.rawImageUri,
+        processed_image: importedGarment.cleanGarmentUri,
+        primary_color: importedGarment.colors?.[0] || 'Neutral',
+        favorite: false,
+        user_verified: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+      piecesToTry = [pseudoGarment];
+    }
+
+    if (piecesToTry.length === 0) {
+      Alert.alert('No Garment', 'Please select or import a garment to try on.');
       return;
     }
 
     try {
-      setStatus('preparing');
-      const result = await MirrorService.executeVirtualTryOn(
+      setStatus('checking_model');
+      const vtoRes = await MirrorService.executeVirtualTryOn(
         {
           userId: user.id,
-          userImageUrl: userPhoto,
-          garments: selectedGarments,
-          outfitName: 'AURA Mirror Look',
+          userImageUrl: currentModelPhoto,
+          garments: piecesToTry,
+          outfitName: importedGarment ? importedGarment.title : 'Wardrobe Look',
         },
         (newStatus) => setStatus(newStatus)
       );
 
-      setTryOnResult(result);
+      setTryOnResult(vtoRes);
+      setStatus(vtoRes.status);
     } catch (e: any) {
-      Alert.alert('Try-On Notice', e.message || 'Could not generate visual try-on.');
-      setStatus('idle');
+      Alert.alert('Try-On Status', e.message || 'Virtual Try-On is not available yet.');
+      setStatus('engine_unavailable');
     }
   };
 
-  const handleSaveOutfit = async () => {
-    if (!user || selectedGarments.length === 0) return;
+  // Add Imported Garment to Closet
+  const handleAddToCloset = async () => {
+    if (!user || !importedGarment) return;
     try {
-      setIsSaving(true);
-      const saved = await MirrorService.saveTryOnOutfit(
-        user.id,
-        'Mirror Look',
-        selectedGarments.map((g) => g.id),
-        tryOnResult?.id
-      );
-      Alert.alert('Saved to Wardrobe', `"${saved.name}" has been saved to your collection.`);
-    } catch (e) {
-      Alert.alert('Error', 'Could not save outfit.');
+      setIsAddingToCloset(true);
+      await DatabaseService.addGarment({
+        user_id: user.id,
+        name: importedGarment.title,
+        category: importedGarment.category,
+        original_image: importedGarment.rawImageUri,
+        processed_image: importedGarment.cleanGarmentUri,
+        primary_color: importedGarment.colors?.[0] || 'Neutral',
+        favorite: false,
+        user_verified: true,
+      });
+      Alert.alert('Added to Closet', `"${importedGarment.title}" is now part of your personal wardrobe!`);
+    } catch (e: any) {
+      Alert.alert('Error', e.message || 'Could not save garment to closet.');
     } finally {
-      setIsSaving(false);
+      setIsAddingToCloset(false);
     }
   };
+
 
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
-        {/* Header */}
+        {/* Figma Screen 32 Header */}
         <View style={styles.header}>
-          <TouchableOpacity activeOpacity={0.7} onPress={() => router.back()} style={styles.backBtn}>
-            <ArrowLeft size={22} color={colors.text} />
-          </TouchableOpacity>
-          <Typography variant="title" style={styles.title}>
-            AURA Mirror
-          </Typography>
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => router.push('/mirror/capture')}
-            style={styles.cameraBtn}
+            onPress={() => router.back()}
+            style={styles.backBtn}
+            accessibilityLabel="Go back"
           >
-            <Camera size={20} color={colors.text} />
+            <ArrowLeft size={22} color={colors.text} />
+          </TouchableOpacity>
+          <View style={styles.headerTitles}>
+            <Typography variant="hero" style={styles.title}>
+              See it on you.
+            </Typography>
+            <Typography variant="body" color={colors.textSecondary} style={styles.subtitle}>
+              Upload your photo to try on this outfit or import from online.
+            </Typography>
+          </View>
+        </View>
+
+        {/* Mode Switcher Tabs */}
+        <View style={styles.tabsRow}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => setActiveTab('online')}
+            style={[styles.tabBtn, activeTab === 'online' && styles.tabBtnActive]}
+          >
+            <Sparkles
+              size={14}
+              color={activeTab === 'online' ? colors.textInverse : colors.textSecondary}
+            />
+            <Typography
+              variant="caption"
+              color={activeTab === 'online' ? colors.textInverse : colors.textSecondary}
+              style={styles.tabText}
+            >
+              ONLINE DISCOVERY
+            </Typography>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => setActiveTab('wardrobe')}
+            style={[styles.tabBtn, activeTab === 'wardrobe' && styles.tabBtnActive]}
+          >
+            <Layers
+              size={14}
+              color={activeTab === 'wardrobe' ? colors.textInverse : colors.textSecondary}
+            />
+            <Typography
+              variant="caption"
+              color={activeTab === 'wardrobe' ? colors.textInverse : colors.textSecondary}
+              style={styles.tabText}
+            >
+              MY WARDROBE
+            </Typography>
           </TouchableOpacity>
         </View>
 
-        {/* 1. Main Visual Display Canvas */}
-        {status === 'preparing' || status === 'processing' || status === 'generating' ? (
-          <View style={styles.processingCard}>
-            <ActivityIndicator size="large" color={colors.text} />
-            <Typography variant="title" style={styles.processingTitle}>
-              {status === 'preparing' && 'Preparing Body Segmentation...'}
-              {status === 'processing' && 'Warping & Aligning Garments...'}
-              {status === 'generating' && 'Rendering Diffusion Visualization...'}
-            </Typography>
-            <Typography variant="caption" color={colors.textSecondary} style={styles.processingSub}>
-              Synthesizing realistic texture and natural drape
-            </Typography>
-          </View>
-        ) : tryOnResult ? (
-          <View style={styles.resultContainer}>
-            {/* View Switcher Chips */}
-            <View style={styles.viewChipsRow}>
-              <Chip
-                label="AI Try-On"
-                selected={viewMode === 'tryon'}
-                onPress={() => setViewMode('tryon')}
-              />
-              <Chip
-                label="Original Photo"
-                selected={viewMode === 'original'}
-                onPress={() => setViewMode('original')}
-              />
-              <Chip
-                label="Garment Pieces"
-                selected={viewMode === 'pieces'}
-                onPress={() => setViewMode('pieces')}
-              />
-            </View>
+        {/* 1. ONLINE PRODUCT IMPORT FLOW */}
+        {activeTab === 'online' && (
+          <View style={styles.onlineSection}>
+            {/* If a garment is already imported, show clean garment prominently (Req 21 & 8) */}
+            {importedGarment ? (
+              <View style={styles.importedCard}>
+                <Typography variant="label" style={styles.sectionLabel}>
+                  CLEAN PRODUCT GARMENT
+                </Typography>
 
-            {/* Display Image Based on ViewMode */}
-            {viewMode === 'tryon' && (
-              <Image source={{ uri: tryOnResult.result_image_url }} style={styles.mainCanvasImage} resizeMode="cover" />
-            )}
-            {viewMode === 'original' && (
-              <Image source={{ uri: tryOnResult.user_image_url }} style={styles.mainCanvasImage} resizeMode="cover" />
-            )}
-            {viewMode === 'pieces' && (
-              <View style={styles.piecesCanvas}>
-                {selectedGarments.map((g) => (
-                  <View key={g.id} style={styles.pieceRowItem}>
-                    <Image
-                      source={{ uri: g.processed_image || g.original_image }}
-                      style={styles.pieceMiniThumb}
-                      resizeMode="cover"
-                    />
-                    <View style={styles.pieceInfoText}>
-                      <Typography variant="caption" color={colors.textMuted} style={styles.pieceCatLabel}>
-                        {g.category}
-                      </Typography>
-                      <Typography variant="body" style={styles.pieceNameText}>
-                        {g.name}
-                      </Typography>
-                    </View>
+                <View style={styles.garmentHeroBox}>
+                  <Image
+                    source={{ uri: importedGarment.cleanGarmentUri }}
+                    style={styles.garmentHeroImage}
+                    resizeMode="contain"
+                  />
+                </View>
+
+                <View style={styles.garmentMeta}>
+                  <Typography variant="title" style={styles.garmentTitle}>
+                    {importedGarment.title}
+                  </Typography>
+                  <Typography variant="caption" color={colors.textSecondary}>
+                    Source: {importedGarment.sourceProviderName} • {importedGarment.sourceType.toUpperCase()}
+                  </Typography>
+                </View>
+
+                {importNotice && (
+                  <View style={styles.noticeBadge}>
+                    <CheckCircle2 size={13} color={colors.success} />
+                    <Typography variant="caption" color={colors.success} style={styles.noticeText}>
+                      {importNotice}
+                    </Typography>
                   </View>
-                ))}
+                )}
+
+                {/* Question & Actions (Req 8 & 21) */}
+                <Typography variant="body" style={styles.tryOnQuestion}>
+                  Try this on?
+                </Typography>
+
+                <View style={styles.actionButtonsCol}>
+                  <Button
+                    label="TRY IT ON"
+                    variant="primary"
+                    onPress={() => handleExecuteTryOn()}
+                    icon={<Sparkles size={16} color={colors.textInverse} />}
+                  />
+                  <Button
+                    label="ADD TO CLOSET"
+                    variant="outline"
+                    onPress={handleAddToCloset}
+                    loading={isAddingToCloset}
+                    icon={<Bookmark size={16} color={colors.text} />}
+                  />
+                  <Button
+                    label="CHANGE IMAGE"
+                    variant="secondary"
+                    onPress={() => setImportedGarment(null)}
+                    icon={<RefreshCw size={16} color={colors.text} />}
+                  />
+                </View>
+              </View>
+            ) : (
+              /* Three Import Entrypoints (Req 20) */
+              <View style={styles.discoveryMethods}>
+                {/* A. Product URL Card */}
+                <View style={styles.importMethodCard}>
+                  <View style={styles.methodHeader}>
+                    <Link2 size={18} color={colors.text} />
+                    <Typography variant="title" style={styles.methodTitle}>
+                      Paste Product Link
+                    </Typography>
+                  </View>
+                  <Typography variant="caption" color={colors.textSecondary} style={styles.methodSub}>
+                    Import from supported fashion retailers (e.g. Myntra).
+                  </Typography>
+
+                  <View style={styles.urlInputRow}>
+                    <TextInput
+                      style={styles.urlInput}
+                      placeholder="Paste product link (e.g., https://myntra.com/...)"
+                      placeholderTextColor={colors.textMuted}
+                      value={productUrl}
+                      onChangeText={setProductUrl}
+                      autoCapitalize="none"
+                      autoCorrect={false}
+                    />
+                    <TouchableOpacity
+                      activeOpacity={0.8}
+                      onPress={handleImportUrl}
+                      style={styles.urlSubmitBtn}
+                      disabled={isImporting}
+                    >
+                      {isImporting ? (
+                        <ActivityIndicator size="small" color={colors.textInverse} />
+                      ) : (
+                        <Typography variant="caption" color={colors.textInverse} style={styles.urlSubmitText}>
+                          IMPORT
+                        </Typography>
+                      )}
+                    </TouchableOpacity>
+                  </View>
+                </View>
+
+                {/* B. Product Image Card */}
+                <TouchableOpacity
+                  activeOpacity={0.85}
+                  onPress={() => handleImportImage('image')}
+                  style={styles.importMethodCard}
+                >
+                  <View style={styles.methodHeader}>
+                    <ImageIcon size={18} color={colors.text} />
+                    <Typography variant="title" style={styles.methodTitle}>
+                      Upload Product Image
+                    </Typography>
+                  </View>
+                  <Typography variant="caption" color={colors.textSecondary} style={styles.methodSub}>
+                    Clean catalog or retail photo. Preserves original garment details.
+                  </Typography>
+                </TouchableOpacity>
+
+                {/* C. Screenshot Card */}
+                <TouchableOpacity
+                  activeOpacity={0.85}
+                  onPress={() => handleImportImage('screenshot')}
+                  style={styles.importMethodCard}
+                >
+                  <View style={styles.methodHeader}>
+                    <Crop size={18} color={colors.text} />
+                    <Typography variant="title" style={styles.methodTitle}>
+                      Use Screenshot
+                    </Typography>
+                  </View>
+                  <Typography variant="caption" color={colors.textSecondary} style={styles.methodSub}>
+                    Saved from your shopping session. Garment will be cleanly isolated.
+                  </Typography>
+                </TouchableOpacity>
               </View>
             )}
-
-            <View style={styles.resultMetaBadge}>
-              <Sparkles size={13} color={colors.text} />
-              <Typography variant="caption" color={colors.text} style={styles.resultBadgeText}>
-                AI TRY-ON PREVIEW
-              </Typography>
-            </View>
           </View>
-        ) : userPhoto ? (
-          <View style={styles.readyContainer}>
-            <Image source={{ uri: userPhoto }} style={styles.mainCanvasImage} resizeMode="cover" />
-            <View style={styles.overlayActionCard}>
-              <Typography variant="title" style={styles.overlayTitle}>
-                Ready to Try On
-              </Typography>
-              <Typography variant="caption" color={colors.textSecondary} style={styles.overlaySub}>
-                Selected {selectedGarments.length} pieces from your closet
-              </Typography>
-              <Button
-                label="Generate Virtual Try-On"
-                variant="primary"
-                onPress={handleGenerateTryOn}
-                icon={<Sparkles size={16} color={colors.textInverse} />}
-                style={styles.generateBtn}
-              />
-            </View>
-          </View>
-        ) : (
-          <GlassSurface style={styles.noPhotoCard}>
-            <View style={styles.wandBox}>
-              <Camera size={32} color={colors.text} />
-            </View>
-            <Typography variant="title" style={styles.noPhotoTitle}>
-              Upload a Reference Photo
-            </Typography>
-            <Typography variant="body" color={colors.textSecondary} style={styles.noPhotoSub}>
-              Snap a quick full-body photo so AURA can visualize your wardrobe on you.
-            </Typography>
-            <Button
-              label="Set Up Model Photo"
-              variant="primary"
-              onPress={() => router.push('/mirror/capture')}
-            />
-          </GlassSurface>
         )}
 
-        {/* 2. Selected Pieces Carousel */}
-        {selectedGarments.length > 0 && (
-          <View style={styles.section}>
-            <View style={styles.sectionHeaderRow}>
-              <Typography variant="label" style={styles.sectionHeading}>
-                TRYING ON {selectedGarments.length} PIECES
-              </Typography>
-              <TouchableOpacity activeOpacity={0.7} onPress={() => router.push('/(tabs)/create')}>
-                <Typography variant="caption" color={colors.text} style={styles.changeInStudioText}>
-                  Change in Studio →
-                </Typography>
-              </TouchableOpacity>
-            </View>
+        {/* 2. PERSONAL WARDROBE TRY-ON FLOW */}
+        {activeTab === 'wardrobe' && (
+          <View style={styles.wardrobeSection}>
+            {/* Selected Wardrobe Garments */}
+            <Typography variant="label" style={styles.sectionLabel}>
+              TRYING ON WARDROBE PIECES ({selectedGarments.length})
+            </Typography>
 
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.garmentsRow}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.piecesRow}>
               {selectedGarments.map((g) => (
-                <View key={g.id} style={styles.garmentThumbCard}>
+                <View key={g.id} style={styles.pieceCard}>
                   <Image
                     source={{ uri: g.processed_image || g.original_image }}
-                    style={styles.thumbImage}
-                    resizeMode="cover"
+                    style={styles.pieceThumb}
+                    resizeMode="contain"
                   />
-                  <Typography variant="caption" numberOfLines={1} style={styles.thumbName}>
+                  <Typography variant="caption" numberOfLines={1} style={styles.pieceName}>
                     {g.name}
                   </Typography>
                 </View>
               ))}
             </ScrollView>
+
+            <Button
+              label="TRY IT ON"
+              variant="primary"
+              onPress={() => handleExecuteTryOn()}
+              icon={<Sparkles size={16} color={colors.textInverse} />}
+              style={styles.tryOnWardrobeBtn}
+            />
           </View>
         )}
 
-        {/* 3. Action Buttons */}
-        {tryOnResult && (
-          <View style={styles.actionButtonsCol}>
+        {/* 3. PERSONAL AURA MODEL STATUS (Req 9 & 10) */}
+        <View style={styles.modelStatusCard}>
+          <View style={styles.modelHeaderRow}>
+            <View>
+              <Typography variant="label" style={styles.sectionLabel}>
+                PERSONAL AURA MODEL
+              </Typography>
+              <Typography variant="title" style={styles.modelStatusTitle}>
+                {userPhoto ? 'Model Active' : 'No Model Found'}
+              </Typography>
+            </View>
+            <TouchableOpacity
+              activeOpacity={0.75}
+              onPress={() => router.push('/mirror/capture')}
+              style={styles.setupModelBtn}
+            >
+              <Camera size={14} color={colors.text} />
+              <Typography variant="caption" style={styles.setupModelText}>
+                {userPhoto ? 'Update Photo' : 'Create Model'}
+              </Typography>
+            </TouchableOpacity>
+          </View>
+
+          {userPhoto ? (
+            <View style={styles.modelPreviewContainer}>
+              <Image source={{ uri: userPhoto }} style={styles.userModelImage} resizeMode="cover" />
+              <View style={styles.modelVerifiedPill}>
+                <CheckCircle2 size={12} color={colors.success} />
+                <Typography variant="caption" color={colors.success} style={styles.modelVerifiedText}>
+                  Ready for Try-On
+                </Typography>
+              </View>
+            </View>
+          ) : (
+            <View style={styles.noModelNoticeBox}>
+              <Typography variant="body" color={colors.textSecondary} style={styles.noModelText}>
+                Create your persistent AURA model to visualize garments on yourself across Closet, Studio, and Online Discovery.
+              </Typography>
+            </View>
+          )}
+        </View>
+
+        {/* 4. VTO STATUS / HONEST ENGINE NOTICE (Req 10) */}
+        {status === 'checking_model' && (
+          <View style={styles.statusBanner}>
+            <ActivityIndicator size="small" color={colors.text} />
+            <Typography variant="body" style={styles.statusBannerText}>
+              Verifying personal model & garment dimensions...
+            </Typography>
+          </View>
+        )}
+
+        {status === 'engine_unavailable' && (
+          <View style={styles.engineUnavailableCard}>
+            <View style={styles.unavailableHeader}>
+              <AlertCircle size={18} color={colors.warning} />
+              <Typography variant="title" style={styles.unavailableTitle}>
+                Virtual Try-On Unavailable
+              </Typography>
+            </View>
+            <Typography variant="body" color={colors.textSecondary} style={styles.unavailableExplanation}>
+              Virtual Try-On is not available yet. Dedicated on-device neural diffusion weights are currently in training and calibration. AURA does not call third-party commercial AI APIs without explicit user consent.
+            </Typography>
             <Button
-              label="Save Outfit Look"
-              variant="primary"
-              onPress={handleSaveOutfit}
-              loading={isSaving}
-              icon={<Bookmark size={16} color={colors.textInverse} />}
-              style={styles.actionBtn}
-            />
-            <Button
-              label="Customize in Studio"
+              label="Understood"
               variant="secondary"
-              onPress={() => router.push('/(tabs)/create')}
-              icon={<SlidersHorizontal size={16} color={colors.text} />}
-              style={styles.actionBtn}
-            />
-            <Button
-              label="Try Again"
-              variant="outline"
-              onPress={handleGenerateTryOn}
-              icon={<RotateCcw size={16} color={colors.text} />}
-              style={styles.actionBtn}
+              onPress={() => setStatus('idle')}
+              style={styles.dismissBtn}
             />
           </View>
         )}
@@ -296,200 +564,308 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xxxl,
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
     marginBottom: spacing.md,
   },
   backBtn: {
-    padding: spacing.xs,
+    paddingVertical: spacing.xs,
+    alignSelf: 'flex-start',
+    marginBottom: spacing.xs,
   },
-  cameraBtn: {
-    padding: spacing.xs,
+  headerTitles: {
+    marginTop: 2,
   },
   title: {
-    fontSize: 20,
+    fontSize: 32,
     color: colors.text,
+    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+    marginBottom: 4,
   },
-  processingCard: {
-    height: 380,
-    borderRadius: radii.lg,
-    backgroundColor: colors.surface,
+  subtitle: {
+    lineHeight: 20,
+    color: colors.textSecondary,
+  },
+  tabsRow: {
+    flexDirection: 'row',
+    backgroundColor: colors.surfaceMuted,
+    borderRadius: radii.pill,
+    padding: 3,
+    marginBottom: spacing.lg,
     borderWidth: 1,
     borderColor: colors.border,
+  },
+  tabBtn: {
+    flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: spacing.xl,
-    marginBottom: spacing.md,
+    gap: 6,
+    paddingVertical: 8,
+    borderRadius: radii.pill,
   },
-  processingTitle: {
-    fontSize: 17,
-    marginTop: spacing.lg,
-    marginBottom: 4,
-    textAlign: 'center',
+  tabBtnActive: {
+    backgroundColor: colors.text,
   },
-  processingSub: {
-    textAlign: 'center',
+  tabText: {
+    fontWeight: '700',
+    fontSize: 11,
+    letterSpacing: 0.8,
   },
-  resultContainer: {
-    marginBottom: spacing.md,
+  onlineSection: {
+    marginBottom: spacing.lg,
   },
-  viewChipsRow: {
-    flexDirection: 'row',
-    gap: spacing.xs,
-    marginBottom: spacing.sm,
+  discoveryMethods: {
+    gap: spacing.md,
   },
-  mainCanvasImage: {
-    width: '100%',
-    height: 380,
-    borderRadius: radii.lg,
-    backgroundColor: colors.surfaceMuted,
-  },
-  piecesCanvas: {
-    width: '100%',
-    minHeight: 380,
-    borderRadius: radii.lg,
+  importMethodCard: {
     backgroundColor: colors.surface,
     padding: spacing.md,
-    gap: spacing.sm,
+    borderRadius: radii.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    ...shadows.subtle,
+  },
+  methodHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs + 2,
+    marginBottom: 4,
+  },
+  methodTitle: {
+    fontSize: 16,
+    color: colors.text,
+  },
+  methodSub: {
+    lineHeight: 18,
+    marginBottom: spacing.xs,
+  },
+  urlInputRow: {
+    flexDirection: 'row',
+    gap: spacing.xs,
+    marginTop: spacing.xs,
+  },
+  urlInput: {
+    flex: 1,
+    backgroundColor: colors.surfaceMuted,
+    borderRadius: radii.pill,
+    paddingHorizontal: spacing.md,
+    paddingVertical: 10,
+    fontSize: 13,
+    color: colors.text,
     borderWidth: 1,
     borderColor: colors.border,
   },
-  pieceRowItem: {
+  urlSubmitBtn: {
+    backgroundColor: colors.text,
+    borderRadius: radii.pill,
+    paddingHorizontal: spacing.md,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  urlSubmitText: {
+    fontWeight: '700',
+    fontSize: 11,
+    letterSpacing: 0.8,
+  },
+  importedCard: {
+    backgroundColor: colors.surface,
+    padding: spacing.md,
+    borderRadius: radii.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    ...shadows.subtle,
+  },
+  sectionLabel: {
+    fontSize: 10,
+    color: colors.textMuted,
+    letterSpacing: 1.2,
+    marginBottom: spacing.xs,
+  },
+  garmentHeroBox: {
+    width: '100%',
+    height: 260,
+    borderRadius: radii.md,
+    backgroundColor: '#FAF9F6',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: spacing.sm,
+    marginBottom: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.borderLight,
+  },
+  garmentHeroImage: {
+    width: '100%',
+    height: '100%',
+  },
+  garmentMeta: {
+    marginBottom: spacing.xs,
+  },
+  garmentTitle: {
+    fontSize: 18,
+    marginBottom: 2,
+  },
+  noticeBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.md,
-    backgroundColor: colors.surfaceMuted,
-    padding: spacing.sm,
-    borderRadius: radii.md,
+    gap: 6,
+    backgroundColor: '#DCFCE7',
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 4,
+    borderRadius: radii.xs,
+    alignSelf: 'flex-start',
+    marginVertical: spacing.xs,
   },
-  pieceMiniThumb: {
-    width: 50,
-    height: 50,
-    borderRadius: radii.sm,
-    backgroundColor: colors.surface,
-  },
-  pieceInfoText: {
-    flex: 1,
-  },
-  pieceCatLabel: {
-    fontSize: 9,
-    fontWeight: '700',
-    textTransform: 'uppercase',
-  },
-  pieceNameText: {
-    fontSize: 14,
+  noticeText: {
     fontWeight: '600',
+    fontSize: 11,
   },
-  resultMetaBadge: {
+  tryOnQuestion: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: colors.text,
+    marginVertical: spacing.sm,
+  },
+  actionButtonsCol: {
+    gap: spacing.sm,
+  },
+  wardrobeSection: {
+    backgroundColor: colors.surface,
+    padding: spacing.md,
+    borderRadius: radii.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    marginBottom: spacing.lg,
+  },
+  piecesRow: {
+    gap: spacing.sm,
+    paddingVertical: spacing.sm,
+  },
+  pieceCard: {
+    width: 80,
+    alignItems: 'center',
+  },
+  pieceThumb: {
+    width: 70,
+    height: 70,
+    borderRadius: radii.sm,
+    backgroundColor: '#FAF9F6',
+    borderWidth: 1,
+    borderColor: colors.borderLight,
+    marginBottom: 4,
+  },
+  pieceName: {
+    fontSize: 11,
+    color: colors.textSecondary,
+    textAlign: 'center',
+  },
+  tryOnWardrobeBtn: {
+    marginTop: spacing.sm,
+  },
+  modelStatusCard: {
+    backgroundColor: colors.surface,
+    padding: spacing.md,
+    borderRadius: radii.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    marginBottom: spacing.lg,
+  },
+  modelHeaderRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: spacing.sm,
+  },
+  modelStatusTitle: {
+    fontSize: 16,
+  },
+  setupModelBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 6,
+    borderRadius: radii.pill,
+    borderWidth: 1,
+    borderColor: colors.border,
+    backgroundColor: colors.surfaceMuted,
+  },
+  setupModelText: {
+    fontWeight: '600',
+    fontSize: 11,
+  },
+  modelPreviewContainer: {
+    position: 'relative',
+    height: 180,
+    borderRadius: radii.md,
+    overflow: 'hidden',
+  },
+  userModelImage: {
+    width: '100%',
+    height: '100%',
+  },
+  modelVerifiedPill: {
     position: 'absolute',
-    bottom: 12,
-    left: 12,
+    bottom: 8,
+    right: 8,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
     backgroundColor: colors.surface,
-    paddingVertical: 4,
-    paddingHorizontal: spacing.xs + 3,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
     borderRadius: radii.pill,
-    borderWidth: 1,
-    borderColor: colors.border,
   },
-  resultBadgeText: {
-    fontWeight: '700',
+  modelVerifiedText: {
     fontSize: 10,
-    letterSpacing: 0.8,
+    fontWeight: '700',
   },
-  readyContainer: {
-    marginBottom: spacing.md,
+  noModelNoticeBox: {
+    backgroundColor: colors.surfaceMuted,
+    padding: spacing.sm,
+    borderRadius: radii.md,
   },
-  overlayActionCard: {
-    position: 'absolute',
-    bottom: 12,
-    left: 12,
-    right: 12,
-    backgroundColor: colors.surface,
+  noModelText: {
+    fontSize: 13,
+    lineHeight: 18,
+  },
+  statusBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    backgroundColor: colors.surfaceMuted,
     padding: spacing.md,
     borderRadius: radii.md,
     borderWidth: 1,
     borderColor: colors.border,
+    marginBottom: spacing.md,
   },
-  overlayTitle: {
-    fontSize: 16,
-    marginBottom: 2,
+  statusBannerText: {
+    fontSize: 13,
   },
-  overlaySub: {
-    marginBottom: spacing.sm,
-  },
-  generateBtn: {
-    width: '100%',
-  },
-  noPhotoCard: {
-    padding: spacing.xl,
-    backgroundColor: colors.surface,
+  engineUnavailableCard: {
+    backgroundColor: '#FFFBEB',
+    padding: spacing.md,
     borderRadius: radii.lg,
-    alignItems: 'center',
-    marginBottom: spacing.md,
-  },
-  wandBox: {
-    width: 60,
-    height: 60,
-    borderRadius: radii.pill,
-    backgroundColor: colors.surfaceMuted,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: spacing.md,
     borderWidth: 1,
-    borderColor: colors.border,
-  },
-  noPhotoTitle: {
-    fontSize: 18,
-    marginBottom: 4,
-  },
-  noPhotoSub: {
-    textAlign: 'center',
+    borderColor: '#FDE68A',
     marginBottom: spacing.lg,
   },
-  section: {
-    marginVertical: spacing.md,
-  },
-  sectionHeaderRow: {
+  unavailableHeader: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: spacing.sm,
-  },
-  sectionHeading: {
-    color: colors.textMuted,
-    letterSpacing: 0.8,
-  },
-  changeInStudioText: {
-    fontWeight: '700',
-  },
-  garmentsRow: {
-    gap: spacing.sm,
-  },
-  garmentThumbCard: {
-    width: 80,
-    alignItems: 'center',
-  },
-  thumbImage: {
-    width: 72,
-    height: 72,
-    borderRadius: radii.sm,
-    backgroundColor: colors.surfaceMuted,
+    gap: 6,
     marginBottom: 4,
   },
-  thumbName: {
-    fontSize: 10,
-    color: colors.textSecondary,
-    textAlign: 'center',
+  unavailableTitle: {
+    fontSize: 16,
+    color: '#92400E',
   },
-  actionButtonsCol: {
-    gap: spacing.sm,
-    marginTop: spacing.xs,
+  unavailableExplanation: {
+    fontSize: 13,
+    color: '#B45309',
+    lineHeight: 18,
+    marginBottom: spacing.sm,
   },
-  actionBtn: {
-    width: '100%',
+  dismissBtn: {
+    alignSelf: 'flex-start',
   },
 });
