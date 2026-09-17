@@ -2,13 +2,13 @@ import React from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 import { colors, radii, shadows } from '../../constants/theme';
 
-interface GlassSurfaceProps {
+export interface CardProps {
   children: React.ReactNode;
-  style?: ViewStyle;
+  style?: ViewStyle | ViewStyle[];
   active?: boolean;
 }
 
-export const GlassSurface: React.FC<GlassSurfaceProps> = ({ children, style, active }) => {
+export const Card: React.FC<CardProps> = ({ children, style, active }) => {
   return (
     <View
       style={[
@@ -21,6 +21,9 @@ export const GlassSurface: React.FC<GlassSurfaceProps> = ({ children, style, act
     </View>
   );
 };
+
+export const EditorialCard = Card;
+export const GlassSurface = Card;
 
 const styles = StyleSheet.create({
   container: {

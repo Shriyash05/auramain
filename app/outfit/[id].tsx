@@ -8,9 +8,8 @@ import { Outfit } from '../../src/types/outfit';
 import { Garment } from '../../src/types/garment';
 import { Typography } from '../../src/components/ui/Typography';
 import { Button } from '../../src/components/ui/Button';
-import { GlassSurface } from '../../src/components/ui/GlassSurface';
-import { colors, spacing, radii } from '../../src/constants/theme';
-import { ArrowLeft, Trash2, CheckCircle2, Calendar, Clock } from 'lucide-react-native';
+import { colors, spacing, radii, shadows } from '../../src/constants/theme';
+import { ArrowLeft, Trash2, CheckCircle2, Calendar, Clock, Sparkles, Wand2 } from 'lucide-react-native';
 
 export default function OutfitDetailScreen() {
   const router = useRouter();
@@ -124,10 +123,39 @@ export default function OutfitDetailScreen() {
           </View>
         </View>
 
+        {/* Primary Actions: Try On & Studio */}
+        <View style={styles.primaryActionRow}>
+          <Button
+            label="Try On Look"
+            variant="primary"
+            size="lg"
+            onPress={() =>
+              router.push({
+                pathname: '/tryon',
+                params: {
+                  garmentIds: outfit.garment_ids.join(','),
+                  outfitName: outfit.name,
+                  source: 'outfit_detail',
+                },
+              } as any)
+            }
+            icon={<Sparkles size={16} color={colors.textInverse} />}
+            style={styles.tryOnBtn}
+          />
+          <Button
+            label="Edit in Studio"
+            variant="secondary"
+            size="lg"
+            onPress={() => router.push('/(tabs)/create')}
+            icon={<Wand2 size={16} color={colors.text} />}
+            style={styles.studioBtn}
+          />
+        </View>
+
         {/* Mark as Worn Quick Action */}
-        <GlassSurface style={styles.actionCard}>
+        <View style={styles.actionCard}>
           <View style={styles.actionCardContent}>
-            <View>
+            <View style={styles.actionTextWrap}>
               <Typography variant="title" style={styles.actionCardTitle}>
                 Wearing this look?
               </Typography>
@@ -144,7 +172,7 @@ export default function OutfitDetailScreen() {
               icon={<CheckCircle2 size={15} color={colors.textInverse} />}
             />
           </View>
-        </GlassSurface>
+        </View>
 
         {/* Outfit Pieces Grid */}
         <View style={styles.piecesSection}>
@@ -153,24 +181,31 @@ export default function OutfitDetailScreen() {
           </Typography>
           <View style={styles.piecesList}>
             {garments.map((g) => (
-              <GlassSurface key={g.id} style={styles.pieceCard}>
-                <Image
-                  source={{ uri: g.processed_image || g.original_image }}
-                  style={styles.pieceImage}
-                  resizeMode="cover"
-                />
+              <TouchableOpacity
+                key={g.id}
+                activeOpacity={0.85}
+                onPress={() => router.push(`/garment/${g.id}` as any)}
+                style={styles.pieceCard}
+              >
+                <View style={styles.pieceImageWrap}>
+                  <Image
+                    source={{ uri: g.processed_image || g.original_image }}
+                    style={styles.pieceImage}
+                    resizeMode="contain"
+                  />
+                </View>
                 <View style={styles.pieceDetails}>
-                  <Typography variant="caption" color={colors.text} style={styles.pieceCategory}>
+                  <Typography variant="caption" color={colors.textMuted} style={styles.pieceCategory}>
                     {g.category}
                   </Typography>
                   <Typography variant="body" color={colors.text} style={styles.pieceName}>
                     {g.name}
                   </Typography>
-                  <Typography variant="caption" color={colors.textMuted}>
+                  <Typography variant="caption" color={colors.textSecondary}>
                     {g.fit || 'Standard'} • {g.primary_color} • Worn {g.wear_count || 0} times
                   </Typography>
                 </View>
-              </GlassSurface>
+              </TouchableOpacity>
             ))}
           </View>
         </View>
@@ -257,15 +292,34 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 11,
   },
+  primaryActionRow: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+    marginBottom: spacing.lg,
+  },
+  tryOnBtn: {
+    flex: 1.2,
+  },
+  studioBtn: {
+    flex: 1,
+  },
   actionCard: {
     padding: spacing.md,
     backgroundColor: colors.surface,
     marginBottom: spacing.lg,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    ...shadows.card,
   },
   actionCardContent: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  actionTextWrap: {
+    flex: 1,
+    marginRight: spacing.sm,
   },
   actionCardTitle: {
     fontSize: 15,
@@ -288,12 +342,25 @@ const styles = StyleSheet.create({
     padding: spacing.sm,
     gap: spacing.md,
     backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    ...shadows.card,
   },
-  pieceImage: {
-    width: 60,
-    height: 60,
+  pieceImageWrap: {
+    width: 64,
+    height: 64,
     borderRadius: radii.sm,
     backgroundColor: colors.surfaceMuted,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: colors.border,
+    overflow: 'hidden',
+  },
+  pieceImage: {
+    width: '90%',
+    height: '90%',
   },
   pieceDetails: {
     flex: 1,

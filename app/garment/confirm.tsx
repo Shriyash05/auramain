@@ -156,7 +156,7 @@ export default function GarmentConfirmScreen() {
           <Image
             source={{ uri: params.imageUri }}
             style={styles.garmentImage}
-            resizeMode="cover"
+            resizeMode="contain"
           />
           <View style={styles.statusBadge}>
             <Sparkles size={12} color={colors.text} />

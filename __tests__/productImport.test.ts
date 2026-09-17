@@ -1,7 +1,7 @@
 import { ProductImportService, ProductSourceProvider, ProductImportResult } from '../src/services/commerce/productImportService';
 
-describe('Product Import Service (Architecture, Zero Scraping, Clean Representation)', () => {
-  it('honestly rejects arbitrary external shopping websites with zero scraping claims', async () => {
+describe('Product Import Service (Architecture, Real Myntra Import, Zero Technical Jargon)', () => {
+  it('honestly informs user when an unsupported retailer URL is entered without technical scraping jargon', async () => {
     const result = await ProductImportService.importProduct({
       type: 'url',
       url: 'https://some-unsupported-fast-fashion.com/product/123',
@@ -9,7 +9,8 @@ describe('Product Import Service (Architecture, Zero Scraping, Clean Representat
 
     expect(result.success).toBe(false);
     expect(result.status).toBe('unsupported_url');
-    expect(result.message).toContain('AURA does not support arbitrary web scraping');
+    expect(result.message).toContain("This retailer isn't supported yet");
+    expect(result.message).not.toContain('arbitrary web scraping');
   });
 
   it('rejects empty or whitespace URLs gracefully', async () => {
@@ -23,15 +24,42 @@ describe('Product Import Service (Architecture, Zero Scraping, Clean Representat
     expect(result.message).toContain('Please provide a valid product URL');
   });
 
-  it('honestly reports access restrictions on Myntra direct scraping', async () => {
-    const result = await ProductImportService.importProduct({
-      type: 'url',
-      url: 'https://www.myntra.com/shirts/brand/linen-shirt/12345/buy',
+  it('routes valid Myntra URLs to MyntraProductSourceProvider without scraping rejection', async () => {
+    // Mock global fetch for unit test predictability
+    const mockHtml = `
+      <html>
+        <head>
+          <script type="application/ld+json">
+          {
+            "@type": "Product",
+            "name": "HRX Men Yellow Cotton T-Shirt",
+            "image": "https://assets.myntassets.com/test_tshirt.jpg",
+            "offers": { "price": "499" }
+          }
+          </script>
+        </head>
+      </html>
+    `;
+    const originalFetch = globalThis.fetch;
+    (globalThis as any).fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      text: async () => mockHtml,
     });
 
-    expect(result.success).toBe(false);
-    expect(result.status).toBe('unsupported_url');
-    expect(result.message).toContain('restricted by website terms');
+    const result = await ProductImportService.importProduct({
+      type: 'url',
+      url: 'https://www.myntra.com/tshirts/hrx/yellow-tee/1700944/buy',
+    });
+
+    (globalThis as any).fetch = originalFetch;
+
+    expect(result.success).toBe(true);
+    expect(result.status).toBe('success');
+    expect(result.product).toBeDefined();
+    expect(result.product?.title).toBe('HRX Men Yellow Cotton T-Shirt');
+    expect(result.product?.cleanGarmentUri).toBe('https://assets.myntassets.com/test_tshirt.jpg');
+    expect(result.product?.sourceProviderName).toBe('Myntra');
+    expect(result.product?.hasCleanBackground).toBe(true);
   });
 
   it('preserves clean product catalog representation when direct image is provided', async () => {

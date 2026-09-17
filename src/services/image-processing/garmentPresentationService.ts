@@ -77,14 +77,20 @@ export class GarmentPresentationService {
       isIsolated = false;
     }
 
+    const isCutout = Boolean(
+      garment.processed_image &&
+      (garment.processed_image.includes('cutout') ||
+       garment.processed_image.includes('isolated'))
+    );
+
     return {
       garmentId: garment.id,
       displayUri: this.getDisplayImageUri(garment),
       sourceType,
-      isIsolated,
-      isolationMethod,
+      isIsolated: isIsolated || isCutout,
+      isolationMethod: explicitSource === 'product_catalog' ? 'preserved_catalog' : isolationMethod,
       metadata: {
-        hasCleanBackground: sourceType === 'product_catalog',
+        hasCleanBackground: sourceType === 'product_catalog' || isCutout,
         aspectRatio: 1.0,
       },
     };

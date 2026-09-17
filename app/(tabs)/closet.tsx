@@ -7,7 +7,6 @@ import React, { useState, useMemo } from 'react';
 import {
   View,
   StyleSheet,
-  SafeAreaView,
   FlatList,
   ActivityIndicator,
   Alert,
@@ -15,7 +14,9 @@ import {
   TextInput,
   Image,
   Platform,
+  StatusBar,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useGarments } from '../../src/hooks/useGarments';
 import { GarmentCategory } from '../../src/constants/categories';
@@ -246,7 +247,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'space-between',
     paddingHorizontal: spacing.lg,
-    paddingTop: spacing.md,
+    paddingTop: Platform.OS === 'android' ? 64 : spacing.md,
     paddingBottom: spacing.xs,
   },
   title: {

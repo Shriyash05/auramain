@@ -271,4 +271,46 @@ describe('Phase 17 — AURA Studio Visual Wardrobe Styling Experience', () => {
       expect(clamped.height).toBeGreaterThanOrEqual(0.01);
     });
   });
+
+  describe('6. Redesigned Studio Interaction & Genuine Garment Isolation', () => {
+    it('swapping active piece immediately triggers real-time styling re-evaluation without manual generate button', () => {
+      // Step 1: Initial look with dark bottoms
+      const initialInsight = LiveStyleIntelligenceService.evaluateLiveOutfit({
+        top: sampleTops[0], // Blue Oxford
+        bottom: sampleBottoms[0], // Charcoal Wool
+        shoes: sampleShoes[0], // White Sneakers
+      });
+      expect(initialInsight.status).toBe('harmonious');
+      expect(initialInsight.headline).toBeDefined();
+
+      // Step 2: User swipes bottom to crimson trousers -> immediate instant update
+      const updatedInsight = LiveStyleIntelligenceService.evaluateLiveOutfit({
+        top: sampleTops[0], // Blue Oxford
+        bottom: sampleBottoms[2], // Bright Crimson Trousers (competing accent)
+        shoes: sampleShoes[0], // White Sneakers
+      });
+      expect(updatedInsight.headline).not.toBe(initialInsight.headline);
+      expect(updatedInsight.explanation).not.toBe(initialInsight.explanation);
+    });
+
+    it('verifies seed garments use genuine transparent cutouts without lifestyle clutter', () => {
+      const { INITIAL_SEED_GARMENTS } = require('../src/services/database/seedData');
+      const { SEED_GARMENT_CUTOUTS } = require('../src/constants/seedGarmentAssets');
+
+      expect(INITIAL_SEED_GARMENTS.length).toBeGreaterThanOrEqual(8);
+      for (const g of INITIAL_SEED_GARMENTS) {
+        expect(g.processed_image).toBeDefined();
+        // Must be a transparent PNG data URI or cutout path, NEVER a raw Unsplash lifestyle photograph
+        expect(g.processed_image).toContain('data:image/png;base64,');
+        expect(g.processed_image).not.toContain('unsplash.com/photo-');
+      }
+
+      // Verify all required categories have cutouts
+      expect(SEED_GARMENT_CUTOUTS.cotton_oxford).toBeDefined();
+      expect(SEED_GARMENT_CUTOUTS.wide_trousers).toBeDefined();
+      expect(SEED_GARMENT_CUTOUTS.low_sneakers).toBeDefined();
+      expect(SEED_GARMENT_CUTOUTS.tailored_blazer).toBeDefined();
+      expect(SEED_GARMENT_CUTOUTS.leather_crossbody).toBeDefined();
+    });
+  });
 });

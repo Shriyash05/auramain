@@ -12,6 +12,7 @@ const CANVAS_WIDTH = SCREEN_WIDTH - spacing.lg * 2;
 
 interface EditorialOutfitCanvasProps {
   slots: SelectedOutfitSlots;
+  activeCategory?: GarmentCategory;
   onPiecePress?: (category: GarmentCategory) => void;
   onEmptySlotPress?: (category: GarmentCategory) => void;
 }
@@ -25,6 +26,7 @@ interface EditorialOutfitCanvasProps {
  */
 export const EditorialOutfitCanvas: React.FC<EditorialOutfitCanvasProps> = ({
   slots,
+  activeCategory,
   onPiecePress,
   onEmptySlotPress,
 }) => {
@@ -45,7 +47,7 @@ export const EditorialOutfitCanvas: React.FC<EditorialOutfitCanvasProps> = ({
             <TouchableOpacity
               activeOpacity={0.85}
               onPress={() => onPiecePress?.('outerwear')}
-              style={styles.outerwearPill}
+              style={[styles.outerwearPill, activeCategory === 'outerwear' && styles.pillActiveHighlight]}
             >
               <Image
                 source={{ uri: getGarmentImageUri(outerwear) }}
@@ -67,7 +69,7 @@ export const EditorialOutfitCanvas: React.FC<EditorialOutfitCanvasProps> = ({
             <TouchableOpacity
               activeOpacity={0.85}
               onPress={() => onPiecePress?.('accessories')}
-              style={styles.accessoryPill}
+              style={[styles.accessoryPill, activeCategory === 'accessories' && styles.pillActiveHighlight]}
             >
               <Image
                 source={{ uri: getGarmentImageUri(accessory) }}
@@ -90,7 +92,7 @@ export const EditorialOutfitCanvas: React.FC<EditorialOutfitCanvasProps> = ({
       {/* Main Flat-Lay Composition (Editorial Hero) */}
       <View style={styles.flatLayBody}>
         {/* TOP LAYER */}
-        <View style={styles.topSlotContainer}>
+        <View style={[styles.topSlotContainer, activeCategory === 'tops' && styles.slotActiveHighlight]}>
           {top ? (
             <TouchableOpacity
               activeOpacity={0.9}
@@ -118,7 +120,7 @@ export const EditorialOutfitCanvas: React.FC<EditorialOutfitCanvasProps> = ({
         </View>
 
         {/* BOTTOM LAYER (Overlaps naturally with top) */}
-        <View style={styles.bottomSlotContainer}>
+        <View style={[styles.bottomSlotContainer, activeCategory === 'bottoms' && styles.slotActiveHighlight]}>
           {bottom ? (
             <TouchableOpacity
               activeOpacity={0.9}
@@ -146,7 +148,7 @@ export const EditorialOutfitCanvas: React.FC<EditorialOutfitCanvasProps> = ({
         </View>
 
         {/* FOOTWEAR BASE */}
-        <View style={styles.shoesSlotContainer}>
+        <View style={[styles.shoesSlotContainer, activeCategory === 'shoes' && styles.slotActiveHighlight]}>
           {shoes ? (
             <TouchableOpacity
               activeOpacity={0.9}
@@ -316,5 +318,15 @@ const styles = StyleSheet.create({
   hintText: {
     fontSize: 11,
     letterSpacing: 0.2,
+  },
+  slotActiveHighlight: {
+    borderRadius: radii.lg,
+    borderWidth: 1.5,
+    borderColor: 'rgba(28, 27, 26, 0.4)',
+    backgroundColor: 'rgba(243, 242, 238, 0.4)',
+  },
+  pillActiveHighlight: {
+    borderColor: colors.text,
+    borderWidth: 1.5,
   },
 });

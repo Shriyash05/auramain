@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text, TextStyle, StyleSheet, TextProps } from 'react-native';
+import { Text, TextStyle, StyleSheet, TextProps, StyleProp } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 
 interface EditorialTextProps extends TextProps {
   variant?: 'hero' | 'display' | 'title' | 'body' | 'label' | 'caption';
   color?: string;
-  style?: TextStyle;
+  style?: StyleProp<TextStyle>;
   children: React.ReactNode;
 }
 

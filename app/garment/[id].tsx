@@ -8,7 +8,7 @@ import { Typography } from '../../src/components/ui/Typography';
 import { Chip } from '../../src/components/ui/Chip';
 import { Button } from '../../src/components/ui/Button';
 import { colors, spacing, radii, shadows } from '../../src/constants/theme';
-import { ArrowLeft, Heart, Trash2 } from 'lucide-react-native';
+import { ArrowLeft, Heart, Trash2, Sparkles, Wand2 } from 'lucide-react-native';
 
 export default function GarmentDetailScreen() {
   const router = useRouter();
@@ -94,7 +94,7 @@ export default function GarmentDetailScreen() {
           <Image
             source={{ uri: garment.processed_image || garment.original_image }}
             style={styles.image}
-            resizeMode="cover"
+            resizeMode="contain"
           />
         </View>
 
@@ -109,6 +109,35 @@ export default function GarmentDetailScreen() {
           <Typography variant="body" color={colors.textSecondary}>
             Added on {new Date(garment.created_at).toLocaleDateString()}
           </Typography>
+        </View>
+
+        {/* Primary Action Buttons: Try It On & Style in Studio */}
+        <View style={styles.actionRow}>
+          <Button
+            label="Try It On"
+            variant="primary"
+            onPress={() => router.push({
+              pathname: '/tryon',
+              params: {
+                garmentId: garment.id,
+                garmentName: garment.name,
+                garmentCategory: garment.category,
+                garmentImage: garment.processed_image || garment.original_image,
+                source: 'closet',
+              },
+            } as any)}
+            icon={<Sparkles size={16} color={colors.textInverse} />}
+            size="lg"
+            style={styles.tryOnButton}
+          />
+          <Button
+            label="Style in Studio"
+            variant="secondary"
+            onPress={() => router.push('/(tabs)/create')}
+            icon={<Wand2 size={16} color={colors.text} />}
+            size="lg"
+            style={styles.studioButton}
+          />
         </View>
 
         {/* Metadata Badges */}
@@ -194,6 +223,17 @@ const styles = StyleSheet.create({
     color: colors.text,
     marginVertical: 4,
     fontSize: 28,
+  },
+  actionRow: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+    marginBottom: spacing.xl,
+  },
+  tryOnButton: {
+    flex: 1.2,
+  },
+  studioButton: {
+    flex: 1,
   },
   metadataSection: {
     marginBottom: spacing.xxl,

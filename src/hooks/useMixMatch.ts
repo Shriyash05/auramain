@@ -25,7 +25,8 @@ export interface SelectedOutfitSlots {
 
 export const useMixMatch = () => {
   const { user } = useAuth();
-  const { garments, refresh } = useGarments('all');
+  const { garments, isLoading: isGarmentsLoading, refresh } = useGarments('all');
+
 
   const [context, setContext] = useState<StylingContext>(ContextService.getDefaultContext());
   const [candidates, setCandidates] = useState<OutfitCandidate[]>([]);
@@ -264,7 +265,7 @@ export const useMixMatch = () => {
     saveCurrentOutfit,
     recordFeedback,
     isSaving,
-    isGenerating,
+    isGenerating: isGenerating || isGarmentsLoading,
     refreshGarments: refresh,
     context,
     candidates,

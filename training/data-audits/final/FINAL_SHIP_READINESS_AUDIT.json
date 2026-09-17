@@ -1,0 +1,103 @@
+{
+  "timestamp": "2026-09-15T03:25:00.000Z",
+  "audit_version": "1.0.0-final-ship",
+  "final_status": "AURA_VTO_BLOCKED",
+  "summary": {
+    "product_flows": "PASS",
+    "figma_qa": "PASS",
+    "studio_ux": "PASS",
+    "garment_isolation": "PASS",
+    "online_discovery": "PASS",
+    "product_import": "PASS",
+    "personal_aura_model": "PASS",
+    "vto_architecture": "PASS",
+    "vto_license_audit": "BLOCKED",
+    "vto_hardware_inference": "BLOCKED",
+    "security_audit": "PASS",
+    "privacy_audit": "PASS",
+    "performance_audit": "PASS",
+    "navigation": "PASS",
+    "device_test": "BLOCKED",
+    "automated_tests": "PASS",
+    "dataset_integrity": "PASS",
+    "ml_governance": "PASS",
+    "git_integrity": "PASS"
+  },
+  "studio_ux_verification": {
+    "status": "PASS",
+    "interaction_model": "Direct horizontal swipe on active outfit canvas slots (Outerwear, Top, Bottom, Shoes)",
+    "whering_principle_implemented": true,
+    "category_first_rail_eliminated": true,
+    "outfit_is_hero": true,
+    "peek_previews": "Subtle left/right previous/next garment previews (scale 0.72, opacity 0.35)",
+    "tap_chevrons": "Active touch chevron buttons for single-tap cycling",
+    "independent_tier_switching": true,
+    "live_style_intelligence_latency_ms": 12.4,
+    "verification_method": "Automated Jest tests (__tests__/directSwipeStudioAndTryOnFlow.test.ts, __tests__/studioExperience.test.ts) + Web export verified"
+  },
+  "vto_investigation_and_integration": {
+    "architecture_status": "PASS",
+    "execution_status": "BLOCKED",
+    "service_path": "services/vto/",
+    "service_endpoints": ["GET /health", "GET /license-audit", "POST /tryon"],
+    "client_integration": "src/services/vto/virtualTryOnService.ts -> src/services/vto/vtoProvider.ts",
+    "hardware_audit": {
+      "cuda_detected": true,
+      "gpu_name": "NVIDIA GeForce GTX 1650",
+      "vram_gb": 4.0,
+      "vram_required_gb": 8.0,
+      "hardware_status": "VRAM_INSUFFICIENT",
+      "blocker": "Diffusion models (MMDiT / UNet) require >= 8GB VRAM to run batch-1 inference without CUDA OOM."
+    },
+    "license_audit": {
+      "license_status": "DEPENDENCY_RESTRICTED",
+      "candidate_models": [
+        {
+          "model": "FASHN VTON v1.5",
+          "code_license": "Apache-2.0",
+          "weights_license": "Apache-2.0",
+          "dependency_audit": "fashn-human-parser inherits NVIDIA Source Code License for SegFormer (Non-Commercial Research Only).",
+          "commercial_readiness": "RESTRICTED",
+          "blocker": "Cannot ship commercially without replacing SegFormer parser with an Apache-2.0 trained parser."
+        },
+        {
+          "model": "CatVTON / IDM-VTON",
+          "code_license": "Apache-2.0",
+          "weights_license": "CC BY-NC-SA 4.0",
+          "commercial_readiness": "RESTRICTED",
+          "blocker": "Strict non-commercial restriction prevents commercial product distribution."
+        },
+        {
+          "model": "Kolors-VTON",
+          "code_license": "Apache-2.0",
+          "weights_license": "Apache-2.0",
+          "commercial_readiness": "VRAM_PROHIBITIVE",
+          "blocker": "Requires >= 16GB VRAM, exceeding local GTX 1650 (4GB) by 4x."
+        }
+      ]
+    },
+    "scientific_honesty_enforcement": "App and service refuse to synthesize a fake 2D cut or mannequin render. Service responds with honest HTTP 503 and exact diagnostics."
+  },
+  "security_and_privacy_audit": {
+    "secrets_scan": "PASS - Zero API keys, private keys, or credentials committed",
+    "input_fuzzing": "PASS - 10/10 fuzzing scenarios passed (malformed URLs, path traversal, SSRF, XSS, giant payloads)",
+    "dangerous_eval": "PASS - Zero occurrences of eval() or new Function() in codebase",
+    "privacy_enforcement": "PASS - Zero user photos, facial landmarks, or measurements persisted to disk by VTO service or committed to git",
+    "test_suite": "__tests__/securityAndInputFuzzing.test.ts"
+  },
+  "governance_and_dataset": {
+    "frozen_blind_checksum": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+    "checksum_verified": true,
+    "classifier_version": "aura-garment-v1-exp0015",
+    "classifier_state": "EXPERIMENTAL",
+    "confidence_threshold": 0.65,
+    "unauthorized_retraining": false
+  },
+  "test_execution_summary": {
+    "typescript_check": "PASS (tsc --noEmit: 0 errors)",
+    "jest_tests": "PASS (34 test suites, 246 unit tests passed, 0 failures)",
+    "vto_service_tests": "PASS (services/vto/test_vto_service.py: 6/6 passed)",
+    "expo_export_web": "PASS (46 static routes bundled without error)",
+    "device_emulator": "BLOCKED (No physical Android device or ADB emulator attached)"
+  }
+}

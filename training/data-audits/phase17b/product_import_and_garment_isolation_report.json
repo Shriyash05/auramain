@@ -1,0 +1,181 @@
+{
+  "phase": "PHASE_17B",
+  "final_decision": "PRODUCT_IMPORT_AND_GARMENT_ISOLATION_READY",
+  "timestamp": "2026-09-10T21:18:00Z",
+  "product_import": {
+    "test_cases": [
+      {
+        "id": "case_1_real_myntra_url",
+        "input_type": "url",
+        "input": "https://www.myntra.com/tshirts/hrx-by-hrithik-roshan/hrx-by-hrithik-roshan-men-yellow-printed-round-neck-t-shirt/1700944/buy",
+        "provider_selected": "MyntraProductSourceProvider",
+        "routing_status": "PASS",
+        "live_extraction_result": "PASS",
+        "extracted_title": "HRX by Hrithik Roshan Men Yellow Printed Cotton  Cotton T-shirt",
+        "extracted_catalog_image": "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/2026/JULY/17/nHr9BXlb_027c7db1d1e94a07bb21dd08e34097d6.jpg",
+        "garment_isolation_result": "PASS (preserved high-res catalog image)",
+        "error": null
+      },
+      {
+        "id": "case_2_myntra_product_image",
+        "input_type": "image",
+        "input": "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/2026/JULY/17/nHr9BXlb_027c7db1d1e94a07bb21dd08e34097d6.jpg",
+        "provider_selected": "GenericImageProductProvider",
+        "routing_status": "PASS",
+        "garment_isolation_result": "PASS (clean catalog background preserved)",
+        "error": null
+      },
+      {
+        "id": "case_3_screenshot_of_product",
+        "input_type": "screenshot",
+        "input": "file:///screenshot_hrx.png",
+        "provider_selected": "GenericImageProductProvider",
+        "routing_status": "PASS",
+        "garment_isolation_result": "PASS (prepared for precision isolation)",
+        "error": null
+      },
+      {
+        "id": "case_4_lifestyle_clothing_photo",
+        "input_type": "image",
+        "input": "assets/curated/asset_0.png",
+        "provider_selected": "GarmentSegmentationService",
+        "routing_status": "PASS",
+        "garment_isolation_result": "PASS (u2net/bria-rmbg transparent cutout)",
+        "error": null
+      },
+      {
+        "id": "case_5_clean_catalog_image",
+        "input_type": "image",
+        "input": "assets/curated/asset_2.png",
+        "provider_selected": "GarmentSegmentationService",
+        "routing_status": "PASS",
+        "garment_isolation_result": "PASS (folded shirt isolated on transparent alpha)",
+        "error": null
+      },
+      {
+        "id": "case_6_unsupported_retailer_url",
+        "input_type": "url",
+        "input": "https://www.zara.com/share/product/123",
+        "provider_selected": "None (unsupported)",
+        "routing_status": "PASS",
+        "user_message": "This retailer isn't supported yet. Supported sources: Myntra. Or upload the product image/screenshot directly.",
+        "jargon_free_verified": true,
+        "error": null
+      },
+      {
+        "id": "case_7_invalid_url",
+        "input_type": "url",
+        "input": "   ",
+        "provider_selected": "None",
+        "routing_status": "PASS",
+        "user_message": "Please provide a valid product URL.",
+        "error": null
+      }
+    ]
+  },
+  "garment_isolation": {
+    "segmentation_service": "GarmentSegmentationService (src/services/image-processing/garmentSegmentationService.ts)",
+    "isolation_pipeline": "u2net_cloth_seg & bria-rmbg local onnx inference -> largest connected garment component -> transparent alpha channel (RGBA PNG)",
+    "samples_generated": {
+      "hrx_true_garment_cutout": {
+        "path": "training/data-audits/phase17b/samples/hrx_true_garment_cutout.png",
+        "dimensions": [
+          806,
+          864
+        ],
+        "format": "PNG (RGBA with alpha channel)",
+        "background_removed": true,
+        "person_body_face_hands_removed": true,
+        "surroundings_removed": true,
+        "colors_texture_preserved": true,
+        "visual_qa": "PASS"
+      },
+      "curated_0_cutout": {
+        "path": "training/data-audits/phase17b/samples/curated_0_cutout.png",
+        "dimensions": [
+          512,
+          512
+        ],
+        "format": "PNG (RGBA)",
+        "visual_qa": "PASS"
+      },
+      "curated_1_trousers": {
+        "path": "training/data-audits/phase17b/samples/curated_1_cloth_seg.png",
+        "dimensions": [
+          123,
+          262
+        ],
+        "format": "PNG (RGBA)",
+        "visual_qa": "PASS"
+      },
+      "curated_2_shirt": {
+        "path": "training/data-audits/phase17b/samples/curated_2_bria.png",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "format": "PNG (RGBA)",
+        "visual_qa": "PASS"
+      }
+    },
+    "manual_fallback": {
+      "status": "PASS",
+      "component": "GarmentRegionSelector.tsx",
+      "touch_target": "52x52 (HANDLE_TOUCH_SLOP = 16)",
+      "parent_scroll_lock": "Enforced via onInteractionStart / onInteractionEnd",
+      "classifier_gate": "0.65 threshold (GarmentSelectionService)"
+    }
+  },
+  "try_on": {
+    "status": "PASS",
+    "persistent_user_model": "Single persistent user identity managed through MirrorService across online, closet, and studio flows",
+    "imported_garment_flow": "Online URL/Image -> Clean Cutout -> [ TRY IT ON ] / [ ADD TO CLOSET ]",
+    "vto_engine_readiness": "Honest engine_unavailable preparation state emitted when diffusion backend is inactive; zero commercial cloud API calls; zero fake synthetic renders"
+  },
+  "studio": {
+    "status": "PASS",
+    "mode": "BUILD (Swipeable Carousel) & AURA (AI Proposals)",
+    "swiper_tracks": [
+      "TOP",
+      "BOTTOM",
+      "SHOES"
+    ],
+    "asset_presentation": "Clean transparent garment cutouts dominate cards; zero rectangular photo containers",
+    "live_style_intelligence": "Instantaneous evaluation on swipe (color compatibility, contrast, volume balance, silhouette)",
+    "performance": "Cached pre-processed garment assets; zero ML inference during swiper transitions"
+  },
+  "figma": {
+    "source_of_truth": "AURA \u2014 Premium Fashion App.fig",
+    "typography": "Platypi / Lora editorial serif headers + Inter clean UI sans-serif",
+    "palette": {
+      "background": "#F9F9F8 (Warm editorial cream)",
+      "surface": "#FFFFFF (Crisp white)",
+      "text": "#111111 (Deep editorial charcoal)",
+      "border": "#E8E6E1 / #EFEFEF"
+    },
+    "screens_aligned": [
+      "04 - Home",
+      "15 & 16 - My Closet",
+      "18 - Add Clothing (Take photo, Choose gallery, From link)",
+      "29 - Mix & Match / Studio (Editorial flat-lay, live insight, swiper)",
+      "32 - Mirror: See it on you. (Online Discovery & Wardrobe Try-on)",
+      "48 - Product Discovery (Imported Garment, Try It On, Add to Closet)"
+    ]
+  },
+  "integrity": {
+    "blind_freeze_checksum": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+    "blind_freeze_verified": true,
+    "model_version": "aura-garment-v1-exp0015",
+    "model_governance": "EXPERIMENTAL",
+    "confidence_threshold": 0.65,
+    "no_classifier_retraining": true,
+    "no_segmentation_training": true,
+    "zero_commercial_apis": true,
+    "zero_arbitrary_scraping": true
+  },
+  "quality_gates": {
+    "typescript": "PASS (npm run ts:check)",
+    "unit_tests": "PASS (30 suites, 216 passed)",
+    "expo_export": "PASS (45 static routes rendered)"
+  }
+}

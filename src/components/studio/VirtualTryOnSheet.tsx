@@ -10,12 +10,14 @@ import {
   Alert,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { useRouter } from 'expo-router';
 import { Garment } from '../../types/garment';
 import { Typography } from '../ui/Typography';
 import { Button } from '../ui/Button';
 import { colors, radii, spacing, shadows } from '../../constants/theme';
-import { MirrorService } from '../../services/vto/mirrorService';
-import { X, Sparkles, Camera, ShieldCheck, User, CheckCircle2 } from 'lucide-react-native';
+import { MirrorService, AuraUserModel } from '../../services/vto/mirrorService';
+import { PersonalModelOnboardingModal } from '../tryon/PersonalModelOnboardingModal';
+import { X, Sparkles, Camera, ShieldCheck, User, CheckCircle2, Sliders, ExternalLink } from 'lucide-react-native';
 
 interface VirtualTryOnSheetProps {
   visible: boolean;
@@ -41,46 +43,39 @@ export const VirtualTryOnSheet: React.FC<VirtualTryOnSheetProps> = ({
   onClose,
   onSaveOutfit,
 }) => {
+  const router = useRouter();
+  const [userModel, setUserModel] = useState<AuraUserModel | null>(null);
   const [modelPhotoUri, setModelPhotoUri] = useState<string | null>(null);
   const [isLoadingModel, setIsLoadingModel] = useState(true);
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
     if (visible) {
-      loadModelPhoto();
+      loadModelData();
     }
   }, [visible, userId]);
 
-  const loadModelPhoto = async () => {
+  const loadModelData = async () => {
     try {
       setIsLoadingModel(true);
+      const model = await MirrorService.getUserModel(userId);
+      setUserModel(model);
       const photo = await MirrorService.getUserModelPhoto(userId);
       setModelPhotoUri(photo);
     } catch (e) {
-      console.warn('[VirtualTryOnSheet] Failed to load user model photo:', e);
+      console.warn('[VirtualTryOnSheet] Failed to load user model:', e);
     } finally {
       setIsLoadingModel(false);
     }
   };
 
-  const handlePickModelPhoto = async () => {
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (status !== 'granted') {
-      Alert.alert('Permission Required', 'AURA needs gallery access to set up your personal styling model.');
-      return;
-    }
-
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: false,
-      quality: 0.9,
+  const handleOpenTryOnScreen = () => {
+    onClose();
+    const garmentIds = garments.map((g) => g.id).join(',');
+    router.push({
+      pathname: '/tryon',
+      params: { garmentIds, outfitName, source: 'studio' },
     });
-
-    if (!result.canceled && result.assets[0]?.uri) {
-      const uri = result.assets[0].uri;
-      await MirrorService.saveUserModelPhoto(userId, uri);
-      setModelPhotoUri(uri);
-      Alert.alert('AURA Model Created', 'Your personal model has been saved and will be reused for all future outfits.');
-    }
   };
 
   if (!visible) return null;
@@ -142,7 +137,7 @@ export const VirtualTryOnSheet: React.FC<VirtualTryOnSheetProps> = ({
             </View>
 
             {/* Personal Model State */}
-            {modelPhotoUri ? (
+            {userModel && userModel.isReady ? (
               <View style={styles.modelActiveCard}>
                 <View style={styles.modelHeaderRow}>
                   <View style={styles.activeModelBadge}>
@@ -151,21 +146,27 @@ export const VirtualTryOnSheet: React.FC<VirtualTryOnSheetProps> = ({
                       Personal AURA Model Active
                     </Typography>
                   </View>
-                  <TouchableOpacity activeOpacity={0.7} onPress={handlePickModelPhoto}>
-                    <Typography variant="caption" color={colors.textMuted}>
-                      Change Photo
+                  <TouchableOpacity activeOpacity={0.7} onPress={() => setShowOnboarding(true)}>
+                    <Typography variant="caption" color={colors.accent}>
+                      Edit Model
                     </Typography>
                   </TouchableOpacity>
                 </View>
 
                 <View style={styles.modelImageRow}>
-                  <Image source={{ uri: modelPhotoUri }} style={styles.modelImage} resizeMode="cover" />
+                  {modelPhotoUri ? (
+                    <Image source={{ uri: modelPhotoUri }} style={styles.modelImage} resizeMode="cover" />
+                  ) : (
+                    <View style={styles.modelPlaceholder}>
+                      <User size={24} color={colors.textSecondary} />
+                    </View>
+                  )}
                   <View style={styles.modelDetailsCol}>
                     <Typography variant="body" style={styles.modelColTitle}>
-                      Your Profile Avatar
+                      {userModel.proportions?.heightCm || 178} cm • {userModel.proportions?.weightKg || 72} kg
                     </Typography>
                     <Typography variant="caption" color={colors.textSecondary} style={styles.modelColSub}>
-                      Reused across all your Studio outfits without needing to re-upload.
+                      Shape: {(userModel.bodyShape || 'athletic').replace('_', ' ').toUpperCase()} • Top: {userModel.sizes?.tops || 'M'}
                     </Typography>
                   </View>
                 </View>
@@ -178,7 +179,7 @@ export const VirtualTryOnSheet: React.FC<VirtualTryOnSheetProps> = ({
                       Virtual Try-On Pipeline In Preparation
                     </Typography>
                     <Typography variant="caption" color={colors.textSecondary} style={{ marginTop: 2, lineHeight: 16 }}>
-                      AURA is preparing our specialized local diffusion try-on engine. To preserve wardrobe accuracy, we never generate synthetic API fabrications or send personal photos to third-party APIs.
+                      AURA adheres to strict scientific honesty: Zero fake AI fabrications are generated. Dedicated on-device neural diffusion weights are currently in development.
                     </Typography>
                   </View>
                 </View>
@@ -193,15 +194,15 @@ export const VirtualTryOnSheet: React.FC<VirtualTryOnSheetProps> = ({
                   Create Your AURA Model
                 </Typography>
                 <Typography variant="body" color={colors.textSecondary} style={styles.setupSubtitle}>
-                  Add a full-length photo of yourself once. AURA stores it securely on your device and uses it for all future Studio outfit styling.
+                  Configure your proportions, clothing sizes, body shape, and face references once. Stored locally and reused for all Studio styling.
                 </Typography>
 
                 <Button
-                  label="Upload Reference Photo"
+                  label="Configure Personal Model"
                   variant="primary"
                   size="md"
-                  icon={<Camera size={16} color={colors.textInverse} />}
-                  onPress={handlePickModelPhoto}
+                  icon={<Sliders size={16} color={colors.textInverse} />}
+                  onPress={() => setShowOnboarding(true)}
                   style={styles.setupBtn}
                 />
               </View>
@@ -209,10 +210,18 @@ export const VirtualTryOnSheet: React.FC<VirtualTryOnSheetProps> = ({
 
             {/* Actions */}
             <View style={styles.actionRow}>
+              <Button
+                label="Open in Try-On"
+                variant="primary"
+                size="lg"
+                onPress={handleOpenTryOnScreen}
+                icon={<Sparkles size={16} color={colors.textInverse} />}
+                style={{ flex: 1.2 }}
+              />
               {onSaveOutfit && (
                 <Button
-                  label="Save Look to Closet"
-                  variant="primary"
+                  label="Save Look"
+                  variant="outline"
                   size="lg"
                   onPress={() => {
                     onSaveOutfit();
@@ -221,15 +230,19 @@ export const VirtualTryOnSheet: React.FC<VirtualTryOnSheetProps> = ({
                   style={{ flex: 1 }}
                 />
               )}
-              <Button
-                label="Not Now"
-                variant="outline"
-                size="lg"
-                onPress={onClose}
-                style={{ flex: 0.8 }}
-              />
             </View>
           </ScrollView>
+
+          {/* Onboarding Modal */}
+          <PersonalModelOnboardingModal
+            visible={showOnboarding}
+            userId={userId}
+            onClose={() => setShowOnboarding(false)}
+            onCompleted={(model) => {
+              setUserModel(model);
+              loadModelData();
+            }}
+          />
         </SafeAreaView>
       </View>
     </Modal>
@@ -397,6 +410,16 @@ const styles = StyleSheet.create({
     height: 84,
     borderRadius: radii.sm,
     backgroundColor: colors.surfaceMuted,
+  },
+  modelPlaceholder: {
+    width: 64,
+    height: 84,
+    borderRadius: radii.sm,
+    backgroundColor: colors.surfaceMuted,
+    borderWidth: 1,
+    borderColor: colors.border,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   modelDetailsCol: {
     flex: 1,

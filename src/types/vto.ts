@@ -11,10 +11,58 @@ export type TryOnStatus =
   | 'failed' 
   | 'engine_unavailable';
 
+export type BodyShapeType =
+  | 'straight'
+  | 'athletic'
+  | 'broader_shoulders'
+  | 'fuller_midsection'
+  | 'curved';
+
+export interface UserProportions {
+  heightCm?: number;
+  heightUnit?: 'cm' | 'ft';
+  heightFt?: number;
+  heightIn?: number;
+  weightKg?: number;
+  weightUnit?: 'kg' | 'lbs';
+  weightLbs?: number;
+  waistInches?: number;
+  chestInches?: number;
+  inseamInches?: number;
+}
+
+export interface UserSizes {
+  tops?: 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | '3XL';
+  bottoms?: string;
+  shoes?: string;
+}
+
+export interface FaceReference {
+  id: string;
+  uri: string;
+  angle?: 'front' | 'three_quarter' | 'profile';
+  capturedAt: string;
+}
+
+export interface AuraUserModel {
+  userId: string;
+  proportions?: UserProportions;
+  sizes?: UserSizes;
+  bodyShape?: BodyShapeType;
+  faceReferences?: FaceReference[];
+  primaryFaceUri?: string;
+  primaryPhotoUri?: string; // Optional full reference if supplied
+  poses?: Array<{ id: string; name: string; photoUri: string }>;
+  angles?: Array<{ id: string; name: string; photoUri: string }>;
+  isReady: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
 
 export interface TryOnRequest {
   userId: string;
-  userImageUrl: string;
+  userImageUrl?: string;
+  userModel?: AuraUserModel;
   garments: Garment[];
   outfitName: string;
 }
@@ -32,3 +80,4 @@ export interface TryOnResult {
   created_at: string;
   updated_at: string;
 }
+

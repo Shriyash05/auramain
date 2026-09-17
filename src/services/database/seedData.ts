@@ -1,14 +1,17 @@
 import { Garment } from '../../types/garment';
+import { SEED_GARMENT_CUTOUTS } from '../../constants/seedGarmentAssets';
 
 /**
- * Initial curated seed wardrobe items from Figma design assets
+ * Initial curated seed wardrobe items from Figma design assets.
+ * All processed_image fields use verified, genuinely isolated transparent RGBA garment cutouts.
+ * Zero human model, zero background, 100% single isolated garments.
  */
 export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'updated_at' | 'user_id'>> = [
   {
     name: 'Structured Wool Coat',
     category: 'outerwear',
     original_image: 'https://images.unsplash.com/photo-1539533018447-63fcce2678e3?q=80&w=800&auto=format&fit=crop',
-    processed_image: 'https://images.unsplash.com/photo-1539533018447-63fcce2678e3?q=80&w=800&auto=format&fit=crop',
+    processed_image: SEED_GARMENT_CUTOUTS.wool_coat,
     primary_color: '#2A2927',
     fit: 'Oversized',
     occasions: ['Streetwear', 'Work / Office', 'Evening / Event'],
@@ -20,7 +23,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     name: 'Classic Tailored Blazer',
     category: 'outerwear',
     original_image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=800&auto=format&fit=crop',
-    processed_image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=800&auto=format&fit=crop',
+    processed_image: SEED_GARMENT_CUTOUTS.tailored_blazer,
     primary_color: '#1C1D1F',
     fit: 'Tailored' as any,
     occasions: ['Work / Office', 'Evening / Event'],
@@ -32,7 +35,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     name: 'Oversized Cotton Oxford',
     category: 'tops',
     original_image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop',
-    processed_image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop',
+    processed_image: SEED_GARMENT_CUTOUTS.cotton_oxford,
     primary_color: '#F0EFEA',
     fit: 'Relaxed',
     occasions: ['Casual', 'Minimalist'],
@@ -44,7 +47,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     name: 'Heavyweight Boxy Tee',
     category: 'tops',
     original_image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=800&auto=format&fit=crop',
-    processed_image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=800&auto=format&fit=crop',
+    processed_image: SEED_GARMENT_CUTOUTS.boxy_tee,
     primary_color: '#111111',
     fit: 'Oversized',
     occasions: ['Casual', 'Streetwear'],
@@ -56,7 +59,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     name: 'Pleated Wide-Leg Trousers',
     category: 'bottoms',
     original_image: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=800&auto=format&fit=crop',
-    processed_image: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=800&auto=format&fit=crop',
+    processed_image: SEED_GARMENT_CUTOUTS.wide_trousers,
     primary_color: '#2B2C2E',
     fit: 'Relaxed',
     occasions: ['Casual', 'Date Night', 'Work / Office'],
@@ -68,7 +71,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     name: 'Straight-Fit Vintage Denim',
     category: 'bottoms',
     original_image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop',
-    processed_image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop',
+    processed_image: SEED_GARMENT_CUTOUTS.vintage_denim,
     primary_color: '#4B6B94',
     fit: 'Regular',
     occasions: ['Casual', 'Streetwear'],
@@ -80,7 +83,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     name: 'Chunky Leather Loafers',
     category: 'shoes',
     original_image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=800&auto=format&fit=crop',
-    processed_image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=800&auto=format&fit=crop',
+    processed_image: SEED_GARMENT_CUTOUTS.leather_loafers,
     primary_color: '#111111',
     fit: 'Regular',
     occasions: ['Work / Office', 'Casual', 'Evening / Event'],
@@ -92,7 +95,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     name: 'Minimalist Low Sneakers',
     category: 'shoes',
     original_image: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=800&auto=format&fit=crop',
-    processed_image: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=800&auto=format&fit=crop',
+    processed_image: SEED_GARMENT_CUTOUTS.low_sneakers,
     primary_color: '#F8F8F8',
     fit: 'Regular',
     occasions: ['Casual', 'Streetwear'],
@@ -104,7 +107,7 @@ export const INITIAL_SEED_GARMENTS: Array<Omit<Garment, 'id' | 'created_at' | 'u
     name: 'Structured Leather Crossbody',
     category: 'accessories',
     original_image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=800&auto=format&fit=crop',
-    processed_image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=800&auto=format&fit=crop',
+    processed_image: SEED_GARMENT_CUTOUTS.leather_crossbody,
     primary_color: '#1A1A1A',
     fit: 'Regular',
     occasions: ['Casual', 'Date Night', 'Evening / Event'],

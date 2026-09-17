@@ -20,6 +20,7 @@ import {
   Alert,
   ActivityIndicator,
   Platform,
+  Modal,
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import * as ImagePicker from 'expo-image-picker';
@@ -27,6 +28,9 @@ import { useAuth } from '../../src/hooks/useAuth';
 import { useGarments } from '../../src/hooks/useGarments';
 import { MirrorService } from '../../src/services/vto/mirrorService';
 import { ProductImportService, ImportedProduct } from '../../src/services/commerce/productImportService';
+import { GarmentSegmentationService } from '../../src/services/image-processing/garmentSegmentationService';
+import { GarmentRegionSelector } from '../../src/components/garment/GarmentRegionSelector';
+import { GarmentSelection } from '../../src/services/garment-selection/types';
 import { DatabaseService } from '../../src/services/database/databaseService';
 import { TryOnResult, TryOnStatus } from '../../src/types/vto';
 import { Garment } from '../../src/types/garment';
@@ -71,11 +75,44 @@ export default function MirrorScreen() {
   const [tryOnResult, setTryOnResult] = useState<TryOnResult | null>(null);
   const [isAddingToCloset, setIsAddingToCloset] = useState(false);
 
+  // Manual Garment Region Selection Fallback State (Req 6, 7, 8, 16)
+  const [showManualSelector, setShowManualSelector] = useState(false);
+  const [manualSelectorImageUri, setManualSelectorImageUri] = useState<string | null>(null);
+  const [manualImageDimensions, setManualImageDimensions] = useState<{ width: number; height: number }>({
+    width: 800,
+    height: 1000,
+  });
+  const [pendingGarmentForManual, setPendingGarmentForManual] = useState<ImportedProduct | null>(null);
+  const [isScrollEnabled, setIsScrollEnabled] = useState(true);
+
   useEffect(() => {
     async function init() {
       if (!user) return;
       const photo = await MirrorService.getUserModelPhoto(user.id);
       setUserPhoto(photo);
+
+      // Handle route parameters (from Closet, Studio, or direct route)
+      if (params.tab === 'online') {
+        setActiveTab('online');
+      } else if (params.tab === 'wardrobe') {
+        setActiveTab('wardrobe');
+      }
+
+      if (params.garmentId) {
+        setActiveTab('wardrobe');
+        const target = garments.find((g) => g.id === params.garmentId);
+        if (target) {
+          setSelectedGarments([target]);
+          return;
+        } else {
+          const fetched = await DatabaseService.getGarments(user.id);
+          const found = fetched.find((g) => g.id === params.garmentId);
+          if (found) {
+            setSelectedGarments([found]);
+            return;
+          }
+        }
+      }
 
       // Preselect default garments if available
       if (garments.length > 0) {
@@ -86,9 +123,9 @@ export default function MirrorScreen() {
       }
     }
     init();
-  }, [user, garments.length]);
+  }, [user, garments.length, params.garmentId, params.tab]);
 
-  // Handle URL Import
+  // Handle URL Import (Req 1 & 2 & 4: Live fetch -> background removal -> single garment)
   const handleImportUrl = async () => {
     if (!productUrl.trim()) {
       Alert.alert('URL Required', 'Please paste a valid product link.');
@@ -96,24 +133,50 @@ export default function MirrorScreen() {
     }
 
     setIsImporting(true);
-    setImportNotice(null);
+    setImportNotice('Importing product details...');
 
     const result = await ProductImportService.importProduct({
       type: 'url',
       url: productUrl.trim(),
     });
 
+    if (!result.success || !result.product) {
+      setIsImporting(false);
+      Alert.alert('URL Import Status', result.message);
+      return;
+    }
+
+    // Step 6 & 7: Garment processing starts -> Background is removed
+    setImportNotice('Isolating garment background...');
+    const segResult = await GarmentSegmentationService.segmentGarment(
+      result.product.rawImageUri,
+      {
+        sourceType: 'product_catalog',
+        forceTransparency: true,
+        categoryHint: result.product.category,
+      }
+    );
+
     setIsImporting(false);
 
-    if (result.success && result.product) {
+    if (segResult.success && !segResult.requiresManualFallback && segResult.qualityGate.passed) {
+      result.product.cleanGarmentUri = segResult.segmentedImageUri;
+      result.product.hasCleanBackground = true;
       setImportedGarment(result.product);
-      setImportNotice(result.message);
+      setImportNotice('Single garment isolated with transparent background.');
     } else {
-      Alert.alert('URL Import Status', result.message);
+      // Quality gate rejected or ambiguous -> trigger manual selection fallback
+      setPendingGarmentForManual(result.product);
+      setManualSelectorImageUri(result.product.rawImageUri);
+      setShowManualSelector(true);
+      Alert.alert(
+        'Garment Isolation Quality Gate',
+        "Couldn't isolate the garment automatically. Select the garment manually."
+      );
     }
   };
 
-  // Handle Image Import
+  // Handle Image Import (Req 5 & 7: Lifestyle/Catalog image -> background removal -> single garment)
   const handleImportImage = async (type: 'image' | 'screenshot') => {
     const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (perm.status !== 'granted') {
@@ -123,25 +186,85 @@ export default function MirrorScreen() {
 
     const res = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
-      allowsEditing: true,
+      allowsEditing: false,
       quality: 0.9,
     });
 
     if (!res.canceled && res.assets && res.assets.length > 0) {
       setIsImporting(true);
-      const uri = res.assets[0].uri;
+      const asset = res.assets[0];
+      const uri = asset.uri;
+      if (asset.width && asset.height) {
+        setManualImageDimensions({ width: asset.width, height: asset.height });
+      }
+
+      setImportNotice('Importing product image...');
       const result = await ProductImportService.importProduct({
         type,
         imageUri: uri,
       });
+
+      if (!result.success || !result.product) {
+        setIsImporting(false);
+        Alert.alert('Import Notice', result.message);
+        return;
+      }
+
+      setImportNotice('Isolating garment background...');
+      const segResult = await GarmentSegmentationService.segmentGarment(uri, {
+        sourceType: type === 'screenshot' ? 'screenshot' : 'lifestyle',
+        categoryHint: result.product.category,
+      });
+
       setIsImporting(false);
 
-      if (result.success && result.product) {
+      if (segResult.success && !segResult.requiresManualFallback && segResult.qualityGate.passed) {
+        result.product.cleanGarmentUri = segResult.segmentedImageUri;
+        result.product.hasCleanBackground = true;
         setImportedGarment(result.product);
-        setImportNotice(result.message);
+        setImportNotice('Single garment isolated with transparent background.');
       } else {
-        Alert.alert('Import Notice', result.message);
+        // Automatic segmentation failed quality gate -> fallback to manual selection
+        setPendingGarmentForManual(result.product);
+        setManualSelectorImageUri(uri);
+        setShowManualSelector(true);
+        Alert.alert(
+          'Garment Isolation Quality Gate',
+          "Couldn't isolate the garment automatically. Select the garment manually."
+        );
       }
+    }
+  };
+
+  // Handle Precision Manual Garment Selection Confirm (Req 7 & 8)
+  const handleConfirmManualSelection = async (selection: GarmentSelection) => {
+    setShowManualSelector(false);
+    setIsScrollEnabled(true);
+    setIsImporting(true);
+    setImportNotice('Isolating garment within selected region...');
+
+    const segResult = await GarmentSegmentationService.segmentGarment(selection.imageUri, {
+      manualBbox: selection.bbox,
+    });
+
+    setIsImporting(false);
+
+    if (importedGarment) {
+      setImportedGarment({
+        ...importedGarment,
+        cleanGarmentUri: segResult.segmentedImageUri,
+        hasCleanBackground: true,
+      });
+      setImportNotice('Garment isolated via precision selection.');
+    } else if (pendingGarmentForManual) {
+      const updated: ImportedProduct = {
+        ...pendingGarmentForManual,
+        cleanGarmentUri: segResult.segmentedImageUri,
+        hasCleanBackground: true,
+      };
+      setImportedGarment(updated);
+      setPendingGarmentForManual(null);
+      setImportNotice('Garment isolated via precision selection.');
     }
   };
 
@@ -241,7 +364,11 @@ export default function MirrorScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+        scrollEnabled={isScrollEnabled}
+      >
         {/* Figma Screen 32 Header */}
         <View style={styles.header}>
           <TouchableOpacity
@@ -308,7 +435,7 @@ export default function MirrorScreen() {
             {importedGarment ? (
               <View style={styles.importedCard}>
                 <Typography variant="label" style={styles.sectionLabel}>
-                  CLEAN PRODUCT GARMENT
+                  ACTUAL GARMENT
                 </Typography>
 
                 <View style={styles.garmentHeroBox}>
@@ -324,11 +451,16 @@ export default function MirrorScreen() {
                     {importedGarment.title}
                   </Typography>
                   <Typography variant="caption" color={colors.textSecondary}>
-                    Source: {importedGarment.sourceProviderName} • {importedGarment.sourceType.toUpperCase()}
+                    Imported from {importedGarment.sourceProviderName}
                   </Typography>
+                  {importedGarment.price && (
+                    <Typography variant="caption" color={colors.text} style={{ marginTop: 2, fontWeight: '600' }}>
+                      {importedGarment.price}
+                    </Typography>
+                  )}
                 </View>
 
-                {importNotice && (
+                {importNotice && importNotice !== 'Product found' && (
                   <View style={styles.noticeBadge}>
                     <CheckCircle2 size={13} color={colors.success} />
                     <Typography variant="caption" color={colors.success} style={styles.noticeText}>
@@ -336,11 +468,6 @@ export default function MirrorScreen() {
                     </Typography>
                   </View>
                 )}
-
-                {/* Question & Actions (Req 8 & 21) */}
-                <Typography variant="body" style={styles.tryOnQuestion}>
-                  Try this on?
-                </Typography>
 
                 <View style={styles.actionButtonsCol}>
                   <Button
@@ -355,6 +482,17 @@ export default function MirrorScreen() {
                     onPress={handleAddToCloset}
                     loading={isAddingToCloset}
                     icon={<Bookmark size={16} color={colors.text} />}
+                  />
+                  <Button
+                    label="ADJUST CROP"
+                    variant="secondary"
+                    onPress={() => {
+                      if (importedGarment) {
+                        setManualSelectorImageUri(importedGarment.rawImageUri);
+                        setShowManualSelector(true);
+                      }
+                    }}
+                    icon={<Crop size={16} color={colors.text} />}
                   />
                   <Button
                     label="CHANGE IMAGE"
@@ -549,11 +687,82 @@ export default function MirrorScreen() {
           </View>
         )}
       </ScrollView>
+
+      {/* Manual Precision Garment Region Selector Modal (Req 7, 8, 16) */}
+      <Modal
+        visible={showManualSelector}
+        animationType="slide"
+        presentationStyle="fullScreen"
+        onRequestClose={() => {
+          setShowManualSelector(false);
+          setIsScrollEnabled(true);
+        }}
+      >
+        <SafeAreaView style={styles.modalSafe}>
+          <View style={styles.modalHeader}>
+            <TouchableOpacity
+              onPress={() => {
+                setShowManualSelector(false);
+                setIsScrollEnabled(true);
+              }}
+              style={styles.modalCloseBtn}
+              accessibilityLabel="Close selector"
+            >
+              <ArrowLeft size={22} color={colors.text} />
+            </TouchableOpacity>
+            <View style={styles.modalTitleBox}>
+              <Typography variant="title" style={styles.modalTitle}>
+                Select Single Garment
+              </Typography>
+              <Typography variant="caption" color={colors.textSecondary}>
+                Frame the garment precisely with 52×52 handles
+              </Typography>
+            </View>
+          </View>
+          {manualSelectorImageUri && (
+            <GarmentRegionSelector
+              imageUri={manualSelectorImageUri}
+              sourceWidth={manualImageDimensions.width}
+              sourceHeight={manualImageDimensions.height}
+              onConfirmSelection={handleConfirmManualSelection}
+              onCancel={() => {
+                setShowManualSelector(false);
+                setIsScrollEnabled(true);
+              }}
+              onInteractionStart={() => setIsScrollEnabled(false)}
+              onInteractionEnd={() => setIsScrollEnabled(true)}
+            />
+          )}
+        </SafeAreaView>
+      </Modal>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  modalSafe: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.md,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+  },
+  modalCloseBtn: {
+    padding: spacing.xs,
+  },
+  modalTitleBox: {
+    flex: 1,
+  },
+  modalTitle: {
+    fontSize: 18,
+    color: colors.text,
+  },
   safe: {
     flex: 1,
     backgroundColor: colors.background,

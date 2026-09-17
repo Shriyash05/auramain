@@ -24,6 +24,10 @@ __pycache__/
 *.pt
 *.bin
 *.onnx
+*.safetensors
+services/vto/__pycache__/
+services/vto/weights/
+services/vto/temp/
 
 # Scratch / IDE
 .system_generated/

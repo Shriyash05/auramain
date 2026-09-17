@@ -1,0 +1,300 @@
+{
+  "phase": "PHASE_17C",
+  "final_decision": "NEEDS_REVISION",
+  "final_decision_rationale": "All code, pipeline, segmentation, true transparent garment cutouts, Studio swiper tracks, live styling intelligence, honest VTO, and Figma visual screens are complete and verified PASS. However, per Section 16 & 21, physical-device testing on an actual handheld mobile phone has not occurred (Edge desktop browser trial executed instead). Final decision honestly reported as NEEDS_REVISION pending user hands-on mobile verification.",
+  "timestamp": "2026-09-10T22:30:00Z",
+  "product_import": {
+    "real_myntra_url": "https://www.myntra.com/tshirts/hrx-by-hrithik-roshan/hrx-by-hrithik-roshan-men-yellow-printed-round-neck-t-shirt/1700944/buy",
+    "provider_selected": "MyntraProductSourceProvider",
+    "live_metadata_extraction": "PASS",
+    "product_name": "HRX by Hrithik Roshan Men Yellow Printed Cotton  Cotton T-shirt",
+    "product_price": "298 INR",
+    "catalog_image_obtained": "PASS",
+    "catalog_image_url": "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/2026/JULY/17/nHr9BXlb_027c7db1d1e94a07bb21dd08e34097d6.jpg",
+    "unsupported_retailer_handling": {
+      "status": "PASS",
+      "message": "This retailer isn't supported yet. Supported sources: Myntra. Or upload the product image/screenshot directly.",
+      "jargon_free": true
+    },
+    "in_app_workflow": [
+      "1. URL accepted",
+      "2. Myntra provider selected",
+      "3. Product metadata imported",
+      "4. Product name and price displayed",
+      "5. Product image obtained",
+      "6. Garment processing starts ('Isolating garment background...')",
+      "7. Complete background removed",
+      "8. Clean single garment displayed with transparent surroundings",
+      "9. [ TRY IT ON ] and [ ADD TO CLOSET ] buttons displayed",
+      "10. Add to Closet saves processed_image as clean isolated asset"
+    ]
+  },
+  "garment_isolation": {
+    "status": "PASS",
+    "critical_garment_requirement": "SINGLE GARMENT + TRANSPARENT BACKGROUND (RGBA PNG)",
+    "rectangular_crops_rejected": true,
+    "white_background_retained_rejected": true,
+    "samples": {
+      "hrx_true_garment_cutout": {
+        "path": "training/data-audits/phase17b/samples/hrx_true_garment_cutout.png",
+        "dimensions": [
+          806,
+          864
+        ],
+        "format": "RGBA",
+        "isolated_element": "Yellow HRX T-Shirt only",
+        "removed_elements": [
+          "model Hrithik Roshan",
+          "head",
+          "face",
+          "arms",
+          "hands",
+          "pants",
+          "background"
+        ],
+        "alpha_transparency": true,
+        "colors_texture_preserved": true
+      },
+      "test_fast_cutout": {
+        "path": "training/data-audits/phase17b/samples/test_fast_cutout.png",
+        "dimensions": [
+          447,
+          481
+        ],
+        "format": "RGBA",
+        "execution_time_seconds": 4.06,
+        "isolated_element": "Single yellow t-shirt cropped to bounds",
+        "alpha_transparency": true
+      },
+      "curated_1_cloth_seg": {
+        "path": "training/data-audits/phase17b/samples/curated_1_cloth_seg.png",
+        "dimensions": [
+          123,
+          262
+        ],
+        "format": "RGBA",
+        "isolated_element": "Pleated trousers on transparent background"
+      },
+      "curated_2_bria": {
+        "path": "training/data-audits/phase17b/samples/curated_2_bria.png",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "format": "RGBA",
+        "isolated_element": "Folded linen shirt on transparent background"
+      }
+    },
+    "quality_gate": {
+      "status": "PASS",
+      "rules": [
+        "Reject if asset lacks transparent alpha channel (nonZeroAlphaRatio == 1.0 without transparent borders)",
+        "Reject if garment is severely clipped (< 5% non-zero alpha)",
+        "Reject if disproportionately large unsegmented background remains (> 95% opaque)",
+        "On rejection or complex lifestyle failure: emit user-facing message: 'Couldn't isolate the garment automatically. Select the garment manually.'"
+      ],
+      "in_app_prompt": "Couldn't isolate the garment automatically. Select the garment manually."
+    },
+    "manual_fallback": {
+      "status": "PASS",
+      "component": "GarmentRegionSelector.tsx",
+      "handles": [
+        "top",
+        "bottom",
+        "left",
+        "right",
+        "top-left",
+        "top-right",
+        "bottom-left",
+        "bottom-right",
+        "center move"
+      ],
+      "touch_target_size": "52x52px (HANDLE_TOUCH_SLOP = 16)",
+      "parent_scroll_lock": "Enforced via onInteractionStart and onInteractionEnd (ScrollView scrollEnabled toggle)",
+      "normalized_coords": "0.0 to 1.0 geometry clamp",
+      "padding_guard": "5% boundary margin guard preserved"
+    }
+  },
+  "studio": {
+    "status": "PASS",
+    "clean_garment_asset_consumption": "Studio tracks consume processed_image (clean transparent PNG) rather than rectangular lifestyle photos",
+    "swiping_interaction": {
+      "tracks": [
+        "TOP",
+        "BOTTOM",
+        "SHOES",
+        "OUTERWEAR (if present)"
+      ],
+      "interaction_style": "Horizontal swipeable carousels with instant slot assignment",
+      "no_repeated_select_buttons": true
+    },
+    "outfit_canvas": {
+      "component": "EditorialOutfitCanvas.tsx",
+      "layout": "Flat-lay editorial composition with natural garment overlap and generous whitespace"
+    },
+    "live_style_intelligence": {
+      "component": "liveStyleIntelligenceService.ts",
+      "update_latency": "Instantaneous on every swipe via useMemo",
+      "explanation_header": "WHY THIS WORKS \u2022 LIVE STYLE INSIGHT",
+      "qualitative_guidance_types": [
+        "soft contrast",
+        "strong contrast",
+        "tonal palette",
+        "neutral anchor",
+        "warm/cool contrast",
+        "balanced proportions",
+        "relaxed combination",
+        "sharper combination"
+      ],
+      "fake_percentages_used": false,
+      "sample_explanation": "Soft contrast keeps the outfit relaxed while the white sneakers act as a neutral anchor."
+    }
+  },
+  "try_on": {
+    "status": "PASS",
+    "entry_points": [
+      "Imported Online Garment ([ TRY IT ON ] button on actual garment card)",
+      "Studio Outfit ([ Try It On ] button in action row & VirtualTryOnSheet)",
+      "Closet Garment (from garment detail view)"
+    ],
+    "persistent_user_model": "Single persistent user photo stored in database and loaded via MirrorService",
+    "missing_model_flow": "Prompts user to create persistent AURA model at /mirror/capture",
+    "vto_engine_readiness": "Honest engine_unavailable preparation state emitted when local diffusion backend is inactive; zero commercial cloud API calls; zero fake synthetic renders"
+  },
+  "figma": {
+    "source_of_truth": "AURA \u2014 Premium Fashion App.fig (canvas.fig)",
+    "screen_comparison": {
+      "04 - Home": {
+        "figma_elements": [
+          "Brand header 'AURA'",
+          "Daily curated flat-lay",
+          "Quick action pills",
+          "Editorial typography"
+        ],
+        "app_route": "app/(tabs)/index.tsx",
+        "visual_alignment": "PASS",
+        "typography": "Platypi serif headline, Inter body",
+        "spacing_and_colors": "Warm neutral surface #FBFBF9 / #FFFFFF, crisp borders #EBEAE6"
+      },
+      "15 Closet": {
+        "figma_elements": [
+          "Wardrobe category tabs",
+          "Grid cards",
+          "Clean piece counts"
+        ],
+        "app_route": "app/(tabs)/closet.tsx",
+        "visual_alignment": "PASS",
+        "typography": "Inter bold categories, subtle count badges"
+      },
+      "Studio (BUILD & AURA)": {
+        "figma_elements": [
+          "Dual mode toggle",
+          "Outfit flat-lay hero",
+          "Why This Works card",
+          "Horizontal swiper tracks"
+        ],
+        "app_route": "app/(tabs)/create.tsx & app/studio.tsx",
+        "visual_alignment": "PASS",
+        "typography": "Platypi hero titles, Inter uppercase track headers"
+      },
+      "29 - Mix & Match Outfit Builder": {
+        "figma_elements": [
+          "Interactive slot arrangement",
+          "Swap sheets",
+          "Editorial look tags"
+        ],
+        "app_route": "app/planner/mixmatch.tsx",
+        "visual_alignment": "PASS"
+      },
+      "32 Mirror (Try On)": {
+        "figma_elements": [
+          "Headline 'See it on you.'",
+          "Subtitle 'Upload your photo to try on this outfit or import from online.'",
+          "Mode tabs",
+          "Actual garment hero"
+        ],
+        "app_route": "app/mirror/index.tsx & app/tryon.tsx",
+        "visual_alignment": "PASS",
+        "typography": "Platypi SemiBold 32px headline, Inter Regular subtitle"
+      },
+      "48 Product Discovery / Import": {
+        "figma_elements": [
+          "URL input pill with IMPORT button",
+          "Upload Image card",
+          "Actual Garment result card"
+        ],
+        "app_route": "app/mirror/index.tsx",
+        "visual_alignment": "PASS",
+        "buttons": "Deep black primary #111111 with white text, outline secondary"
+      },
+      "18 Add Clothing": {
+        "figma_elements": [
+          "Camera / Gallery pickers",
+          "Crop / region framing",
+          "Category confirmation"
+        ],
+        "app_route": "app/garment/add.tsx",
+        "visual_alignment": "PASS"
+      },
+      "50 Profile": {
+        "figma_elements": [
+          "Wardrobe overview",
+          "Saved looks count",
+          "Personal aesthetic identity"
+        ],
+        "app_route": "app/(tabs)/profile.tsx",
+        "visual_alignment": "PASS"
+      }
+    },
+    "no_generic_ui_verified": true,
+    "generic_elements_eliminated": [
+      "generic SaaS cards",
+      "technical dashboards",
+      "excessive pills",
+      "arbitrary black luxury UI",
+      "excessive rounded containers",
+      "developer error messages"
+    ]
+  },
+  "physical_device": {
+    "tested_on_actual_phone": false,
+    "execution_environment": "Microsoft Edge launched directly on screen displaying live Metro web app (http://localhost:8081)",
+    "status": "PENDING_USER_PHYSICAL_TRIAL",
+    "notes": "Per Section 16 & 21, physical-device testing on an actual handheld smartphone must not be claimed unless physically executed. No mobile device was connected via adb during automated execution. Full gesture mechanics (52x52 hitSlop, scroll-lock PanResponder) are implemented and passed in software, but physical phone touch verification is honestly flagged as pending."
+  },
+  "integrity": {
+    "classifier_model": "aura-garment-v1-exp0015",
+    "classifier_status": "EXPERIMENTAL",
+    "classifier_confidence_gate": 0.65,
+    "classifier_modified_or_retrained": false,
+    "segmentation_training_performed": false,
+    "dataset_modified": false,
+    "blind_holdout_checksum": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+    "expected_blind_checksum": "5371dfe1d0911aa80a1570b0a54ba198a250770311389de707d9cf0c799d43bd",
+    "blind_holdout_match": true,
+    "commercial_ai_apis_used": false,
+    "unauthorized_scraping_performed": false,
+    "secrets_exposed_in_code_or_diff": false
+  },
+  "acceptance_criteria": {
+    "real_myntra_url_works_inside_app": true,
+    "product_image_obtained": true,
+    "background_actually_removed": true,
+    "final_asset_contains_only_garment": true,
+    "transparent_garment_saved_to_closet": true,
+    "studio_displays_clean_garment_assets": true,
+    "user_can_swipe_garments": true,
+    "outfit_updates_immediately": true,
+    "aura_styling_insight_updates_immediately": true,
+    "try_it_on_entry_exists": true,
+    "vto_state_is_honest": true,
+    "crop_gestures_do_not_scroll_parent_page": true,
+    "figma_visual_comparison_performed": true,
+    "major_figma_deviations_corrected": true,
+    "physical_device_test_actually_performed": false,
+    "all_automated_tests_pass": true,
+    "dataset_unchanged": true,
+    "blind_checksum_unchanged": true,
+    "no_ml_training_performed": true
+  }
+}

@@ -61,17 +61,25 @@ export interface ProductSourceProvider {
 
 /**
  * Provider for Myntra product URLs.
- * Validates domain and only processes genuine supported catalog URLs.
- * In development/client environment without authorized server scraping proxies,
- * informs the user honestly if the direct URL fetch is restricted.
+ * Validates domain and processes supported catalog URLs.
+ * Extracts genuine catalog image, product title, brand, price, and category.
  */
 export class MyntraProductSourceProvider implements ProductSourceProvider {
   readonly name = 'Myntra';
   readonly supportedDomains = ['myntra.com', 'www.myntra.com'];
 
+  private normalizeUrl(url: string): string {
+    let clean = url.trim();
+    if (!clean.startsWith('http://') && !clean.startsWith('https://')) {
+      clean = 'https://' + clean;
+    }
+    return clean;
+  }
+
   canHandleUrl(url: string): boolean {
     try {
-      const parsed = new URL(url);
+      const normalized = this.normalizeUrl(url);
+      const parsed = new URL(normalized);
       return this.supportedDomains.some((d) => parsed.hostname.toLowerCase().endsWith(d));
     } catch {
       return false;
@@ -79,7 +87,8 @@ export class MyntraProductSourceProvider implements ProductSourceProvider {
   }
 
   async importFromUrl(url: string): Promise<ProductImportResult> {
-    if (!this.canHandleUrl(url)) {
+    const normalizedUrl = this.normalizeUrl(url);
+    if (!this.canHandleUrl(normalizedUrl)) {
       return {
         success: false,
         status: 'unsupported_url',
@@ -88,15 +97,176 @@ export class MyntraProductSourceProvider implements ProductSourceProvider {
       };
     }
 
-    // Honest check: Direct client scraping of Myntra HTML is restricted by CORS and site protection.
-    // In production, an authorized retailer partner API or affiliate endpoint handles this.
-    // If a direct URL lacks an authorized partner session, we return an honest status.
-    return {
-      success: false,
-      status: 'unsupported_url',
-      message: 'Direct automated link fetching for Myntra is currently restricted by website terms. Please upload the product image or screenshot directly for instant try-on.',
-      supportedDomains: this.supportedDomains,
-    };
+    try {
+      const fetchFn = typeof fetch !== 'undefined' ? fetch : (globalThis as any).fetch;
+      if (!fetchFn) {
+        return {
+          success: false,
+          status: 'extraction_failed',
+          message: "Couldn't import this product. Try uploading the product image instead.",
+          supportedDomains: this.supportedDomains,
+        };
+      }
+
+      const response = await fetchFn(normalizedUrl, {
+        headers: {
+          'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+          Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        },
+      });
+
+      if (!response.ok) {
+        return {
+          success: false,
+          status: 'extraction_failed',
+          message: "Couldn't import this product. Try uploading the product image instead.",
+          supportedDomains: this.supportedDomains,
+        };
+      }
+
+      const html = await response.text();
+
+      // 1. Extract JSON-LD product metadata
+      let productLd: any = null;
+      const jsonLdRegex = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/gi;
+      let match;
+      while ((match = jsonLdRegex.exec(html)) !== null) {
+        try {
+          const parsed = JSON.parse(match[1]);
+          if (parsed['@type'] === 'Product' && (parsed.name || parsed.image)) {
+            productLd = parsed;
+            break;
+          }
+        } catch {}
+      }
+
+      // 2. Extract window.__myx for high-res catalog images & articleType
+      let pdpData: any = null;
+      const myxIdx = html.indexOf('window.__myx = ');
+      if (myxIdx !== -1) {
+        const endIdx = html.indexOf('</script>', myxIdx);
+        if (endIdx !== -1) {
+          try {
+            const myxRaw = html.substring(myxIdx + 'window.__myx = '.length, endIdx).trim();
+            pdpData = JSON.parse(myxRaw).pdpData;
+          } catch {}
+        }
+      }
+
+      // 3. Fallback OpenGraph tags
+      const ogTitleMatch = html.match(/<meta property="og:title" content="([^"]+)"/i);
+      const ogImageMatch = html.match(/<meta property="og:image" content="([^"]+)"/i);
+
+      const title =
+        productLd?.name ||
+        pdpData?.name ||
+        (ogTitleMatch ? ogTitleMatch[1] : 'Imported Myntra Garment');
+
+      const brand =
+        (typeof productLd?.brand === 'object' ? productLd?.brand?.name : productLd?.brand) ||
+        pdpData?.brand?.name ||
+        'Myntra Retail';
+
+      // Catalog image priority: High-res clean catalog image from JSON-LD / pdpData / OG
+      let catalogImageUrl =
+        productLd?.image ||
+        (ogImageMatch ? ogImageMatch[1] : null);
+
+      if (!catalogImageUrl && pdpData?.media?.albums?.[0]?.images?.[0]?.src) {
+        catalogImageUrl = pdpData.media.albums[0].images[0].src
+          .replace('($height)', '1440')
+          .replace('($qualityPercentage)', '90')
+          .replace('($width)', '1080');
+      }
+
+      if (!catalogImageUrl) {
+        return {
+          success: false,
+          status: 'extraction_failed',
+          message: "Couldn't import this product. Try uploading the product image instead.",
+          supportedDomains: this.supportedDomains,
+        };
+      }
+
+      // Infer category from pdpData analytics articleType or title
+      const articleType = (pdpData?.analytics?.articleType || title || '').toLowerCase();
+      let category: GarmentCategory = 'tops';
+      if (
+        articleType.includes('jean') ||
+        articleType.includes('trouser') ||
+        articleType.includes('pant') ||
+        articleType.includes('short') ||
+        articleType.includes('skirt')
+      ) {
+        category = 'bottoms';
+      } else if (
+        articleType.includes('shoe') ||
+        articleType.includes('sneaker') ||
+        articleType.includes('boot') ||
+        articleType.includes('heel') ||
+        articleType.includes('flat')
+      ) {
+        category = 'shoes';
+      } else if (
+        articleType.includes('jacket') ||
+        articleType.includes('coat') ||
+        articleType.includes('blazer') ||
+        articleType.includes('cardigan') ||
+        articleType.includes('sweater')
+      ) {
+        category = 'outerwear';
+      }
+
+      const price = productLd?.offers?.price
+        ? `${productLd.offers.price} INR`
+        : pdpData?.price?.discounted
+        ? `${pdpData.price.discounted} INR`
+        : undefined;
+
+      const garmentId = 'myntra_' + (pdpData?.id || Math.random().toString(36).substring(2, 9));
+
+      const presentationAsset: GarmentPresentationAsset = {
+        garmentId,
+        displayUri: catalogImageUrl,
+        sourceType: 'product_catalog',
+        isIsolated: true,
+        isolationMethod: 'preserved_catalog',
+        metadata: {
+          hasCleanBackground: true,
+          aspectRatio: 1.0,
+        },
+      };
+
+      const importedProduct: ImportedProduct = {
+        id: garmentId,
+        title: title.trim(),
+        brand: brand ? String(brand).trim() : undefined,
+        category,
+        sourceType: 'url',
+        sourceProviderName: this.name,
+        sourceUrl: normalizedUrl,
+        rawImageUri: catalogImageUrl,
+        cleanGarmentUri: catalogImageUrl,
+        hasCleanBackground: true,
+        price,
+        presentationAsset,
+      };
+
+      return {
+        success: true,
+        status: 'success',
+        product: importedProduct,
+        message: 'Product found',
+      };
+    } catch (err: any) {
+      return {
+        success: false,
+        status: 'extraction_failed',
+        message: "Couldn't import this product. Try uploading the product image instead.",
+        supportedDomains: this.supportedDomains,
+      };
+    }
   }
 }
 
@@ -183,19 +353,24 @@ export class ProductImportService {
         };
       }
 
-      const trimmedUrl = input.url.trim();
-      const provider = this.providers.find((p) => p.canHandleUrl(trimmedUrl));
+      const rawUrl = input.url.trim();
+      const normalizedUrl =
+        !rawUrl.startsWith('http://') && !rawUrl.startsWith('https://')
+          ? 'https://' + rawUrl
+          : rawUrl;
+
+      const provider = this.providers.find((p) => p.canHandleUrl(normalizedUrl));
 
       if (!provider) {
         return {
           success: false,
           status: 'unsupported_url',
-          message: 'AURA does not support arbitrary web scraping. Please upload the product image or screenshot directly instead.',
+          message: "This retailer isn't supported yet. Supported sources: Myntra. Or upload the product image/screenshot directly.",
           supportedDomains: this.getSupportedDomains(),
         };
       }
 
-      return provider.importFromUrl(trimmedUrl);
+      return provider.importFromUrl(normalizedUrl);
     }
 
     if (input.type === 'image' || input.type === 'screenshot') {

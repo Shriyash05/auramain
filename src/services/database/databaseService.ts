@@ -9,6 +9,25 @@ import { INITIAL_SEED_GARMENTS } from './seedData';
 const GARMENTS_KEY_PREFIX = 'aura_garments_';
 const OUTFITS_KEY_PREFIX = 'aura_outfits_';
 
+function hydrateGarment(g: Garment): Garment {
+  if (g.is_seed && (!g.processed_image || g.processed_image === '__SEED__')) {
+    const seed = INITIAL_SEED_GARMENTS.find((s) => s.name === g.name);
+    if (seed?.processed_image) {
+      return { ...g, processed_image: seed.processed_image };
+    }
+  }
+  return g;
+}
+
+function dehydrateGarments(garments: Garment[]): Garment[] {
+  return garments.map((g) => {
+    if (g.is_seed && g.processed_image && g.processed_image.startsWith('data:image')) {
+      return { ...g, processed_image: '__SEED__' };
+    }
+    return g;
+  });
+}
+
 export const DatabaseService = {
   // --- GARMENT OPERATIONS ---
   async getGarments(userId: string): Promise<Garment[]> {
@@ -20,8 +39,11 @@ export const DatabaseService = {
         .order('created_at', { ascending: false });
       if (!error && data && data.length > 0) return data as Garment[];
     }
+
     const local = await LocalStorage.getItem<Garment[]>(`${GARMENTS_KEY_PREFIX}${userId}`);
-    if (local !== null) return local;
+    if (local !== null) {
+      return local.map(hydrateGarment);
+    }
 
     // Seed with initial curated fashion items on first session
     const seeded: Garment[] = INITIAL_SEED_GARMENTS.map((g, idx) => ({
@@ -32,7 +54,7 @@ export const DatabaseService = {
       updated_at: new Date().toISOString(),
     }));
 
-    await LocalStorage.setItem(`${GARMENTS_KEY_PREFIX}${userId}`, seeded);
+    await LocalStorage.setItem(`${GARMENTS_KEY_PREFIX}${userId}`, dehydrateGarments(seeded));
     return seeded;
   },
 
@@ -50,7 +72,7 @@ export const DatabaseService = {
 
     const current = await this.getGarments(garment.user_id);
     const updated = [newGarment, ...current];
-    await LocalStorage.setItem(`${GARMENTS_KEY_PREFIX}${garment.user_id}`, updated);
+    await LocalStorage.setItem(`${GARMENTS_KEY_PREFIX}${garment.user_id}`, dehydrateGarments(updated));
     return newGarment;
   },
 
@@ -71,7 +93,7 @@ export const DatabaseService = {
       await supabase.from('garments').update(updatedGarment).eq('id', garmentId);
     }
 
-    await LocalStorage.setItem(`${GARMENTS_KEY_PREFIX}${userId}`, current);
+    await LocalStorage.setItem(`${GARMENTS_KEY_PREFIX}${userId}`, dehydrateGarments(current));
     return updatedGarment;
   },
 
@@ -83,7 +105,7 @@ export const DatabaseService = {
       await supabase.from('garments').delete().eq('id', garmentId);
     }
 
-    await LocalStorage.setItem(`${GARMENTS_KEY_PREFIX}${userId}`, filtered);
+    await LocalStorage.setItem(`${GARMENTS_KEY_PREFIX}${userId}`, dehydrateGarments(filtered));
   },
 
   async getGarmentsByCategory(userId: string, category: GarmentCategory): Promise<Garment[]> {

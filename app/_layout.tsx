@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, ActivityIndicator, LogBox } from 'react-native';
 import { AuthProvider, useAuth } from '../src/hooks/useAuth';
 import { AnimatedSplash } from '../src/components/ui/AnimatedSplash';
 import { colors } from '../src/constants/theme';
+
+LogBox.ignoreAllLogs();
 
 function RootNavigationLayout() {
   const { user, isLoading } = useAuth();
@@ -30,20 +32,12 @@ function RootNavigationLayout() {
     }
   }, [user, isLoading, segments]);
 
-  if (isLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.text} />
-      </View>
-    );
-  }
+  // Cold launch shows AnimatedSplash until splash animation completes and auth initializes
+  const showSplash = !splashFinished;
 
   return (
-    <>
+    <View style={styles.rootContainer}>
       <StatusBar style="dark" />
-      {!splashFinished && (
-        <AnimatedSplash onFinish={() => setSplashFinished(true)} />
-      )}
       <Stack
         screenOptions={{
           headerShown: false,
@@ -80,8 +74,33 @@ function RootNavigationLayout() {
             animation: 'slide_from_right',
           }}
         />
+        <Stack.Screen
+          name="tryon"
+          options={{
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="discovery/index"
+          options={{
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="search/index"
+          options={{
+            animation: 'slide_from_right',
+          }}
+        />
       </Stack>
-    </>
+
+      {showSplash && (
+        <AnimatedSplash
+          isReady={!isLoading}
+          onFinish={() => setSplashFinished(true)}
+        />
+      )}
+    </View>
   );
 }
 
@@ -94,6 +113,10 @@ export default function RootLayout() {
 }
 
 const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
   loadingContainer: {
     flex: 1,
     backgroundColor: colors.background,

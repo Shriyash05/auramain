@@ -9,7 +9,7 @@ import { OutfitMemoryService } from '../../src/services/memory/outfitMemoryServi
 import { PlannedEvent } from '../../src/types/memory';
 import { Typography } from '../../src/components/ui/Typography';
 import { Button } from '../../src/components/ui/Button';
-import { GlassSurface } from '../../src/components/ui/GlassSurface';
+import { Card } from '../../src/components/ui/GlassSurface';
 import { colors, radii, spacing, shadows } from '../../src/constants/theme';
 import { Sparkles, Plus, Wand2, Sun, Moon, Heart, ThumbsDown, Bookmark, Calendar, Clock, CheckCircle2, History, Search, Compass } from 'lucide-react-native';
 
@@ -130,7 +130,7 @@ export default function HomeScreen() {
 
         {/* 2. Planned Event Alert (if scheduled for today) */}
         {todaysEvent && (
-          <GlassSurface style={styles.plannedEventBanner}>
+          <Card style={styles.plannedEventBanner}>
             <View style={styles.plannedEventContent}>
               <View style={styles.calendarIcon}>
                 <Calendar size={18} color={colors.text} />
@@ -150,7 +150,7 @@ export default function HomeScreen() {
               size="sm"
               onPress={() => router.push('/planner')}
             />
-          </GlassSurface>
+          </Card>
         )}
 
         {/* 3. Candidate Switcher Pills (Look 01, Look 02, Look 03) */}
@@ -181,7 +181,7 @@ export default function HomeScreen() {
         {/* 4. Hero Recommendation Card */}
         <View style={styles.heroSection}>
           {activeCandidate ? (
-            <GlassSurface style={styles.heroCard}>
+            <Card style={styles.heroCard}>
               <View style={styles.heroTopRow}>
                 <View style={styles.heroBadge}>
                   <Sparkles size={12} color={colors.text} />
@@ -213,7 +213,7 @@ export default function HomeScreen() {
                       <Image
                         source={{ uri: (g as any).processed_image || (g as any).original_image }}
                         style={styles.previewThumb}
-                        resizeMode="cover"
+                        resizeMode="contain"
                       />
                       <Typography variant="caption" style={styles.thumbLabel} numberOfLines={1}>
                         {(g as any).category}
@@ -248,9 +248,9 @@ export default function HomeScreen() {
                   style={styles.heroActionBtn}
                 />
               </View>
-            </GlassSurface>
+            </Card>
           ) : (
-            <GlassSurface style={styles.heroCard}>
+            <Card style={styles.heroCard}>
               <View style={styles.emptyHero}>
                 <Typography variant="title" style={styles.emptyTitle}>
                   No garments yet
@@ -264,14 +264,14 @@ export default function HomeScreen() {
                   icon={<Plus size={16} color={colors.textInverse} />}
                 />
               </View>
-            </GlassSurface>
+            </Card>
           )}
         </View>
 
         {/* 5. Unworn Wardrobe Intelligence */}
         {unwornGarments.length > 0 && (
           <View style={styles.section}>
-            <GlassSurface style={styles.intelligenceCard}>
+            <Card style={styles.intelligenceCard}>
               <View style={styles.intelHeader}>
                 <Sparkles size={16} color={colors.text} />
                 <Typography variant="label" style={styles.intelTitle}>
@@ -290,48 +290,72 @@ export default function HomeScreen() {
                   View wardrobe wear history & underused pieces →
                 </Typography>
               </TouchableOpacity>
-            </GlassSurface>
+            </Card>
           </View>
         )}
 
-        {/* 6. Quick Actions Grid */}
+        {/* 6. First-Class AURA Studio, Try-On & Discovery Gateways */}
         <View style={styles.section}>
           <Typography variant="label" style={styles.sectionHeading}>
-            STUDIO & MEMORY WORKSPACE
+            AURA PRODUCT STUDIO
           </Typography>
           <View style={styles.actionGrid}>
             <TouchableOpacity
               activeOpacity={0.85}
-              onPress={() => router.push('/stylist')}
+              onPress={() => router.push('/(tabs)/create')}
               style={styles.actionCard}
             >
               <View style={styles.actionIconContainer}>
                 <Wand2 size={20} color={colors.text} />
               </View>
               <Typography variant="title" style={styles.actionTitle}>
-                AI Stylist
+                Studio
               </Typography>
               <Typography variant="caption" color={colors.textMuted}>
-                Occasion studio
+                Swipe & style wardrobe
               </Typography>
             </TouchableOpacity>
 
             <TouchableOpacity
               activeOpacity={0.85}
-              onPress={() => router.push('/planner')}
+              onPress={() => router.push('/tryon')}
               style={styles.actionCard}
             >
               <View style={styles.actionIconContainer}>
-                <Calendar size={20} color={colors.text} />
+                <Sparkles size={20} color={colors.text} />
               </View>
               <Typography variant="title" style={styles.actionTitle}>
-                Look Planner
+                Try On & Mirror
               </Typography>
               <Typography variant="caption" color={colors.textMuted}>
-                Scheduled looks
+                See it on your model
               </Typography>
             </TouchableOpacity>
           </View>
+
+          {/* Online Discovery Gateway Banner */}
+          <TouchableOpacity
+            activeOpacity={0.85}
+            onPress={() => router.push('/discovery' as any)}
+            style={styles.discoveryGatewayCard}
+          >
+            <View style={styles.discoveryLeft}>
+              <View style={styles.discoveryIconCircle}>
+                <Compass size={18} color={colors.text} />
+              </View>
+              <View style={styles.discoveryTextCol}>
+                <Typography variant="title" style={styles.discoveryTitle}>
+                  Online Garment Discovery
+                </Typography>
+                <Typography variant="caption" color={colors.textSecondary}>
+                  Paste a Myntra product link or upload an image to isolate and try on.
+                </Typography>
+              </View>
+            </View>
+            <Typography variant="caption" color={colors.text} style={styles.discoveryActionText}>
+              Discover →
+            </Typography>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -630,5 +654,45 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.text,
     marginBottom: 2,
+  },
+  discoveryGatewayCard: {
+    marginTop: spacing.md,
+    backgroundColor: colors.surface,
+    borderRadius: radii.lg,
+    padding: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    ...shadows.card,
+  },
+  discoveryLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    flex: 1,
+  },
+  discoveryIconCircle: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    backgroundColor: colors.surfaceMuted,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  discoveryTextCol: {
+    flex: 1,
+  },
+  discoveryTitle: {
+    fontSize: 15,
+    color: colors.text,
+    marginBottom: 2,
+  },
+  discoveryActionText: {
+    fontWeight: '700',
+    marginLeft: spacing.xs,
   },
 });

@@ -5,37 +5,42 @@ import { Sparkles } from 'lucide-react-native';
 
 interface AnimatedSplashProps {
   onFinish: () => void;
+  isReady?: boolean;
 }
 
-export const AnimatedSplash: React.FC<AnimatedSplashProps> = ({ onFinish }) => {
+export const AnimatedSplash: React.FC<AnimatedSplashProps> = ({ onFinish, isReady = true }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const scaleAnim = useRef(new Animated.Value(0.95)).current;
+  const scaleAnim = useRef(new Animated.Value(0.96)).current;
   const containerFade = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-    // Sequence: Fade in & scale up slightly, wait, then fade out container
-    Animated.sequence([
+    // Sequence: Fade in & scale up slightly, brief hold, then fade out container
+    const anim = Animated.sequence([
       Animated.parallel([
         Animated.timing(fadeAnim, {
           toValue: 1,
-          duration: 600,
+          duration: 500,
           useNativeDriver: true,
         }),
         Animated.timing(scaleAnim, {
           toValue: 1,
-          duration: 600,
+          duration: 500,
           useNativeDriver: true,
         }),
       ]),
-      Animated.delay(700),
+      Animated.delay(650),
       Animated.timing(containerFade, {
         toValue: 0,
-        duration: 400,
+        duration: 350,
         useNativeDriver: true,
       }),
-    ]).start(() => {
+    ]);
+
+    anim.start(() => {
       onFinish();
     });
+
+    return () => anim.stop();
   }, [fadeAnim, scaleAnim, containerFade, onFinish]);
 
   return (

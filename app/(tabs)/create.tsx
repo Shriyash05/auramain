@@ -13,10 +13,8 @@ import { useMixMatch } from '../../src/hooks/useMixMatch';
 import { GarmentCategory } from '../../src/constants/categories';
 import { Typography } from '../../src/components/ui/Typography';
 import { Button } from '../../src/components/ui/Button';
-import { EditorialOutfitCanvas } from '../../src/components/mixmatch/EditorialOutfitCanvas';
+import { DirectSwipeOutfitCanvas } from '../../src/components/studio/DirectSwipeOutfitCanvas';
 import { WardrobeSwapSheet } from '../../src/components/mixmatch/WardrobeSwapSheet';
-import { StudioGarmentSwiper } from '../../src/components/studio/StudioGarmentSwiper';
-import { VirtualTryOnSheet } from '../../src/components/studio/VirtualTryOnSheet';
 import { liveStyleIntelligenceService, LiveStyleInsight } from '../../src/services/stylist/liveStyleIntelligenceService';
 import { colors, spacing, radii, shadows } from '../../src/constants/theme';
 import {
@@ -55,6 +53,9 @@ export default function StudioScreen() {
 
   // Studio Mode: BUILD (manual garment swipe) vs AURA (complete look proposals)
   const [studioMode, setStudioMode] = useState<StudioMode>('BUILD');
+
+  // Active outfit slot category being browsed (tops, bottoms, shoes, etc.)
+  const [activeSlotCategory, setActiveSlotCategory] = useState<GarmentCategory>('tops');
 
   // Modals
   const [isSwapSheetOpen, setIsSwapSheetOpen] = useState(false);
@@ -257,12 +258,15 @@ export default function StudioScreen() {
           </Typography>
         </View>
 
-        {/* 4. Complete Outfit Hero Flat-Lay Canvas */}
+        {/* 4. Current Look: Continuous Direct-Swipe Wardrobe Canvas */}
         <View style={styles.heroCanvasSection}>
-          <EditorialOutfitCanvas
+          <DirectSwipeOutfitCanvas
             slots={selectedSlots}
-            onPiecePress={(category) => handleOpenSwap(category)}
-            onEmptySlotPress={(category) => handleOpenSwap(category)}
+            categorizedGarments={categorizedGarments}
+            activeCategory={activeSlotCategory}
+            onSelectCategory={(cat) => setActiveSlotCategory(cat)}
+            onSwapGarment={(cat, garment) => swapGarment(cat, garment)}
+            onAddGarmentPress={() => router.push('/garment/add')}
           />
         </View>
 
@@ -339,65 +343,25 @@ export default function StudioScreen() {
           <Button
             label="Try It On"
             variant="outline"
-            onPress={() => setIsVtoSheetOpen(true)}
+            onPress={() => {
+              const garmentIds = activeGarmentsList.map((g) => g.id).join(',');
+              router.push({
+                pathname: '/tryon',
+                params: {
+                  garmentIds,
+                  outfitName: studioMode === 'BUILD' ? 'Studio Look' : activeCandidate?.name || 'Studio Look',
+                  source: 'studio',
+                },
+              });
+            }}
             icon={<Sparkles size={16} color={colors.text} />}
             size="lg"
             style={styles.vtoActionBtn}
           />
         </View>
 
-        {/* 7. Mode-Specific Browsing Deck */}
-        {studioMode === 'BUILD' ? (
-          /* BUILD MODE: Interactive Horizontal Swiper Tracks for Tops, Bottoms, Shoes */
-          <View style={styles.swipersDeckSection}>
-            <Typography variant="label" style={styles.deckSectionTitle}>
-              SWIPE TO BROWSE WARDROBE
-            </Typography>
-
-            {/* Tops Track */}
-            <StudioGarmentSwiper
-              category="tops"
-              categoryLabel="Tops"
-              garments={categorizedGarments.tops || []}
-              selectedGarment={selectedSlots.tops}
-              onSelectGarment={(g) => swapGarment('tops', g)}
-              onAddNewPress={() => router.push('/garment/add')}
-            />
-
-            {/* Bottoms Track */}
-            <StudioGarmentSwiper
-              category="bottoms"
-              categoryLabel="Bottoms"
-              garments={categorizedGarments.bottoms || []}
-              selectedGarment={selectedSlots.bottoms}
-              onSelectGarment={(g) => swapGarment('bottoms', g)}
-              onAddNewPress={() => router.push('/garment/add')}
-            />
-
-            {/* Shoes Track */}
-            <StudioGarmentSwiper
-              category="shoes"
-              categoryLabel="Footwear"
-              garments={categorizedGarments.shoes || []}
-              selectedGarment={selectedSlots.shoes}
-              onSelectGarment={(g) => swapGarment('shoes', g)}
-              onAddNewPress={() => router.push('/garment/add')}
-            />
-
-            {/* Optional Outerwear Track (if user has outerwear) */}
-            {(categorizedGarments.outerwear || []).length > 0 && (
-              <StudioGarmentSwiper
-                category="outerwear"
-                categoryLabel="Outerwear Layer"
-                garments={categorizedGarments.outerwear || []}
-                selectedGarment={selectedSlots.outerwear}
-                onSelectGarment={(g) => swapGarment('outerwear', g)}
-                onAddNewPress={() => router.push('/garment/add')}
-              />
-            )}
-          </View>
-        ) : (
-          /* AURA MODE: Complete Recommended Look Candidates */
+        {/* 7. AURA Mode Proposals Deck (only in AURA mode) */}
+        {studioMode === 'AURA' && (
           <View style={styles.auraLooksSection}>
             <Typography variant="label" style={styles.deckSectionTitle}>
               AURA PROPOSED COMPLETE LOOKS
@@ -455,15 +419,6 @@ export default function StudioScreen() {
           </View>
         )}
       </ScrollView>
-
-      {/* Virtual Try-On Entry Sheet */}
-      <VirtualTryOnSheet
-        visible={isVtoSheetOpen}
-        outfitName={activeCandidate?.name || 'Studio Look'}
-        garments={activeGarmentsList}
-        onClose={() => setIsVtoSheetOpen(false)}
-        onSaveOutfit={handleSave}
-      />
 
       {/* Wardrobe Swap Sheet (Closet Drawer) */}
       <WardrobeSwapSheet

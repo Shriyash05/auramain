@@ -6,7 +6,10 @@ export const LocalStorage = {
       const data = await AsyncStorage.getItem(key);
       return data ? JSON.parse(data) : null;
     } catch (e) {
-      console.error(`[LocalStorage] Failed to get key ${key}:`, e);
+      console.warn(`[LocalStorage] Purging oversized/corrupted key ${key}:`, e);
+      try {
+        await AsyncStorage.removeItem(key);
+      } catch (_) {}
       return null;
     }
   },

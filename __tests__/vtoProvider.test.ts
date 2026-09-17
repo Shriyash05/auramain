@@ -74,7 +74,7 @@ describe('Virtual Try-On / Mirror Service (Scientific Honesty & Architecture)', 
     expect(statuses).toContain('engine_unavailable');
   });
 
-  it('completes pipeline when engine is active in test environment', async () => {
+  it('does not fabricate a completed result when a health check is mocked', async () => {
     const activeProvider = new AuraDiffusionVTOProvider();
     jest.spyOn(activeProvider, 'isEngineAvailable').mockResolvedValue({
       available: true,
@@ -92,7 +92,7 @@ describe('Virtual Try-On / Mirror Service (Scientific Honesty & Architecture)', 
       (status) => statuses.push(status)
     );
 
-    expect(result.status).toBe('completed');
+    expect(result.status).toBe('engine_unavailable');
     expect(statuses).toContain('checking_model');
     expect(statuses).toContain('processing');
   });

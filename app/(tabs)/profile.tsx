@@ -5,16 +5,31 @@ import { useAuth } from '../../src/hooks/useAuth';
 import { DatabaseService } from '../../src/services/database/databaseService';
 import { OutfitMemoryService } from '../../src/services/memory/outfitMemoryService';
 import { Outfit } from '../../src/types/outfit';
+import { AuraUserModel } from '../../src/types/vto';
+import { MirrorService } from '../../src/services/vto/mirrorService';
+import { PersonalModelOnboardingModal } from '../../src/components/tryon/PersonalModelOnboardingModal';
 import { Typography } from '../../src/components/ui/Typography';
 import { Button } from '../../src/components/ui/Button';
-import { GlassSurface } from '../../src/components/ui/GlassSurface';
 import { colors, spacing, radii, shadows } from '../../src/constants/theme';
-import { LogOut, User as UserIcon, Sparkles, ChevronRight, Bookmark, Calendar, Clock, BarChart3, Shield } from 'lucide-react-native';
+import {
+  LogOut,
+  User as UserIcon,
+  Sparkles,
+  ChevronRight,
+  Bookmark,
+  Calendar,
+  Clock,
+  BarChart3,
+  Shield,
+  CheckCircle2,
+} from 'lucide-react-native';
 
 export default function ProfileScreen() {
   const router = useRouter();
   const { user, logout } = useAuth();
   const [savedOutfits, setSavedOutfits] = useState<Outfit[]>([]);
+  const [userModel, setUserModel] = useState<AuraUserModel | null>(null);
+  const [showModelModal, setShowModelModal] = useState(false);
   const [utilizationStats, setUtilizationStats] = useState<{ totalWears: number; utilizationRate: number }>({
     totalWears: 0,
     utilizationRate: 0,
@@ -25,6 +40,8 @@ export default function ProfileScreen() {
       if (!user) return;
       const outfits = await DatabaseService.getOutfits(user.id);
       setSavedOutfits(outfits);
+      const model = await MirrorService.getUserModel(user.id);
+      setUserModel(model);
       const stats = await OutfitMemoryService.getGarmentWearStats(user.id);
       setUtilizationStats({
         totalWears: stats.totalWears,
@@ -59,26 +76,115 @@ export default function ProfileScreen() {
         </View>
 
         {/* User Card */}
-        <GlassSurface style={styles.userCard}>
+        <View style={styles.userCard}>
           <View style={styles.avatarContainer}>
-            <UserIcon size={32} color={colors.text} />
+            {userModel?.primaryFaceUri ? (
+              <Image source={{ uri: userModel.primaryFaceUri }} style={styles.avatarImage} />
+            ) : (
+              <UserIcon size={28} color={colors.text} />
+            )}
           </View>
           <View style={styles.userInfo}>
             <Typography variant="title" style={styles.userName}>
-              {user?.display_name || 'AURA Stylist'}
+              {user?.display_name || 'AURA Member'}
             </Typography>
             <Typography variant="caption" color={colors.textSecondary}>
               {user?.email || 'Guest Explorer Mode'}
             </Typography>
           </View>
-        </GlassSurface>
+        </View>
+
+        {/* Personal AURA Model Hub */}
+        <View style={styles.section}>
+          <Typography variant="label" style={styles.sectionHeading}>
+            PERSONAL AURA MODEL
+          </Typography>
+          <View style={styles.modelCard}>
+            <View style={styles.modelCardHeader}>
+              <View style={styles.modelCardHeaderLeft}>
+                <View style={styles.modelAvatarWrap}>
+                  {userModel?.primaryFaceUri ? (
+                    <Image source={{ uri: userModel.primaryFaceUri }} style={styles.modelFaceImg} />
+                  ) : (
+                    <UserIcon size={20} color={colors.text} />
+                  )}
+                </View>
+                <View style={styles.modelStatusCol}>
+                  <Typography variant="title" style={styles.modelTitle}>
+                    {userModel?.isReady ? 'Personal Model Active' : 'Model Not Configured'}
+                  </Typography>
+                  <Typography variant="caption" color={colors.textSecondary}>
+                    {userModel?.isReady
+                      ? 'Proportions, sizes & shape drive Virtual Try-On'
+                      : 'Set up your measurements, sizes & face reference'}
+                  </Typography>
+                </View>
+              </View>
+              {userModel?.isReady && (
+                <View style={styles.readyBadge}>
+                  <CheckCircle2 size={12} color={colors.success} />
+                  <Typography variant="caption" color={colors.success} style={styles.readyBadgeText}>
+                    READY
+                  </Typography>
+                </View>
+              )}
+            </View>
+
+            {userModel?.isReady && (
+              <View style={styles.modelGrid}>
+                <View style={styles.modelGridItem}>
+                  <Typography variant="caption" color={colors.textMuted} style={styles.modelGridLabel}>
+                    PROPORTIONS
+                  </Typography>
+                  <Typography variant="body" style={styles.modelGridValue}>
+                    {userModel.proportions?.heightCm || 178} cm • {userModel.proportions?.weightKg || 72} kg
+                  </Typography>
+                </View>
+                <View style={styles.modelGridItem}>
+                  <Typography variant="caption" color={colors.textMuted} style={styles.modelGridLabel}>
+                    USUAL SIZES
+                  </Typography>
+                  <Typography variant="body" style={styles.modelGridValue}>
+                    Top {userModel.sizes?.tops || 'M'} • Bot {userModel.sizes?.bottoms || '32'} • {userModel.sizes?.shoes || 'US 10'}
+                  </Typography>
+                </View>
+                <View style={styles.modelGridItem}>
+                  <Typography variant="caption" color={colors.textMuted} style={styles.modelGridLabel}>
+                    BODY FRAME
+                  </Typography>
+                  <Typography variant="body" style={styles.modelGridValue}>
+                    {userModel.bodyShape ? userModel.bodyShape.replace('_', ' ').toUpperCase() : 'ATHLETIC'}
+                  </Typography>
+                </View>
+              </View>
+            )}
+
+            <View style={styles.modelActionRow}>
+              <Button
+                label={userModel?.isReady ? 'Update Model' : 'Create Personal Model'}
+                variant={userModel?.isReady ? 'outline' : 'primary'}
+                size="sm"
+                onPress={() => setShowModelModal(true)}
+                icon={<Sparkles size={14} color={userModel?.isReady ? colors.text : colors.textInverse} />}
+                style={styles.modelActionBtn}
+              />
+              <Button
+                label="Try On & Mirror"
+                variant="secondary"
+                size="sm"
+                onPress={() => router.push('/tryon')}
+                style={styles.modelActionBtn}
+              />
+            </View>
+          </View>
+        </View>
 
         {/* 1. Style Evolution & Wear Memory Metrics */}
         <View style={styles.section}>
           <Typography variant="label" style={styles.sectionHeading}>
             STYLE EVOLUTION & WEAR INTELLIGENCE
           </Typography>
-          <GlassSurface style={styles.metricsCard}>
+          <View style={styles.metricsCard}>
             <View style={styles.metricItem}>
               <Typography variant="display" style={styles.metricVal}>
                 {utilizationStats.utilizationRate}%
@@ -96,7 +202,7 @@ export default function ProfileScreen() {
                 TOTAL OUTFITS WORN
               </Typography>
             </View>
-          </GlassSurface>
+          </View>
         </View>
 
         {/* 2. Wardrobe Memory & Planner Hub */}
@@ -180,7 +286,7 @@ export default function ProfileScreen() {
           <Typography variant="label" style={styles.sectionHeading}>
             CAPTURED STYLE PREFERENCES
           </Typography>
-          <GlassSurface style={styles.prefsCard}>
+          <View style={styles.prefsCard}>
             <View style={styles.prefRow}>
               <Typography variant="caption" color={colors.textMuted}>
                 VIBES & AESTHETICS
@@ -198,7 +304,7 @@ export default function ProfileScreen() {
                 {user?.appearance?.fit_preference || 'Relaxed / Contemporary'}
               </Typography>
             </View>
-          </GlassSurface>
+          </View>
         </View>
 
         {/* 4. Saved Outfits Breakdown */}
@@ -231,11 +337,11 @@ export default function ProfileScreen() {
               ))}
             </View>
           ) : (
-            <GlassSurface style={styles.emptyOutfits}>
+            <View style={styles.emptyOutfits}>
               <Typography variant="body" color={colors.textSecondary}>
-                No saved looks yet. Use AI Stylist or Mix & Match to save outfits.
+                No saved looks yet. Use Studio or Try-On to create outfits.
               </Typography>
-            </GlassSurface>
+            </View>
           )}
         </View>
 
@@ -278,6 +384,17 @@ export default function ProfileScreen() {
           />
         </View>
       </ScrollView>
+
+      {/* Personal AURA Model Onboarding / Edit Sheet */}
+      <PersonalModelOnboardingModal
+        visible={showModelModal}
+        userId={user?.id || 'guest_user'}
+        onClose={() => setShowModelModal(false)}
+        onCompleted={(updatedModel) => {
+          setUserModel(updatedModel);
+          setShowModelModal(false);
+        }}
+      />
     </SafeAreaView>
   );
 }
@@ -306,6 +423,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     gap: spacing.md,
     marginBottom: spacing.xl,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    ...shadows.card,
   },
   avatarContainer: {
     width: 60,
@@ -316,6 +437,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: colors.border,
+    overflow: 'hidden',
+  },
+  avatarImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: radii.pill,
   },
   userInfo: {
     flex: 1,
@@ -323,6 +450,94 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 18,
     color: colors.text,
+  },
+  modelCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    padding: spacing.md,
+    ...shadows.card,
+  },
+  modelCardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: spacing.md,
+  },
+  modelCardHeaderLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.md,
+    flex: 1,
+  },
+  modelAvatarWrap: {
+    width: 44,
+    height: 44,
+    borderRadius: radii.pill,
+    backgroundColor: colors.surfaceMuted,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: colors.border,
+    overflow: 'hidden',
+  },
+  modelFaceImg: {
+    width: '100%',
+    height: '100%',
+  },
+  modelStatusCol: {
+    flex: 1,
+  },
+  modelTitle: {
+    fontSize: 16,
+    marginBottom: 2,
+  },
+  readyBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+    paddingVertical: 3,
+    paddingHorizontal: spacing.xs + 2,
+    borderRadius: radii.pill,
+    borderWidth: 1,
+    borderColor: 'rgba(34, 197, 94, 0.3)',
+  },
+  readyBadgeText: {
+    fontSize: 10,
+    fontWeight: '700',
+    letterSpacing: 0.8,
+  },
+  modelGrid: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: colors.surfaceMuted,
+    borderRadius: radii.sm,
+    padding: spacing.sm,
+    marginBottom: spacing.md,
+    gap: spacing.xs,
+  },
+  modelGridItem: {
+    flex: 1,
+    alignItems: 'flex-start',
+  },
+  modelGridLabel: {
+    fontSize: 9,
+    letterSpacing: 0.8,
+    marginBottom: 2,
+  },
+  modelGridValue: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: colors.text,
+  },
+  modelActionRow: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+  },
+  modelActionBtn: {
+    flex: 1,
   },
   section: {
     marginBottom: spacing.xl,
@@ -338,6 +553,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: spacing.md,
     backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    ...shadows.card,
   },
   metricItem: {
     alignItems: 'center',
@@ -418,6 +637,10 @@ const styles = StyleSheet.create({
   prefsCard: {
     padding: spacing.md,
     backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    ...shadows.card,
   },
   prefRow: {
     marginVertical: 4,
@@ -444,6 +667,7 @@ const styles = StyleSheet.create({
     borderRadius: radii.md,
     borderWidth: 1,
     borderColor: colors.border,
+    ...shadows.subtle,
   },
   outfitRowLeft: {
     flexDirection: 'row',
@@ -458,6 +682,10 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     alignItems: 'center',
     backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    ...shadows.subtle,
   },
   footer: {
     marginTop: spacing.sm,
