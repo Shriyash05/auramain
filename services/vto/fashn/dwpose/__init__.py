@@ -14,3 +14,6 @@ License: Apache-2.0
 """
 
 from .dwpose import DWposeDetector, draw_pose
+from .wholebody import Wholebody
+
+__all__ = ["DWposeDetector", "draw_pose", "Wholebody"]

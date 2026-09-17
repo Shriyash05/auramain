@@ -11,6 +11,8 @@
  */
 
 import { TryOnRequest, TryOnResult, TryOnStatus } from '../../types/vto';
+import { CloudStorageService } from '../storage/cloudStorageService';
+import { VTOJobClient } from './vtoJobClient';
 
 export interface IVirtualTryOnProvider {
   isEngineAvailable(): Promise<{ available: boolean; reason: string }>;
@@ -56,7 +58,7 @@ export class AuraDiffusionVTOProvider implements IVirtualTryOnProvider {
       }
 
       const data = await res.json();
-      if (data.status === 'healthy') {
+      if (data.status === 'healthy' || data.status === 'ok') {
         return {
           available: true,
           reason: data.message || 'VTO diffusion engine active and ready.',
@@ -136,23 +138,23 @@ export class AuraDiffusionVTOProvider implements IVirtualTryOnProvider {
         dress: 'one-piece',
         'one-piece': 'one-piece',
       };
-      const category = categoryMap[primaryGarment.category?.toLowerCase()] || 'tops';
-
-      const res = await fetch(`${this.getServiceUrl()}/tryon`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          user_id: userId,
-          person_image: effectiveImageUrl,
-          garment_image: primaryGarment.processed_image || primaryGarment.original_image || '',
-          category,
-          outfit_name: request.outfitName,
-        }),
+      const category = categoryMap[primaryGarment.category?.toLowerCase()];
+      if (category !== 'tops' && category !== 'bottoms') throw new Error('Only tops and bottoms are supported by neural VTO.');
+      if (!primaryGarment.storage_asset) throw new Error('This garment has not been uploaded to private storage. Re-upload it before trying on.');
+      if (primaryGarment.storage_asset.bucket !== 'vto_inputs') throw new Error('This garment must be staged in the private VTO input bucket before trying on.');
+      const person = await CloudStorageService.uploadPrivateImage('vto_inputs', userId, effectiveImageUrl);
+      const submitted = await VTOJobClient.create({
+        category, garment_id: primaryGarment.id, person, garment: primaryGarment.storage_asset,
+        outfit_name: request.outfitName, idempotency_key: `vto_${userId}_${primaryGarment.id}_${Date.now()}`,
       });
+      let data = submitted;
+      for (let attempt = 0; attempt < 120 && (data.status === 'queued' || data.status === 'processing'); attempt++) {
+        await new Promise(resolve => setTimeout(resolve, 5_000));
+        data = await VTOJobClient.get(data.id);
+      }
 
       const nowIso = new Date().toISOString();
-      if (!res.ok) {
-        const errData = await res.json().catch(() => ({}));
+      if (data.status !== 'completed' || !data.result_signed_url) {
         return {
           id: 'vto_err_' + Math.random().toString(36).substring(2, 9),
           user_id: userId,
@@ -161,24 +163,21 @@ export class AuraDiffusionVTOProvider implements IVirtualTryOnProvider {
           provider: 'aura_diffusion_vto',
           status: 'engine_unavailable',
           garment_ids: garments.map((g) => g.id),
-          errorMessage: errData.error_message || errData.detail || `Inference error (HTTP ${res.status})`,
+          errorMessage: data.safe_error_message || `VTO job ${data.status}.`,
           created_at: nowIso,
           updated_at: nowIso,
         };
       }
 
-      const data = await res.json();
       return {
-        id: data.id || 'vto_' + Math.random().toString(36).substring(2, 9),
+        id: data.id,
         user_id: userId,
         user_image_url: effectiveImageUrl,
         // A completed result is accepted only when the service returned an
         // actual generated image.  Never substitute the source image.
-        result_image_url: data.result_image || '',
+        result_image_url: data.result_signed_url,
         provider: 'aura_diffusion_vto',
-        status: data.status === 'completed' && data.result_image ? 'completed' : 'engine_unavailable',
-        garment_ids: garments.map((g) => g.id),
-        errorMessage: data.error_message,
+        status: 'completed', garment_ids: garments.map((g) => g.id),
         created_at: nowIso,
         updated_at: nowIso,
       };

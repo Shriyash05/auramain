@@ -1,4 +1,5 @@
 import { GarmentCategory, Season, Occasion } from '../constants/categories';
+import type { UploadedImageAsset } from '../services/storage/cloudStorageService';
 
 export interface Garment {
   id: string;
@@ -9,6 +10,8 @@ export interface Garment {
   original_image: string;
   processed_image?: string;
   thumbnail_image?: string;
+  /** New records may retain this durable key alongside legacy URL fields. */
+  storage_asset?: UploadedImageAsset;
 
   // Taxonomy & Core Metadata
   name: string;

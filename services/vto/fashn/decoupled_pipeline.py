@@ -12,6 +12,7 @@ License: Apache-2.0
 
 import logging
 import os
+import traceback
 from dataclasses import dataclass
 from typing import List, Literal, Optional
 
@@ -33,6 +34,21 @@ from .utils import (
     setup_logger,
     tensor_to_pil,
 )
+
+
+def log_gpu_memory(stage: str):
+    """Prints current CUDA GPU memory usage across all detected GPUs."""
+    if torch.cuda.is_available():
+        infos = []
+        for i in range(torch.cuda.device_count()):
+            alloc = torch.cuda.memory_allocated(i) / (1024 ** 2)
+            res = torch.cuda.memory_reserved(i) / (1024 ** 2)
+            total = torch.cuda.get_device_properties(i).total_memory / (1024 ** 2)
+            name = torch.cuda.get_device_name(i)
+            infos.append(f"GPU {i} ({name}): Allocated={alloc:.2f} MiB | Reserved={res:.2f} MiB | Total={total:.2f} MiB")
+        print(f"[GPU MEMORY] [{stage}] " + " | ".join(infos), flush=True)
+    else:
+        print(f"[GPU MEMORY] [{stage}] CUDA not available (CPU mode)", flush=True)
 
 
 @dataclass
@@ -59,6 +75,7 @@ class DecoupledTryOnPipeline:
         self,
         weights_dir: str,
         device: Optional[str] = None,
+        input_shape: Optional[tuple[int, int]] = None,
         logger: Optional[logging.Logger] = None,
     ):
         self.weights_dir = os.path.abspath(weights_dir)
@@ -78,7 +95,7 @@ class DecoupledTryOnPipeline:
         self._validate_weights()
 
         # Load models
-        self._setup_tryon_model()
+        self._setup_tryon_model(input_shape=input_shape)
         self._setup_pose_model()
         # NOTICE: self._setup_hp_model() is completely removed
 
@@ -89,11 +106,16 @@ class DecoupledTryOnPipeline:
         self.resize_pad_fn = ResizePad((w, h), backend="opencv")
 
     def _validate_weights(self):
-        """Check that required weight files exist."""
-        tryon_path = os.path.join(self.weights_dir, "model.safetensors")
-        dwpose_dir = os.path.join(self.weights_dir, "dwpose")
-        yolox_path = os.path.join(dwpose_dir, "yolox_l.onnx")
-        dwpose_path = os.path.join(dwpose_dir, "dw-ll_ucoco_384.onnx")
+        """Check that required weight files exist and log resolved paths."""
+        tryon_path = os.path.abspath(os.path.join(self.weights_dir, "model.safetensors"))
+        dwpose_dir = os.path.abspath(os.path.join(self.weights_dir, "dwpose"))
+        yolox_path = os.path.abspath(os.path.join(dwpose_dir, "yolox_l.onnx"))
+        dwpose_path = os.path.abspath(os.path.join(dwpose_dir, "dw-ll_ucoco_384.onnx"))
+
+        print(f"[VTO INIT] Resolving and validating model weight paths in: {self.weights_dir}", flush=True)
+        print(f"  - Resolved MMDiT Checkpoint Path: {tryon_path} (exists={os.path.exists(tryon_path)})", flush=True)
+        print(f"  - Resolved YOLOX ONNX Path:       {yolox_path} (exists={os.path.exists(yolox_path)})", flush=True)
+        print(f"  - Resolved DWPose ONNX Path:      {dwpose_path} (exists={os.path.exists(dwpose_path)})", flush=True)
 
         missing = []
         if not os.path.exists(tryon_path):
@@ -104,33 +126,80 @@ class DecoupledTryOnPipeline:
             missing.append(dwpose_path)
 
         if missing:
-            raise FileNotFoundError(
-                "Missing model weights:\n"
+            err_msg = (
+                "Missing model weights at resolved absolute paths:\n"
                 + "\n".join(f"  - {p}" for p in missing)
                 + f"\n\nPlease ensure weights are placed in: {self.weights_dir}"
             )
+            print(f"[VTO ERROR] {err_msg}", flush=True)
+            raise FileNotFoundError(err_msg)
 
-    def _setup_tryon_model(self):
-        """Load the TryOn model."""
-        model_path = os.path.join(self.weights_dir, "model.safetensors")
-        self.logger.info(f"Loading TryOnModel from {model_path}")
+    def _setup_tryon_model(self, input_shape: Optional[tuple[int, int]] = None):
+        """Load the TryOn (MMDiT) model."""
+        print("=" * 60, flush=True)
+        print("[VTO INIT] >>> Beginning MMDiT initialization <<<", flush=True)
+        model_path = os.path.abspath(os.path.join(self.weights_dir, "model.safetensors"))
+        print(f"[VTO INIT] MMDiT weight path resolution: {model_path}", flush=True)
 
-        self.tryon_model = TryOnModel()
-        state_dict = load_checkpoint(model_path, device=str(self.device))
-        self.tryon_model.load_state_dict(state_dict)
-        self.tryon_model.to(self.device, dtype=self.inference_dtype).eval()
+        if not os.path.exists(model_path):
+            err_msg = f"MMDiT weight file not found at resolved absolute path: {model_path}"
+            print(f"[VTO ERROR] {err_msg}", flush=True)
+            raise FileNotFoundError(err_msg)
 
-        self.logger.info("TryOnModel loaded successfully")
+        size_mb = os.path.getsize(model_path) / (1024 ** 2)
+        print(f"[VTO INIT] MMDiT weight file verified: exists=True, size={size_mb:.2f} MiB", flush=True)
+        log_gpu_memory("Before MMDiT loading started")
+
+        print(f"[VTO INIT] MMDiT loading started onto device={self.device}, dtype={self.inference_dtype}...", flush=True)
+        try:
+            self.tryon_model = TryOnModel(input_shape=input_shape) if input_shape else TryOnModel()
+            state_dict = load_checkpoint(model_path, device=str(self.device))
+            self.tryon_model.load_state_dict(state_dict)
+            self.tryon_model.to(self.device, dtype=self.inference_dtype).eval()
+            print("[VTO INIT] >>> MMDiT loading completed <<<", flush=True)
+            log_gpu_memory("After MMDiT loading completed")
+        except torch.cuda.OutOfMemoryError:
+            print(f"[VTO ERROR] CUDA OUT OF MEMORY during MMDiT loading:\n{traceback.format_exc()}", flush=True)
+            log_gpu_memory("CUDA OOM during MMDiT loading")
+            raise
+        except Exception:
+            print(f"[VTO ERROR] Exception during MMDiT loading:\n{traceback.format_exc()}", flush=True)
+            raise
 
     def _setup_pose_model(self):
         """Load DWPose model."""
-        dwpose_dir = os.path.join(self.weights_dir, "dwpose")
-        self.logger.info(f"Loading DWPose from {dwpose_dir}")
+        print("=" * 60, flush=True)
+        print("[VTO INIT] >>> Beginning DWPose initialization <<<", flush=True)
+        dwpose_dir = os.path.abspath(os.path.join(self.weights_dir, "dwpose"))
+        yolox_path = os.path.abspath(os.path.join(dwpose_dir, "yolox_l.onnx"))
+        dwpose_path = os.path.abspath(os.path.join(dwpose_dir, "dw-ll_ucoco_384.onnx"))
+        print(f"[VTO INIT] DWPose weight path resolution:", flush=True)
+        print(f"  - DWPose Directory:  {dwpose_dir}", flush=True)
+        print(f"  - YOLOX ONNX Path:   {yolox_path}", flush=True)
+        print(f"  - DWPose ONNX Path:  {dwpose_path}", flush=True)
+
+        for p, name in [(yolox_path, "yolox_l.onnx"), (dwpose_path, "dw-ll_ucoco_384.onnx")]:
+            if not os.path.exists(p):
+                err_msg = f"DWPose model file '{name}' not found at resolved absolute path: {p}"
+                print(f"[VTO ERROR] {err_msg}", flush=True)
+                raise FileNotFoundError(err_msg)
+            size_mb = os.path.getsize(p) / (1024 ** 2)
+            print(f"[VTO INIT] Verified {name}: exists=True, size={size_mb:.2f} MiB", flush=True)
 
         dwpose_device = f"cuda:{self.device.index or 0}" if self.device.type == "cuda" else "cpu"
-        self.pose_model = DWposeDetector(checkpoints_dir=dwpose_dir, device=dwpose_device)
-
-        self.logger.info("DWPose loaded successfully")
+        log_gpu_memory("Before DWPose loading started")
+        print(f"[VTO INIT] DWPose loading started onto device={dwpose_device}...", flush=True)
+        try:
+            self.pose_model = DWposeDetector(checkpoints_dir=dwpose_dir, device=dwpose_device)
+            print("[VTO INIT] >>> DWPose loading completed <<<", flush=True)
+            log_gpu_memory("After DWPose loading completed")
+        except torch.cuda.OutOfMemoryError:
+            print(f"[VTO ERROR] CUDA OUT OF MEMORY during DWPose loading:\n{traceback.format_exc()}", flush=True)
+            log_gpu_memory("CUDA OOM during DWPose loading")
+            raise
+        except Exception:
+            print(f"[VTO ERROR] Exception during DWPose loading:\n{traceback.format_exc()}", flush=True)
+            raise
 
     @torch.inference_mode()
     def _sample(

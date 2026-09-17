@@ -6,9 +6,48 @@ export type StorageBucket =
   | 'user_model_photos'
   | 'inspiration_images'
   | 'creator_photos'
-  | 'public_look_photos';
+  | 'public_look_photos'
+  | 'vto_inputs'
+  | 'vto_results';
+
+/** Durable private-storage reference. Signed URLs are display-only and never persisted as this value. */
+export interface UploadedImageAsset {
+  bucket: StorageBucket;
+  objectKey: string;
+  mimeType: string;
+  sizeBytes?: number;
+  width?: number;
+  height?: number;
+}
+
+export class StorageUploadError extends Error {}
 
 export const CloudStorageService = {
+  /** Strict upload for server-consumed VTO assets. Never returns a device URI. */
+  async uploadPrivateImage(
+    bucket: Extract<StorageBucket, 'vto_inputs' | 'garments_original' | 'garments_processed'>,
+    userId: string,
+    fileUri: string,
+    fileName?: string,
+  ): Promise<UploadedImageAsset> {
+    if (!isSupabaseConfigured || !supabase) throw new StorageUploadError('Private storage is unavailable. Sign in and retry.');
+    if (!/^file:|^content:|^data:image\//.test(fileUri)) throw new StorageUploadError('A local image URI is required for upload.');
+    const ext = (fileName || fileUri).split('?')[0].split('.').pop()?.toLowerCase() || 'jpg';
+    const mimeType = ext === 'png' ? 'image/png' : ext === 'webp' ? 'image/webp' : 'image/jpeg';
+    const objectKey = `${userId}/${Date.now()}_${Math.random().toString(36).slice(2, 10)}.${ext}`;
+    const { data, error } = await supabase.storage.from(bucket).upload(objectKey, {
+      uri: fileUri, type: mimeType, name: fileName || objectKey.split('/').pop(),
+    } as any, { upsert: false, contentType: mimeType });
+    if (error || !data?.path) throw new StorageUploadError(error?.message || 'Image upload failed. Please retry.');
+    return { bucket, objectKey: data.path, mimeType };
+  },
+
+  async createDisplayUrl(asset: UploadedImageAsset, expiresIn = 300): Promise<string> {
+    if (!isSupabaseConfigured || !supabase) throw new StorageUploadError('Private storage is unavailable.');
+    const { data, error } = await supabase.storage.from(asset.bucket).createSignedUrl(asset.objectKey, expiresIn);
+    if (error || !data?.signedUrl) throw new StorageUploadError('Could not create an image display URL.');
+    return data.signedUrl;
+  },
   /**
    * Uploads an image file to the designated Supabase Storage bucket.
    * If Supabase is offline or not configured, falls back seamlessly to the local URI.
