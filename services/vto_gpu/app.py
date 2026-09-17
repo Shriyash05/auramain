@@ -79,13 +79,171 @@ async def lifespan(app: FastAPI):
     service = None
     settings = None
 app=FastAPI(title="AURA GPU VTO", lifespan=lifespan)
+from fastapi.middleware.cors import CORSMiddleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 def current_user(authorization: str | None = Header(default=None)) -> str:
     if not authorization or not authorization.startswith("Bearer "): raise HTTPException(401,"Authentication required")
+    if service is None or service.settings is None: raise HTTPException(503, "VTO service is starting up and not yet ready")
     return service.user(authorization[7:])
 @app.get("/health")
 def health(): return {"status":"ok","message":"VTO GPU service active and ready."}
 @app.get("/ready")
 def ready(): return {"ready": service is not None and service.pipeline is not None}
+@app.get("/v1/vto/diagnostics/auth")
+def auth_diagnostics(authorization: str | None = Header(default=None)):
+    """Safe, sanitized authentication diagnostic endpoint.
+    Exposes NO secrets, NO tokens, NO personal claims, NO file paths, and NO bucket names.
+    Returns safe structural diagnostic codes to help identify why POST /v1/vto/jobs returns 401.
+    """
+    secret_configured = bool(service and service.settings and service.settings.jwt_secret)
+    if not authorization:
+        return {
+            "status": "fail",
+            "code": "AUTH_HEADER_MISSING",
+            "message": "Authorization header is missing or was stripped by proxy/tunnel.",
+            "header_present": False,
+            "scheme_valid": False,
+            "token_structure_valid": False,
+            "jwt_secret_configured": secret_configured,
+        }
+    if not authorization.startswith("Bearer "):
+        return {
+            "status": "fail",
+            "code": "AUTH_SCHEME_INVALID",
+            "message": "Authorization scheme must be 'Bearer <token>'.",
+            "header_present": True,
+            "scheme_valid": False,
+            "token_structure_valid": False,
+            "jwt_secret_configured": secret_configured,
+        }
+    token = authorization[7:].strip()
+    parts = token.split(".")
+    if len(parts) != 3:
+        return {
+            "status": "fail",
+            "code": "TOKEN_STRUCTURE_INVALID",
+            "message": "Token does not have 3 dot-separated JWT segments.",
+            "header_present": True,
+            "scheme_valid": True,
+            "token_structure_valid": False,
+            "jwt_secret_configured": secret_configured,
+        }
+    try:
+        from jose import jwt as jose_jwt
+        unverified_header = jose_jwt.get_unverified_header(token)
+        unverified_claims = jose_jwt.get_unverified_claims(token)
+    except Exception:
+        return {
+            "status": "fail",
+            "code": "TOKEN_PARSE_ERROR",
+            "message": "Failed to decode unverified JWT structure.",
+            "header_present": True,
+            "scheme_valid": True,
+            "token_structure_valid": False,
+            "jwt_secret_configured": secret_configured,
+        }
+    token_alg = unverified_header.get("alg")
+    has_sub = "sub" in unverified_claims
+    aud = unverified_claims.get("aud")
+    is_aud_authenticated = (aud == "authenticated")
+    exp = unverified_claims.get("exp")
+    is_expired = (exp is not None and exp < time.time())
+
+    if token_alg != "HS256":
+        return {
+            "status": "fail",
+            "code": "ALGORITHM_MISMATCH",
+            "message": f"Token algorithm '{token_alg}' is not HS256.",
+            "header_present": True,
+            "scheme_valid": True,
+            "token_structure_valid": True,
+            "algorithm": token_alg,
+            "has_sub": has_sub,
+            "is_aud_authenticated": is_aud_authenticated,
+            "is_expired": is_expired,
+            "jwt_secret_configured": secret_configured,
+        }
+    if not is_aud_authenticated:
+        return {
+            "status": "fail",
+            "code": "AUDIENCE_MISMATCH",
+            "message": f"Token audience is not 'authenticated' (found: '{aud}'). Anon keys cannot authenticate user jobs.",
+            "header_present": True,
+            "scheme_valid": True,
+            "token_structure_valid": True,
+            "algorithm": token_alg,
+            "has_sub": has_sub,
+            "is_aud_authenticated": False,
+            "is_expired": is_expired,
+            "jwt_secret_configured": secret_configured,
+        }
+    if not has_sub:
+        return {
+            "status": "fail",
+            "code": "MISSING_SUB_CLAIM",
+            "message": "Token is missing 'sub' claim. A user access token is required, not an anon key.",
+            "header_present": True,
+            "scheme_valid": True,
+            "token_structure_valid": True,
+            "algorithm": token_alg,
+            "has_sub": False,
+            "is_aud_authenticated": is_aud_authenticated,
+            "is_expired": is_expired,
+            "jwt_secret_configured": secret_configured,
+        }
+    if is_expired:
+        return {
+            "status": "fail",
+            "code": "TOKEN_EXPIRED",
+            "message": "Token has expired. Client must refresh the Supabase session.",
+            "header_present": True,
+            "scheme_valid": True,
+            "token_structure_valid": True,
+            "algorithm": token_alg,
+            "has_sub": has_sub,
+            "is_aud_authenticated": is_aud_authenticated,
+            "is_expired": True,
+            "jwt_secret_configured": secret_configured,
+        }
+    try:
+        jose_jwt.decode(token, service.settings.jwt_secret, algorithms=["HS256"], audience="authenticated")
+        return {
+            "status": "ok",
+            "code": "AUTH_SUCCESS",
+            "message": "Token is structurally valid, signed correctly, and authorized for VTO jobs.",
+            "header_present": True,
+            "scheme_valid": True,
+            "token_structure_valid": True,
+            "algorithm": token_alg,
+            "has_sub": True,
+            "is_aud_authenticated": True,
+            "is_expired": False,
+            "signature_valid": True,
+            "jwt_secret_configured": True,
+        }
+    except Exception:
+        return {
+            "status": "fail",
+            "code": "SIGNATURE_VERIFICATION_FAILED",
+            "message": "Cryptographic signature verification failed. VTO_JWT_SECRET in server environment does not match the secret that signed this token.",
+            "header_present": True,
+            "scheme_valid": True,
+            "token_structure_valid": True,
+            "algorithm": token_alg,
+            "has_sub": True,
+            "is_aud_authenticated": True,
+            "is_expired": False,
+            "signature_valid": False,
+            "jwt_secret_configured": True,
+        }
+
 @app.post("/v1/vto/jobs", status_code=202)
 async def create_job(body: JobCreate, user_id: str=Depends(current_user)):
     service._owned_garment(user_id,body.garment_id)
