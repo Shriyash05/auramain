@@ -23,6 +23,7 @@ import {
   Shield,
   CheckCircle2,
 } from 'lucide-react-native';
+import { VtoAuthDiagnostic } from '../../src/components/dev/VtoAuthDiagnostic';
 
 export default function ProfileScreen() {
   const router = useRouter();
@@ -93,6 +94,9 @@ export default function ProfileScreen() {
             </Typography>
           </View>
         </View>
+
+        {/* Development VTO Authentication Diagnostic */}
+        <VtoAuthDiagnostic />
 
         {/* Personal AURA Model Hub */}
         <View style={styles.section}>

@@ -28,11 +28,11 @@ curl -i -X GET "https://<YOUR_NGROK_URL>/v1/vto/diagnostics/auth" \
 | `AUTH_HEADER_MISSING` | The `Authorization` header was not sent or was stripped by a proxy. | Verify that your HTTP client attaches the `Authorization` header. In Expo/React Native, ensure the header is added to the fetch options. |
 | `AUTH_SCHEME_INVALID` | The header does not begin with `Bearer `. | Change the header value format to `Bearer <token>`. Ensure there is a single space between `Bearer` and the token string. |
 | `TOKEN_STRUCTURE_INVALID` | The string passed is not a valid JWT (it does not have three dot-separated base64url segments). | Ensure you are passing `session.access_token` and not a user ID, email address, or arbitrary string. |
-| `ALGORITHM_MISMATCH` | The JWT algorithm is not `HS256`. | Ensure your Supabase project is configured with the standard HMAC-SHA256 (`HS256`) signing algorithm. |
+| `ALGORITHM_MISMATCH` | The JWT algorithm is neither `HS256` nor `ES256`. | Modern Supabase uses `ES256` (ECDSA); legacy uses `HS256`. If this occurs, rerun Step 1 and Step 6 in the Kaggle notebook to update the server with dual-algorithm support. |
 | `AUDIENCE_MISMATCH` | The token's `aud` claim is not `"authenticated"`. | **Common**: You passed the Supabase Anon Key or service role key instead of a logged-in user's token. In Supabase, only authenticated user sessions contain `aud: "authenticated"`. Log into the app first to obtain a user session. |
 | `MISSING_SUB_CLAIM` | The token lacks a `sub` claim. | Ensure you are using an authenticated user session token. The `sub` claim contains the user's UUID in Supabase Auth. |
 | `TOKEN_EXPIRED` | The token's timestamp has passed its expiration time (`exp`). | Call `supabase.auth.refreshSession()` in the mobile app to refresh the access token before dispatching the request. |
-| `SIGNATURE_VERIFICATION_FAILED` | The backend `VTO_JWT_SECRET` does not match the secret used to sign the token. | **Crucial Step**: In the Supabase Dashboard, navigate to **Project Settings > API > JWT Settings > JWT Secret**. Copy that exact secret and set it in Kaggle Secrets under the key `VTO_JWT_SECRET`. Restart the Kaggle server cell. |
+| `SIGNATURE_VERIFICATION_FAILED` | The signing key does not match the token signature. | For `HS256`, verify `VTO_JWT_SECRET` in Kaggle Secrets matches Supabase Project Settings > API > JWT Settings > JWT Secret. For `ES256`, verify the Kaggle runtime can access `SUPABASE_URL/.well-known/jwks.json`. |
 | `AUTH_SUCCESS` | Authentication succeeded! | The token is valid, correctly signed, and authorized. You can now submit jobs via `POST /v1/vto/jobs`. |
 
 ---

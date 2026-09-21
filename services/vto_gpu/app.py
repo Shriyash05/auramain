@@ -21,8 +21,34 @@ class Service:
     def __init__(self, settings: Settings):
         self.settings=settings; self.db=create_client(settings.supabase_url, settings.supabase_service_role_key)
         self.pipeline=None; self.lock=asyncio.Semaphore(settings.max_concurrent_jobs)
+    def _get_jwks_key(self, kid: str | None = None):
+        if not hasattr(self, "_jwks_cache") or not self._jwks_cache:
+            import urllib.request, json
+            from jose import jwk
+            url = f"{self.settings.supabase_url.rstrip('/')}/auth/v1/.well-known/jwks.json"
+            req = urllib.request.Request(url, headers={"User-Agent": "AURA-VTO-Service/1.0"})
+            with urllib.request.urlopen(req, timeout=5) as res:
+                jwks_data = json.loads(res.read().decode("utf-8"))
+            keys_dict = {}
+            for k in jwks_data.get("keys", []):
+                key_obj = jwk.construct(k)
+                if "kid" in k:
+                    keys_dict[k["kid"]] = key_obj
+                if "_default" not in keys_dict:
+                    keys_dict["_default"] = key_obj
+            self._jwks_cache = keys_dict
+        if kid and kid in self._jwks_cache:
+            return self._jwks_cache[kid]
+        return self._jwks_cache.get("_default")
+
     def user(self, token: str) -> str:
-        try: return jwt.decode(token, self.settings.jwt_secret, algorithms=["HS256"], audience="authenticated")["sub"]
+        try:
+            unverified_header = jwt.get_unverified_header(token)
+            alg = unverified_header.get("alg", "HS256")
+            if alg == "ES256":
+                key = self._get_jwks_key(unverified_header.get("kid"))
+                return jwt.decode(token, key, algorithms=["ES256"], audience="authenticated")["sub"]
+            return jwt.decode(token, self.settings.jwt_secret, algorithms=["HS256"], audience="authenticated")["sub"]
         except (JWTError, KeyError): raise HTTPException(401, "Invalid authentication token")
     def load(self):
         if self.pipeline is None:
@@ -156,11 +182,11 @@ def auth_diagnostics(authorization: str | None = Header(default=None)):
     exp = unverified_claims.get("exp")
     is_expired = (exp is not None and exp < time.time())
 
-    if token_alg != "HS256":
+    if token_alg not in ("HS256", "ES256"):
         return {
             "status": "fail",
             "code": "ALGORITHM_MISMATCH",
-            "message": f"Token algorithm '{token_alg}' is not HS256.",
+            "message": f"Token algorithm '{token_alg}' is neither HS256 nor ES256.",
             "header_present": True,
             "scheme_valid": True,
             "token_structure_valid": True,
@@ -213,7 +239,11 @@ def auth_diagnostics(authorization: str | None = Header(default=None)):
             "jwt_secret_configured": secret_configured,
         }
     try:
-        jose_jwt.decode(token, service.settings.jwt_secret, algorithms=["HS256"], audience="authenticated")
+        if token_alg == "ES256":
+            key = service._get_jwks_key(unverified_header.get("kid"))
+            jose_jwt.decode(token, key, algorithms=["ES256"], audience="authenticated")
+        else:
+            jose_jwt.decode(token, service.settings.jwt_secret, algorithms=["HS256"], audience="authenticated")
         return {
             "status": "ok",
             "code": "AUTH_SUCCESS",
@@ -232,7 +262,7 @@ def auth_diagnostics(authorization: str | None = Header(default=None)):
         return {
             "status": "fail",
             "code": "SIGNATURE_VERIFICATION_FAILED",
-            "message": "Cryptographic signature verification failed. VTO_JWT_SECRET in server environment does not match the secret that signed this token.",
+            "message": "Cryptographic signature verification failed. The signing key does not match this token.",
             "header_present": True,
             "scheme_valid": True,
             "token_structure_valid": True,

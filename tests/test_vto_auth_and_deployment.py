@@ -118,7 +118,7 @@ class TestVTOAuthAndDeployment(unittest.TestCase):
         self.assertEqual(resp.status_code, 401)
         self.assertIn("Invalid authentication token", resp.json().get("detail", ""))
 
-    # 7. Valid authorized token -> authentication succeeds
+    # 7. Valid authorized token -> authentication succeeds (HS256)
     def test_valid_token_passes_authentication(self):
         valid_token = self._create_token(user_id="user_owner_456")
         diag = self.client.get("/v1/vto/diagnostics/auth", headers={"Authorization": f"Bearer {valid_token}"})
@@ -127,6 +127,25 @@ class TestVTOAuthAndDeployment(unittest.TestCase):
         self.assertEqual(d["status"], "ok")
         self.assertEqual(d["code"], "AUTH_SUCCESS")
         self.assertTrue(d["signature_valid"])
+
+    # 7b. Valid authorized token -> authentication succeeds (ES256 via JWKS)
+    def test_valid_es256_token_passes_authentication(self):
+        from cryptography.hazmat.primitives.asymmetric import ec
+        from cryptography.hazmat.primitives import serialization
+        from services.vto_gpu import app as app_mod
+
+        priv = ec.generate_private_key(ec.SECP256R1())
+        pem = priv.private_bytes(serialization.Encoding.PEM, serialization.PrivateFormat.PKCS8, serialization.NoEncryption())
+        pub_pem = priv.public_key().public_bytes(serialization.Encoding.PEM, serialization.PublicFormat.SubjectPublicKeyInfo)
+        es_token = jwt.encode({"sub": "user_es256_123", "aud": "authenticated", "exp": int(time.time()) + 3600}, pem, algorithm="ES256", headers={"kid": "mock_ec_kid"})
+
+        with patch.object(app_mod.service, "_get_jwks_key", return_value=pub_pem):
+            diag = self.client.get("/v1/vto/diagnostics/auth", headers={"Authorization": f"Bearer {es_token}"})
+            self.assertEqual(diag.status_code, 200)
+            d = diag.json()
+            self.assertEqual(d["status"], "ok")
+            self.assertEqual(d["code"], "AUTH_SUCCESS")
+            self.assertEqual(d["algorithm"], "ES256")
 
     # 8. Unauthorized user accessing another user's assets -> 403
     def test_unauthorized_garment_access_returns_403(self):

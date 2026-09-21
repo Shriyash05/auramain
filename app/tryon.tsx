@@ -83,6 +83,7 @@ export default function TryOnScreen() {
   const [selectedGarments, setSelectedGarments] = useState<Garment[]>([]);
   const [tryOnStatus, setTryOnStatus] = useState<TryOnStatus>('idle');
   const [tryOnResult, setTryOnResult] = useState<TryOnResult | null>(null);
+  const [stageViewMode, setStageViewMode] = useState<'neural' | 'silhouette'>('neural');
   const [isSaving, setIsSaving] = useState(false);
   const [savedSuccess, setSavedSuccess] = useState(false);
   const hasAutoTriggered = useRef(false);
@@ -390,95 +391,148 @@ export default function TryOnScreen() {
 
           {/* SECTION 2: VISUAL TRY-ON MANNEQUIN STAGE */}
           <View style={styles.stageSection}>
+            {/* View Mode Toggle when genuine neural result is available */}
+            {tryOnResult?.status === 'completed' && Boolean(tryOnResult?.result_image_url) && (
+              <View style={styles.viewToggleRow}>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() => setStageViewMode('neural')}
+                  style={[styles.viewToggleBtn, stageViewMode === 'neural' && styles.viewToggleBtnActive]}
+                >
+                  <Sparkles size={13} color={stageViewMode === 'neural' ? colors.background : colors.text} />
+                  <Typography
+                    variant="caption"
+                    style={[styles.viewToggleText, stageViewMode === 'neural' && styles.viewToggleTextActive]}
+                  >
+                    Neural VTO
+                  </Typography>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() => setStageViewMode('silhouette')}
+                  style={[styles.viewToggleBtn, stageViewMode === 'silhouette' && styles.viewToggleBtnActive]}
+                >
+                  <Layers size={13} color={stageViewMode === 'silhouette' ? colors.background : colors.text} />
+                  <Typography
+                    variant="caption"
+                    style={[styles.viewToggleText, stageViewMode === 'silhouette' && styles.viewToggleTextActive]}
+                  >
+                    2D Drape Preview
+                  </Typography>
+                </TouchableOpacity>
+              </View>
+            )}
+
             <View style={styles.stageFrame}>
               {/* Animated Loading Beam during Try-On calculation */}
               {(tryOnStatus === 'checking_model' || tryOnStatus === 'preparing' || tryOnStatus === 'processing') && (
                 <View style={styles.stageLoadingOverlay}>
                   <ActivityIndicator size="large" color={colors.accent} />
                   <Typography variant="body" style={styles.loadingText}>
-                    Aligning garment drape with your proportions...
+                    {tryOnStatus === 'processing'
+                      ? 'Executing neural virtual try-on on GPU...'
+                      : 'Aligning garment drape with your proportions...'}
                   </Typography>
                   <Typography variant="caption" color={colors.textSecondary}>
-                    Evaluating {userModel?.proportions?.heightCm || 178}cm {userModel?.bodyShape || 'athletic'} frame geometry
+                    {tryOnStatus === 'processing'
+                      ? 'Decoupled MMDiT + DWPose synthesizing realistic fabric drape and lighting'
+                      : `Evaluating ${userModel?.proportions?.heightCm || 178}cm ${userModel?.bodyShape || 'athletic'} frame geometry`}
                   </Typography>
                 </View>
               )}
 
-              {/* MODEL MANNEQUIN & GARMENT DRAPE COMPOSITION */}
-              <View style={[styles.mannequinBody, { width: silhouetteWidth }]}>
-                {/* 1. Head / Face Reference Overlay */}
-                <View style={styles.headAnchor}>
-                  {userModel?.primaryFaceUri ? (
-                    <Image source={{ uri: userModel.primaryFaceUri }} style={styles.headAvatarImg} />
-                  ) : (
-                    <View style={styles.neutralHeadCircle}>
-                      <User size={24} color={colors.textMuted} />
-                    </View>
-                  )}
-                </View>
-
-                {/* 2. Outerwear Overlay (if present) */}
-                {outerwearGarment && (
-                  <View style={styles.outerwearDrapeLayer}>
-                    <Image
-                      source={{ uri: getImageUri(outerwearGarment) }}
-                      style={styles.outerwearDrapeImg}
-                      resizeMode="contain"
-                    />
+              {/* STAGE DISPLAY: Genuine Neural Result OR 2D Mannequin Drape */}
+              {tryOnResult?.status === 'completed' && Boolean(tryOnResult.result_image_url) && stageViewMode === 'neural' ? (
+                <View style={styles.neuralResultContainer}>
+                  <Image
+                    source={{ uri: tryOnResult.result_image_url }}
+                    style={styles.neuralResultImage}
+                    resizeMode="contain"
+                  />
+                  <View style={styles.neuralResultBadge}>
+                    <Sparkles size={12} color="#FFFFFF" />
+                    <Typography variant="caption" style={styles.neuralResultBadgeText}>
+                      GENUINE NEURAL VTO RESULT
+                    </Typography>
                   </View>
-                )}
+                </View>
+              ) : (
+                /* MODEL MANNEQUIN & GARMENT DRAPE COMPOSITION */
+                <View style={[styles.mannequinBody, { width: silhouetteWidth }]}>
+                  {/* 1. Head / Face Reference Overlay */}
+                  <View style={styles.headAnchor}>
+                    {userModel?.primaryFaceUri ? (
+                      <Image source={{ uri: userModel.primaryFaceUri }} style={styles.headAvatarImg} />
+                    ) : (
+                      <View style={styles.neutralHeadCircle}>
+                        <User size={24} color={colors.textMuted} />
+                      </View>
+                    )}
+                  </View>
 
-                {/* 3. Top Garment Drape (Torso) */}
-                <View style={styles.topDrapeLayer}>
-                  {topGarment ? (
-                    <Image
-                      source={{ uri: getImageUri(topGarment) }}
-                      style={styles.topDrapeImg}
-                      resizeMode="contain"
-                    />
-                  ) : (
-                    <View style={styles.emptyDrapePlaceholder}>
-                      <Typography variant="caption" color={colors.textMuted}>
-                        + Add Top
-                      </Typography>
+                  {/* 2. Outerwear Overlay (if present) */}
+                  {outerwearGarment && (
+                    <View style={styles.outerwearDrapeLayer}>
+                      <Image
+                        source={{ uri: getImageUri(outerwearGarment) }}
+                        style={styles.outerwearDrapeImg}
+                        resizeMode="contain"
+                      />
                     </View>
                   )}
-                </View>
 
-                {/* 4. Bottom Garment Drape (Legs) */}
-                <View style={styles.bottomDrapeLayer}>
-                  {bottomGarment ? (
-                    <Image
-                      source={{ uri: getImageUri(bottomGarment) }}
-                      style={styles.bottomDrapeImg}
-                      resizeMode="contain"
-                    />
-                  ) : (
-                    <View style={styles.emptyDrapePlaceholder}>
-                      <Typography variant="caption" color={colors.textMuted}>
-                        + Add Bottom
-                      </Typography>
-                    </View>
-                  )}
-                </View>
+                  {/* 3. Top Garment Drape (Torso) */}
+                  <View style={styles.topDrapeLayer}>
+                    {topGarment ? (
+                      <Image
+                        source={{ uri: getImageUri(topGarment) }}
+                        style={styles.topDrapeImg}
+                        resizeMode="contain"
+                      />
+                    ) : (
+                      <View style={styles.emptyDrapePlaceholder}>
+                        <Typography variant="caption" color={colors.textMuted}>
+                          + Add Top
+                        </Typography>
+                      </View>
+                    )}
+                  </View>
 
-                {/* 5. Shoes Garment Drape (Feet) */}
-                <View style={styles.shoesDrapeLayer}>
-                  {shoeGarment ? (
-                    <Image
-                      source={{ uri: getImageUri(shoeGarment) }}
-                      style={styles.shoesDrapeImg}
-                      resizeMode="contain"
-                    />
-                  ) : (
-                    <View style={styles.emptyDrapePlaceholder}>
-                      <Typography variant="caption" color={colors.textMuted}>
-                        + Add Shoes
-                      </Typography>
-                    </View>
-                  )}
+                  {/* 4. Bottom Garment Drape (Legs) */}
+                  <View style={styles.bottomDrapeLayer}>
+                    {bottomGarment ? (
+                      <Image
+                        source={{ uri: getImageUri(bottomGarment) }}
+                        style={styles.bottomDrapeImg}
+                        resizeMode="contain"
+                      />
+                    ) : (
+                      <View style={styles.emptyDrapePlaceholder}>
+                        <Typography variant="caption" color={colors.textMuted}>
+                          + Add Bottom
+                        </Typography>
+                      </View>
+                    )}
+                  </View>
+
+                  {/* 5. Shoes Garment Drape (Feet) */}
+                  <View style={styles.shoesDrapeLayer}>
+                    {shoeGarment ? (
+                      <Image
+                        source={{ uri: getImageUri(shoeGarment) }}
+                        style={styles.shoesDrapeImg}
+                        resizeMode="contain"
+                      />
+                    ) : (
+                      <View style={styles.emptyDrapePlaceholder}>
+                        <Typography variant="caption" color={colors.textMuted}>
+                          + Add Shoes
+                        </Typography>
+                      </View>
+                    )}
+                  </View>
                 </View>
-              </View>
+              )}
 
               {/* Fit Analysis Box */}
               <View style={styles.fitAnalysisBadge}>
@@ -492,76 +546,113 @@ export default function TryOnScreen() {
               <View style={styles.governanceNotice}>
                 <ShieldCheck size={14} color={colors.textSecondary} style={{ marginTop: 2 }} />
                 <Typography variant="caption" color={colors.textSecondary} style={styles.governanceText}>
-                  Composite Try-On mapped to your personal measurements. AURA adheres to strict scientific honesty: Zero fake AI images are simulated. Dedicated on-device neural diffusion weights are in development.
+                  {tryOnResult?.status === 'completed' && Boolean(tryOnResult?.result_image_url)
+                    ? 'Neural Try-On generated using real user photo and garment cutouts via self-hosted GPU pipeline.'
+                    : 'Composite Try-On mapped to your personal measurements. AURA adheres to strict scientific honesty: Zero fake AI images are simulated. Dedicated on-device neural diffusion weights are in development.'}
                 </Typography>
               </View>
             </View>
           </View>
 
-          {/* SECTION 2.5: HONEST VTO ENGINE BLOCKED & DIAGNOSTIC REPORT CARD */}
-          <View style={styles.vtoBlockedCard}>
-            <View style={styles.resultBadgeRow}>
-              <View style={styles.blockedBadge}>
-                <AlertCircle size={13} color={colors.warning} />
-                <Typography variant="caption" color={colors.warning} style={styles.blockedBadgeText}>
-                  VTO ENGINE BLOCKED
+          {/* SECTION 2.5: HONEST VTO ENGINE STATUS & DIAGNOSTIC REPORT CARD */}
+          {tryOnResult?.status === 'completed' && Boolean(tryOnResult?.result_image_url) ? (
+            <View style={styles.vtoSuccessCard}>
+              <View style={styles.resultBadgeRow}>
+                <View style={styles.successBadge}>
+                  <CheckCircle2 size={13} color="#FFFFFF" />
+                  <Typography variant="caption" style={styles.successBadgeText}>
+                    NEURAL VTO ACTIVE
+                  </Typography>
+                </View>
+                <Typography variant="caption" color={colors.textMuted}>
+                  STATUS: COMPLETED
                 </Typography>
               </View>
-              <Typography variant="caption" color={colors.textMuted}>
-                STATUS: ENGINE_UNAVAILABLE
+
+              <Typography variant="title" style={styles.successTitle}>
+                Genuine Neural Inference Verified
+              </Typography>
+              <Typography variant="caption" color={colors.textSecondary} style={styles.successSub}>
+                Image synthesized by decoupled MMDiT + DWPose on self-hosted GPU server. Output verified and delivered from private storage.
               </Typography>
             </View>
+          ) : (
+            <View style={styles.vtoBlockedCard}>
+              <View style={styles.resultBadgeRow}>
+                <View style={styles.blockedBadge}>
+                  <AlertCircle size={13} color={colors.warning} />
+                  <Typography variant="caption" color={colors.warning} style={styles.blockedBadgeText}>
+                    VTO ENGINE BLOCKED
+                  </Typography>
+                </View>
+                <Typography variant="caption" color={colors.textMuted}>
+                  STATUS: {tryOnStatus === 'engine_unavailable' ? 'ENGINE_UNAVAILABLE' : tryOnStatus.toUpperCase()}
+                </Typography>
+              </View>
 
-            <Typography variant="title" style={styles.blockedTitle}>
-              Neural Virtual Try-On Backend Unavailable
-            </Typography>
-            <Typography variant="caption" color={colors.textSecondary} style={styles.blockedSub}>
-              A real AI Try-On engine requires a self-hosted GPU inference container (e.g. CatVTON or Kolors-VTON). Commercial third-party generative APIs are forbidden. Proportional silhouette drape preview is shown above.
-            </Typography>
-
-            {/* Diagnostic Details & Integration Readiness */}
-            <View style={styles.diagnosticGrid}>
-              <View style={styles.diagRow}>
-                <Typography variant="label" style={styles.diagLabel}>
-                  WHAT IS MISSING:
-                </Typography>
-                <Typography variant="caption" color={colors.textSecondary} style={styles.diagValue}>
-                  Self-hosted GPU diffusion inference container (CatVTON / Kolors-VTON). Zero local GPU server running.
-                </Typography>
-              </View>
-              <View style={styles.diagRow}>
-                <Typography variant="label" style={styles.diagLabel}>
-                  READY INTERFACE:
-                </Typography>
-                <Typography variant="caption" color={colors.textSecondary} style={styles.diagValue}>
-                  IVirtualTryOnProvider &amp; VirtualTryOnService client data pipeline fully assembled.
-                </Typography>
-              </View>
-              <View style={styles.diagRow}>
-                <Typography variant="label" style={styles.diagLabel}>
-                  VERIFIED PAYLOADS:
-                </Typography>
-                <Typography variant="caption" color={colors.textSecondary} style={styles.diagValue}>
-                  AuraUserModel ({userModel?.proportions?.heightCm || 178}cm, {userModel?.bodyShape || 'athletic'}) + {selectedGarments.length} genuine isolated garment cutouts.
-                </Typography>
-              </View>
-              <View style={styles.diagRow}>
-                <Typography variant="label" style={styles.diagLabel}>
-                  INTEGRATION BOUNDARY:
-                </Typography>
-                <Typography variant="caption" color={colors.textSecondary} style={styles.diagValue}>
-                  VirtualTryOnService.executeTryOn(userId, options)
-                </Typography>
-              </View>
-            </View>
-
-            <View style={styles.honestyPill}>
-              <ShieldCheck size={14} color={colors.textSecondary} />
-              <Typography variant="caption" color={colors.textSecondary} style={styles.honestyText}>
-                Scientific Honesty: AURA strictly refuses to display fake AI renders pretending to be a try-on.
+              <Typography variant="title" style={styles.blockedTitle}>
+                Neural Virtual Try-On Backend Unavailable
               </Typography>
+              <Typography variant="caption" color={colors.textSecondary} style={styles.blockedSub}>
+                {tryOnResult?.errorMessage ||
+                  'A real AI Try-On engine requires a self-hosted GPU inference container (Google Colab / Kaggle). Commercial third-party generative APIs are forbidden. Proportional silhouette drape preview is shown above.'}
+              </Typography>
+
+              {/* Diagnostic Details & Integration Readiness */}
+              <View style={styles.diagnosticGrid}>
+                <View style={styles.diagRow}>
+                  <Typography variant="label" style={styles.diagLabel}>
+                    WHAT IS MISSING:
+                  </Typography>
+                  <Typography variant="caption" color={colors.textSecondary} style={styles.diagValue}>
+                    Self-hosted GPU diffusion inference container (CatVTON / FASHN MMDiT). Check EXPO_PUBLIC_VTO_COLAB_URL in .env.
+                  </Typography>
+                </View>
+                <View style={styles.diagRow}>
+                  <Typography variant="label" style={styles.diagLabel}>
+                    READY INTERFACE:
+                  </Typography>
+                  <Typography variant="caption" color={colors.textSecondary} style={styles.diagValue}>
+                    IVirtualTryOnProvider &amp; VirtualTryOnService client data pipeline fully assembled.
+                  </Typography>
+                </View>
+                <View style={styles.diagRow}>
+                  <Typography variant="label" style={styles.diagLabel}>
+                    VERIFIED PAYLOADS:
+                  </Typography>
+                  <Typography variant="caption" color={colors.textSecondary} style={styles.diagValue}>
+                    AuraUserModel ({userModel?.proportions?.heightCm || 178}cm, {userModel?.bodyShape || 'athletic'}) + {selectedGarments.length} genuine isolated garment cutouts.
+                  </Typography>
+                </View>
+                <View style={styles.diagRow}>
+                  <Typography variant="label" style={styles.diagLabel}>
+                    INTEGRATION BOUNDARY:
+                  </Typography>
+                  <Typography variant="caption" color={colors.textSecondary} style={styles.diagValue}>
+                    VirtualTryOnService.executeTryOn(userId, options)
+                  </Typography>
+                </View>
+              </View>
+
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={handleExecuteTryOn}
+                style={styles.retryBtn}
+              >
+                <RefreshCw size={13} color={colors.text} />
+                <Typography variant="caption" style={styles.retryBtnText}>
+                  Retry Connection / Try-On
+                </Typography>
+              </TouchableOpacity>
+
+              <View style={styles.honestyPill}>
+                <ShieldCheck size={14} color={colors.textSecondary} />
+                <Typography variant="caption" color={colors.textSecondary} style={styles.honestyText}>
+                  Scientific Honesty: AURA strictly refuses to display fake AI renders pretending to be a try-on.
+                </Typography>
+              </View>
             </View>
-          </View>
+          )}
 
           {/* SECTION 2.6: GEOMETRIC PROPORTIONAL SIZING & DRAPE BREAKDOWN */}
           <View style={styles.proportionalDrapeCard}>
@@ -1255,5 +1346,114 @@ const styles = StyleSheet.create({
   drapeCardSub: {
     fontSize: 11,
     marginBottom: 4,
+  },
+  viewToggleRow: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    backgroundColor: colors.surfaceMuted,
+    borderRadius: radii.pill,
+    padding: 3,
+    marginBottom: spacing.sm,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  viewToggleBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    borderRadius: radii.pill,
+  },
+  viewToggleBtnActive: {
+    backgroundColor: colors.accent,
+  },
+  viewToggleText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: colors.textSecondary,
+  },
+  viewToggleTextActive: {
+    color: '#FFFFFF',
+  },
+  neuralResultContainer: {
+    width: '100%',
+    height: 420,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    marginVertical: spacing.sm,
+  },
+  neuralResultImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: radii.lg,
+  },
+  neuralResultBadge: {
+    position: 'absolute',
+    top: spacing.sm,
+    right: spacing.sm,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: radii.pill,
+  },
+  neuralResultBadgeText: {
+    color: '#FFFFFF',
+    fontSize: 10,
+    fontWeight: '700',
+    letterSpacing: 0.6,
+  },
+  vtoSuccessCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radii.xl,
+    padding: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.accent,
+    ...shadows.subtle,
+    gap: spacing.xs,
+  },
+  successBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: colors.accent,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: radii.pill,
+  },
+  successBadgeText: {
+    color: '#FFFFFF',
+    fontSize: 9,
+    fontWeight: '700',
+    letterSpacing: 0.8,
+  },
+  successTitle: {
+    fontSize: 15,
+    color: colors.text,
+  },
+  successSub: {
+    fontSize: 11,
+    lineHeight: 16,
+  },
+  retryBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    paddingVertical: 8,
+    borderRadius: radii.md,
+    backgroundColor: colors.surfaceMuted,
+    borderWidth: 1,
+    borderColor: colors.border,
+    marginTop: 4,
+  },
+  retryBtnText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: colors.text,
   },
 });

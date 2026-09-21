@@ -5,7 +5,13 @@ export type VTOJobStatus = 'queued' | 'processing' | 'completed' | 'failed' | 'c
 export interface VTOJob { id: string; status: VTOJobStatus; result_signed_url?: string; safe_error_message?: string; }
 export interface VTOJobRequest { category: 'tops' | 'bottoms'; garment_id: string; person: UploadedImageAsset; garment: UploadedImageAsset; outfit_name?: string; idempotency_key: string; }
 
-const baseUrl = () => (process.env.EXPO_PUBLIC_VTO_API_URL || '').replace(/\/$/, '');
+export const getVtoBaseUrl = () => {
+  const colabUrl = process.env.EXPO_PUBLIC_VTO_COLAB_URL;
+  const apiUrl = process.env.EXPO_PUBLIC_VTO_API_URL;
+  return (colabUrl || apiUrl || '').replace(/\/+$/, '');
+};
+
+const baseUrl = getVtoBaseUrl;
 const assertVtoInput = (asset: UploadedImageAsset) => {
   if (!asset?.bucket || !asset.objectKey || asset.objectKey.includes('://') || asset.objectKey.startsWith('file:')) throw new Error('VTO requires a private Storage object key. Upload the image first.');
 };
@@ -13,15 +19,36 @@ const assertVtoInput = (asset: UploadedImageAsset) => {
 export class VTOJobClient {
   private static inFlight = new Set<string>();
   private static async request(path: string, init: RequestInit = {}) {
-    if (!baseUrl() || !isSupabaseConfigured || !supabase) throw new Error('VTO service is not configured.');
+    const url = baseUrl();
+    if (!url || !isSupabaseConfigured || !supabase) throw new Error('VTO service is not configured.');
     const { data: { session } } = await supabase.auth.getSession();
     if (!session?.access_token) throw new Error('Your session expired. Please sign in again.');
-    const controller = new AbortController(); const timer = setTimeout(() => controller.abort(), 15_000);
+    const controller = new AbortController();
+    const timeoutMs = init.method === 'POST' ? 25_000 : 15_000;
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
-      const response = await fetch(`${baseUrl()}${path}`, { ...init, signal: controller.signal, headers: { Authorization: `Bearer ${session.access_token}`, 'Content-Type': 'application/json', ...(init.headers || {}) } });
-      if (!response.ok) { const detail = await response.json().catch(() => ({})); throw new Error(detail.detail || `VTO request failed (${response.status})`); }
+      const response = await fetch(`${url}${path}`, {
+        ...init,
+        signal: controller.signal,
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json',
+          ...(init.headers || {}),
+        },
+      });
+      if (!response.ok) {
+        const detail = await response.json().catch(() => ({}));
+        throw new Error(detail.detail || `VTO request failed (${response.status})`);
+      }
       return response.json();
-    } finally { clearTimeout(timer); }
+    } catch (err: any) {
+      if (err.name === 'AbortError') {
+        throw new Error('VTO request timed out. Please check your Colab / ngrok connection.');
+      }
+      throw err;
+    } finally {
+      clearTimeout(timer);
+    }
   }
   static async create(request: VTOJobRequest): Promise<VTOJob> {
     assertVtoInput(request.person); assertVtoInput(request.garment);

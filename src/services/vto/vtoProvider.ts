@@ -11,8 +11,8 @@
  */
 
 import { TryOnRequest, TryOnResult, TryOnStatus } from '../../types/vto';
-import { CloudStorageService } from '../storage/cloudStorageService';
-import { VTOJobClient } from './vtoJobClient';
+import { CloudStorageService, UploadedImageAsset } from '../storage/cloudStorageService';
+import { VTOJobClient, getVtoBaseUrl } from './vtoJobClient';
 
 export interface IVirtualTryOnProvider {
   isEngineAvailable(): Promise<{ available: boolean; reason: string }>;
@@ -24,14 +24,16 @@ export interface IVirtualTryOnProvider {
 
 export class AuraDiffusionVTOProvider implements IVirtualTryOnProvider {
   private getServiceUrl(): string {
-    return process.env.EXPO_PUBLIC_VTO_API_URL || 'http://127.0.0.1:8000';
+    return getVtoBaseUrl() || 'http://127.0.0.1:8000';
   }
 
   /**
-   * Checks whether the local diffusion engine inference server is running and healthy.
+   * Checks whether the local or remote diffusion engine inference server is running and healthy.
+   * Checks both /health (process running) and /ready (MMDiT and DWPose models initialized in GPU memory).
    */
   async isEngineAvailable(): Promise<{ available: boolean; reason: string }> {
-    const url = `${this.getServiceUrl()}/health`;
+    const serviceUrl = this.getServiceUrl();
+    const url = `${serviceUrl}/health`;
     try {
       if (typeof fetch !== 'function') {
         return {
@@ -41,7 +43,7 @@ export class AuraDiffusionVTOProvider implements IVirtualTryOnProvider {
       }
 
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 1500);
+      const timeoutId = setTimeout(() => controller.abort(), 2000);
 
       const res = await fetch(url, {
         method: 'GET',
@@ -59,6 +61,29 @@ export class AuraDiffusionVTOProvider implements IVirtualTryOnProvider {
 
       const data = await res.json();
       if (data.status === 'healthy' || data.status === 'ok') {
+        // Also check /ready to verify GPU models are initialized
+        try {
+          const readyController = new AbortController();
+          const readyTimeoutId = setTimeout(() => readyController.abort(), 1500);
+          const readyRes = await fetch(`${serviceUrl}/ready`, {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' },
+            signal: readyController.signal,
+          });
+          clearTimeout(readyTimeoutId);
+          if (readyRes.ok) {
+            const readyData = await readyRes.json();
+            if (readyData && readyData.ready === false) {
+              return {
+                available: false,
+                reason: 'Virtual Try-On is not available yet. VTO neural models (MMDiT / DWPose) are still initializing in GPU memory.',
+              };
+            }
+          }
+        } catch {
+          // /ready is optional on basic mock dev servers; if /health succeeded, proceed
+        }
+
         return {
           available: true,
           reason: data.message || 'VTO diffusion engine active and ready.',
@@ -86,17 +111,21 @@ export class AuraDiffusionVTOProvider implements IVirtualTryOnProvider {
   ): Promise<TryOnResult> {
     const { userId, userImageUrl, userModel, garments } = request;
 
-    const effectiveImageUrl =
-      userImageUrl ||
-      userModel?.primaryFaceUri ||
-      userModel?.primaryPhotoUri ||
-      'aura://personal_silhouette';
-
     if (!userModel && !userImageUrl) {
       throw new Error('User reference photo is required');
     }
     if (!garments || garments.length === 0) {
       throw new Error('At least one garment is required for virtual try-on');
+    }
+
+    const effectiveImageUrl =
+      userImageUrl ||
+      userModel?.primaryPhotoUri ||
+      userModel?.primaryFaceUri ||
+      '';
+
+    if (!effectiveImageUrl || effectiveImageUrl.startsWith('aura://') || effectiveImageUrl === 'aura://personal_silhouette') {
+      throw new Error('A real photo from your Personal AURA Model is required for neural Virtual Try-On. Please upload your photo in the Personal Model setup.');
     }
 
     // 1. Check user model
@@ -139,17 +168,45 @@ export class AuraDiffusionVTOProvider implements IVirtualTryOnProvider {
         'one-piece': 'one-piece',
       };
       const category = categoryMap[primaryGarment.category?.toLowerCase()];
-      if (category !== 'tops' && category !== 'bottoms') throw new Error('Only tops and bottoms are supported by neural VTO.');
-      if (!primaryGarment.storage_asset) throw new Error('This garment has not been uploaded to private storage. Re-upload it before trying on.');
-      if (primaryGarment.storage_asset.bucket !== 'vto_inputs') throw new Error('This garment must be staged in the private VTO input bucket before trying on.');
-      const person = await CloudStorageService.uploadPrivateImage('vto_inputs', userId, effectiveImageUrl);
+      if (category !== 'tops' && category !== 'bottoms') {
+        throw new Error('Only tops and bottoms are supported by neural VTO.');
+      }
+
+      // Auto-stage garment cutout to private 'vto_inputs' bucket if needed
+      let garmentAsset: UploadedImageAsset | undefined = primaryGarment.storage_asset;
+      if (!garmentAsset || garmentAsset.bucket !== 'vto_inputs') {
+        const garmentImageUri = primaryGarment.processed_image || primaryGarment.original_image;
+        if (!garmentImageUri) {
+          throw new Error('This garment has no image to try on. Please add an image first.');
+        }
+        garmentAsset = await CloudStorageService.uploadPrivateImage(
+          'vto_inputs',
+          userId,
+          garmentImageUri,
+          `garment_${primaryGarment.id}_isolated.png`
+        );
+      }
+
+      // Stage person reference photo to private 'vto_inputs' bucket
+      const person = await CloudStorageService.uploadPrivateImage(
+        'vto_inputs',
+        userId,
+        effectiveImageUrl,
+        `person_${userId}.jpg`
+      );
+
       const submitted = await VTOJobClient.create({
-        category, garment_id: primaryGarment.id, person, garment: primaryGarment.storage_asset,
-        outfit_name: request.outfitName, idempotency_key: `vto_${userId}_${primaryGarment.id}_${Date.now()}`,
+        category,
+        garment_id: primaryGarment.id,
+        person,
+        garment: garmentAsset,
+        outfit_name: request.outfitName,
+        idempotency_key: `vto_${userId}_${primaryGarment.id}_${Date.now()}`,
       });
+
       let data = submitted;
       for (let attempt = 0; attempt < 120 && (data.status === 'queued' || data.status === 'processing'); attempt++) {
-        await new Promise(resolve => setTimeout(resolve, 5_000));
+        await new Promise((resolve) => setTimeout(resolve, 5_000));
         data = await VTOJobClient.get(data.id);
       }
 
@@ -174,10 +231,11 @@ export class AuraDiffusionVTOProvider implements IVirtualTryOnProvider {
         user_id: userId,
         user_image_url: effectiveImageUrl,
         // A completed result is accepted only when the service returned an
-        // actual generated image.  Never substitute the source image.
+        // actual generated image. Never substitute the source image.
         result_image_url: data.result_signed_url,
         provider: 'aura_diffusion_vto',
-        status: 'completed', garment_ids: garments.map((g) => g.id),
+        status: 'completed',
+        garment_ids: garments.map((g) => g.id),
         created_at: nowIso,
         updated_at: nowIso,
       };
